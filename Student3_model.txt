@@ -1,0 +1,183 @@
+### Model ###
+Recept:
+- ReceptID
+- Lek
+- LekarID
+- MedSestraID
+- PacijentID
+- StatusOvere
+- PregledID (ukoliko ima potrebe da se povezuju)
+- OpisUpotrebe
+
+Pregled:
+- PregledID
+- LekarID
+- PacijentID
+- Sala
+- VremePregleda
+- Dijagnoza
+- Terapija (izdati recepti, vise recepata se moze kreirati)
+- OpisPregleda
+- ZakazanDodatanPregled (true/false)
+- ZakazanaOperacija (true/false)
+
+ZdravstveniKarton:
+- KartonID
+- PacijentID
+- OsobljeSaPrisustvom (niz lekara koji trenuno vrsi ili je ranije radio pregled, kao i medicinski sestara koje overavaju recepte)
+- Pregledi (niz svih pregleda)
+- DatumRodjenjaPacijenta
+- AlergijeNaLek (niz lekova na koje je pacijent alergican)
+- VisinaPacijenta
+- TezinaPacijenta
+- KrvnaGrupa
+- Dioptrija
+
+ZahteviZaRegistraciju:
+- ZahtevID
+- PodaciOKorisniku... (podaci o pacijentu koji su potrebni prilikom registracije)
+- StatusObrade (obradjen/neobradjen)
+- StatusZahteva (prihvacen/odbijen)
+- RazlogOdbijanja?
+- DatumKreiranjaZahteva
+
+Klinike:
+- KlinkaID
+- TipSpecijalizacije
+- AdministratoriKlinike
+
+SifarnikDijagnoza:
+- DijagnozaID
+- NazivDijagnoze
+
+Lekovi:
+- LekID
+- NazivLeka
+- ProizvodjacLeka
+- Doza
+
+AdministratoriKlinickogCentra:
+- AdminID
+- Ime
+- Prezime
+- IzmenjenaSifraNakonPrvogLogovanja (true/false)
+- Username
+- Password
+- Email
+- KontaktTelefon
+- Adresa
+
+AdministratoriKlinika:
+- AdminID
+- Ime
+- Prezime
+- IzmenjenaSifraNakonPrvogLogovanja (true/false)
+- Username
+- Password
+- Email
+- KontaktTelefon
+- Adresa
+
+ZahtevZaOdsustvo:
+- ZahtevID
+- PodnosilacZahteva
+- TipOdsustva
+- VremePocetkaOdsustva
+- VremeKrajaOdsustva
+- StatusOdobrenja
+- DatumKreiranjaZahteva
+
+MedicinskoOsoblje
+- ID
+- Tip
+- KlinikaNaKojojRade
+- Ime
+- Prezime
+- IzmenjenaSifraNakonPrvogLogovanja (true/false)
+- Username
+- Password
+- Email
+- KontaktTelefon
+- Adresa
+
+Sale:
+- SalaID
+- NazivSale
+- BrojSale
+- KlinikaID
+
+Operacija:
+- OperacijaID
+- LekarKojiJeZakazaoOperaciju 
+- AdminKojiJeOdobrioSalu (sta ako je algoritam odobrio)
+- VrstaOperacije
+- DatumOperacije
+- Sala
+- LekariKojiMorajuPrisustvovatiOperaciji (niz lekara)
+
+ZahtevZaDodeluSale:
+- ZahtevID
+- SalaID
+- VremeID
+- LekarKojiZakazujeSalu
+- PacijentID
+- DatumKreiranjaZahteva
+- StatusZahteva (adminOdobrio/adminPomerio/algoritamOdobrio/algoritamPomerio)
+
+
+
+#### FEATURES ###
+3.6 Profil administratora kliničkog centra
+Zahtev za registraciju korisnika
+Registovanje klinike
+Registrovanje administratora klinike
+Popunjavanje šifarnika dijagnoza 
+Popunjavanje šifarnika lekova
+Postoji predefinisani administrator kliničkog centra
+Prvi put kada se loguje mora da menja šifru
+
+
+3.9 Home page za medicinsku sestru
+Lista pacijenata klinike
+Radni kalendar
+Zahtev za godišnji odmor
+Profil korisnika
+Stranica za overu recepta
+
+
+3.19 Postupak unošenja izveštaja o pregledu
+Slobodan unos informacija o pregledu
+Odabrana dijagnoza
+Unošenje recepta
+Zakazivanje dodatnog pregled ili operacija
+Zdravstveni karton pacijenta sa istorijom bolesti
+
+
+3.20 Postupak rezervisanja sala za operacije
+Zahtev za operaciju mora biti odobren 
+Da li postoji hitan zahtev?
+Lekar mora prisustovati operaciji
+
+
+3.21 Postupak overe recepta
+Sistem ima informaciju koja medicinska sestra je odobrila recepta
+Recept se kreira nakon završetka pregleda
+
+
+3.22 Postupak odbijanja ili prihvatanja zahteva za registraciju korisnika
+Lista pristiglih zahteva
+Zahtev može biti prihvaćen ili odbijen
+Odbijen zahtev ima razlog odbijanja
+
+
+3.23 Postupak izmene zdravstvenog kartona 
+U karton se može uneti ili izmeniti dioptija, alergije na lek, visina, težina, krvna grupa, itd.
+Izveštaj pregleda se nalazi u zdravstvenom kartonu
+Koje medicinske sestre mogu da unose izveštaj o pregledu?
+
+
+3.24 Grafički prikaz radnog kalendara
+Pregled ima dan, vreme početka, vreme kraja, proizvoljne dodatne informacije (ime i prezime pacijenta, tip pregleda)
+Ili na frontu ili na backu napraviti jednu kategoriju koja se zove 'događaj' i onda izlistavanje događaja prikazati u kalendaru.
+Događaj ima vreme početka i vreme kraja
+Istražiti gotove kalendare
