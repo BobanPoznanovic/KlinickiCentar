@@ -1,0 +1,66 @@
+Pacijent - registracija:
+-	ID – jedinstveni broj osiguranika
+-	Email 
+-	Password
+-	Ime
+-	Prezime
+-	Adresa
+-	Grad
+-	Drzava
+-	Broj telefona
+
+Zahtev za pregled:
+-	ZahtevID
+-	KlinikaID 	?
+-	Datum
+-	Satnica
+-	SalaID
+-	LekarID
+-	Tip
+-	Originalna cena
+-	Popust
+
+Unapred definisani pregledi
+-	PregledID
+-	KlinikaID 	?
+-	Datum
+-	Satnica
+-	SalaID
+-	LekarID
+-	Tip
+-	Originalna cena
+-	Popust
+FEATURES:
+	3.2. Registracija pacijenta i prijava na sistem:
+		- unos podataka; lozinka x2
+		- zahtev za reg se salje adminu kiln. centra koji moze da odobri ili odbije
+		- ako je odobren, korisniku se salje mejl sa linkom za aktivaciju, a ako je odbijen takodje se salje mejl uz kratko obrazlozenje
+
+	3.3. Profil pacijenta:
+		- ne sme da menja ID i mejl
+
+	3.7. Home page za pacijenta:
+		- lista klinika – sort
+		- istorija pregleda I operacija – sort po tipu, datumu…
+		- zdravstveni karton
+		- profil korisnika
+
+	3.10. Zakazivanje pregleda:
+		- (3.13.) pretraga klinika po tipu pregleda I datumu; dodatno lokacija, ocena, itd
+		- rezultat pretrage (klinike) se moze filtrirati po nekim kriterijumima
+		- (3.14.) bira se klinika I zatim se prikazuju svi lekari koji su:
+			- specijalizovani za trazeni tip pregleda i
+			- imaju slobodnih termina za trazeni datum
+		- salje se upit za pregled koji se prosledjuje adminu klinike I salje se mejl adminu
+		- pacijent dobija na mejl odgovor na upit koji treba da potvrdi ili odbije
+
+	3.12. Postupak zakazivanja unapred definisanih pregleda
+
+	3.13. Pretraga I filtriranje klinika
+
+	3.14. Pretraga I filtriranje lekara (na odabranoj klinici)
+		- do liste lekara se moze dodji preko koraka 3.13. ili
+		- na stranici klinike postoji link ka svim zapolsenim lekarima (u ovom slucaju postoji pretraga po datumu I tipu pregleda)
+
+ 
+
