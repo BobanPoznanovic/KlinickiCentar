@@ -8,10 +8,49 @@ Pacijent - registracija:
 -	Grad
 -	Drzava
 -	Broj telefona
+-	ID zdravstvenog kartona (sistem generise prilikom kreiranja pacijenta)
+
+Zahtev za registraciju
+- 	ID zahteva (sistem generise)
+-	Jedinstveni broj osiguranika
+-	Email 
+-	Password
+-	Ime
+-	Prezime
+-	Adresa
+-	Grad
+-	Drzava
+-	Broj telefona
+- 	Status zahtev (ENUM: Na cekanju, Odobren, Odbijen)
+-	Razlog odbijanja 
 
 Zahtev za pregled:
--	ZahtevID
--	KlinikaID 	?
+-	ZahtevZaPregledID (sistem generise)
+-	KlinikaID
+-	PacijentID
+-	Datum
+-	Satnica
+-	LekarID
+-	Tip pregleda
+-	Originalna cena
+
+ZahtevZaDodeluSale:
+- 	ZahtevZaDodeluSaleID
+- 	ZahtevZaPregledID (sistem generise)
+- 	SalaID
+-	DatumKreiranjaZahteva
+- 	VremeKreiranjeZahteva
+- 	StatusZahteva (Nije procesuirano/adminOdobrio/adminPomerio/algoritamOdobrio/algoritamPomerio)
+
+Cenovnik Klinike:
+-	CenovnikKlinikeID
+-	KlinikaID
+-	TipPregleda
+-	CenaPregleda
+
+Unapred definisani pregledi
+-	PreDefPregledID
+-	KlinikaID
 -	Datum
 -	Satnica
 -	SalaID
@@ -20,16 +59,7 @@ Zahtev za pregled:
 -	Originalna cena
 -	Popust
 
-Unapred definisani pregledi
--	PregledID
--	KlinikaID 	?
--	Datum
--	Satnica
--	SalaID
--	LekarID
--	Tip
--	Originalna cena
--	Popust
+
 FEATURES:
 	3.2. Registracija pacijenta i prijava na sistem:
 		- unos podataka; lozinka x2
@@ -67,25 +97,33 @@ FEATURES:
 ### Model ###
 Recept:
 - ReceptID
-- Lek
+- LekID
 - LekarID
 - MedSestraID
 - PacijentID
-- StatusOvere
-- PregledID (ukoliko ima potrebe da se povezuju)
+- StatusOvere (ENUM: Nije procesuiran/Odobren/Odbijen)
+- IzvestajPregledaID
 - OpisUpotrebe
 
 Pregled:
 - PregledID
+- SistemskaKategorijaPregleda (ENUM: Unapred predefinisani(ima popust), Normalan(nema popust))
 - LekarID
 - PacijentID
 - Sala
-- VremePregleda
-- Dijagnoza
-- Terapija (izdati recepti, vise recepata se moze kreirati)
-- OpisPregleda
+- Tip pregleda - vezan je za specijalizaciju lekara
+- Datum
+- Satnica
+- Cena pregleda
+- Popust
 - ZakazanDodatanPregled (true/false)
 - ZakazanaOperacija (true/false)
+
+Izvestaj pregleda **********************
+- ID (sistem generise)
+- PregledID (id pregleda kojem pripada)
+- Dijagnoza
+- OpisPregleda
 
 ZdravstveniKarton:
 - KartonID
@@ -98,14 +136,6 @@ ZdravstveniKarton:
 - TezinaPacijenta
 - KrvnaGrupa
 - Dioptrija
-
-ZahteviZaRegistraciju:
-- ZahtevID
-- PodaciOKorisniku... (podaci o pacijentu koji su potrebni prilikom registracije)
-- StatusObrade (obradjen/neobradjen)
-- StatusZahteva (prihvacen/odbijen)
-- RazlogOdbijanja?
-- DatumKreiranjaZahteva
 
 Klinike:
 - KlinkaID
@@ -145,17 +175,20 @@ AdministratoriKlinika:
 - Adresa
 
 ZahtevZaOdsustvo:
-- ZahtevID
-- PodnosilacZahteva
-- TipOdsustva
-- VremePocetkaOdsustva
-- VremeKrajaOdsustva
-- StatusOdobrenja
+- ZahtevID (sistem generise)
+- PodnosilacZahteva (ID medicinskog osoblja)
+- TipOdsustva (godisnji odmor ili odsustvo)
+- DatumPocetkaOdsustva
+- DatumKrajaOdsustva
+- StatusOdobrenja (Na cekanju, Odobren, Odbijen)
+- OpisRazlogaOdbijanja
 - DatumKreiranjaZahteva
+- SatnicaKreiranjaZahteva
 
 MedicinskoOsoblje
 - ID
-- Tip
+- Tip (Lekar/Medicinska sestra)
+- Specijalizacija (Za lekara)
 - KlinikaNaKojojRade
 - Ime
 - Prezime
@@ -178,17 +211,13 @@ Operacija:
 - AdminKojiJeOdobrioSalu (sta ako je algoritam odobrio)
 - VrstaOperacije
 - DatumOperacije
+- SatnicaOperacija
 - Sala
 - LekariKojiMorajuPrisustvovatiOperaciji (niz lekara)
 
-ZahtevZaDodeluSale:
-- ZahtevID
-- SalaID
-- Vreme
-- LekarKojiZakazujeSalu
-- PacijentID
-- DatumKreiranjaZahteva
-- StatusZahteva (adminOdobrio/adminPomerio/algoritamOdobrio/algoritamPomerio)
+
+
+Zahtev za operaciju:
 
 
 
