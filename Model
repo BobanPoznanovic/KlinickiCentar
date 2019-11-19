@@ -29,7 +29,8 @@ Zahtev za pregled:
 -	KlinikaID
 -	PacijentID
 -	Datum
--	Satnica
+-	SatnicaPocetak
+-	SatnicaKraj
 -	LekarID
 -	Tip pregleda
 -	Originalna cena
@@ -52,7 +53,8 @@ Unapred definisani pregledi
 -	PreDefPregledID
 -	KlinikaID
 -	Datum
--	Satnica
+-	SatnicaPocetak
+-	SatnicaKraj
 -	SalaID
 -	LekarID
 -	Tip
@@ -113,29 +115,32 @@ Pregled:
 - Sala
 - Tip pregleda - vezan je za specijalizaciju lekara
 - Datum
-- Satnica
+- SatnicaPocetak
+- SatnicaKraj
 - Cena pregleda
 - Popust
 - ZakazanDodatanPregled (true/false)
 - ZakazanaOperacija (true/false)
 
-Izvestaj pregleda **********************
-- ID (sistem generise)
+Izvestaj pregleda 
+- IzvestajPregledaID (sistem generise)
 - PregledID (id pregleda kojem pripada)
 - Dijagnoza
 - OpisPregleda
 
 ZdravstveniKarton:
-- KartonID
+- KartonID (sistem generise)
 - PacijentID
-- OsobljeSaPrisustvom (niz lekara koji trenuno vrsi ili je ranije radio pregled, kao i medicinski sestara koje overavaju recepte)
-- Pregledi (niz svih pregleda)
 - DatumRodjenjaPacijenta
-- AlergijeNaLek (niz lekova na koje je pacijent alergican)
 - VisinaPacijenta
 - TezinaPacijenta
 - KrvnaGrupa
 - Dioptrija
+
+AlergijeIPacijenti:
+- AlergijaPacijentID (sistem generise)
+- PacijentID
+- LekID
 
 Klinike:
 - KlinkaID
@@ -208,17 +213,16 @@ Sale:
 Operacija:
 - OperacijaID
 - LekarKojiJeZakazaoOperaciju 
-- AdminKojiJeOdobrioSalu (sta ako je algoritam odobrio)
-- VrstaOperacije
 - DatumOperacije
-- SatnicaOperacija
+- SatnicaOperacijePocetak
+- SatnicaOperacijeKraj
 - Sala
-- LekariKojiMorajuPrisustvovatiOperaciji (niz lekara)
+- SpisakID
 
-
-
-Zahtev za operaciju:
-
+SpisakLekaraNaOperaciji
+- SpisakID
+- OperacijaID
+- LekarID
 
 
 #### FEATURES ###
