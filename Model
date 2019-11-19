@@ -113,7 +113,6 @@ Pregled:
 - LekarID
 - PacijentID
 - Sala
-- Tip pregleda - vezan je za specijalizaciju lekara
 - Datum
 - SatnicaPocetak
 - SatnicaKraj
@@ -144,8 +143,9 @@ AlergijeIPacijenti:
 
 Klinike:
 - KlinkaID
-- TipSpecijalizacije
-- AdministratoriKlinike
+- Naziv
+- Adresa
+- Opis
 
 SifarnikDijagnoza:
 - DijagnozaID
@@ -170,6 +170,7 @@ AdministratoriKlinickogCentra:
 
 AdministratoriKlinika:
 - AdminID
+- KlinikaID
 - Ime
 - Prezime
 - IzmenjenaSifraNakonPrvogLogovanja (true/false)
@@ -194,7 +195,7 @@ MedicinskoOsoblje
 - ID
 - Tip (Lekar/Medicinska sestra)
 - Specijalizacija (Za lekara)
-- KlinikaNaKojojRade
+- KlinikaID
 - Ime
 - Prezime
 - IzmenjenaSifraNakonPrvogLogovanja (true/false)
