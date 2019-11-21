@@ -188,13 +188,26 @@ ZahtevZaOdsustvo:
 - DatumKrajaOdsustva
 - StatusOdobrenja (Na cekanju, Odobren, Odbijen)
 - OpisRazlogaOdbijanja
-- DatumKreiranjaZahteva
-- SatnicaKreiranjaZahteva
 
-MedicinskoOsoblje
-- ID
-- Tip (Lekar/Medicinska sestra)
-- Specijalizacija (Za lekara)
+Lekar
+- LekarID
+- Specijalizacija
+- KlinikaID
+- Ime
+- Prezime
+- IzmenjenaSifraNakonPrvogLogovanja (true/false)
+- Username
+- Password
+- Email
+- KontaktTelefon
+- Adresa
+
+SpecijalizacijaLekara
+- specijalizacijaID
+- naziv_specijalizacije
+
+MedicinskaSestra
+- medicinska_sestraID
 - KlinikaID
 - Ime
 - Prezime
@@ -217,8 +230,7 @@ Operacija:
 - DatumOperacije
 - SatnicaOperacijePocetak
 - SatnicaOperacijeKraj
-- Sala
-- SpisakID
+- SalaID
 
 SpisakLekaraNaOperaciji
 - SpisakID
