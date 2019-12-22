@@ -34,7 +34,7 @@ CREATE TABLE PACIJENT (
     grad varchar(255),
     drzava varchar(255),
     kontakt_telefon varchar(255),
-    zdravstveni_kartonID int -- FORGEIN KEY
+    zdravstveni_kartonID int
 );
 
 CREATE TABLE ZDRAVSTVENI_KARTON (
