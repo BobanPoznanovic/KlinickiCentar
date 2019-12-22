@@ -1,0 +1,15 @@
+Install
+Setup
+Open MySQL shell
+Swith from JS to SQL. Run following command: "\sql"
+Connect: Run following command: "\connect root@localhost"
+Enter root password
+Create database. Run following command: "create database db_example;"
+Create user. Run following command: "create user 'springuser'@'%' identified by 'ThePassword';"
+Grant access to user. Run following command: "grant all on db_example.* to 'springuser'@'%';"
+
+In IDE, set application.propreties to following:
+"spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/db_example
+spring.datasource.username=springuser
+spring.datasource.password=ThePassword"
