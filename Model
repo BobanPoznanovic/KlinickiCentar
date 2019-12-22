@@ -42,11 +42,15 @@ ZahtevZaDodeluSale:
 - 	VremeKreiranjeZahteva
 - 	StatusZahteva (Nije procesuirano/adminOdobrio/adminPomerio/algoritamOdobrio/algoritamPomerio)
 
+Tip pregleda:
+-	TipPregledaID
+-	Naziv
+-	CenaPregleda
+
 Cenovnik Klinike:
 -	CenovnikKlinikeID
 -	KlinikaID
--	TipPregleda
--	CenaPregleda
+-	TipPregledaID
 
 Unapred definisani pregledi
 -	PreDefPregledID
