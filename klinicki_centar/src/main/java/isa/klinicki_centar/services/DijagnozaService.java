@@ -6,6 +6,8 @@ import isa.klinicki_centar.model.Dijagnoza;
 
 public interface DijagnozaService {
 	
-	ArrayList<Dijagnoza> findAll();
+	Iterable<Dijagnoza> findAll();
+	
+	Dijagnoza insertData(Dijagnoza dijagnoza);
 
 }
