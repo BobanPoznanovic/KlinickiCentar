@@ -30,18 +30,13 @@ public class DijagnozaController {
 		ArrayList<Dijagnoza> array = new ArrayList<Dijagnoza>();
 		
 		Dijagnoza d1 = new Dijagnoza();
-		d1.setNaziv("Dijagnoza1");
 		dijagnozaService.insertData(d1);
 		
-		
 		Dijagnoza d2 = new Dijagnoza();
-		d2.setNaziv("Dijagnoza2");
 		dijagnozaService.insertData(d2);
 		
 		array.add(d1);
 		array.add(d2);
-		
-		
 		
 		return new ResponseEntity<ArrayList<Dijagnoza>>(array, HttpStatus.OK);
 	}
@@ -51,13 +46,10 @@ public class DijagnozaController {
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Iterable<Dijagnoza>> getAll() {
-		System.out.println("Prikupljanje svih dijagnoza...");
-		
 		
 		Iterable<Dijagnoza> retVal = null;
 		retVal = dijagnozaService.findAll();
 		
-		System.out.println("Sve dijagnoze pokupljene");
 		return new ResponseEntity<Iterable<Dijagnoza>>(retVal, HttpStatus.OK);
 	}
 
