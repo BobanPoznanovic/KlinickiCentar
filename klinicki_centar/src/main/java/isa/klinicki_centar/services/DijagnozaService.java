@@ -6,6 +6,6 @@ public interface DijagnozaService {
 	
 	Iterable<Dijagnoza> findAll();
 	
-	Dijagnoza insertData(Dijagnoza dijagnoza);
+	Dijagnoza save(Dijagnoza dijagnoza);
 
 }

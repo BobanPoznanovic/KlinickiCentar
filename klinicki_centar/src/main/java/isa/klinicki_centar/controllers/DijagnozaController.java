@@ -30,10 +30,10 @@ public class DijagnozaController {
 		ArrayList<Dijagnoza> array = new ArrayList<Dijagnoza>();
 		
 		Dijagnoza d1 = new Dijagnoza();
-		dijagnozaService.insertData(d1);
+		dijagnozaService.save(d1);
 		
 		Dijagnoza d2 = new Dijagnoza();
-		dijagnozaService.insertData(d2);
+		dijagnozaService.save(d2);
 		
 		array.add(d1);
 		array.add(d2);

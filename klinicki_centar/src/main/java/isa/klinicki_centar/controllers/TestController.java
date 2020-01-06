@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import isa.klinicki_centar.model.AdminKlinickogCentra;
 import isa.klinicki_centar.model.Dijagnoza;
+import isa.klinicki_centar.model.Klinika;
 import isa.klinicki_centar.repositories.DijagnozaRepository;
 import isa.klinicki_centar.services.AdminKlinickogCentraService;
+import isa.klinicki_centar.services.KlinikaService;
 
 @Controller
 @RequestMapping(path="/test")
@@ -23,6 +25,9 @@ public class TestController {
 	
 	@Autowired
 	private AdminKlinickogCentraService akcService;
+	
+	@Autowired
+	private KlinikaService klinikaService;
 
 	@GetMapping(path="/dijagnoza")
 	public void addDijagnoza() {
@@ -32,6 +37,13 @@ public class TestController {
 		dijagnozaRepozitory.save(d);
 	}
 	
+	@GetMapping(path="/getKlinike")
+	public ResponseEntity<Iterable<Klinika>> klinike() {
+		
+		Iterable<Klinika> retVal = klinikaService.findAll();
+		
+		return new ResponseEntity<Iterable<Klinika>>(retVal, HttpStatus.OK);
+	}
 	
 	@GetMapping(path="/akc")
 	public ResponseEntity<Iterable<AdminKlinickogCentra>> admini() {

@@ -1,8 +1,5 @@
 package isa.klinicki_centar.services.impl;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +21,7 @@ public class DijagnozaServiceImpl implements DijagnozaService {
 
 
 	@Override
-	public Dijagnoza insertData(Dijagnoza dijagnoza) {
+	public Dijagnoza save(Dijagnoza dijagnoza) {
 		// TODO Auto-generated method stub
 		
 		dijagnozaRepository.save(dijagnoza);
