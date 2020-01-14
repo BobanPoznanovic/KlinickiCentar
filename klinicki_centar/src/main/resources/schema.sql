@@ -224,7 +224,7 @@ CREATE TABLE ZAHTEV_ZA_DODELU_SALE (
     salaID int,
     datum_kreiranja_zahteva date,
     vreme_kreiranja_zahteva time,
-    status_zahteva varchar(255) CHECK (status_zahteva IN ('Nije procesuiran','Admin odobrio','Admin pomerio','Algoritam odobrio','Algoritam pomerio')),
+    status_zahteva varchar(255) CHECK (status_zahteva IN ('Nije_procesuiran','Admin_odobrio','Admin_pomerio','Algoritam_odobrio','Algoritam_pomerio')),
     CONSTRAINT fk_zahtev_za_dodelu_sale_zahtev_za_pregledID FOREIGN KEY (zahtev_za_pregledID) REFERENCES ZAHTEV_ZA_PREGLED(zahtevID),
     CONSTRAINT fk_zahtev_za_dodelu_sale_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID)
 );
@@ -232,7 +232,7 @@ CREATE TABLE ZAHTEV_ZA_DODELU_SALE (
 CREATE TABLE PREDEF_PREGLED (
 	predef_pregledID int AUTO_INCREMENT PRIMARY KEY,
     klinikaID int,
-    datum_pregledat date,
+    datum_pregleda date,
     satnica_pocetak time,
     satnica_kraj time,
     salaID int,
