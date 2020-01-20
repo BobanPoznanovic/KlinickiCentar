@@ -25,4 +25,16 @@ public class KlinikaServiceImpl implements KlinikaService {
 		return klinikaRepository.save(klinika);
 	}
 
+	@Override
+	public Klinika findOne(Integer id) {
+		// TODO Auto-generated method stub
+		return klinikaRepository.findById(id).orElseGet(null);
+	}
+
+	@Override
+	public void remove(Integer id) {
+		// TODO Auto-generated method stub
+		klinikaRepository.deleteById(id);
+	}
+
 }
