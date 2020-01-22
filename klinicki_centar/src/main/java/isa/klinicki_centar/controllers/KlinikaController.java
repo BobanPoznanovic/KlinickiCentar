@@ -78,6 +78,7 @@ public class KlinikaController {
 			return new ResponseEntity<KlinikaDTO>(HttpStatus.BAD_REQUEST);
 		}
 		
+		klinika.setKlinikaID(klinikaDTO.getKlinikaID());
 		klinika.setAdresa(klinikaDTO.getAdresa());
 		klinika.setNaziv(klinikaDTO.getNaziv());
 		klinika.setOpis(klinikaDTO.getOpis());

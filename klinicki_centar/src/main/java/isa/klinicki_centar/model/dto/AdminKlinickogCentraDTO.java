@@ -1,17 +1,9 @@
-package isa.klinicki_centar.model;
+package isa.klinicki_centar.model.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import isa.klinicki_centar.model.AdminKlinickogCentra;
 
-@Entity
-@Table (name = "ADMIN_KLINICKOG_CENTRA")
-public class AdminKlinickogCentra {
+public class AdminKlinickogCentraDTO {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer adminID;
 	
 	private String ime;
@@ -29,6 +21,47 @@ public class AdminKlinickogCentra {
 	private String adresa;
 	
 	private Boolean izmenjana_sifra_nakon_prvog_logovanja;
+	
+	public AdminKlinickogCentraDTO() {
+		
+	}
+	
+	public AdminKlinickogCentraDTO(AdminKlinickogCentra admin) {
+		this(
+				admin.getAdminID(),
+				admin.getIme(),
+				admin.getPrezime(),
+				admin.getUsername(),
+				admin.getPassword(),
+				admin.getEmail(),
+				admin.getKontakt_telefon(),
+				admin.getAdresa(),
+				admin.getIzmenjana_sifra_nakon_prvog_logovanja()
+				);
+	}
+	
+	public AdminKlinickogCentraDTO(
+			Integer adminID,
+			String ime,
+			String prezime,
+			String username,
+			String password,
+			String email,
+			String kontakt_telefon,
+			String adresa,
+			Boolean izmenjena_sifra_nakon_prvog_logovanja
+			) {
+		super();
+		this.setAdminID(adminID);
+		this.setIme(ime);
+		this.setPrezime(prezime);
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setEmail(email);
+		this.setKontakt_telefon(kontakt_telefon);
+		this.setAdresa(adresa);
+		this.setIzmenjana_sifra_nakon_prvog_logovanja(izmenjena_sifra_nakon_prvog_logovanja);
+	}
 
 	public Integer getAdminID() {
 		return adminID;
@@ -101,5 +134,5 @@ public class AdminKlinickogCentra {
 	public void setIzmenjana_sifra_nakon_prvog_logovanja(Boolean izmenjana_sifra_nakon_prvog_logovanja) {
 		this.izmenjana_sifra_nakon_prvog_logovanja = izmenjana_sifra_nakon_prvog_logovanja;
 	}
-	
+
 }

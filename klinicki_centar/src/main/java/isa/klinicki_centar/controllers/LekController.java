@@ -75,6 +75,7 @@ public class LekController {
 			return new ResponseEntity<LekDTO>(HttpStatus.BAD_REQUEST);
 		}
 		
+		queryResult.setLekID(lek.getLekID());
 		queryResult.setNaziv(lek.getNaziv());
 		queryResult.setProizvodjac(lek.getProizvodjac());
 		queryResult.setDoza(lek.getDoza());

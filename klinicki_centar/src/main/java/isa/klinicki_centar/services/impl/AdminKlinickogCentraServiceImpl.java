@@ -18,11 +18,23 @@ public class AdminKlinickogCentraServiceImpl implements AdminKlinickogCentraServ
 		// TODO Auto-generated method stub
 		return adminKlinickogCentraRepository.findAll();
 	}
+	
+	@Override
+	public AdminKlinickogCentra findOne(Integer id) {
+		// TODO Auto-generated method stub
+		return adminKlinickogCentraRepository.findById(id).orElseGet(null);
+	}
 
 	@Override
 	public AdminKlinickogCentra save(AdminKlinickogCentra admin) {
 		// TODO Auto-generated method stub
 		return adminKlinickogCentraRepository.save(admin);
+	}
+
+	@Override
+	public void remove(Integer id) {
+		// TODO Auto-generated method stub
+		adminKlinickogCentraRepository.deleteById(id);
 	}
 
 }

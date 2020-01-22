@@ -76,6 +76,7 @@ public class DijagnozaController {
 			return new ResponseEntity<DijagnozaDTO>(HttpStatus.BAD_REQUEST);
 		}
 		
+		queryResult.setDijagnozaID(dijagnoza.getDijagnozaID());
 		queryResult.setNaziv(dijagnoza.getNaziv());
 		
 		queryResult = dijagnozaService.save(queryResult);

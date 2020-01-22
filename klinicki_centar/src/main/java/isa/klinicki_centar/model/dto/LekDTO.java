@@ -17,11 +17,12 @@ public class LekDTO {
 	}
 	
 	public LekDTO(Lek lek) {
-		this(lek.getNaziv(), lek.getProizvodjac(), lek.getDoza());
+		this(lek.getLekID(), lek.getNaziv(), lek.getProizvodjac(), lek.getDoza());
 	}
 	
-	public LekDTO(String naziv, String proizvodjac, String doza) {
+	public LekDTO(Integer id, String naziv, String proizvodjac, String doza) {
 		super();
+		this.setLekID(id);
 		this.setNaziv(naziv);
 		this.setProizvodjac(proizvodjac);
 		this.setDoza(doza);

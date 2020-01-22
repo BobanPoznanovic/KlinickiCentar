@@ -81,6 +81,7 @@ public class AdminKlinikeController {
 			return new ResponseEntity<AdminKlinikeDTO>(HttpStatus.BAD_REQUEST);
 		}
 		
+		adminKlinike.setAdminID(admin.getAdminID());
 		adminKlinike.setAdresa(admin.getAdresa());
 		adminKlinike.setEmail(admin.getEmail());
 		adminKlinike.setIme(admin.getIme());
