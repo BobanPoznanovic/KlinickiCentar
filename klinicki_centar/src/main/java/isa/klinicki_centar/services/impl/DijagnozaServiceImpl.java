@@ -24,9 +24,21 @@ public class DijagnozaServiceImpl implements DijagnozaService {
 	public Dijagnoza save(Dijagnoza dijagnoza) {
 		// TODO Auto-generated method stub
 		
-		dijagnozaRepository.save(dijagnoza);
-		
-		return null;
+		return dijagnozaRepository.save(dijagnoza);
+	}
+
+
+	@Override
+	public Dijagnoza findOne(Integer id) {
+		// TODO Auto-generated method stub
+		return dijagnozaRepository.findById(id).orElseGet(null);
+	}
+
+
+	@Override
+	public void remove(Integer id) {
+		// TODO Auto-generated method stub
+		dijagnozaRepository.deleteById(id);
 	}
 
 }
