@@ -7,3 +7,6 @@ insert into admin_klinickog_centra (ime, prezime, username, password, email, kon
 
 --Klinika
 insert into klinika (naziv, adresa, opis) values ('Klinika1','Novi Sad', 'Opis klinike1');
+
+--ZahtevZaRegistraciju
+insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, broj_telefona, status_zahteva, razlog_odbijanja) values (1234, 'pera@gmail.com', 'perapera', 'Pera', 'Peric', 'Fruskogorska 1', 'Novi Sad', 'Srbija', '0601234', 1, '');

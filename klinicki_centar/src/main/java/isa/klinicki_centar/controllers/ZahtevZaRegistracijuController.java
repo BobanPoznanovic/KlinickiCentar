@@ -124,4 +124,41 @@ public class ZahtevZaRegistracijuController {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping(value = "/prihvati/{id}")
+	public ResponseEntity<ZahtevZaRegistracijuDTO> prihvatitiZahtevZaRegistraciju(@PathVariable Integer id) {
+		
+		ZahtevZaRegistraciju queryResult = zahtevZaRegistracijuService.findOne(id);
+		
+		if(queryResult == null) {
+			return new ResponseEntity<ZahtevZaRegistracijuDTO>(HttpStatus.NOT_FOUND);
+		}
+		
+		queryResult.setStatus_zahteva(StatusZahtevZaRegistraciju.Odobren);
+		
+		queryResult = zahtevZaRegistracijuService.save(queryResult);
+		
+		// Slanje mejla za aktivaciju
+		
+		return new ResponseEntity<ZahtevZaRegistracijuDTO>(new ZahtevZaRegistracijuDTO(queryResult), HttpStatus.OK);
+	}
+	
+	@PostMapping(
+			value = "/odbiti",
+			consumes = "application/json")
+	public ResponseEntity<ZahtevZaRegistracijuDTO> odbitiZahtevZaRegistraciju(@RequestBody ZahtevZaRegistracijuDTO zahtev) {
+		
+		ZahtevZaRegistraciju queryResult = zahtevZaRegistracijuService.findOne(zahtev.getZahtevID());
+		
+		if(queryResult == null) {
+			return new ResponseEntity<ZahtevZaRegistracijuDTO>(HttpStatus.NOT_FOUND);
+		}
+		else if(zahtev.getRazlog_odbijanja().isEmpty()) {
+			return new ResponseEntity<ZahtevZaRegistracijuDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		zahtev.setStatus_zahteva(StatusZahtevZaRegistraciju.Odbijen.name());
+		
+		return updateZahtevZaRegistraciju(zahtev);
+	}
 }

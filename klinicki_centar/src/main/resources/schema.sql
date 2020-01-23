@@ -125,7 +125,8 @@ CREATE TABLE ZAHTEV_ZA_REGISTRACIJU (
 	grad varchar(255),
 	drzava varchar(255),
 	broj_telefona varchar(255),
-	status_zahteva varchar(255) CHECK (status_zahteva IN ('Na_cekanju','Odobren','Odbijen')),
+	-- status_zahteva varchar(255) CHECK (status_zahteva IN ('Na_cekanju','Odobren','Odbijen')),
+	status_zahteva ENUM('Na_cekanju','Odobren','Odbijen' ),
 	razlog_odbijanja varchar(1000)
 );
 
