@@ -1,6 +1,5 @@
 package isa.klinicki_centar.model.dto;
 
-import isa.klinicki_centar.model.StatusZahtevZaRegistraciju;
 import isa.klinicki_centar.model.ZahtevZaRegistraciju;
 
 public class ZahtevZaRegistracijuDTO {
