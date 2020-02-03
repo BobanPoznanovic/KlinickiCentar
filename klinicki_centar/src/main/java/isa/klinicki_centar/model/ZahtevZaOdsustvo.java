@@ -3,6 +3,8 @@ package isa.klinicki_centar.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,12 +20,14 @@ public class ZahtevZaOdsustvo {
 	
 	private Integer podnosilac_zahtevaID;
 	
+	@Enumerated(EnumType.STRING)
 	private TipOdsustva tip_odsustva;
 	
 	private LocalDate datum_pocetka;
 	
 	private LocalDate datum_kraja;
 	
+	@Enumerated(EnumType.STRING)
 	private StatusZahtevaZaOdsustvo status_odobrenja;
 	
 	private String razlog_odbijanja;
