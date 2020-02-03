@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ public class Pregled {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer pregledID;
 	
+	@Enumerated(EnumType.STRING)
 	private KategorijaPregleda kategorija_pregleda;
 	
 	private Integer lekarID;
