@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import isa.klinicki_centar.model.Sala;
-import isa.klinicki_centar.model.dto.LekDTO;
 import isa.klinicki_centar.model.dto.SalaDTO;
 import isa.klinicki_centar.services.SalaService;
 

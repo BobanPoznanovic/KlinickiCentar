@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import isa.klinicki_centar.model.Dijagnoza;
 import isa.klinicki_centar.model.Lekar;
-import isa.klinicki_centar.model.dto.DijagnozaDTO;
 import isa.klinicki_centar.model.dto.LekarDTO;
 import isa.klinicki_centar.services.LekarService;
 
