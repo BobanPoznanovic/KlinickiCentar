@@ -22,6 +22,7 @@ import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.StatusZahtevaZaDodeluSale;
 import isa.klinicki_centar.model.ZahtevZaDodeluSale;
 import isa.klinicki_centar.model.dto.ZahtevZaDodeluSaleDTO;
+import isa.klinicki_centar.services.DateAndTimeService;
 import isa.klinicki_centar.services.OperacijaService;
 import isa.klinicki_centar.services.PregledService;
 import isa.klinicki_centar.services.ZahtevZaDodeluSaleService;
@@ -38,6 +39,9 @@ public class ZahtevZaDodeluSaleController {
 	
 	@Autowired
 	private PregledService pregledService;
+	
+	@Autowired
+	private DateAndTimeService dateAndTimeService;
 	
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<ZahtevZaDodeluSaleDTO>> findAll() {
@@ -129,6 +133,15 @@ public class ZahtevZaDodeluSaleController {
 		List<Operacija> operacijeByDateAndSalaID = operacijaService.byDataAndSalaID(operacija.getDatum_operacije().toString(), zahtev.getSalaID());
 		
 		List<Pregled> preglediByDateAndSalaID = pregledService.byDateAndSalaID(operacija.getDatum_operacije().toString(), zahtev.getSalaID());
+		
+		Boolean overlappingExists = dateAndTimeService.checkOverlapping(operacijeByDateAndSalaID, preglediByDateAndSalaID, operacija);
+		
+		if(overlappingExists) {
+			//ima preklapanja menjaj!
+		}
+		else {
+			//nema preklapanja, odobri zahtev, zapisi salu u operaciji
+		}
 		
 		return new ResponseEntity<ZahtevZaDodeluSaleDTO>(HttpStatus.OK);
 	}
