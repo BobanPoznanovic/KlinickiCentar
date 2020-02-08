@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import isa.klinicki_centar.model.Pacijent;
 import isa.klinicki_centar.model.ZdravstveniKarton;
 import isa.klinicki_centar.model.dto.ZdravstveniKartonDTO;
+import isa.klinicki_centar.services.PacijentService;
 import isa.klinicki_centar.services.ZdravstveniKartonService;
 
 @Controller
@@ -26,6 +28,9 @@ public class ZdravstveniKartonController {
 	
 	@Autowired
 	private ZdravstveniKartonService zdravstveniKartonService;
+	
+	@Autowired
+	private PacijentService pacijentService;
 	
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<ZdravstveniKartonDTO>> findAll() {
@@ -53,8 +58,14 @@ public class ZdravstveniKartonController {
 		return new ResponseEntity<ZdravstveniKartonDTO>(new ZdravstveniKartonDTO(queryResult), HttpStatus.OK);
 	}
 	
-	@PostMapping(consumes = "aplication/json")
+	@PostMapping(consumes = "application/json")
 	public ResponseEntity<ZdravstveniKartonDTO> saveZdravstveniKarton(@RequestBody ZdravstveniKartonDTO karton) {
+		
+		Pacijent pacijent = pacijentService.findOne(karton.getPacijentID());
+		
+		if(pacijent == null) {
+			return new ResponseEntity<ZdravstveniKartonDTO>(HttpStatus.NOT_FOUND);
+		}
 		
 		ZdravstveniKarton noviKarton = new ZdravstveniKarton();
 		
@@ -67,6 +78,10 @@ public class ZdravstveniKartonController {
 		noviKarton.setVisina_pacijenta(karton.getVisina_pacijenta());
 		
 		noviKarton = zdravstveniKartonService.save(noviKarton);
+		
+		pacijent.setZdravstveni_kartonID(noviKarton.getKartonID());
+		
+		pacijentService.save(pacijent);
 		
 		return new ResponseEntity<ZdravstveniKartonDTO>(new ZdravstveniKartonDTO(noviKarton), HttpStatus.CREATED);		
 	}

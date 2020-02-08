@@ -112,7 +112,7 @@ public class ZahtevZaRegistracijuController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deleteZahtevZaRegistraciju(Integer id) {
+	public ResponseEntity<Void> deleteZahtevZaRegistraciju(@PathVariable Integer id) {
 		
 		ZahtevZaRegistraciju queryResult = zahtevZaRegistracijuService.findOne(id);
 		

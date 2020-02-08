@@ -20,7 +20,7 @@ import isa.klinicki_centar.model.dto.AdminKlinikeDTO;
 import isa.klinicki_centar.services.AdminKlinikeService;
 
 @Controller
-@RequestMapping(path="/admin/klinka")
+@RequestMapping(path="/admin/klinika")
 public class AdminKlinikeController {
 	
 	@Autowired
