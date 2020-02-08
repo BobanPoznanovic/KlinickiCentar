@@ -40,6 +40,20 @@ public class PacijentController {
 		return new ResponseEntity<List<PacijentDTO>>(retVal, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/all/sort/ime")
+	public ResponseEntity<List<PacijentDTO>> sortIme() {
+		
+		List<PacijentDTO> retVal = new ArrayList<PacijentDTO>();
+		
+		Iterable<Pacijent> queryResult = pacijentService.findAllSortedByIme();
+		
+		for(Pacijent p : queryResult) {
+			retVal.add(new PacijentDTO(p));
+		}
+		
+		return new ResponseEntity<List<PacijentDTO>>(retVal, HttpStatus.OK);
+ 	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<PacijentDTO> getPacijent(@PathVariable Integer id) {
 		
@@ -58,6 +72,7 @@ public class PacijentController {
 		Pacijent noviPacijent = new Pacijent();
 		
 		noviPacijent.setAdresa(pacijent.getAdresa());
+		noviPacijent.setBroj_osiguranika(pacijent.getBroj_osiguranika());
 		noviPacijent.setDrzava(pacijent.getDrzava());
 		noviPacijent.setEmail(pacijent.getEmail());
 		noviPacijent.setGrad(pacijent.getGrad());
@@ -83,6 +98,7 @@ public class PacijentController {
 		}
 		
 		queryResult.setAdresa(pacijent.getAdresa());
+		queryResult.setBroj_osiguranika(pacijent.getBroj_osiguranika());
 		queryResult.setDrzava(pacijent.getDrzava());
 		queryResult.setEmail(pacijent.getEmail());
 		queryResult.setGrad(pacijent.getGrad());

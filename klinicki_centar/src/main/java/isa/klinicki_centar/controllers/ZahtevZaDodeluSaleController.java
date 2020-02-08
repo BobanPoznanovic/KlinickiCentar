@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import isa.klinicki_centar.model.Operacija;
+import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.StatusZahtevaZaDodeluSale;
 import isa.klinicki_centar.model.ZahtevZaDodeluSale;
 import isa.klinicki_centar.model.dto.ZahtevZaDodeluSaleDTO;
+import isa.klinicki_centar.services.OperacijaService;
+import isa.klinicki_centar.services.PregledService;
 import isa.klinicki_centar.services.ZahtevZaDodeluSaleService;
 
 @Controller
@@ -28,6 +32,12 @@ public class ZahtevZaDodeluSaleController {
 	
 	@Autowired
 	private ZahtevZaDodeluSaleService zahtevZaDodeluSaleService;
+	
+	@Autowired
+	private OperacijaService operacijaService;
+	
+	@Autowired
+	private PregledService pregledService;
 	
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<ZahtevZaDodeluSaleDTO>> findAll() {
@@ -62,13 +72,9 @@ public class ZahtevZaDodeluSaleController {
 		
 		noviZahtev.setDatum_kreiranja_zahteva(LocalDate.parse(zahtev.getDatum_kreiranja_zahteva()));
 		noviZahtev.setSalaID(zahtev.getSalaID());
-		for(StatusZahtevaZaDodeluSale status : StatusZahtevaZaDodeluSale.values()) {
-			if(status.name().equalsIgnoreCase(zahtev.getStatus_zahteva())) {
-				noviZahtev.setStatus_zahteva(status);
-			}
-		}
+		noviZahtev.setStatus_zahteva(StatusZahtevaZaDodeluSale.Nije_procesuiran);
 		noviZahtev.setVreme_kreiranja_zahteva(LocalTime.parse(zahtev.getVreme_kreiranja_zahteva()));
-		noviZahtev.setZahtev_za_pregledID(zahtev.getZahtev_za_pregledID());
+		noviZahtev.setOperacijaID(zahtev.getOperacijaID());
 		noviZahtev.setZahtevID(zahtev.getZahtevID());
 		
 		noviZahtev = zahtevZaDodeluSaleService.save(noviZahtev);
@@ -93,7 +99,7 @@ public class ZahtevZaDodeluSaleController {
 			}
 		}
 		queryResult.setVreme_kreiranja_zahteva(LocalTime.parse(zahtev.getVreme_kreiranja_zahteva()));
-		queryResult.setZahtev_za_pregledID(zahtev.getZahtev_za_pregledID());
+		queryResult.setOperacijaID(zahtev.getOperacijaID());
 		queryResult.setZahtevID(zahtev.getZahtevID());
 		
 		queryResult = zahtevZaDodeluSaleService.save(queryResult);
@@ -113,6 +119,18 @@ public class ZahtevZaDodeluSaleController {
 		else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@GetMapping(value = "/check")
+	public ResponseEntity<ZahtevZaDodeluSaleDTO> checkSalaAvailability(@RequestBody ZahtevZaDodeluSaleDTO zahtev) {
+		
+		Operacija operacija = operacijaService.findOne(zahtev.getOperacijaID());
+		
+		List<Operacija> operacijeByDateAndSalaID = operacijaService.byDataAndSalaID(operacija.getDatum_operacije().toString(), zahtev.getSalaID());
+		
+		List<Pregled> preglediByDateAndSalaID = pregledService.byDateAndSalaID(operacija.getDatum_operacije().toString(), zahtev.getSalaID());
+		
+		return new ResponseEntity<ZahtevZaDodeluSaleDTO>(HttpStatus.OK);
 	}
 
 }

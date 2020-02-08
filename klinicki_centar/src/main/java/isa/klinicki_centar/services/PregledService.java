@@ -1,5 +1,7 @@
 package isa.klinicki_centar.services;
 
+import java.util.List;
+
 import isa.klinicki_centar.model.Pregled;
 
 public interface PregledService {
@@ -11,4 +13,6 @@ public interface PregledService {
 	Pregled save(Pregled pregled);
 	
 	void remove(Integer id);
+	
+	List<Pregled> byDateAndSalaID(String date, Integer salaID);
 }

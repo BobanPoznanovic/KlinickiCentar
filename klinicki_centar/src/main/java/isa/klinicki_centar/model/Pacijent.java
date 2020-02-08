@@ -14,6 +14,8 @@ public class Pacijent {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer pacijentID;
 	
+	private Integer broj_osiguranika;
+	
 	private String email;
 	
 	private String password;
@@ -114,6 +116,14 @@ public class Pacijent {
 
 	public void setZdravstveni_kartonID(Integer zdravstveni_kartonID) {
 		this.zdravstveni_kartonID = zdravstveni_kartonID;
+	}
+
+	public Integer getBroj_osiguranika() {
+		return broj_osiguranika;
+	}
+
+	public void setBroj_osiguranika(Integer broj_osiguranika) {
+		this.broj_osiguranika = broj_osiguranika;
 	}
 
 }

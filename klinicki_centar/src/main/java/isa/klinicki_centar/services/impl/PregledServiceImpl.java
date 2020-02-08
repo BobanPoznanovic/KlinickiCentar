@@ -1,5 +1,7 @@
 package isa.klinicki_centar.services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,12 @@ public class PregledServiceImpl implements PregledService{
 	public void remove(Integer id) {
 		// TODO Auto-generated method stub
 		pregledRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Pregled> byDateAndSalaID(String date, Integer salaID) {
+		// TODO Auto-generated method stub
+		return pregledRepository.byDateAndSalaID(date, salaID);
 	}
 
 }

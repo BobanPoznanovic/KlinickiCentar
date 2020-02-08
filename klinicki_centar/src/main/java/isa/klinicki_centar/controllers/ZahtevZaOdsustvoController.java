@@ -60,15 +60,17 @@ public class ZahtevZaOdsustvoController {
 		
 		ZahtevZaOdsustvo noviZahtev = new ZahtevZaOdsustvo();
 		
+		noviZahtev.setPodnosilac_zahtevaID(zahtev.getPodnosilac_zahtevaID());
 		noviZahtev.setDatum_kraja(LocalDate.parse(zahtev.getDatum_kraja()));
 		noviZahtev.setDatum_pocetka(LocalDate.parse(zahtev.getDatum_pocetka()));
-		noviZahtev.setPodnosilac_zahtevaID(zahtev.getPodnosilac_zahtevaID());
+		
 		noviZahtev.setRazlog_odbijanja(zahtev.getRazlog_odbijanja());
 		for(StatusZahtevaZaOdsustvo status : StatusZahtevaZaOdsustvo.values()) {
 			if(status.name().equalsIgnoreCase(zahtev.getStatus_odobrenja())) {
 				noviZahtev.setStatus_odobrenja(status);
 			}
 		}
+		
 		for(TipOdsustva tip : TipOdsustva.values()) {
 			if(tip.name().equalsIgnoreCase(zahtev.getTip_odsustva())) {
 				noviZahtev.setTip_odsustva(tip);

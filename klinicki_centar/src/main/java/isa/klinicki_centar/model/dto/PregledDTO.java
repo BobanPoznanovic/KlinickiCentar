@@ -34,7 +34,7 @@ public class PregledDTO {
 	
 	public PregledDTO(Pregled pregled) {
 		this(
-				pregled.getPacijentID(), pregled.getKategorija_pregleda().name(), pregled.getLekarID(), pregled.getPacijentID(),
+				pregled.getPregledID(), pregled.getKategorija_pregleda().name(), pregled.getLekarID(), pregled.getPacijentID(),
 				pregled.getSalaID(), pregled.getDatum_pregleda().toString(), pregled.getSatnica_pocetak().toString(),
 				pregled.getSatnica_kraj().toString(), pregled.getTip_pregledaID(), pregled.getPopust(),
 				pregled.getZakazan_dodatan_pregled(), pregled.getZakazana_operacija()

@@ -138,6 +138,7 @@ public class ZahtevZaRegistracijuController {
 		
 		queryResult = zahtevZaRegistracijuService.save(queryResult);
 		
+		// Kreiranje pacijenta
 		// Slanje mejla za aktivaciju
 		
 		return new ResponseEntity<ZahtevZaRegistracijuDTO>(new ZahtevZaRegistracijuDTO(queryResult), HttpStatus.OK);

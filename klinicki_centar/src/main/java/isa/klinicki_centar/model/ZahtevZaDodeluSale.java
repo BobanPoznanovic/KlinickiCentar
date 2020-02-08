@@ -19,7 +19,7 @@ public class ZahtevZaDodeluSale {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer zahtevID;
 	
-	private Integer zahtev_za_pregledID;
+	private Integer operacijaID;
 	
 	private Integer salaID;
 	
@@ -40,14 +40,6 @@ public class ZahtevZaDodeluSale {
 
 	public void setZahtevID(Integer zahtevID) {
 		this.zahtevID = zahtevID;
-	}
-
-	public Integer getZahtev_za_pregledID() {
-		return zahtev_za_pregledID;
-	}
-
-	public void setZahtev_za_pregledID(Integer zahtev_za_pregledID) {
-		this.zahtev_za_pregledID = zahtev_za_pregledID;
 	}
 
 	public Integer getSalaID() {
@@ -80,6 +72,14 @@ public class ZahtevZaDodeluSale {
 
 	public void setStatus_zahteva(StatusZahtevaZaDodeluSale status_zahteva) {
 		this.status_zahteva = status_zahteva;
+	}
+
+	public Integer getOperacijaID() {
+		return operacijaID;
+	}
+
+	public void setOperacijaID(Integer operacijaID) {
+		this.operacijaID = operacijaID;
 	}
 
 }

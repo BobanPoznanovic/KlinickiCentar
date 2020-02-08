@@ -6,7 +6,7 @@ public class ZahtevZaDodeluSaleDTO {
 
 	private Integer zahtevID;
 	
-	private Integer zahtev_za_pregledID;
+	private Integer operacijaID;
 	
 	private Integer salaID;
 	
@@ -22,13 +22,13 @@ public class ZahtevZaDodeluSaleDTO {
 	
 	public ZahtevZaDodeluSaleDTO(ZahtevZaDodeluSale zahtev) {
 		this(
-				zahtev.getZahtevID(), zahtev.getZahtev_za_pregledID(), zahtev.getSalaID(), zahtev.getDatum_kreiranja_zahteva().toString(),
+				zahtev.getZahtevID(), zahtev.getOperacijaID(), zahtev.getSalaID(), zahtev.getDatum_kreiranja_zahteva().toString(),
 				zahtev.getVreme_kreiranja_zahteva().toString(), zahtev.getStatus_zahteva().name()
 				);
 	}
 	
 	public ZahtevZaDodeluSaleDTO(
-			Integer zahtevID, Integer zahtev_za_pregledID, Integer salaID, String datum_kreiranja_zahteva, 
+			Integer zahtevID, Integer operacijaID, Integer salaID, String datum_kreiranja_zahteva, 
 			String vreme_kreiranja_zahteva, String status_zahteva
 			) {
 		super();
@@ -36,7 +36,7 @@ public class ZahtevZaDodeluSaleDTO {
 		this.setSalaID(salaID);
 		this.setStatus_zahteva(status_zahteva);
 		this.setVreme_kreiranja_zahteva(vreme_kreiranja_zahteva);
-		this.setZahtev_za_pregledID(zahtev_za_pregledID);
+		this.setOperacijaID(operacijaID);
 		this.setZahtevID(zahtevID);
 	}
 
@@ -46,14 +46,6 @@ public class ZahtevZaDodeluSaleDTO {
 
 	public void setZahtevID(Integer zahtevID) {
 		this.zahtevID = zahtevID;
-	}
-
-	public Integer getZahtev_za_pregledID() {
-		return zahtev_za_pregledID;
-	}
-
-	public void setZahtev_za_pregledID(Integer zahtev_za_pregledID) {
-		this.zahtev_za_pregledID = zahtev_za_pregledID;
 	}
 
 	public Integer getSalaID() {
@@ -86,6 +78,14 @@ public class ZahtevZaDodeluSaleDTO {
 
 	public void setStatus_zahteva(String status_zahteva) {
 		this.status_zahteva = status_zahteva;
+	}
+
+	public Integer getOperacijaID() {
+		return operacijaID;
+	}
+
+	public void setOperacijaID(Integer operacijaID) {
+		this.operacijaID = operacijaID;
 	}
 
 	

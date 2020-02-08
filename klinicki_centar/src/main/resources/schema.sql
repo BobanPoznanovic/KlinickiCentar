@@ -26,6 +26,7 @@ DROP TABLE IF EXISTS SPECIJALIZACIJA_LEKARA;
 
 CREATE TABLE PACIJENT (
 	pacijentID int AUTO_INCREMENT PRIMARY KEY,
+	broj_osiguranika int UNIQUE,
     email varchar(255),
     password varchar(255),
     ime varchar(255),
@@ -200,7 +201,6 @@ CREATE TABLE ZAHTEV_ZA_ODSUSTVO (
 	datum_kraja date,
 	status_odobrenja varchar(255) CHECK (status_odobrenja IN ('Na_cekanju','Odobren','Odbijen')),
 	razlog_odbijanja varchar(255),
-	CONSTRAINT fk_odsustvo_lekarID FOREIGN KEY (podnosilac_zahtevaID) REFERENCES LEKAR(lekarID),
 	CONSTRAINT fk_odsustvo_medicinska_sestraID FOREIGN KEY (podnosilac_zahtevaID) REFERENCES MEDICINSKA_SESTRA(medicinska_sestraID)
 );
 
@@ -221,12 +221,12 @@ CREATE TABLE ZAHTEV_ZA_PREGLED (
 
 CREATE TABLE ZAHTEV_ZA_DODELU_SALE (
 	zahtevID int AUTO_INCREMENT PRIMARY KEY,
-    zahtev_za_pregledID int,
+    operacijaID int,
     salaID int,
     datum_kreiranja_zahteva date,
     vreme_kreiranja_zahteva time,
     status_zahteva varchar(255) CHECK (status_zahteva IN ('Nije_procesuiran','Admin_odobrio','Admin_pomerio','Algoritam_odobrio','Algoritam_pomerio')),
-    CONSTRAINT fk_zahtev_za_dodelu_sale_zahtev_za_pregledID FOREIGN KEY (zahtev_za_pregledID) REFERENCES ZAHTEV_ZA_PREGLED(zahtevID),
+    CONSTRAINT fk_zahtev_za_dodelu_sale_zahtev_za_pregledID FOREIGN KEY (operacijaID) REFERENCES OPERACIJA(operacijaID),
     CONSTRAINT fk_zahtev_za_dodelu_sale_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID)
 );
 
