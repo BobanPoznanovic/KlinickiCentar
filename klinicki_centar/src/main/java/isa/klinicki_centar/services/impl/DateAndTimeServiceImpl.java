@@ -91,7 +91,7 @@ public class DateAndTimeServiceImpl implements DateAndTimeService{
 	@Override
 	public LocalDate findNextDay(LocalDate previousDate) {
 		// TODO Auto-generated method stub
-		return null;
+		return previousDate.plusDays(1);
 	}
 
 }

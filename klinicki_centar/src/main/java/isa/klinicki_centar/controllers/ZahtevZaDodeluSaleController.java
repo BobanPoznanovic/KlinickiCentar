@@ -22,6 +22,7 @@ import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.Sala;
 import isa.klinicki_centar.model.StatusZahtevaZaDodeluSale;
 import isa.klinicki_centar.model.ZahtevZaDodeluSale;
+import isa.klinicki_centar.model.dto.FreeTimeSlots;
 import isa.klinicki_centar.model.dto.SimpleEventDTO;
 import isa.klinicki_centar.model.dto.ZahtevZaDodeluSaleDTO;
 import isa.klinicki_centar.services.DateAndTimeService;
@@ -176,13 +177,41 @@ public class ZahtevZaDodeluSaleController {
 				*/
 				
 				long trajanjeOperacije = dateAndTimeService.eventLength(operacija.getSatnica_pocetka_operacije(), operacija.getSatnica_kraja_operacije());
+				NoviRasporedZaOperaciju searchResult = null;
+				String dateToCheck = operacija.getDatum_operacije().toString();
+				
+				do {
+					searchResult = pronadjiTerminNaDan(dateToCheck, trajanjeOperacije);
+					dateToCheck = dateAndTimeService.findNextDay(LocalDate.parse(dateToCheck)).toString();  
+				} while (searchResult == null);
+				
+				//Search result je pocetak novog slota
+				//Vrati dateToCheck unazad za jedan dan
+				LocalDate noviDatum = LocalDate.parse(dateToCheck).minusDays(1);
+				operacija.setDatum_operacije(noviDatum);
+				operacija.setSatnica_pocetka_operacije(searchResult.getPocetakOperacije());
+				LocalTime noviKrajOperacije = searchResult.getPocetakOperacije().plusMinutes(trajanjeOperacije);
+				operacija.setSatnica_kraja_operacije(noviKrajOperacije);
+				operacija.setSalaID(searchResult.getSalaID());
+				
+				operacijaService.save(operacija);
+				
+				ZahtevZaDodeluSale noviZahtev = new ZahtevZaDodeluSale();
+				noviZahtev.setSalaID(searchResult.getSalaID());
+				zahtev.setSalaID(searchResult.getSalaID());
+				noviZahtev.setStatus_zahteva(StatusZahtevaZaDodeluSale.Algoritam_pomerio);
+				zahtev.setStatus_zahteva("Algoritam_pomerio");
+				
+				zahtevZaDodeluSaleService.save(noviZahtev);
+				
+				return new ResponseEntity<ZahtevZaDodeluSaleDTO>(zahtev, HttpStatus.OK);
 			}
 		
 			return new ResponseEntity<ZahtevZaDodeluSaleDTO>(zahtev, HttpStatus.BAD_REQUEST);
 		}
 		else {
 			//nema preklapanja, odobri zahtev, zapisi salu u operaciji
-			zahtev.setStatus_zahteva("Admin_odobrio");
+			zahtev.setStatus_zahteva("Algoritam_odobrio");
 			
 			operacija.setSalaID(zahtev.getSalaID());
 			operacija = operacijaService.save(operacija);
@@ -211,7 +240,7 @@ public class ZahtevZaDodeluSaleController {
 			Boolean overlapping = dateAndTimeService.checkOverlapping(tempOperacije, tempPregledi, operacija);
 			
 			if(!overlapping) {
-				zahtev.setStatus_zahteva("Admin_odobrio");
+				zahtev.setStatus_zahteva("Algoritam_odobrio");
 				
 				operacija.setSalaID(zahtev.getSalaID());
 				operacija = operacijaService.save(operacija);
@@ -225,7 +254,7 @@ public class ZahtevZaDodeluSaleController {
 		return false;
 	}
 	
-	public LocalTime pronadjiTerminNaDan(String dateToCheck, long trajanjeOperacije) {
+	public NoviRasporedZaOperaciju pronadjiTerminNaDan(String dateToCheck, long trajanjeOperacije) {
 		
 		Iterable<Sala> sveSale = salaService.findAll();
 		List<Sala> listaSala = new ArrayList<Sala>();
@@ -240,10 +269,20 @@ public class ZahtevZaDodeluSaleController {
 				
 				List<SimpleEventDTO> listaDogadjaja = sortEvents(listaOperacija, listaPregleda);
 				
+				//Izracunaj slobodne termine
+				List<FreeTimeSlots> slobodniTermini = izracunajSlobodneTermine(listaDogadjaja);
+				List<Long> duzinaSlobodnihTermina = izracunajTrajanjeSlobodnihTermina(slobodniTermini);
+				
+				for(int i = 0; i < duzinaSlobodnihTermina.size(); i++) {
+					if(trajanjeOperacije < duzinaSlobodnihTermina.get(i)) {
+						return new NoviRasporedZaOperaciju(s.getSalaID(), LocalTime.parse(slobodniTermini.get(i).getStartTime()));
+					}
+				}
+				
  			}
 		}
 		
-		return LocalTime.parse("11:08");		
+		return null;		
 	}
 	
 	public List<SimpleEventDTO> sortEvents(List<Operacija> operacije, List<Pregled> pregledi) {
@@ -292,6 +331,41 @@ public class ZahtevZaDodeluSaleController {
 		return retVal;
 	}
 	
+	public List<FreeTimeSlots> izracunajSlobodneTermine(List<SimpleEventDTO> listaDogadjaja) {
+		
+		List<FreeTimeSlots> retVal = new ArrayList<FreeTimeSlots>();
+		LocalTime startOfFirstEvent = LocalTime.parse(listaDogadjaja.get(0).getStartTime());
+		LocalTime endOfLastEvent = LocalTime.parse(listaDogadjaja.get(listaDogadjaja.size()).getEndTime());
+		
+		if(startOfFirstEvent.compareTo(LocalTime.parse("07:00")) > 0 ) {
+			//dodaj
+			retVal.add(new FreeTimeSlots(LocalTime.parse("07:00"), startOfFirstEvent));
+		}
+		
+		//prodji kroz listu
+		for(int i = 0; i <= listaDogadjaja.size()-2; i++) {
+			retVal.add(new FreeTimeSlots(listaDogadjaja.get(i).getEndTime(), listaDogadjaja.get(i+1).getStartTime()));
+		}
+		
+		if(endOfLastEvent.compareTo(LocalTime.parse("17:00")) < 0) {
+			//dodaj
+			retVal.add(new FreeTimeSlots(endOfLastEvent, LocalTime.parse("17:00")));
+		}
+		
+		return retVal;
+	}
+	
+	public List<Long> izracunajTrajanjeSlobodnihTermina(List<FreeTimeSlots> slobodniTermini) {
+		
+		List<Long> retVal = new ArrayList<Long>();
+		
+		for(FreeTimeSlots f : slobodniTermini) {
+			retVal.add(dateAndTimeService.eventLength(LocalTime.parse(f.getStartTime()), LocalTime.parse(f.getEndTime())));
+		}
+		
+		return null;
+	}
+	
 	final class IndexAndSimpleEvent {
 		private final int index;
 		private final SimpleEventDTO event;
@@ -310,4 +384,21 @@ public class ZahtevZaDodeluSaleController {
 		}
 	}
 
+	final class NoviRasporedZaOperaciju {
+		private final Integer salaID;
+		private final LocalTime pocetakOperacije;
+		
+		public NoviRasporedZaOperaciju(Integer salaID, LocalTime pocetakOperacije) {
+			this.salaID = salaID;
+			this.pocetakOperacije = pocetakOperacije;
+		}
+		
+		public Integer getSalaID() {
+			return salaID;
+		}
+		
+		public LocalTime getPocetakOperacije() {
+			return pocetakOperacije;
+		}
+	}
 }
