@@ -16,6 +16,8 @@ import { DodajAdminaKlinickogCentraComponent } from './components/dodaj-admina-k
 import { MedicinskaSestraHomeComponent } from './components/medicinska-sestra-home/medicinska-sestra-home.component';
 import { ListaPacijenataComponent } from './components/lista-pacijenata/lista-pacijenata.component';
 import { DodajZahtevZaOdsustvoComponent } from './components/dodaj-zahtev-za-odsustvo/dodaj-zahtev-za-odsustvo.component';
+import { ListaPregledaComponent } from './components/lista-pregleda/lista-pregleda.component';
+import { DodajIzvestajPregledaComponent } from './components/dodaj-izvestaj-pregleda/dodaj-izvestaj-pregleda.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { DodajZahtevZaOdsustvoComponent } from './components/dodaj-zahtev-za-ods
     DodajAdminaKlinickogCentraComponent,
     MedicinskaSestraHomeComponent,
     ListaPacijenataComponent,
-    DodajZahtevZaOdsustvoComponent
+    DodajZahtevZaOdsustvoComponent,
+    ListaPregledaComponent,
+    DodajIzvestajPregledaComponent
   ],
   imports: [
     BrowserModule,

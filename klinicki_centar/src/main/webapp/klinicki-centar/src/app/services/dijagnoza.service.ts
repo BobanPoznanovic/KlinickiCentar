@@ -19,4 +19,8 @@ export class DijagnozaService {
   dodajDijagnozu(dijagnoza: Dijagnoza): Observable<Dijagnoza> {
     return this.http.post<Dijagnoza>(this.url, dijagnoza, this.httpOptions);
   }
+
+  getAll(): Observable<Dijagnoza[]> {
+    return this.http.get<Dijagnoza[]>(this.url+'/all');
+  }
 }

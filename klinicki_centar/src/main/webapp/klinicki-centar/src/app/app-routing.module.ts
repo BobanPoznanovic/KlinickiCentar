@@ -7,10 +7,11 @@ import { DodajAdminaKlinikeComponent } from './components/dodaj-admina-klinike/d
 import { DodajDijagnozuComponent } from './components/dodaj-dijagnozu/dodaj-dijagnozu.component';
 import { DodajLekComponent } from './components/dodaj-lek/dodaj-lek.component';
 import { DodajAdminaKlinickogCentraComponent } from './components/dodaj-admina-klinickog-centra/dodaj-admina-klinickog-centra.component';
-import { MedicinskaSestra } from './model/medicinskaSestra';
 import { MedicinskaSestraHomeComponent } from './components/medicinska-sestra-home/medicinska-sestra-home.component';
 import { ListaPacijenataComponent } from './components/lista-pacijenata/lista-pacijenata.component';
 import { DodajZahtevZaOdsustvoComponent } from './components/dodaj-zahtev-za-odsustvo/dodaj-zahtev-za-odsustvo.component';
+import { ListaPregledaComponent } from './components/lista-pregleda/lista-pregleda.component';
+import { DodajIzvestajPregledaComponent } from './components/dodaj-izvestaj-pregleda/dodaj-izvestaj-pregleda.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,9 @@ const routes: Routes = [
   { path: 'admin.centra/new.admin', component: DodajAdminaKlinickogCentraComponent},
   { path: 'sestra', component: MedicinskaSestraHomeComponent},
   { path: 'pacijent/all', component: ListaPacijenataComponent},
-  { path: 'zahtev/odsustvo/dodaj', component: DodajZahtevZaOdsustvoComponent}
+  { path: 'zahtev/odsustvo/dodaj', component: DodajZahtevZaOdsustvoComponent},
+  { path: 'pregled/all', component: ListaPregledaComponent},
+  { path: 'pregled/izvestaj/dodaj', component: DodajIzvestajPregledaComponent}
 ];
 
 @NgModule({
