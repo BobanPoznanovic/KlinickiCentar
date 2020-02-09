@@ -1,0 +1,17 @@
+<p>dodaj-izvestaj-pregleda works!</p>
+
+<form [formGroup]="izvestajForm" (ngSubmit)="onSubmit()">
+    <label>
+        Dijagnoza:
+        <select formControlName="dijagnozaID">
+             <option *ngFor="let dijagnoza of dijagnoze" value="{{dijagnoza.dijagnozaID}}">{{dijagnoza.naziv}}</option>
+        </select>
+    </label>
+
+    <label>
+        Opis pregleda:
+        <input type="text" formControlName="opis_pregleda">
+    </label>
+
+    <button type="submit">Submit</button>
+</form>

@@ -1,0 +1,21 @@
+<p>dodaj-zahtev-za-odsustvo works!</p>
+
+<form [formGroup]="zahtevForm" (ngSubmit)="onSubmit()"> 
+    <label>
+        Tip odsustva:
+        <select formControlName="tip_odsustva">
+            <option *ngFor="let tip of tipovi" value="{{tip}}">{{tip}}</option>
+        </select>
+    </label>
+    <label>
+        Datum pocetka odsustva:
+        <input type="date" formControlName="datum_pocetka">
+    </label>
+    <label>
+        Datum kraja odsustva:
+        <input type="date" formControlName="datum_kraja">
+    </label>
+    
+    <button type="submit">Submit</button>
+
+</form>

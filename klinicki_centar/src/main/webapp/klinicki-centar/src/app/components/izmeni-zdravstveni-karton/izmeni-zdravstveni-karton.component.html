@@ -1,0 +1,27 @@
+<form *ngIf="karton" [formGroup]="kartonForm" (ngSubmit)="onSubmit()">
+    <label>
+        Datum rodjenja:
+        <input type="date" formControlName="datum_rodjenja" value="{{karton.datum_rodjenja}}">
+    </label>
+    
+    <label>
+        Visina pacijenta:
+        <input type="number" formControlName="visina_pacijenta" value="{{karton.visina_pacijenta}}">
+    </label>
+    
+    <label>
+        Tezina pacijenta:
+        <input type="number" formControlName="tezine_pacijenta" value="{{karton.tezine_pacijenta}}">
+    </label>
+    
+    <label>
+        Krvna grupa:
+        <input type="text" formControlName="krvna_grupa" value="{{karton.krvna_grupa}}">
+    </label>
+    <label>
+        Dioptrija:
+        <input type="text" formControlName="dioptrija" value="{{karton.dioptrija}}">
+    </label>
+    
+    <button type="submit">Submit</button>
+</form>

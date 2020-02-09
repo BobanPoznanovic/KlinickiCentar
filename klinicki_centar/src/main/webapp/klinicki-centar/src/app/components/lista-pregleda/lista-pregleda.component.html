@@ -1,0 +1,13 @@
+<p>lista-pregleda works!</p>
+<div *ngIf="pregledi">
+    <ul>
+        <li *ngFor="let pregled of pregledi">
+            PregledID: {{pregled.pregledID}} PacijentID: {{pregled.pacijentID}} 
+            Datum pregleda: {{pregled.datum_pregleda}}
+            Pocetak pregleda: {{pregled.satnica_pocetak}}
+            Kraj pregleda: {{pregled.satnica_kraj}}
+            <button (click)="onClick(pregled)">Kreiraj izvestaj</button>
+            <app-dodaj-izvestaj-pregleda *ngIf="selectedID==pregled.pregledID" [pregledID]="selectedID"></app-dodaj-izvestaj-pregleda>
+        </li>
+    </ul>
+</div>

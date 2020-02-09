@@ -1,0 +1,18 @@
+<p>dodaj-lek works!</p>
+
+<form [formGroup]="lekForm" (ngSubmit)="onSubmit()">
+    <label>
+        Naziv:
+        <input type="text" formControlName="naziv">
+    </label>
+    <label>
+        Proizvodjac:
+        <input type="text" formControlName="proizvodjac">
+    </label>
+    <label>
+        Doza:
+        <input type="text" formControlName="doza">
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
