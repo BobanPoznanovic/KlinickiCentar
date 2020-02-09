@@ -1,0 +1,11 @@
+<p>lista-pacijenata works!</p>
+<div *ngIf="pacijenti">
+    <ul>
+        <li *ngFor="let pacijent of pacijenti">
+            Ime: {{pacijent.ime}}
+            Prezime: {{pacijent.prezime}}
+            Broj osiguranja: {{pacijent.broj_osiguranika}}
+            <br>
+        </li>
+    </ul>
+</div>

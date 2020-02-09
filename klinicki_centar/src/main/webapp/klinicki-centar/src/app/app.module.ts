@@ -13,6 +13,9 @@ import { DodajAdminaKlinikeComponent } from './components/dodaj-admina-klinike/d
 import { DodajDijagnozuComponent } from './components/dodaj-dijagnozu/dodaj-dijagnozu.component';
 import { DodajLekComponent } from './components/dodaj-lek/dodaj-lek.component';
 import { DodajAdminaKlinickogCentraComponent } from './components/dodaj-admina-klinickog-centra/dodaj-admina-klinickog-centra.component';
+import { MedicinskaSestraHomeComponent } from './components/medicinska-sestra-home/medicinska-sestra-home.component';
+import { ListaPacijenataComponent } from './components/lista-pacijenata/lista-pacijenata.component';
+import { DodajZahtevZaOdsustvoComponent } from './components/dodaj-zahtev-za-odsustvo/dodaj-zahtev-za-odsustvo.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { DodajAdminaKlinickogCentraComponent } from './components/dodaj-admina-k
     DodajAdminaKlinikeComponent,
     DodajDijagnozuComponent,
     DodajLekComponent,
-    DodajAdminaKlinickogCentraComponent
+    DodajAdminaKlinickogCentraComponent,
+    MedicinskaSestraHomeComponent,
+    ListaPacijenataComponent,
+    DodajZahtevZaOdsustvoComponent
   ],
   imports: [
     BrowserModule,
