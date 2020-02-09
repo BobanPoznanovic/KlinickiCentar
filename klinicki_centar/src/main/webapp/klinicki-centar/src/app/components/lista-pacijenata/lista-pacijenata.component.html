@@ -5,6 +5,10 @@
             Ime: {{pacijent.ime}}
             Prezime: {{pacijent.prezime}}
             Broj osiguranja: {{pacijent.broj_osiguranika}}
+            <button *ngIf="!pacijent.zdravstveni_kartonID" (click)="kreirajZdravstveniKarton(pacijent)">Kreiraj zdravstveni karton</button>
+            <button *ngIf="pacijent.zdravstveni_kartonID" (click)="izmeniZdravstveniKarton(pacijent)">Izmeni zdravstveni karton</button>
+            <app-dodaj-zdravstveni-karton *ngIf="pacijent===selectedPacijent" [pacijent]="selectedPacijent"></app-dodaj-zdravstveni-karton>
+            <app-izmeni-zdravstveni-karton *ngIf="pacijent===selectedPacijentIzmena" [pacijent]="selectedPacijentIzmena"></app-izmeni-zdravstveni-karton>
             <br>
         </li>
     </ul>

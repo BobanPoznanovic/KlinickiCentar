@@ -20,6 +20,8 @@ import { ListaPregledaComponent } from './components/lista-pregleda/lista-pregle
 import { DodajIzvestajPregledaComponent } from './components/dodaj-izvestaj-pregleda/dodaj-izvestaj-pregleda.component';
 import { ListaZahtevaZaDodeluSaleComponent } from './components/lista-zahteva-za-dodelu-sale/lista-zahteva-za-dodelu-sale.component';
 import { OdbitiZahtevZaRegistracijuComponent } from './components/odbiti-zahtev-za-registraciju/odbiti-zahtev-za-registraciju.component';
+import { DodajZdravstveniKartonComponent } from './components/dodaj-zdravstveni-karton/dodaj-zdravstveni-karton.component';
+import { IzmeniZdravstveniKartonComponent } from './components/izmeni-zdravstveni-karton/izmeni-zdravstveni-karton.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { OdbitiZahtevZaRegistracijuComponent } from './components/odbiti-zahtev-
     ListaPregledaComponent,
     DodajIzvestajPregledaComponent,
     ListaZahtevaZaDodeluSaleComponent,
-    OdbitiZahtevZaRegistracijuComponent
+    OdbitiZahtevZaRegistracijuComponent,
+    DodajZdravstveniKartonComponent,
+    IzmeniZdravstveniKartonComponent
   ],
   imports: [
     BrowserModule,

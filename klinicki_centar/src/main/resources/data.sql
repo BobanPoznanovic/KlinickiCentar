@@ -19,8 +19,6 @@ insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, g
 insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon) values (2345, "pacijent2@gmail.com","pacijent2sifra","Mika","Mikic","Pasterova 1","Novi Sad", "Srbija", "021445522");
 
 --ZdravstveniKarton
-insert into zdravstveni_karton (pacijentID, datum_rodjenja, visina_pacijenta, tezina_pacijenta, krvna_grupa, dioptrija) values (1, '1995-10-10', 182.3, 80.6, "0-", "");
-insert into zdravstveni_karton (pacijentID, datum_rodjenja, visina_pacijenta, tezina_pacijenta, krvna_grupa, dioptrija) values (2, '1985-10-10', 172.3, 60.6, "A+", "+1.0");
 
 --Specijalizacije
 insert into specijalizacija_lekara (naziv_specijalizacije) values ("Opsta praksa");
