@@ -1,0 +1,40 @@
+<p>dodaj-admina-klinike works!</p>
+
+<form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+    <label>
+        Ime:
+        <input type="text" formControlName="ime">    
+    </label>
+
+    <label>
+        Prezime:
+        <input type="text" formControlName="prezime">    
+    </label>
+
+    <label>
+        Username:
+        <input type="text" formControlName="username">    
+    </label>
+
+    <label>
+        Password:
+        <input type="text" formControlName="password">    
+    </label>
+
+    <label>
+        Email:
+        <input type="text" formControlName="email">    
+    </label>
+
+    <label>
+        Adresa:
+        <input type="text" formControlName="adresa">    
+    </label>
+
+    <label>
+        Kontakt telefon:
+        <input type="text" formControlName="kontakt_telefon">    
+    </label>
+
+    <button type="submit">Submit</button>
+</form>

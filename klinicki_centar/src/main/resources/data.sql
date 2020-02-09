@@ -12,6 +12,7 @@ insert into klinika (naziv, adresa, opis) values ('Klinika1','Novi Sad', 'Opis k
 
 --ZahtevZaRegistraciju
 insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, broj_telefona, status_zahteva, razlog_odbijanja) values (1234, 'pera@gmail.com', 'perapera', 'Pera', 'Peric', 'Fruskogorska 1', 'Novi Sad', 'Srbija', '0601234', 1, '');
+insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, broj_telefona, status_zahteva, razlog_odbijanja) values (3214, 'joka@gmail.com', 'jokajoka', 'Joka', 'Jokic', 'Temerinska 1', 'Novi Sad', 'Srbija', '060445566', 1, '');
 
 --Pacijent
 insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon) values (1234, "pacijent1@gmail.com","pacijent1sifra","Pera","Peric","Safarikova 1","Novi Sad", "Srbija", "0213001486");

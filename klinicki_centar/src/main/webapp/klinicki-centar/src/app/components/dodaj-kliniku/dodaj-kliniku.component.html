@@ -1,0 +1,20 @@
+<p>dodaj-kliniku works!</p>
+
+<form [formGroup]="klinikaForm" (ngSubmit)="onSubmit()">
+    <label>
+        Naziv:
+        <input type="text" formControlName="naziv">
+    </label>
+    
+    <label>
+        Adresa:
+        <input type="text" formControlName="adresa">
+    </label>
+    
+    <label>
+        Opis:
+        <input type="text" formControlName="opis">
+    </label>
+    
+    <button type="submit">Submit</button>
+</form>

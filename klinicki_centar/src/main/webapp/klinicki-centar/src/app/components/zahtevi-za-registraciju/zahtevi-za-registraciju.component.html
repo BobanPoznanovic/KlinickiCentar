@@ -1,0 +1,10 @@
+<p>zahtevi-za-registraciju works!</p>
+<button (click)="getZahtevi()">GET ZAHTEVI</button>
+<div *ngIf="zahtevi">
+    <ul>
+        <li *ngFor="let zahtev of zahtevi" >
+            <b>ZahtevID: </b>{{zahtev.zahtevID}}
+            <button (click)="prihvatiZahtev(zahtev.zahtevID)">Prihvati</button>
+        </li>
+    </ul>
+</div>
