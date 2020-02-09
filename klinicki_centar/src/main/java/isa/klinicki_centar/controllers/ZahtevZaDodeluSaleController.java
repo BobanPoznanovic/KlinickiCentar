@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import isa.klinicki_centar.services.ZahtevZaDodeluSaleService;
 
 @Controller
 @RequestMapping(path = "/zahtev/sala")
+@CrossOrigin(origins = "*")
 public class ZahtevZaDodeluSaleController {
 	
 	@Autowired
@@ -140,7 +142,7 @@ public class ZahtevZaDodeluSaleController {
 		return new ResponseEntity<List<ZahtevZaDodeluSaleDTO>>(retVal, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/check")
+	@PostMapping(value = "/check")
 	public ResponseEntity<ZahtevZaDodeluSaleDTO> checkSalaAvailability(@RequestBody ZahtevZaDodeluSaleDTO zahtev) {
 		
 		Operacija operacija = operacijaService.findOne(zahtev.getOperacijaID());

@@ -18,6 +18,7 @@ import { ListaPacijenataComponent } from './components/lista-pacijenata/lista-pa
 import { DodajZahtevZaOdsustvoComponent } from './components/dodaj-zahtev-za-odsustvo/dodaj-zahtev-za-odsustvo.component';
 import { ListaPregledaComponent } from './components/lista-pregleda/lista-pregleda.component';
 import { DodajIzvestajPregledaComponent } from './components/dodaj-izvestaj-pregleda/dodaj-izvestaj-pregleda.component';
+import { ListaZahtevaZaDodeluSaleComponent } from './components/lista-zahteva-za-dodelu-sale/lista-zahteva-za-dodelu-sale.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DodajIzvestajPregledaComponent } from './components/dodaj-izvestaj-preg
     ListaPacijenataComponent,
     DodajZahtevZaOdsustvoComponent,
     ListaPregledaComponent,
-    DodajIzvestajPregledaComponent
+    DodajIzvestajPregledaComponent,
+    ListaZahtevaZaDodeluSaleComponent
   ],
   imports: [
     BrowserModule,

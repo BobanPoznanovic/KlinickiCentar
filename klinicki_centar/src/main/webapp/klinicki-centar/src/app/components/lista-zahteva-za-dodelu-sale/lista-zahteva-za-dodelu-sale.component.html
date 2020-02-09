@@ -1,0 +1,10 @@
+<p>lista-zahteva-za-dodelu-sale works!</p>
+
+<div *ngIf="zahtevi">
+    <ul>
+        <li *ngFor="let zahtev of zahtevi">
+            ZahtevID: {{zahtev.zahtevID}}
+            <button (click)="obradiZahtev(zahtev)">Obradi zahtev</button>
+        </li>
+    </ul>
+</div>
