@@ -1,5 +1,6 @@
 package isa.klinicki_centar.services;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface DateAndTimeService {
 	Boolean checkIfOverlaps(Operacija operacija, Pregled pregled);
 	
 	Boolean checkIfOverlaps(LocalTime eventAStart, LocalTime eventAEnd, LocalTime eventBStart, LocalTime eventBEnd);
+	
+	long eventLength(LocalTime startTime, LocalTime endTime);
+	
+	LocalDate findNextDay(LocalDate previousDate);
 }

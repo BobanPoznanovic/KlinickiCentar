@@ -1,12 +1,17 @@
 package isa.klinicki_centar.services.impl;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import isa.klinicki_centar.model.Operacija;
 import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.services.DateAndTimeService;
 
+@Service
 public class DateAndTimeServiceImpl implements DateAndTimeService{
 
 	@Override
@@ -75,6 +80,18 @@ public class DateAndTimeServiceImpl implements DateAndTimeService{
 								operacija.getSatnica_kraja_operacije(), 
 								pregled.getSatnica_pocetak(), 
 								pregled.getSatnica_kraj());
+	}
+
+	@Override
+	public long eventLength(LocalTime startTime, LocalTime endTime) {
+		// TODO Auto-generated method stub
+		return startTime.until(endTime, ChronoUnit.MINUTES);
+	}
+
+	@Override
+	public LocalDate findNextDay(LocalDate previousDate) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

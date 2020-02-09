@@ -16,5 +16,7 @@ public interface OperacijaService {
 	
 	List<Operacija> fromDate(String date);
 	
-	List<Operacija> byDataAndSalaID(String date, Integer salaID);
+	List<Operacija> byDateAndSalaID(String date, Integer salaID);
+	
+	List<Operacija> byDateAndSalaIDSortedByStartTime(String date, Integer salaID);
 }

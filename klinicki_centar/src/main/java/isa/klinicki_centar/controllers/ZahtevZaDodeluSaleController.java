@@ -19,12 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import isa.klinicki_centar.model.Operacija;
 import isa.klinicki_centar.model.Pregled;
+import isa.klinicki_centar.model.Sala;
 import isa.klinicki_centar.model.StatusZahtevaZaDodeluSale;
 import isa.klinicki_centar.model.ZahtevZaDodeluSale;
+import isa.klinicki_centar.model.dto.SimpleEventDTO;
 import isa.klinicki_centar.model.dto.ZahtevZaDodeluSaleDTO;
 import isa.klinicki_centar.services.DateAndTimeService;
 import isa.klinicki_centar.services.OperacijaService;
 import isa.klinicki_centar.services.PregledService;
+import isa.klinicki_centar.services.SalaService;
 import isa.klinicki_centar.services.ZahtevZaDodeluSaleService;
 
 @Controller
@@ -42,6 +45,9 @@ public class ZahtevZaDodeluSaleController {
 	
 	@Autowired
 	private DateAndTimeService dateAndTimeService;
+	
+	@Autowired
+	private SalaService salaService;
 	
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<ZahtevZaDodeluSaleDTO>> findAll() {
@@ -125,25 +131,183 @@ public class ZahtevZaDodeluSaleController {
 		}
 	}
 	
+	@GetMapping(value = "/check/all")
+	public ResponseEntity<List<ZahtevZaDodeluSaleDTO>> checkSveZahteve() {
+		
+		List<ZahtevZaDodeluSaleDTO> retVal = new ArrayList<ZahtevZaDodeluSaleDTO>();
+		
+		return new ResponseEntity<List<ZahtevZaDodeluSaleDTO>>(retVal, HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/check")
 	public ResponseEntity<ZahtevZaDodeluSaleDTO> checkSalaAvailability(@RequestBody ZahtevZaDodeluSaleDTO zahtev) {
 		
 		Operacija operacija = operacijaService.findOne(zahtev.getOperacijaID());
+	
+		if(operacija == null) {
+			return new ResponseEntity<ZahtevZaDodeluSaleDTO>(HttpStatus.NOT_FOUND);
+		}
 		
-		List<Operacija> operacijeByDateAndSalaID = operacijaService.byDataAndSalaID(operacija.getDatum_operacije().toString(), zahtev.getSalaID());
+		List<Operacija> operacijeByDateAndSalaID = operacijaService.byDateAndSalaID(operacija.getDatum_operacije().toString(), zahtev.getSalaID());
 		
 		List<Pregled> preglediByDateAndSalaID = pregledService.byDateAndSalaID(operacija.getDatum_operacije().toString(), zahtev.getSalaID());
 		
 		Boolean overlappingExists = dateAndTimeService.checkOverlapping(operacijeByDateAndSalaID, preglediByDateAndSalaID, operacija);
 		
 		if(overlappingExists) {
-			//ima preklapanja menjaj!
+			//ima preklapanja menjaj vreme operacije
+			
+			if(pronadjiNovuSaluZaOperaciju(operacija, zahtev)) {
+				updateZahtevZaDodeluSale(zahtev);
+			}
+			else {
+				//Pronalazenje novog vremena operacije
+				//Racunanje slobodnih slotova po salama tokom jednog data (zapoceti pretragu na datum kada je operacija planirana)
+				//Ukoliko je slot veci od duzine trajanja operacije, termin operacije se moze promeniti
+				//Promeniti datum operacije i ponoviti gorenavedene korake
+				
+				/*
+				1) DateShifter, returns date
+				2) For(Sala s : sveSale)
+				3) Pronalazenje termina u sali on date, check operacije & pregledi
+				4) Da li postoji odgovarajuci slot?
+				4.1) Pomeri operaciju
+				4.2) Promeni datum (back to DateShifter) 
+				*/
+				
+				long trajanjeOperacije = dateAndTimeService.eventLength(operacija.getSatnica_pocetka_operacije(), operacija.getSatnica_kraja_operacije());
+			}
+		
+			return new ResponseEntity<ZahtevZaDodeluSaleDTO>(zahtev, HttpStatus.BAD_REQUEST);
 		}
 		else {
 			//nema preklapanja, odobri zahtev, zapisi salu u operaciji
+			zahtev.setStatus_zahteva("Admin_odobrio");
+			
+			operacija.setSalaID(zahtev.getSalaID());
+			operacija = operacijaService.save(operacija);
+			
+			//mejl, radni kalednar
+			
+			updateZahtevZaDodeluSale(zahtev);
 		}
 		
-		return new ResponseEntity<ZahtevZaDodeluSaleDTO>(HttpStatus.OK);
+		return new ResponseEntity<ZahtevZaDodeluSaleDTO>(zahtev, HttpStatus.OK);
+	}
+	
+	public Boolean pronadjiNovuSaluZaOperaciju(Operacija operacija, ZahtevZaDodeluSaleDTO zahtev) {
+		Iterable<Sala> sveSaleQueryResult = salaService.findAll();
+		List<Sala> sveSale = new ArrayList<Sala>();
+		for(Sala s : sveSaleQueryResult) {
+			if(s.getSalaID() != zahtev.getSalaID()) {
+				sveSale.add(s);
+			}
+		}
+		
+		for(Sala s : sveSale) {
+			List<Operacija> tempOperacije = operacijaService.byDateAndSalaID(operacija.getDatum_operacije().toString(), s.getSalaID());
+			List<Pregled> tempPregledi = pregledService.byDateAndSalaID(operacija.getDatum_operacije().toString(), s.getSalaID());
+			
+			Boolean overlapping = dateAndTimeService.checkOverlapping(tempOperacije, tempPregledi, operacija);
+			
+			if(!overlapping) {
+				zahtev.setStatus_zahteva("Admin_odobrio");
+				
+				operacija.setSalaID(zahtev.getSalaID());
+				operacija = operacijaService.save(operacija);
+				
+				//mejl, radni kalednar
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public LocalTime pronadjiTerminNaDan(String dateToCheck, long trajanjeOperacije) {
+		
+		Iterable<Sala> sveSale = salaService.findAll();
+		List<Sala> listaSala = new ArrayList<Sala>();
+		for(Sala s : sveSale) {
+			listaSala.add(s);
+		}
+		
+		if(!listaSala.isEmpty()) {
+			for(Sala s : listaSala) {
+				List<Operacija> listaOperacija = operacijaService.byDateAndSalaIDSortedByStartTime(dateToCheck, s.getSalaID());
+				List<Pregled> listaPregleda = pregledService.byDateAndSalaIDSortedByStartTime(dateToCheck, s.getSalaID());
+				
+				List<SimpleEventDTO> listaDogadjaja = sortEvents(listaOperacija, listaPregleda);
+				
+ 			}
+		}
+		
+		return LocalTime.parse("11:08");		
+	}
+	
+	public List<SimpleEventDTO> sortEvents(List<Operacija> operacije, List<Pregled> pregledi) {
+		
+		List<SimpleEventDTO> retVal = new ArrayList<SimpleEventDTO>();
+		List<SimpleEventDTO> temp = new ArrayList<SimpleEventDTO>();
+		
+		for(Operacija o : operacije) {
+			temp.add(new SimpleEventDTO(o));
+		}
+		
+		for(Pregled p : pregledi) {
+			temp.add(new SimpleEventDTO(p));
+		}
+		
+		int list_size = temp.size();
+		
+		if(temp.isEmpty())
+			return retVal;
+		
+		while (retVal.size() < list_size) {
+			IndexAndSimpleEvent result = findFirstInSchedule(temp);
+			retVal.add(result.getEvent());
+			temp.remove(result.getIndex());
+		}
+		
+		return retVal;
+	}
+	
+	public IndexAndSimpleEvent findFirstInSchedule(List<SimpleEventDTO> lista) {
+		
+		IndexAndSimpleEvent retVal = null;
+		SimpleEventDTO min = lista.get(0);
+		
+		for(int i = 1; i < lista.size(); i++) {
+			SimpleEventDTO event = lista.get(i);
+			LocalTime minTime = LocalTime.parse(min.getStartTime());
+			LocalTime checkTime = LocalTime.parse(event.getStartTime());
+			
+			if(checkTime.isBefore(minTime)) {
+				min = event;
+				retVal = new IndexAndSimpleEvent(i, min);
+			}
+		}
+		
+		return retVal;
+	}
+	
+	final class IndexAndSimpleEvent {
+		private final int index;
+		private final SimpleEventDTO event;
+		
+		public IndexAndSimpleEvent(int index, SimpleEventDTO event) {
+			this.index = index;
+			this.event = event;
+		}
+		
+		public int getIndex() {
+			return index;
+		}
+		
+		public SimpleEventDTO getEvent() {
+			return event;
+		}
 	}
 
 }

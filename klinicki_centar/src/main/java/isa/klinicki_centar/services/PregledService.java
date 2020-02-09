@@ -15,4 +15,8 @@ public interface PregledService {
 	void remove(Integer id);
 	
 	List<Pregled> byDateAndSalaID(String date, Integer salaID);
+	
+	List<Pregled> byDate(String date);
+	
+	List<Pregled> byDateAndSalaIDSortedByStartTime(String date, Integer salaID);
 }

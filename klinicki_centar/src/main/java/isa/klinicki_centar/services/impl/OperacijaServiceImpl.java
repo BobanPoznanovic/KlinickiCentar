@@ -46,13 +46,19 @@ public class OperacijaServiceImpl implements OperacijaService {
 	@Override
 	public List<Operacija> fromDate(String date) {
 		// TODO Auto-generated method stub
-		return operacijaAdvanceRepository.fromDate(date);
+		return operacijaRepository.fromDate(date);
 	}
 
 	@Override
-	public List<Operacija> byDataAndSalaID(String date, Integer salaID) {
+	public List<Operacija> byDateAndSalaID(String date, Integer salaID) {
 		// TODO Auto-generated method stub
 		return operacijaAdvanceRepository.byDateAndSalaID(date, salaID);
+	}
+
+	@Override
+	public List<Operacija> byDateAndSalaIDSortedByStartTime(String date, Integer salaID) {
+		// TODO Auto-generated method stub
+		return operacijaAdvanceRepository.byDateAndSalaIDSortedByStartTime(date, salaID);
 	}
 
 }

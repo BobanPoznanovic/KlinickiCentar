@@ -45,4 +45,16 @@ public class PregledServiceImpl implements PregledService{
 		return pregledRepository.byDateAndSalaID(date, salaID);
 	}
 
+	@Override
+	public List<Pregled> byDate(String date) {
+		// TODO Auto-generated method stub
+		return pregledRepository.byDate(date);
+	}
+
+	@Override
+	public List<Pregled> byDateAndSalaIDSortedByStartTime(String date, Integer salaID) {
+		// TODO Auto-generated method stub
+		return pregledRepository.byDateAndSalaIDSortedByStartTime(date, salaID);
+	}
+
 }

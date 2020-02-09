@@ -14,4 +14,7 @@ public interface OperacijaAdvanceRepository extends JpaRepository<Operacija, Int
 	
 	@Query(value = "select * from operacija where DATE(datum_operacije) = ?1 AND salaID = ?2", nativeQuery = true)
 	List<Operacija> byDateAndSalaID(String date, Integer salaID);
+	
+	@Query(value = "select * from operacija where DATE(datum_operacije) = ?1 AND salaID = ?2 order by time(satnica_pocetka_operacije)", nativeQuery = true)
+	List<Operacija> byDateAndSalaIDSortedByStartTime(String date, Integer salaID);
 }
