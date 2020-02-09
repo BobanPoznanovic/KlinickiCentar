@@ -16,6 +16,8 @@ export class ZahteviZaRegistracijuComponent implements OnInit {
     private zahteviService : ZahteviZaRegistracijuService) { }
 
   ngOnInit(): void {
+    this.zahteviService.getZahtevi()
+    .subscribe(zahtevi => this.zahtevi = zahtevi);
   }
 
   onSelect(zahtev: ZahtevZaRegistraciju): void {
@@ -30,6 +32,10 @@ export class ZahteviZaRegistracijuComponent implements OnInit {
   prihvatiZahtev(id: number) {
     console.log('Odobri zahtev: ', id);
     this.zahteviService.prihvatiZahtev(id).subscribe(zahtev => console.log(zahtev));
+  }
+
+  onClick(zahtev: ZahtevZaRegistraciju) {
+    this.selectedZahtev = zahtev;
   }
 
 }

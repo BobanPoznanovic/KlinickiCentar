@@ -19,6 +19,7 @@ import { DodajZahtevZaOdsustvoComponent } from './components/dodaj-zahtev-za-ods
 import { ListaPregledaComponent } from './components/lista-pregleda/lista-pregleda.component';
 import { DodajIzvestajPregledaComponent } from './components/dodaj-izvestaj-pregleda/dodaj-izvestaj-pregleda.component';
 import { ListaZahtevaZaDodeluSaleComponent } from './components/lista-zahteva-za-dodelu-sale/lista-zahteva-za-dodelu-sale.component';
+import { OdbitiZahtevZaRegistracijuComponent } from './components/odbiti-zahtev-za-registraciju/odbiti-zahtev-za-registraciju.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ListaZahtevaZaDodeluSaleComponent } from './components/lista-zahteva-za
     DodajZahtevZaOdsustvoComponent,
     ListaPregledaComponent,
     DodajIzvestajPregledaComponent,
-    ListaZahtevaZaDodeluSaleComponent
+    ListaZahtevaZaDodeluSaleComponent,
+    OdbitiZahtevZaRegistracijuComponent
   ],
   imports: [
     BrowserModule,

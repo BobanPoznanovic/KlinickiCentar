@@ -1,0 +1,8 @@
+<form [formGroup]="zahtevForm" (ngSubmit)="onSubmit()">
+    <label>
+        Razlog odbijanja:
+        <input type="text" formControlName="razlog_odbijanja">
+    </label>
+
+    <button type="submit">Submit</button>
+</form>

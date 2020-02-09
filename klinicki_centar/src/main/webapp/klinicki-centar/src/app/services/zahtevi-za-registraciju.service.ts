@@ -12,6 +12,10 @@ export class ZahteviZaRegistracijuService {
 
   constructor(private http: HttpClient) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   getZahtevi(): Observable<ZahtevZaRegistraciju[]> {
     return this.http.get<ZahtevZaRegistraciju[]>(this.backEndURL+'/all');  
   }
@@ -19,5 +23,10 @@ export class ZahteviZaRegistracijuService {
   prihvatiZahtev(id: number): Observable<ZahtevZaRegistraciju> {
     const url = '/prihvati/';
     return this.http.get<ZahtevZaRegistraciju>(this.backEndURL+url+id);
+  }
+
+  odbitiZahtev(zahtev: ZahtevZaRegistraciju): Observable<ZahtevZaRegistraciju> {
+    const url = '/odbiti'
+    return this.http.post<ZahtevZaRegistraciju>(this.backEndURL+url, zahtev, this.httpOptions);
   }
 }
