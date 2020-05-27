@@ -76,7 +76,7 @@ public class ZdravstveniKartonController {
 		noviKarton.setKartonID(karton.getKartonID());
 		noviKarton.setKrvna_grupa(karton.getKrvna_grupa());
 		noviKarton.setPacijentID(karton.getPacijentID());
-		noviKarton.setTezine_pacijenta(karton.getTezine_pacijenta());
+		noviKarton.setTezina_pacijenta(karton.getTezina_pacijenta());
 		noviKarton.setVisina_pacijenta(karton.getVisina_pacijenta());
 		
 		noviKarton = zdravstveniKartonService.save(noviKarton);
@@ -102,7 +102,7 @@ public class ZdravstveniKartonController {
 		queryResult.setKartonID(karton.getKartonID());
 		queryResult.setKrvna_grupa(karton.getKrvna_grupa());
 		queryResult.setPacijentID(karton.getPacijentID());
-		queryResult.setTezine_pacijenta(karton.getTezine_pacijenta());
+		queryResult.setTezina_pacijenta(karton.getTezina_pacijenta());
 		queryResult.setVisina_pacijenta(karton.getVisina_pacijenta());
 		
 		queryResult = zdravstveniKartonService.save(queryResult);

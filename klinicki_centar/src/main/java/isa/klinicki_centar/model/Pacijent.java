@@ -12,7 +12,7 @@ import javax.persistence.Version;
 public class Pacijent {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer pacijentID;
 	
 	private Integer broj_osiguranika;

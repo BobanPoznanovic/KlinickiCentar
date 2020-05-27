@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class ZdravstveniKarton {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer kartonID;
 	
 	private Integer pacijentID;
@@ -22,7 +22,7 @@ public class ZdravstveniKarton {
 	
 	private float visina_pacijenta;
 	
-	private float tezine_pacijenta;
+	private float tezina_pacijenta;
 	
 	private String krvna_grupa;
 	
@@ -64,12 +64,12 @@ public class ZdravstveniKarton {
 		this.visina_pacijenta = visina_pacijenta;
 	}
 
-	public float getTezine_pacijenta() {
-		return tezine_pacijenta;
+	public float getTezina_pacijenta() {
+		return tezina_pacijenta;
 	}
 
-	public void setTezine_pacijenta(float tezine_pacijenta) {
-		this.tezine_pacijenta = tezine_pacijenta;
+	public void setTezina_pacijenta(float tezina_pacijenta) {
+		this.tezina_pacijenta = tezina_pacijenta;
 	}
 
 	public String getKrvna_grupa() {

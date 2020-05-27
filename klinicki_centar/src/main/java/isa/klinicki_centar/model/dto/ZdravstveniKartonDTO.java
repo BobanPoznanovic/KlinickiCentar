@@ -12,7 +12,7 @@ public class ZdravstveniKartonDTO {
 	
 	private float visina_pacijenta;
 	
-	private float tezine_pacijenta;
+	private float tezina_pacijenta;
 	
 	private String krvna_grupa;
 	
@@ -25,12 +25,12 @@ public class ZdravstveniKartonDTO {
 	public ZdravstveniKartonDTO(ZdravstveniKarton karton) {
 		this(
 				karton.getKartonID(), karton.getPacijentID(), karton.getDatum_rodjenja().toString(), karton.getVisina_pacijenta(),
-				karton.getTezine_pacijenta(), karton.getKrvna_grupa(), karton.getDioptrija()
+				karton.getTezina_pacijenta(), karton.getKrvna_grupa(), karton.getDioptrija()
 				);
 	}
 	
 	public ZdravstveniKartonDTO(
-			Integer kartonID, Integer pacijentID, String datum_rodjenja, float visina_pacijenta, float tezine_pacijenta,
+			Integer kartonID, Integer pacijentID, String datum_rodjenja, float visina_pacijenta, float tezina_pacijenta,
 			String krvna_grupa, String dioptrija
 			) {
 		super();
@@ -39,7 +39,7 @@ public class ZdravstveniKartonDTO {
 		this.setKartonID(kartonID);
 		this.setKrvna_grupa(krvna_grupa);
 		this.setPacijentID(pacijentID);
-		this.setTezine_pacijenta(tezine_pacijenta);
+		this.setTezina_pacijenta(tezina_pacijenta);
 		this.setVisina_pacijenta(visina_pacijenta);
 	}
 
@@ -75,12 +75,12 @@ public class ZdravstveniKartonDTO {
 		this.visina_pacijenta = visina_pacijenta;
 	}
 
-	public float getTezine_pacijenta() {
-		return tezine_pacijenta;
+	public float getTezina_pacijenta() {
+		return tezina_pacijenta;
 	}
 
-	public void setTezine_pacijenta(float tezine_pacijenta) {
-		this.tezine_pacijenta = tezine_pacijenta;
+	public void setTezina_pacijenta(float tezina_pacijenta) {
+		this.tezina_pacijenta = tezina_pacijenta;
 	}
 
 	public String getKrvna_grupa() {
