@@ -14,6 +14,8 @@ public interface PacijentService {
 	
 	void remove(Integer id);
 	
+	void activatePatientAccount(Integer id);
+	
 	Iterable<Pacijent> findAllSortedByIme();
 	
 	Iterable<Pacijent> findAllSortedByBroj_Osiguranika();

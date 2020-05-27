@@ -68,6 +68,11 @@ public class PacijentController {
 		return new ResponseEntity<PacijentDTO>(new PacijentDTO(queryResult), HttpStatus.OK);
 	}
 	
+	@PutMapping("/aktivacija/{id}")
+	private void activatePatientAccount(@PathVariable Integer id) {
+		pacijentService.activatePatientAccount(id);
+	}
+	
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<PacijentDTO> savePacijent(@RequestBody PacijentDTO pacijent) {
 		

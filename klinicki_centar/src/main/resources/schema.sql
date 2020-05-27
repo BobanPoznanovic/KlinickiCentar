@@ -35,7 +35,9 @@ CREATE TABLE PACIJENT (
     grad varchar(255),
     drzava varchar(255),
     kontakt_telefon varchar(255),
-    zdravstveni_kartonID int
+    zdravstveni_kartonID int,
+    aktivan bit,
+    version int
 );
 
 CREATE TABLE ZDRAVSTVENI_KARTON (
