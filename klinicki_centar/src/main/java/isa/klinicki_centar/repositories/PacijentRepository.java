@@ -6,4 +6,5 @@ import isa.klinicki_centar.model.Pacijent;
 
 public interface PacijentRepository extends CrudRepository<Pacijent, Integer> {
 
+	Pacijent findByEmail(String email);
 }

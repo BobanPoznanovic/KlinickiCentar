@@ -10,6 +10,8 @@ public interface PacijentService {
 	
 	Pacijent save(Pacijent pacijent);
 	
+	Pacijent findByEmail(String email);
+	
 	void remove(Integer id);
 	
 	Iterable<Pacijent> findAllSortedByIme();

@@ -16,10 +16,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import isa.klinicki_centar.model.Pacijent;
 import isa.klinicki_centar.model.StatusZahtevZaRegistraciju;
 import isa.klinicki_centar.model.ZahtevZaRegistraciju;
+import isa.klinicki_centar.model.ZdravstveniKarton;
 import isa.klinicki_centar.model.dto.ZahtevZaRegistracijuDTO;
+import isa.klinicki_centar.services.EmailService;
+import isa.klinicki_centar.services.PacijentService;
 import isa.klinicki_centar.services.ZahtevZaRegistracijuService;
+import isa.klinicki_centar.services.ZdravstveniKartonService;
 
 @Controller
 @RequestMapping(path = "/zahtev/registracija")
@@ -28,6 +33,15 @@ public class ZahtevZaRegistracijuController {
 
 	@Autowired
 	private ZahtevZaRegistracijuService zahtevZaRegistracijuService;
+	
+	@Autowired
+	private ZdravstveniKartonService zdravstveniKartonService;
+	
+	@Autowired
+	private PacijentService pacijentService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<ZahtevZaRegistracijuDTO>> getAll() {
@@ -141,7 +155,29 @@ public class ZahtevZaRegistracijuController {
 		queryResult = zahtevZaRegistracijuService.save(queryResult);
 		
 		// Kreiranje pacijenta
+		ZdravstveniKarton zdravstveniKarton = new ZdravstveniKarton();
+		Pacijent pacijent = new Pacijent(
+					queryResult.getBroj_osiguranika(), 
+					queryResult.getEmail(),
+					queryResult.getPassword(), 
+					queryResult.getIme(),
+					queryResult.getPrezime(),
+					queryResult.getAdresa(), 
+					queryResult.getGrad(), 
+					queryResult.getDrzava(), 
+					queryResult.getBroj_telefona() 
+				);
+		// brisanje zahteva ?
+		
+		pacijent.setZdravstveni_kartonID(zdravstveniKarton.getKartonID());
+		
+		zdravstveniKartonService.save(zdravstveniKarton);
+		
+		pacijentService.save(pacijent);
+		
 		// Slanje mejla za aktivaciju
+		Pacijent p = pacijentService.findByEmail(queryResult.getEmail());
+		emailService.sendMailToUser(pacijent.getEmail(), "http://localhost:4200/activateUser/" + p.getPacijentID(), "Automatski generisan mejl : Aktivacija naloga");
 		
 		return new ResponseEntity<ZahtevZaRegistracijuDTO>(new ZahtevZaRegistracijuDTO(queryResult), HttpStatus.OK);
 	}
@@ -163,5 +199,17 @@ public class ZahtevZaRegistracijuController {
 		zahtev.setStatus_zahteva(StatusZahtevZaRegistraciju.Odbijen.name());
 		
 		return updateZahtevZaRegistraciju(zahtev);
+	}
+	
+	@DeleteMapping(value = "/odbijanje/{id}/{message}")
+	public void odbijanjeZahtevaZaRegistraciju(@PathVariable Integer id, @PathVariable String message) {
+		
+		ZahtevZaRegistraciju zahtevZaRegistraciju = zahtevZaRegistracijuService.findOne(id);
+		emailService.sendMailToUser(zahtevZaRegistraciju.getEmail(), message, "Automatski generisan mejl : Zahtev odbijen");
+		
+		zahtevZaRegistraciju.setStatus_zahteva(StatusZahtevZaRegistraciju.Odbijen);
+		
+		zahtevZaRegistracijuService.remove(id);
+		
 	}
 }

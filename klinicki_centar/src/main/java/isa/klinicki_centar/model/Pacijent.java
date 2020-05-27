@@ -5,13 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table( name = "PACIJENT")
 public class Pacijent {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pacijentID;
 	
 	private Integer broj_osiguranika;
@@ -34,8 +35,27 @@ public class Pacijent {
 	
 	private Integer zdravstveni_kartonID;
 	
+	private Boolean aktivan = false;
+	
+	@Version
+    private Integer version = 0;
+	
 	public Pacijent() {
 		
+	}
+
+	public Pacijent(Integer broj_osiguranika, String email, String password, String ime, String prezime, String adresa,
+			String grad, String drzava, String kontakt_telefon) {
+		this.broj_osiguranika = broj_osiguranika;
+		this.email = email;
+		this.password = password;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.adresa = adresa;
+		this.grad = grad;
+		this.drzava = drzava;
+		this.kontakt_telefon = kontakt_telefon;
+		this.aktivan = false;
 	}
 
 	public Integer getPacijentID() {
@@ -44,6 +64,14 @@ public class Pacijent {
 
 	public void setPacijentID(Integer pacijentID) {
 		this.pacijentID = pacijentID;
+	}
+	
+	public Integer getBroj_osiguranika() {
+		return broj_osiguranika;
+	}
+
+	public void setBroj_osiguranika(Integer broj_osiguranika) {
+		this.broj_osiguranika = broj_osiguranika;
 	}
 
 	public String getEmail() {
@@ -118,12 +146,22 @@ public class Pacijent {
 		this.zdravstveni_kartonID = zdravstveni_kartonID;
 	}
 
-	public Integer getBroj_osiguranika() {
-		return broj_osiguranika;
+	public Boolean getAktivan() {
+		return aktivan;
 	}
 
-	public void setBroj_osiguranika(Integer broj_osiguranika) {
-		this.broj_osiguranika = broj_osiguranika;
+	public void setAktivan(Boolean aktivan) {
+		this.aktivan = aktivan;
 	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+
 
 }
