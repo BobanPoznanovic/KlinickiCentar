@@ -60,7 +60,7 @@ public class MedicinskaSestraController {
 		novaSestra.setAdresa(sestra.getAdresa());
 		novaSestra.setEmail(sestra.getEmail());
 		novaSestra.setIme(sestra.getIme());
-		novaSestra.setIzmenjana_sifra_nakon_prvog_logovanja(sestra.getIzmenjana_sifra_nakon_prvog_logovanja());
+		novaSestra.setIzmenjena_sifra_nakon_prvog_logovanja(sestra.getIzmenjena_sifra_nakon_prvog_logovanja());
 		novaSestra.setKlinikaID(sestra.getKlinikaID());
 		novaSestra.setKontakt_telefon(sestra.getKontakt_telefon());
 		novaSestra.setMedicinska_sestraID(sestra.getMedicinska_sestraID());
@@ -85,7 +85,7 @@ public class MedicinskaSestraController {
 		queryResult.setAdresa(sestra.getAdresa());
 		queryResult.setEmail(sestra.getEmail());
 		queryResult.setIme(sestra.getIme());
-		queryResult.setIzmenjana_sifra_nakon_prvog_logovanja(sestra.getIzmenjana_sifra_nakon_prvog_logovanja());
+		queryResult.setIzmenjena_sifra_nakon_prvog_logovanja(sestra.getIzmenjena_sifra_nakon_prvog_logovanja());
 		queryResult.setKlinikaID(sestra.getKlinikaID());
 		queryResult.setKontakt_telefon(sestra.getKontakt_telefon());
 		queryResult.setMedicinska_sestraID(sestra.getMedicinska_sestraID());

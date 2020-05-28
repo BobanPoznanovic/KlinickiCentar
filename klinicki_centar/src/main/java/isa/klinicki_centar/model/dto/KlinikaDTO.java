@@ -7,22 +7,28 @@ public class KlinikaDTO {
 	private Integer klinikaID;
 	private String naziv;	
 	private String adresa;
-	private String opis;
+	private String grad;
+	private String opis;	
+	private float prosecnaOcena = 0f;
+	private Integer brojOcena = 0;
 	
 	public KlinikaDTO() {
 		
 	}
 	
 	public KlinikaDTO(Klinika klinika) {
-		this(klinika.getKlinikaID(), klinika.getNaziv(), klinika.getAdresa(), klinika.getOpis());
+		this(klinika.getKlinikaID(), klinika.getNaziv(), klinika.getAdresa(), klinika.getGrad(), klinika.getOpis(), klinika.getProsecnaOcena(), klinika.getBrojOcena());
 	}
 	
-	public KlinikaDTO(Integer id, String naziv, String adresa, String opis) {
+	public KlinikaDTO(Integer id, String naziv, String adresa, String grad, String opis, float prosecnaOcena, Integer brojOcena) {
 		super();
 		this.setKlinikaID(id);
 		this.setNaziv(naziv);
 		this.setAdresa(adresa);
+		this.setGrad(grad);
 		this.setOpis(opis);
+		this.setProsecnaOcena(prosecnaOcena);
+		this.setBrojOcena(brojOcena);
 	}
 
 	public Integer getKlinikaID() {
@@ -49,12 +55,36 @@ public class KlinikaDTO {
 		this.adresa = adresa;
 	}
 
+	public String getGrad() {
+		return grad;
+	}
+
+	public void setGrad(String grad) {
+		this.grad = grad;
+	}
+
 	public String getOpis() {
 		return opis;
 	}
 
 	public void setOpis(String opis) {
 		this.opis = opis;
+	}
+
+	public float getProsecnaOcena() {
+		return prosecnaOcena;
+	}
+
+	public void setProsecnaOcena(float prosecnaOcena) {
+		this.prosecnaOcena = prosecnaOcena;
+	}
+
+	public Integer getBrojOcena() {
+		return brojOcena;
+	}
+
+	public void setBrojOcena(Integer brojOcena) {
+		this.brojOcena = brojOcena;
 	}
 
 }

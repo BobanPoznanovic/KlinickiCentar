@@ -55,6 +55,17 @@ public class KlinikaController {
 		
 	}
 	
+	@GetMapping(value = "/search/{nazivOrGrad}")
+	public ResponseEntity<KlinikaDTO> getKlinikaByNazivOrGrad(@PathVariable String nazivOrGrad) {
+		Klinika klinika = klinikaService.findByNazivOrGrad(nazivOrGrad);
+		
+		if(klinika == null) {
+			return new ResponseEntity<KlinikaDTO>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<KlinikaDTO>(new KlinikaDTO(klinika), HttpStatus.OK);
+	} 
+	
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<KlinikaDTO> saveKlinika(@RequestBody KlinikaDTO klinikaDTO) {
 		

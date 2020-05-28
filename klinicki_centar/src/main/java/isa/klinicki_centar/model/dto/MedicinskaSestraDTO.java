@@ -22,7 +22,7 @@ public class MedicinskaSestraDTO {
 	
 	private String adresa;
 	
-	private Boolean izmenjana_sifra_nakon_prvog_logovanja;
+	private Boolean izmenjena_sifra_nakon_prvog_logovanja;
 	
 	public MedicinskaSestraDTO( ) {
 		
@@ -39,7 +39,7 @@ public class MedicinskaSestraDTO {
 				medicinskaSestra.getEmail(),
 				medicinskaSestra.getKontakt_telefon(),
 				medicinskaSestra.getAdresa(),
-				medicinskaSestra.getIzmenjana_sifra_nakon_prvog_logovanja()
+				medicinskaSestra.getIzmenjena_sifra_nakon_prvog_logovanja()
 				);
 	}
 	
@@ -53,13 +53,13 @@ public class MedicinskaSestraDTO {
 			String email,
 			String kontakt_telefon,
 			String adresa,
-			Boolean izmenjana_sifra_nakon_prvog_logovanja
+			Boolean izmenjena_sifra_nakon_prvog_logovanja
 			) {
 		super();
 		this.setAdresa(adresa);
 		this.setEmail(email);
 		this.setIme(ime);
-		this.setIzmenjana_sifra_nakon_prvog_logovanja(izmenjana_sifra_nakon_prvog_logovanja);
+		this.setIzmenjena_sifra_nakon_prvog_logovanja(izmenjena_sifra_nakon_prvog_logovanja);
 		this.setKlinikaID(klinikaID);
 		this.setKontakt_telefon(kontakt_telefon);
 		this.setMedicinska_sestraID(medicinska_sestraID);
@@ -140,11 +140,11 @@ public class MedicinskaSestraDTO {
 		this.adresa = adresa;
 	}
 
-	public Boolean getIzmenjana_sifra_nakon_prvog_logovanja() {
-		return izmenjana_sifra_nakon_prvog_logovanja;
+	public Boolean getIzmenjena_sifra_nakon_prvog_logovanja() {
+		return izmenjena_sifra_nakon_prvog_logovanja;
 	}
 
-	public void setIzmenjana_sifra_nakon_prvog_logovanja(Boolean izmenjana_sifra_nakon_prvog_logovanja) {
-		this.izmenjana_sifra_nakon_prvog_logovanja = izmenjana_sifra_nakon_prvog_logovanja;
+	public void setIzmenjena_sifra_nakon_prvog_logovanja(Boolean izmenjena_sifra_nakon_prvog_logovanja) {
+		this.izmenjena_sifra_nakon_prvog_logovanja = izmenjena_sifra_nakon_prvog_logovanja;
 	}
 }

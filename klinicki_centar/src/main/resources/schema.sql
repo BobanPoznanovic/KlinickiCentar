@@ -67,7 +67,10 @@ CREATE TABLE KLINIKA (
 	klinikaID int AUTO_INCREMENT PRIMARY KEY,
 	naziv varchar(255),
 	adresa varchar(255),
-	opis varchar(1000)
+    grad varchar(255),
+	opis varchar(1000),
+    prosecna_ocena float,
+    broj_ocena int
 );
 
 CREATE TABLE TIP_PREGLEDA (
@@ -149,7 +152,9 @@ CREATE TABLE LEKAR (
 	email varchar(255),
 	kontakt_telefon varchar(255),
 	adresa varchar(255),
-	izmenjana_sifra_nakon_prvog_logovanja bit,
+	pocetak_radnog_vremena time,
+	kraj_radnog_vremena time,
+	izmenjena_sifra_nakon_prvog_logovanja bit,
 	CONSTRAINT fk_specijalizacijeID FOREIGN KEY (specijalizacijaID) REFERENCES SPECIJALIZACIJA_LEKARA(specijalizacijaID),
 	CONSTRAINT fk_lekar_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID)
 );
@@ -164,7 +169,7 @@ CREATE TABLE MEDICINSKA_SESTRA (
 	email varchar(255),
 	kontakt_telefon varchar(255),
 	adresa varchar(255),
-	izmenjana_sifra_nakon_prvog_logovanja bit,
+	izmenjena_sifra_nakon_prvog_logovanja bit,
 	CONSTRAINT fk_medicinska_sestra_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID)
 );
 

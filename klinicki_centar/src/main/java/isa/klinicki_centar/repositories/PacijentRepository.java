@@ -15,6 +15,6 @@ public interface PacijentRepository extends JpaRepository<Pacijent, Integer> {
 	
 	@Modifying
 	@Transactional
-	@Query(value = "UPDATE pacijent SET aktivan = TRUE WHERE pacijentID = 1", nativeQuery = true)
+	@Query(value = "UPDATE pacijent SET aktivan = TRUE WHERE pacijentID = ?1", nativeQuery = true)
 	void activatePatientAccount(Integer id);
 }

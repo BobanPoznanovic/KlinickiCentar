@@ -15,26 +15,28 @@ public class KlinikaServiceImpl implements KlinikaService {
 	
 	@Override
 	public Iterable<Klinika> findAll() {
-		// TODO Auto-generated method stub
 		return klinikaRepository.findAll();
 	}
 
 	@Override
 	public Klinika save(Klinika klinika) {
-		// TODO Auto-generated method stub
 		return klinikaRepository.save(klinika);
 	}
 
 	@Override
 	public Klinika findOne(Integer id) {
-		// TODO Auto-generated method stub
 		return klinikaRepository.findById(id).orElseGet(null);
 	}
 
 	@Override
 	public void remove(Integer id) {
-		// TODO Auto-generated method stub
 		klinikaRepository.deleteById(id);
 	}
+
+	@Override
+	public Klinika findByNazivOrGrad(String nazivOrGrad) {
+		return klinikaRepository.findByNazivOrGrad(nazivOrGrad);
+	}
+
 
 }

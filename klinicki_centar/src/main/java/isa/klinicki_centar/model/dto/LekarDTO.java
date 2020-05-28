@@ -1,5 +1,7 @@
 package isa.klinicki_centar.model.dto;
 
+import java.sql.Time;
+
 import isa.klinicki_centar.model.Lekar;
 
 public class LekarDTO {
@@ -24,6 +26,10 @@ public class LekarDTO {
 	
 	private String adresa;
 	
+	private Time pocetak_radnog_vremena;
+	
+	private Time kraj_radnog_vremena;
+	
 	private Boolean izmenjena_sifra_nakon_prvog_logovanja;
 	
 	public LekarDTO() {
@@ -34,13 +40,13 @@ public class LekarDTO {
 		this(
 				lekar.getLekarID(), lekar.getSpecijalizacijaID(), lekar.getKlinikaID(), lekar.getIme(), lekar.getPrezime(),
 				lekar.getUsername(), lekar.getPassword(), lekar.getEmail(), lekar.getKontakt_telefon(), lekar.getAdresa(),
-				lekar.getIzmenjena_sifra_nakon_prvog_logovanja()
+				lekar.getPocetak_radnog_vremena(), lekar.getKraj_radnog_vremena(), lekar.getIzmenjena_sifra_nakon_prvog_logovanja()
 				);
 	}
 	
 	public LekarDTO(
 			Integer lekarID, Integer specijalizacijaID, Integer klinikaID, String ime, String prezime, String username, String password,
-			String email, String kontakt_telefon, String adresa, Boolean izmenjena_sifra_nakon_prvog_logovanja
+			String email, String kontakt_telefon, String adresa, Time pocetak_radnog_vremena, Time kraj_radnog_vremena, Boolean izmenjena_sifra_nakon_prvog_logovanja
 			) {
 		super();
 		this.setLekarID(lekarID);
@@ -53,6 +59,8 @@ public class LekarDTO {
 		this.setEmail(email);
 		this.setKontakt_telefon(kontakt_telefon);
 		this.setAdresa(adresa);
+		this.setPocetak_radnog_vremena(pocetak_radnog_vremena);
+		this.setKraj_radnog_vremena(kraj_radnog_vremena);
 		this.setIzmenjena_sifra_nakon_prvog_logovanja(izmenjena_sifra_nakon_prvog_logovanja);
 	}
 
@@ -134,6 +142,22 @@ public class LekarDTO {
 
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
+	}
+
+	public Time getPocetak_radnog_vremena() {
+		return pocetak_radnog_vremena;
+	}
+
+	public void setPocetak_radnog_vremena(Time pocetak_radnog_vremena) {
+		this.pocetak_radnog_vremena = pocetak_radnog_vremena;
+	}
+
+	public Time getKraj_radnog_vremena() {
+		return kraj_radnog_vremena;
+	}
+
+	public void setKraj_radnog_vremena(Time kraj_radnog_vremena) {
+		this.kraj_radnog_vremena = kraj_radnog_vremena;
 	}
 
 	public Boolean getIzmenjena_sifra_nakon_prvog_logovanja() {

@@ -10,5 +10,7 @@ public interface KlinikaService {
 	
 	Klinika save(Klinika klinika);
 	
+	Klinika findByNazivOrGrad(String nazivOrGrad);
+	
 	void remove(Integer id);
 }

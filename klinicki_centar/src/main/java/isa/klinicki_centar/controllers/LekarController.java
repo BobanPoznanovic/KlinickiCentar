@@ -41,7 +41,7 @@ public class LekarController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<LekarDTO> getDijagnoza(@PathVariable Integer id) {
+	public ResponseEntity<LekarDTO> getLekar(@PathVariable Integer id) {
 		
 		Lekar queryResult = lekarService.findOne(id);
 		
@@ -53,7 +53,7 @@ public class LekarController {
 	}
 	
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<LekarDTO> saveDijagnoza(@RequestBody LekarDTO lekar) {
+	public ResponseEntity<LekarDTO> saveLekar(@RequestBody LekarDTO lekar) {
 		
 		Lekar noviLekar = new Lekar();
 		
@@ -68,6 +68,8 @@ public class LekarController {
 		noviLekar.setPrezime(lekar.getPrezime());
 		noviLekar.setSpecijalizacijaID(lekar.getSpecijalizacijaID());
 		noviLekar.setUsername(lekar.getUsername());
+		noviLekar.setPocetak_radnog_vremena(lekar.getPocetak_radnog_vremena());
+		noviLekar.setKraj_radnog_vremena(lekar.getKraj_radnog_vremena());
 		
 		noviLekar = lekarService.save(noviLekar);
 		
@@ -75,7 +77,7 @@ public class LekarController {
 	}
 	
 	@PutMapping(consumes = "application/json")
-	public ResponseEntity<LekarDTO> updateDijagnoz(@RequestBody LekarDTO lekar) {
+	public ResponseEntity<LekarDTO> updateLekar(@RequestBody LekarDTO lekar) {
 		
 		Lekar queryResult = lekarService.findOne(lekar.getLekarID());
 		
@@ -95,6 +97,8 @@ public class LekarController {
 		queryResult.setPrezime(lekar.getPrezime());
 		queryResult.setSpecijalizacijaID(lekar.getSpecijalizacijaID());
 		queryResult.setUsername(lekar.getUsername());
+		queryResult.setPocetak_radnog_vremena(lekar.getPocetak_radnog_vremena());
+		queryResult.setKraj_radnog_vremena(lekar.getKraj_radnog_vremena());
 		
 		queryResult = lekarService.save(queryResult);
 		
@@ -102,7 +106,7 @@ public class LekarController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deleteDijagnoza(@PathVariable Integer id) {
+	public ResponseEntity<Void> deleteLekar(@PathVariable Integer id) {
 		
 		Lekar queryResult = lekarService.findOne(id);
 		
