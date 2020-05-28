@@ -24,8 +24,14 @@ public class Klinika {
 	
 	private String adresa;
 	
+	private String grad;
+	
 	private String opis;
 	
+	private float prosecnaOcena = 0f;
+	
+	private Integer brojOcena = 0;
+
 	public Integer getKlinikaID() {
 		return klinikaID;
 	}
@@ -50,6 +56,14 @@ public class Klinika {
 		this.adresa = adresa;
 	}
 
+	public String getGrad() {
+		return grad;
+	}
+
+	public void setGrad(String grad) {
+		this.grad = grad;
+	}
+
 	public String getOpis() {
 		return opis;
 	}
@@ -58,6 +72,20 @@ public class Klinika {
 		this.opis = opis;
 	}
 
-	
+	public float getProsecnaOcena() {
+		return prosecnaOcena;
+	}
+
+	public void setProsecnaOcena(float prosecnaOcena) {
+		this.prosecnaOcena = prosecnaOcena;
+	}
+
+	public Integer getBrojOcena() {
+		return brojOcena;
+	}
+
+	public void setBrojOcena(Integer brojOcena) {
+		this.brojOcena = brojOcena;
+	}
 
 }

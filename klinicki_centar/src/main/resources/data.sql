@@ -8,42 +8,76 @@ insert into sifarnik_dijagnoza (naziv) values ('Boginje');
 insert into admin_klinickog_centra (ime, prezime, username, password, email, kontakt_telefon, adresa, izmenjana_sifra_nakon_prvog_logovanja) values ('Ime','Prezime','Username','Pasword','email@email.com','0631738959','Novi Sad',false);
 
 --Klinika
-insert into klinika (naziv, adresa, opis) values ('Klinika1','Novi Sad', 'Opis klinike1');
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika1', 'Futoski put 14', 'Novi Sad', 'Opis klinike1', 0.0, 0);
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika2', 'Balkanska 188', 'Beograd', 'Opis klinike2', 0.0, 0);
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika3', 'Pasterova 16', 'Novi Sad', 'Opis klinike3', 0.0, 0);
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika4', 'Jovana Popovica 6', 'Novi Sad', 'Opis klinike4', 0.0, 0);
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika5', 'Savska 155', 'Beograd', 'Opis klinike5', 0.0, 0);
 
 --ZahtevZaRegistraciju
 insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, broj_telefona, status_zahteva, razlog_odbijanja) values (1234, 'pera@gmail.com', 'perapera', 'Pera', 'Peric', 'Fruskogorska 1', 'Novi Sad', 'Srbija', '0601234', 1, '');
 insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, broj_telefona, status_zahteva, razlog_odbijanja) values (3214, 'joka@gmail.com', 'jokajoka', 'Joka', 'Jokic', 'Temerinska 1', 'Novi Sad', 'Srbija', '060445566', 1, '');
 
 --Pacijent
-insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon) values (1234, "pacijent1@gmail.com","pacijent1sifra","Pera","Peric","Safarikova 1","Novi Sad", "Srbija", "0213001486");
-insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon) values (2345, "pacijent2@gmail.com","pacijent2sifra","Mika","Mikic","Pasterova 1","Novi Sad", "Srbija", "021445522");
+insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1234, 'pacijent1@gmail.com', 'pacijent1sifra', 'Pera', 'Peric', 'Safarikova 1', 'Novi Sad', 'Srbija', '0213001486', 1, 0, 0);
+insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (2345, 'pacijent2@gmail.com' ,'pacijent2sifra', 'Mika', 'Mikic', 'Pasterova 1', 'Novi Sad', 'Srbija', '021445522', 2, 0, 0);
 
 --ZdravstveniKarton
+INSERT INTO zdravstveni_karton (pacijentID, datum_rodjenja , visina_pacijenta , tezina_pacijenta , krvna_grupa , dioptrija) VALUES (1, '1990-02-20', '190', '80.5', 'AB+', '+1');
+INSERT INTO zdravstveni_karton (pacijentID, datum_rodjenja , visina_pacijenta , tezina_pacijenta , krvna_grupa , dioptrija) VALUES (2, '1980-05-16', '180', '72.0', 'B+', '+2');
 
 --Specijalizacije
 insert into specijalizacija_lekara (naziv_specijalizacije) values ("Opsta praksa");
 insert into specijalizacija_lekara (naziv_specijalizacije) values ("Hirurg");
 insert into specijalizacija_lekara (naziv_specijalizacije) values ("Kardiolog");
+insert into specijalizacija_lekara (naziv_specijalizacije) values ("Oftamolog");
+insert into specijalizacija_lekara (naziv_specijalizacije) values ("Pulmolog");
+insert into specijalizacija_lekara (naziv_specijalizacije) values ("Radiolog");
+insert into specijalizacija_lekara (naziv_specijalizacije) values ("Patolog");
+insert into specijalizacija_lekara (naziv_specijalizacije) values ("Otorinolaringolog");
 
 --Lekar
-insert into lekar (specijalizacijaID, klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, izmenjana_sifra_nakon_prvog_logovanja) values (1, 1, "Zika", "Zikic", "zikson", "zikinasifra", "zika@gmail.com", "0645896214", "Novi Saddyyy", true);
+insert into lekar (specijalizacijaID, klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, pocetak_radnog_vremena, kraj_radnog_vremena, izmenjena_sifra_nakon_prvog_logovanja) values (1, 1, "Zika", "Zikic", "zikson", "zikinasifra", "zika@gmail.com", "0645896214", "Novi Sad", '08:30', '16:30', true);
+insert into lekar (specijalizacijaID, klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, pocetak_radnog_vremena, kraj_radnog_vremena, izmenjena_sifra_nakon_prvog_logovanja) values (2, 1, "Mile", "Kovacevic", "mikan", "mika123", "mile@gmail.com", "064122333", "Novi Sad", '07:00', '15:00',true);
+insert into lekar (specijalizacijaID, klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, pocetak_radnog_vremena, kraj_radnog_vremena, izmenjena_sifra_nakon_prvog_logovanja) values (3, 3, "Lena", "Markovic", "marlena", "lena234", "lena@gmail.com", "0640096214", "Novi Sad", '09:30', '17:30', true);
+insert into lekar (specijalizacijaID, klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, pocetak_radnog_vremena, kraj_radnog_vremena, izmenjena_sifra_nakon_prvog_logovanja) values (4, 3, "Dejana", "Stokic", "dejana", "deja222", "dejana@gmail.com", "060999080", "Novi Sad", '08:00', '16:00', true);
+insert into lekar (specijalizacijaID, klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, pocetak_radnog_vremena, kraj_radnog_vremena, izmenjena_sifra_nakon_prvog_logovanja) values (6, 4, "Marko", "Lekovic", "male", "kkmm147", "marko@gmail.com", "0614452366", "Novi Sad", '09:00', '17:00', true);
+insert into lekar (specijalizacijaID, klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, pocetak_radnog_vremena, kraj_radnog_vremena, izmenjena_sifra_nakon_prvog_logovanja) values (8, 4, "Fedor", "Milic", "fele", "zzwert45", "fedor@gmail.com", "0635899665", "Novi Sad", '07:00', '15:00', true);
+insert into lekar (specijalizacijaID, klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, pocetak_radnog_vremena, kraj_radnog_vremena, izmenjena_sifra_nakon_prvog_logovanja) values (1, 4, "Julija", "Stankovic", "jules", "12vbbv", "julija@gmail.com", "0625894412", "Novi Sad", '07:00', '15:00', true);
 
 --MedicinskaSestra
-insert into medicinska_sestra (klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, izmenjana_sifra_nakon_prvog_logovanja) values (1, "Mira", "Miric", "miraa", "mirinasifra", "mira@gmail.com", "0645555214", "Novi Saddyyy", true);
+insert into medicinska_sestra (klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, izmenjena_sifra_nakon_prvog_logovanja) values (1, "Mira", "Miric", "miraa", "mirinasifra", "mira@gmail.com", "0645555214", "Novi Saddyyy", true);
 
 --Sala
-insert into sala (klinikaID, naziv_sale, broj_sale) values (1, "Sala za pregled", 101);
-insert into sala (klinikaID, naziv_sale, broj_sale) values (1, "Sala za operaciju", 109);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (1, "Klinika 1 - Sala za pregled", 101);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (1, "Klinika 1 - Sala za operaciju", 201);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (1, "Klinika 1 - Sala za pregled 2", 202);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (1, "Klinika 1 - Sala za operaciju 2", 202);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (3, "Klinika 3 - Sala za pregled", 10);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (3, "Klinika 3 - Sala za operaciju", 20);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (3, "Klinika 3 - Sala za pregled 2", 11);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (3, "Klinika 3 - Sala za operaciju 2", 21);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala za pregled", 501);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala za operaciju", 701);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala za pregled 2", 502);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala za operaciju 2", 702);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala za pregled 3", 503);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala za operaciju 3", 703);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala za pregled 4", 504);
+insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala za operaciju 4", 704);
+
 
 --TipPregleda
 insert into tip_pregleda (naziv, cena) values ("Obican pregled", 50.5);
 
 --Pregled
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 1, 1, '2020-02-19', '10:00', '10:30', 1, 0);
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 1, 1, '2020-02-29', '11:00', '11:30', 1, 0);
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 2, 1, '2020-02-19', '12:00', '12:30', 1, 0);
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 2, 1, '2020-02-27', '10:00', '10:30', 1, 0);
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 2, 2, '2020-03-03', '08:00', '08:30', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 1, 1, '2020-02-19', '10:00', '10:29', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 1, 1, '2020-02-29', '11:00', '11:29', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 2, 1, '2020-02-19', '12:00', '12:29', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 2, 1, '2020-02-27', '10:30', '10:59', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 2, 2, '2020-03-03', '08:30', '09:29', 1, 0);
+
+
 
 --Operacije
 insert into operacija (lekarID, datum_operacije, satnica_pocetka_operacije, satnica_kraja_operacije) values (1, '2020-03-03', '15:30', '16:00');

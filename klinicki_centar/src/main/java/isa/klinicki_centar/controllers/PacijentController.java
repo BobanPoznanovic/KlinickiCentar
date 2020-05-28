@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -68,6 +69,11 @@ public class PacijentController {
 		return new ResponseEntity<PacijentDTO>(new PacijentDTO(queryResult), HttpStatus.OK);
 	}
 	
+	@PutMapping("/aktivacija/{id}")
+	public void activatePatientAccount(@PathVariable Integer id) {
+		pacijentService.activatePatientAccount(id);
+	}
+	
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<PacijentDTO> savePacijent(@RequestBody PacijentDTO pacijent) {
 		
@@ -90,26 +96,24 @@ public class PacijentController {
 		return new ResponseEntity<PacijentDTO>(new PacijentDTO(noviPacijent), HttpStatus.CREATED);
 	}
 	
-	@PutMapping(consumes = "application/json")
+	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<PacijentDTO> updatePacijent(@RequestBody PacijentDTO pacijent) {
-		
+
 		Pacijent queryResult = pacijentService.findOne(pacijent.getPacijentID());
 		
 		if(queryResult == null) {
-			return new ResponseEntity<PacijentDTO>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<PacijentDTO>(HttpStatus.NOT_FOUND);
 		}
 		
-		queryResult.setAdresa(pacijent.getAdresa());
-		queryResult.setBroj_osiguranika(pacijent.getBroj_osiguranika());
-		queryResult.setDrzava(pacijent.getDrzava());
-		queryResult.setEmail(pacijent.getEmail());
-		queryResult.setGrad(pacijent.getGrad());
-		queryResult.setIme(pacijent.getIme());
-		queryResult.setKontakt_telefon(pacijent.getKontakt_telefon());
-		queryResult.setPacijentID(pacijent.getPacijentID());
+		System.out.println("Nasao pacijenta");
+		
 		queryResult.setPassword(pacijent.getPassword());
+		queryResult.setIme(pacijent.getIme());
 		queryResult.setPrezime(pacijent.getPrezime());
-		queryResult.setZdravstveni_kartonID(pacijent.getZdravstveni_kartonID());
+		queryResult.setAdresa(pacijent.getAdresa());
+		queryResult.setGrad(pacijent.getGrad());
+		queryResult.setDrzava(pacijent.getDrzava());
+		queryResult.setKontakt_telefon(pacijent.getKontakt_telefon());
 		
 		queryResult = pacijentService.save(queryResult);
 		

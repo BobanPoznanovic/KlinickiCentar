@@ -1,5 +1,7 @@
 package isa.klinicki_centar.model;
 
+import java.sql.Time;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +33,10 @@ public class Lekar {
 	private String kontakt_telefon;
 	
 	private String adresa;
+	
+	private Time pocetak_radnog_vremena;
+	
+	private Time kraj_radnog_vremena;
 	
 	private Boolean izmenjena_sifra_nakon_prvog_logovanja;
 	
@@ -116,6 +122,22 @@ public class Lekar {
 
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
+	}
+
+	public Time getPocetak_radnog_vremena() {
+		return pocetak_radnog_vremena;
+	}
+
+	public void setPocetak_radnog_vremena(Time pocetak_radnog_vremena) {
+		this.pocetak_radnog_vremena = pocetak_radnog_vremena;
+	}
+
+	public Time getKraj_radnog_vremena() {
+		return kraj_radnog_vremena;
+	}
+
+	public void setKraj_radnog_vremena(Time kraj_radnog_vremena) {
+		this.kraj_radnog_vremena = kraj_radnog_vremena;
 	}
 
 	public Boolean getIzmenjena_sifra_nakon_prvog_logovanja() {

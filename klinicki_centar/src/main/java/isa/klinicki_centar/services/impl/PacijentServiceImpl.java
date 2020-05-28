@@ -53,4 +53,12 @@ public class PacijentServiceImpl implements PacijentService{
 		return pacijentRepository.findByEmail(email);
 	}
 
+	@Override
+	public void activatePatientAccount(Integer id) {
+		Pacijent pacijent = pacijentRepository.findById(id).get();
+		pacijent.setAktivan(true);
+		System.out.println("Nalog pacijenta je  -  " + (pacijent.isAktivan() ? "aktivan" : "neaktivan") );
+		pacijentRepository.activatePatientAccount(id);
+	}
+
 }

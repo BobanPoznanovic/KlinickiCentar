@@ -30,7 +30,7 @@ public class MedicinskaSestra {
 	
 	private String adresa;
 	
-	private Boolean izmenjana_sifra_nakon_prvog_logovanja;
+	private Boolean izmenjena_sifra_nakon_prvog_logovanja;
 	
 	public MedicinskaSestra() {
 		
@@ -108,12 +108,12 @@ public class MedicinskaSestra {
 		this.adresa = adresa;
 	}
 
-	public Boolean getIzmenjana_sifra_nakon_prvog_logovanja() {
-		return izmenjana_sifra_nakon_prvog_logovanja;
+	public Boolean getIzmenjena_sifra_nakon_prvog_logovanja() {
+		return izmenjena_sifra_nakon_prvog_logovanja;
 	}
 
-	public void setIzmenjana_sifra_nakon_prvog_logovanja(Boolean izmenjana_sifra_nakon_prvog_logovanja) {
-		this.izmenjana_sifra_nakon_prvog_logovanja = izmenjana_sifra_nakon_prvog_logovanja;
+	public void setIzmenjena_sifra_nakon_prvog_logovanja(Boolean izmenjena_sifra_nakon_prvog_logovanja) {
+		this.izmenjena_sifra_nakon_prvog_logovanja = izmenjena_sifra_nakon_prvog_logovanja;
 	}
 
 }

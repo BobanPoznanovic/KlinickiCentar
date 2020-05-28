@@ -35,10 +35,10 @@ public class Pacijent {
 	
 	private Integer zdravstveni_kartonID;
 	
-	private Boolean aktivan = false;
+	private boolean aktivan;
 	
 	@Version
-    private Integer version = 0;
+    private Integer version;
 	
 	public Pacijent() {
 		
@@ -146,11 +146,11 @@ public class Pacijent {
 		this.zdravstveni_kartonID = zdravstveni_kartonID;
 	}
 
-	public Boolean getAktivan() {
+	public boolean isAktivan() {
 		return aktivan;
 	}
 
-	public void setAktivan(Boolean aktivan) {
+	public void setAktivan(boolean aktivan) {
 		this.aktivan = aktivan;
 	}
 
@@ -161,7 +161,5 @@ public class Pacijent {
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
-
-
 
 }
