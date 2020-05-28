@@ -57,7 +57,7 @@ public class PacijentServiceImpl implements PacijentService{
 	public void activatePatientAccount(Integer id) {
 		Pacijent pacijent = pacijentRepository.findById(id).get();
 		pacijent.setAktivan(true);
-		System.out.println("Nalog pacijenta aktivan ?  -  " + pacijent.isAktivan());
+		System.out.println("Nalog pacijenta je  -  " + (pacijent.isAktivan() ? "aktivan" : "neaktivan") );
 		pacijentRepository.activatePatientAccount(id);
 	}
 
