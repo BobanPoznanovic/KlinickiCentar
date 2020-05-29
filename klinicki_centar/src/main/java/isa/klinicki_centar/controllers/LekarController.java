@@ -182,6 +182,57 @@ public class LekarController {
 		return lekari;
 	}
 	
+	@GetMapping("/search/poImenuITipuPregleda")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraPoImenuITipuPregleda(@RequestParam(name = "ime") String ime, 
+			@RequestParam(name = "tipPregledaID") Integer tipPregledaID) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraPoImenuITipuPregleda(ime, tipPregledaID);
+		
+		return lekari;
+	}
+	
+	@GetMapping("/search/poImenuIPrezimenuIOceni")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraPoImenuIPrezimenuIOceni (
+			@RequestParam(name = "ime") String ime, 
+			@RequestParam(name = "prezime") String prezime, 
+			@RequestParam(name = "prosecnaOcena") float prosecnaOcena) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraPoImenuIPrezimenuIOceni(ime, prezime, prosecnaOcena);
+		
+		return lekari;
+	}
+	
+	@GetMapping("/search/poImenuIPrezimenuITipuPregleda")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraPoImenuIPrezimenuITipuPregleda (
+			@RequestParam(name = "ime") String ime, 
+			@RequestParam(name = "prezime") String prezime,  
+			@RequestParam(name = "tipPregledaID") Integer tipPregledaID ) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraPoImenuIPrezimenuITipuPregleda(ime, prezime, tipPregledaID);
+		
+		return lekari;
+	}
+	
+	@GetMapping("/search/poImenuIPrezimenuIOceniITipuPregleda")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraPoImenuIPrezimenuIOceniITipuPregleda (
+			@RequestParam(name = "ime") String ime, 
+			@RequestParam(name = "prezime") String prezime, 
+			@RequestParam(name = "prosecnaOcena") float prosecnaOcena, 
+			@RequestParam(name = "tipPregledaID") Integer tipPregledaID ) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraPoImenuIPrezimenuIOceniITipuPregleda(ime, prezime, prosecnaOcena, tipPregledaID);
+		
+		return lekari;
+	}
+	
 	@GetMapping("/search/lekariIzKlinike")
     @ResponseBody
 	public ArrayList<Lekar> pretregaLekaraIzKlinike (
