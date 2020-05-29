@@ -3,6 +3,7 @@ USE db_example;
 DROP TABLE IF EXISTS IZVESTAJ_PREGLEDA;
 DROP TABLE IF EXISTS PREGLED;
 DROP TABLE IF EXISTS PREDEF_PREGLED;
+DROP TABLE IF EXISTS TIPOVI_PREGLEDA_LEKARA;
 DROP TABLE IF EXISTS ZAHTEV_ZA_DODELU_SALE;
 DROP TABLE IF EXISTS ZAHTEV_ZA_PREGLED;
 DROP TABLE IF EXISTS ALERGIJE_PACIJENTA;
@@ -143,7 +144,7 @@ CREATE TABLE SPECIJALIZACIJA_LEKARA (
 
 CREATE TABLE LEKAR (
 	lekarID int AUTO_INCREMENT PRIMARY KEY,
-	specijalizacijaID int,
+	--specijalizacijaID int,
 	klinikaID int,
 	ime varchar(255),
 	prezime varchar(255),
@@ -154,9 +155,18 @@ CREATE TABLE LEKAR (
 	adresa varchar(255),
 	pocetak_radnog_vremena time,
 	kraj_radnog_vremena time,
+	prosecna_ocena float,
+    broj_ocena int,
 	izmenjena_sifra_nakon_prvog_logovanja bit,
-	CONSTRAINT fk_specijalizacijeID FOREIGN KEY (specijalizacijaID) REFERENCES SPECIJALIZACIJA_LEKARA(specijalizacijaID),
+	--CONSTRAINT fk_specijalizacijeID FOREIGN KEY (specijalizacijaID) REFERENCES SPECIJALIZACIJA_LEKARA(specijalizacijaID),
 	CONSTRAINT fk_lekar_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID)
+);
+
+CREATE TABLE TIPOVI_PREGLEDA_LEKARA (
+	lekar_id int,
+    tip_pregleda_id int,
+    CONSTRAINT fk_tip_pregleda_tip_pregledaID FOREIGN KEY (tip_pregleda_id) REFERENCES TIP_PREGLEDA(tip_pregledaID),
+    CONSTRAINT fk_tip_pregleda_lekarID FOREIGN KEY (lekar_id) REFERENCES LEKAR(lekarID)
 );
 
 CREATE TABLE MEDICINSKA_SESTRA (

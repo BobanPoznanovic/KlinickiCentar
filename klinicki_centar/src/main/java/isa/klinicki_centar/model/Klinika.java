@@ -28,9 +28,9 @@ public class Klinika {
 	
 	private String opis;
 	
-	private float prosecnaOcena = 0f;
+	private float prosecnaOcena;
 	
-	private Integer brojOcena = 0;
+	private Integer brojOcena;
 
 	public Integer getKlinikaID() {
 		return klinikaID;

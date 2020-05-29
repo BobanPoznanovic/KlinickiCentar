@@ -8,7 +8,7 @@ public class LekarDTO {
 
 	private Integer lekarID;
 	
-	private Integer specijalizacijaID;
+//	private Integer specijalizacijaID;
 	
 	private Integer klinikaID;
 	
@@ -30,6 +30,12 @@ public class LekarDTO {
 	
 	private Time kraj_radnog_vremena;
 	
+	// tipovi pregleda
+	
+	private float prosecnaOcena;
+	
+	private Integer brojOcena;
+	
 	private Boolean izmenjena_sifra_nakon_prvog_logovanja;
 	
 	public LekarDTO() {
@@ -38,19 +44,22 @@ public class LekarDTO {
 	
 	public LekarDTO(Lekar lekar) {
 		this(
-				lekar.getLekarID(), lekar.getSpecijalizacijaID(), lekar.getKlinikaID(), lekar.getIme(), lekar.getPrezime(),
+				lekar.getLekarID(),  
+				lekar.getKlinikaID(), lekar.getIme(), lekar.getPrezime(),
 				lekar.getUsername(), lekar.getPassword(), lekar.getEmail(), lekar.getKontakt_telefon(), lekar.getAdresa(),
-				lekar.getPocetak_radnog_vremena(), lekar.getKraj_radnog_vremena(), lekar.getIzmenjena_sifra_nakon_prvog_logovanja()
+				lekar.getPocetak_radnog_vremena(), lekar.getKraj_radnog_vremena(), 
+				lekar.getProsecnaOcena(), lekar.getBrojOcena(), lekar.getIzmenjena_sifra_nakon_prvog_logovanja()
 				);
 	}
 	
 	public LekarDTO(
-			Integer lekarID, Integer specijalizacijaID, Integer klinikaID, String ime, String prezime, String username, String password,
-			String email, String kontakt_telefon, String adresa, Time pocetak_radnog_vremena, Time kraj_radnog_vremena, Boolean izmenjena_sifra_nakon_prvog_logovanja
+			Integer lekarID,  Integer klinikaID, String ime, String prezime, String username, String password,
+			String email, String kontakt_telefon, String adresa, Time pocetak_radnog_vremena, Time kraj_radnog_vremena, 
+			float prosecnaOcena, Integer brojOcena, Boolean izmenjena_sifra_nakon_prvog_logovanja
 			) {
 		super();
 		this.setLekarID(lekarID);
-		this.setSpecijalizacijaID(specijalizacijaID);
+//		this.setSpecijalizacijaID(specijalizacijaID);
 		this.setKlinikaID(klinikaID);
 		this.setIme(ime);
 		this.setPrezime(prezime);
@@ -61,6 +70,8 @@ public class LekarDTO {
 		this.setAdresa(adresa);
 		this.setPocetak_radnog_vremena(pocetak_radnog_vremena);
 		this.setKraj_radnog_vremena(kraj_radnog_vremena);
+		this.setProsecnaOcena(prosecnaOcena);
+		this.setBrojOcena(brojOcena);
 		this.setIzmenjena_sifra_nakon_prvog_logovanja(izmenjena_sifra_nakon_prvog_logovanja);
 	}
 
@@ -72,13 +83,13 @@ public class LekarDTO {
 		this.lekarID = lekarID;
 	}
 
-	public Integer getSpecijalizacijaID() {
-		return specijalizacijaID;
-	}
-
-	public void setSpecijalizacijaID(Integer specijalizacijaID) {
-		this.specijalizacijaID = specijalizacijaID;
-	}
+//	public Integer getSpecijalizacijaID() {
+//		return specijalizacijaID;
+//	}
+//
+//	public void setSpecijalizacijaID(Integer specijalizacijaID) {
+//		this.specijalizacijaID = specijalizacijaID;
+//	}
 
 	public Integer getKlinikaID() {
 		return klinikaID;
@@ -158,6 +169,22 @@ public class LekarDTO {
 
 	public void setKraj_radnog_vremena(Time kraj_radnog_vremena) {
 		this.kraj_radnog_vremena = kraj_radnog_vremena;
+	}
+
+	public float getProsecnaOcena() {
+		return prosecnaOcena;
+	}
+
+	public void setProsecnaOcena(float prosecnaOcena) {
+		this.prosecnaOcena = prosecnaOcena;
+	}
+
+	public Integer getBrojOcena() {
+		return brojOcena;
+	}
+
+	public void setBrojOcena(Integer brojOcena) {
+		this.brojOcena = brojOcena;
 	}
 
 	public Boolean getIzmenjena_sifra_nakon_prvog_logovanja() {

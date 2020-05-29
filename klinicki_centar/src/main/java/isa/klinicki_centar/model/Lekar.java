@@ -1,12 +1,20 @@
 package isa.klinicki_centar.model;
 
 import java.sql.Time;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table( name = "LEKAR")
@@ -16,7 +24,7 @@ public class Lekar {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer lekarID;
 	
-	private Integer specijalizacijaID;
+//	private Integer specijalizacijaID;
 	
 	private Integer klinikaID;
 	
@@ -38,6 +46,16 @@ public class Lekar {
 	
 	private Time kraj_radnog_vremena;
 	
+	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(name = "TIPOVI_PREGLEDA_LEKARA", joinColumns = @JoinColumn(name = "lekar_id", referencedColumnName = "lekarID"),
+            inverseJoinColumns = @JoinColumn(name = "tip_pregleda_id", referencedColumnName = "tip_pregledaID"))
+	@JsonIgnore
+	private Set<TipPregleda> tipoviPregleda;
+	
+	private float prosecnaOcena;
+	
+	private Integer brojOcena;
+
 	private Boolean izmenjena_sifra_nakon_prvog_logovanja;
 	
 	public Lekar() {
@@ -52,13 +70,13 @@ public class Lekar {
 		this.lekarID = lekarID;
 	}
 
-	public Integer getSpecijalizacijaID() {
-		return specijalizacijaID;
-	}
-
-	public void setSpecijalizacijaID(Integer specijalizacijaID) {
-		this.specijalizacijaID = specijalizacijaID;
-	}
+//	public Integer getSpecijalizacijaID() {
+//		return specijalizacijaID;
+//	}
+//
+//	public void setSpecijalizacijaID(Integer specijalizacijaID) {
+//		this.specijalizacijaID = specijalizacijaID;
+//	}
 
 	public Integer getKlinikaID() {
 		return klinikaID;
@@ -138,6 +156,30 @@ public class Lekar {
 
 	public void setKraj_radnog_vremena(Time kraj_radnog_vremena) {
 		this.kraj_radnog_vremena = kraj_radnog_vremena;
+	}
+	
+	public Set<TipPregleda> getTipoviPregleda() {
+		return tipoviPregleda;
+	}
+
+	public void setTipoviPregleda(Set<TipPregleda> tipoviPregleda) {
+		this.tipoviPregleda = tipoviPregleda;
+	}
+
+	public float getProsecnaOcena() {
+		return prosecnaOcena;
+	}
+
+	public void setProsecnaOcena(float prosecnaOcena) {
+		this.prosecnaOcena = prosecnaOcena;
+	}
+
+	public Integer getBrojOcena() {
+		return brojOcena;
+	}
+
+	public void setBrojOcena(Integer brojOcena) {
+		this.brojOcena = brojOcena;
 	}
 
 	public Boolean getIzmenjena_sifra_nakon_prvog_logovanja() {

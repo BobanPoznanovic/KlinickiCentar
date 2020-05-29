@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import isa.klinicki_centar.model.Lekar;
 import isa.klinicki_centar.model.dto.LekarDTO;
@@ -66,8 +68,13 @@ public class LekarController {
 		noviLekar.setLekarID(lekar.getLekarID());
 		noviLekar.setPassword(lekar.getPassword());
 		noviLekar.setPrezime(lekar.getPrezime());
-		noviLekar.setSpecijalizacijaID(lekar.getSpecijalizacijaID());
+//		noviLekar.setSpecijalizacijaID(lekar.getSpecijalizacijaID());
 		noviLekar.setUsername(lekar.getUsername());
+		
+		// tipovi pregleda
+		
+		noviLekar.setProsecnaOcena(lekar.getProsecnaOcena());
+		noviLekar.setBrojOcena(lekar.getBrojOcena());
 		noviLekar.setPocetak_radnog_vremena(lekar.getPocetak_radnog_vremena());
 		noviLekar.setKraj_radnog_vremena(lekar.getKraj_radnog_vremena());
 		
@@ -95,8 +102,13 @@ public class LekarController {
 		queryResult.setLekarID(lekar.getLekarID());
 		queryResult.setPassword(lekar.getPassword());
 		queryResult.setPrezime(lekar.getPrezime());
-		queryResult.setSpecijalizacijaID(lekar.getSpecijalizacijaID());
+//		queryResult.setSpecijalizacijaID(lekar.getSpecijalizacijaID());
 		queryResult.setUsername(lekar.getUsername());
+		
+		// tipovi pregleda
+		
+		queryResult.setProsecnaOcena(lekar.getProsecnaOcena());
+		queryResult.setBrojOcena(lekar.getBrojOcena());
 		queryResult.setPocetak_radnog_vremena(lekar.getPocetak_radnog_vremena());
 		queryResult.setKraj_radnog_vremena(lekar.getKraj_radnog_vremena());
 		
@@ -118,4 +130,79 @@ public class LekarController {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping("/search/poImenu")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraPoImenu(@RequestParam(name = "ime") String ime) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraPoImenu(ime);
+		
+		return lekari;
+	}
+
+	@GetMapping("/search/poPrezimenu")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraPoPrezimenu(@RequestParam(name = "prezime") String prezime) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraPoPrezimenu(prezime);
+		
+		return lekari;
+	}
+
+	@GetMapping("/search/poOceni")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraPoOceni(@RequestParam(name = "prosecnaOcena") float ocena) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraPoOceni(ocena);
+		
+		return lekari;
+	}
+
+	@GetMapping("/search/poKlinici")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraPoKliniciUKojojSeNalazi(@RequestParam(name = "klinikaID") Integer klinikaID) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraPoKliniciUKojojSeNalazi(klinikaID);
+		
+		return lekari;
+	}
+
+	@GetMapping("/search/poImenuIPrezimenu")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraPoImenuIPrezimenu(@RequestParam(name = "ime") String ime, 
+			@RequestParam(name = "prezime") String prezime) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraPoImenuIPrezimenu(ime, prezime);
+		
+		return lekari;
+	}
+	
+	@GetMapping("/search/lekariIzKlinike")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraIzKlinike (
+			@RequestParam(name = "ime") String ime, 
+			@RequestParam(name = "prezime") String prezime, 
+			@RequestParam(name = "prosecnaOcena") float prosecnaOcena, 
+			@RequestParam(name = "IDlekaraKlinike") Integer lekarIDuKlinici ) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraIzKlinike(ime, prezime, prosecnaOcena, lekarIDuKlinici);
+		
+		return lekari;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

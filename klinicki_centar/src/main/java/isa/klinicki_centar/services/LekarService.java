@@ -1,5 +1,9 @@
 package isa.klinicki_centar.services;
 
+import java.util.ArrayList;
+
+import org.springframework.data.jpa.repository.Query;
+
 import isa.klinicki_centar.model.Lekar;
 
 public interface LekarService {
@@ -11,4 +15,16 @@ public interface LekarService {
 	Lekar save(Lekar lekar);
 	
 	void remove(Integer id);
+	
+	ArrayList<Lekar> pretregaLekaraPoImenu(String ime);
+	
+	ArrayList<Lekar> pretregaLekaraPoPrezimenu(String prezime);
+	
+	ArrayList<Lekar> pretregaLekaraPoOceni(float ocena);
+	
+	ArrayList<Lekar> pretregaLekaraPoKliniciUKojojSeNalazi(Integer klinikaID);
+	
+	ArrayList<Lekar> pretregaLekaraPoImenuIPrezimenu(String ime, String prezime);
+	
+	ArrayList<Lekar> pretregaLekaraIzKlinike(String ime, String prezime, float prosecnaOcena, Integer klinikaID);
 }
