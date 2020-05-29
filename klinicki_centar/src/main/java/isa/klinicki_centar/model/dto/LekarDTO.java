@@ -32,9 +32,9 @@ public class LekarDTO {
 	
 	// tipovi pregleda
 	
-	private float prosecnaOcena;
+	private float prosecna_ocena;
 	
-	private Integer brojOcena;
+	private Integer broj_ocena;
 	
 	private Boolean izmenjena_sifra_nakon_prvog_logovanja;
 	
@@ -48,7 +48,7 @@ public class LekarDTO {
 				lekar.getKlinikaID(), lekar.getIme(), lekar.getPrezime(),
 				lekar.getUsername(), lekar.getPassword(), lekar.getEmail(), lekar.getKontakt_telefon(), lekar.getAdresa(),
 				lekar.getPocetak_radnog_vremena(), lekar.getKraj_radnog_vremena(), 
-				lekar.getProsecnaOcena(), lekar.getBrojOcena(), lekar.getIzmenjena_sifra_nakon_prvog_logovanja()
+				lekar.getProsecna_ocena(), lekar.getBroj_ocena(), lekar.getIzmenjena_sifra_nakon_prvog_logovanja()
 				);
 	}
 	
@@ -70,8 +70,8 @@ public class LekarDTO {
 		this.setAdresa(adresa);
 		this.setPocetak_radnog_vremena(pocetak_radnog_vremena);
 		this.setKraj_radnog_vremena(kraj_radnog_vremena);
-		this.setProsecnaOcena(prosecnaOcena);
-		this.setBrojOcena(brojOcena);
+		this.setProsecna_ocena(prosecnaOcena);
+		this.setBroj_ocena(brojOcena);
 		this.setIzmenjena_sifra_nakon_prvog_logovanja(izmenjena_sifra_nakon_prvog_logovanja);
 	}
 
@@ -171,20 +171,20 @@ public class LekarDTO {
 		this.kraj_radnog_vremena = kraj_radnog_vremena;
 	}
 
-	public float getProsecnaOcena() {
-		return prosecnaOcena;
+	public float getProsecna_ocena() {
+		return prosecna_ocena;
 	}
 
-	public void setProsecnaOcena(float prosecnaOcena) {
-		this.prosecnaOcena = prosecnaOcena;
+	public void setProsecna_ocena(float prosecna_ocena) {
+		this.prosecna_ocena = prosecna_ocena;
 	}
 
-	public Integer getBrojOcena() {
-		return brojOcena;
+	public Integer getBroj_ocena() {
+		return broj_ocena;
 	}
 
-	public void setBrojOcena(Integer brojOcena) {
-		this.brojOcena = brojOcena;
+	public void setBroj_ocena(Integer broj_ocena) {
+		this.broj_ocena = broj_ocena;
 	}
 
 	public Boolean getIzmenjena_sifra_nakon_prvog_logovanja() {

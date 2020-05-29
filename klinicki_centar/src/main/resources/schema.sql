@@ -158,6 +158,7 @@ CREATE TABLE LEKAR (
 	prosecna_ocena float,
     broj_ocena int,
 	izmenjena_sifra_nakon_prvog_logovanja bit,
+	version int,
 	--CONSTRAINT fk_specijalizacijeID FOREIGN KEY (specijalizacijaID) REFERENCES SPECIJALIZACIJA_LEKARA(specijalizacijaID),
 	CONSTRAINT fk_lekar_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID)
 );
