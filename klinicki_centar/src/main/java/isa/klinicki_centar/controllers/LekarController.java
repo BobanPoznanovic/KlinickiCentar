@@ -73,8 +73,8 @@ public class LekarController {
 		
 		// tipovi pregleda
 		
-		noviLekar.setProsecnaOcena(lekar.getProsecnaOcena());
-		noviLekar.setBrojOcena(lekar.getBrojOcena());
+		noviLekar.setProsecna_ocena(lekar.getProsecna_ocena());
+		noviLekar.setBroj_ocena(lekar.getBroj_ocena());
 		noviLekar.setPocetak_radnog_vremena(lekar.getPocetak_radnog_vremena());
 		noviLekar.setKraj_radnog_vremena(lekar.getKraj_radnog_vremena());
 		
@@ -107,8 +107,8 @@ public class LekarController {
 		
 		// tipovi pregleda
 		
-		queryResult.setProsecnaOcena(lekar.getProsecnaOcena());
-		queryResult.setBrojOcena(lekar.getBrojOcena());
+		queryResult.setProsecna_ocena(lekar.getProsecna_ocena());
+		queryResult.setBroj_ocena(lekar.getBroj_ocena());
 		queryResult.setPocetak_radnog_vremena(lekar.getPocetak_radnog_vremena());
 		queryResult.setKraj_radnog_vremena(lekar.getKraj_radnog_vremena());
 		
@@ -196,7 +196,20 @@ public class LekarController {
 		return lekari;
 	}
 	
-	
+	@GetMapping("/search/lekariAdvanced")
+    @ResponseBody
+	public ArrayList<Lekar> pretregaLekaraAdvanced(
+			@RequestParam(name = "ime") String ime, 
+			@RequestParam(name = "prezime") String prezime, 
+			@RequestParam(name = "prosecnaOcena") float prosecnaOcena, 
+			@RequestParam(name = "tipPregledaID") Integer tipPregledaID,
+			@RequestParam(name = "klinikaID") Integer klinikaID) {
+		
+		ArrayList<Lekar> lekari = null;
+		lekari = lekarService.pretregaLekaraAdvanced(ime, prezime, prosecnaOcena, tipPregledaID, klinikaID);
+		
+		return lekari;
+	}
 	
 	
 	

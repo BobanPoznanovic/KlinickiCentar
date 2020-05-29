@@ -52,9 +52,9 @@ public class Lekar {
 	@JsonIgnore
 	private Set<TipPregleda> tipoviPregleda;
 	
-	private float prosecnaOcena;
+	private float prosecna_ocena;
 	
-	private Integer brojOcena;
+	private Integer broj_ocena;
 
 	private Boolean izmenjena_sifra_nakon_prvog_logovanja;
 	
@@ -166,20 +166,20 @@ public class Lekar {
 		this.tipoviPregleda = tipoviPregleda;
 	}
 
-	public float getProsecnaOcena() {
-		return prosecnaOcena;
+	public float getProsecna_ocena() {
+		return prosecna_ocena;
 	}
 
-	public void setProsecnaOcena(float prosecnaOcena) {
-		this.prosecnaOcena = prosecnaOcena;
+	public void setProsecna_ocena(float prosecna_ocena) {
+		this.prosecna_ocena = prosecna_ocena;
 	}
 
-	public Integer getBrojOcena() {
-		return brojOcena;
+	public Integer getBroj_ocena() {
+		return broj_ocena;
 	}
 
-	public void setBrojOcena(Integer brojOcena) {
-		this.brojOcena = brojOcena;
+	public void setBroj_ocena(Integer broj_ocena) {
+		this.broj_ocena = broj_ocena;
 	}
 
 	public Boolean getIzmenjena_sifra_nakon_prvog_logovanja() {

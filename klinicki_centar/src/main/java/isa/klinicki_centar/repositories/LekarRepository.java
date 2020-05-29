@@ -30,4 +30,7 @@ public interface LekarRepository extends JpaRepository<Lekar, Integer>{
 	@Query(value = "SELECT * FROM lekar l WHERE l.ime = ?1 AND l.prezime = ?2 AND l.prosecna_ocena >= ?3 AND l.klinikaID IN (SELECT klinikaID FROM lekar lek WHERE lek.lekarID = ?4)", nativeQuery = true)
 	ArrayList<Lekar> pretregaLekaraIzKlinike(String ime, String prezime, float prosecnaOcena, Integer lekarIDuKlinici);
 	
+	@Query(value = "SELECT * FROM lekar l WHERE l.klinikaID = ?5 AND l.ime = ?1 AND l.prezime = ?2 AND l.prosecna_ocena >= ?3 AND l.lekarID IN (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_ID = ?4)", nativeQuery = true)
+	ArrayList<Lekar> pretregaLekaraAdvanced(String ime, String prezime, float prosecnaOcena, Integer tipPregledaID, Integer klinikaID);
+	
 }

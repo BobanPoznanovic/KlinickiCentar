@@ -27,4 +27,7 @@ public interface LekarService {
 	ArrayList<Lekar> pretregaLekaraPoImenuIPrezimenu(String ime, String prezime);
 	
 	ArrayList<Lekar> pretregaLekaraIzKlinike(String ime, String prezime, float prosecnaOcena, Integer klinikaID);
+	
+	ArrayList<Lekar> pretregaLekaraAdvanced(String ime, String prezime, float prosecnaOcena, Integer tipPregledaID, Integer klinikaID);
+	
 }
