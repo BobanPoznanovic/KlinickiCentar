@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -57,6 +58,9 @@ public class Lekar {
 	private Integer broj_ocena;
 
 	private Boolean izmenjena_sifra_nakon_prvog_logovanja;
+	
+	@Version
+    private Integer version;
 	
 	public Lekar() {
 		
@@ -188,6 +192,14 @@ public class Lekar {
 
 	public void setIzmenjena_sifra_nakon_prvog_logovanja(Boolean izmenjena_sifra_nakon_prvog_logovanja) {
 		this.izmenjena_sifra_nakon_prvog_logovanja = izmenjena_sifra_nakon_prvog_logovanja;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 	
 	
