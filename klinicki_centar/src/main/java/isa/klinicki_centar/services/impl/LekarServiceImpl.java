@@ -1,5 +1,7 @@
 package isa.klinicki_centar.services.impl;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,26 +17,52 @@ public class LekarServiceImpl implements LekarService{
 	
 	@Override
 	public Iterable<Lekar> findAll() {
-		// TODO Auto-generated method stub
 		return lekarRepository.findAll();
 	}
 
 	@Override
 	public Lekar findOne(Integer id) {
-		// TODO Auto-generated method stub
 		return lekarRepository.findById(id).orElseGet(null);
 	}
 
 	@Override
 	public Lekar save(Lekar lekar) {
-		// TODO Auto-generated method stub
 		return lekarRepository.save(lekar);
 	}
 
 	@Override
 	public void remove(Integer id) {
-		// TODO Auto-generated method stub
 		lekarRepository.deleteById(id);
+	}
+
+	@Override
+	public ArrayList<Lekar> pretregaLekaraPoImenu(String ime) {
+		return lekarRepository.pretregaLekaraPoImenu(ime);
+	}
+
+	@Override
+	public ArrayList<Lekar> pretregaLekaraPoPrezimenu(String prezime) {
+		return lekarRepository.pretregaLekaraPoPrezimenu(prezime);
+	}
+
+	@Override
+	public ArrayList<Lekar> pretregaLekaraPoOceni(float ocena) {
+		return lekarRepository.pretregaLekaraPoOceni(ocena);
+	}
+
+	@Override
+	public ArrayList<Lekar> pretregaLekaraPoKliniciUKojojSeNalazi(Integer klinikaID) {
+		return lekarRepository.pretregaLekaraPoKliniciUKojojSeNalazi(klinikaID);
+	}
+
+	@Override
+	public ArrayList<Lekar> pretregaLekaraPoImenuIPrezimenu(String ime, String prezime) {
+		return lekarRepository.pretregaLekaraPoImenuIPrezimenu(ime, prezime);
+	}
+	
+	@Override
+	public ArrayList<Lekar> pretregaLekaraIzKlinike(String ime, String prezime, float prosecnaOcena, Integer lekarIDuKlinici) {
+		return lekarRepository.pretregaLekaraIzKlinike(ime, prezime, prosecnaOcena, lekarIDuKlinici);
 	}
 
 }
