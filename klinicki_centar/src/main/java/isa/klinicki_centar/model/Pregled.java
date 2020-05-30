@@ -42,6 +42,10 @@ public class Pregled {
 	
 	private Boolean zakazana_operacija;
 	
+	private Boolean potvrdjen;
+	
+	private Boolean zavrsen;
+	
 	public Pregled() {
 		
 	}
@@ -140,5 +144,21 @@ public class Pregled {
 
 	public void setZakazana_operacija(Boolean zakazana_operacija) {
 		this.zakazana_operacija = zakazana_operacija;
+	}
+
+	public Boolean getPotvrdjen() {
+		return potvrdjen;
+	}
+
+	public void setPotvrdjen(Boolean potvrdjen) {
+		this.potvrdjen = potvrdjen;
+	}
+
+	public Boolean getZavrsen() {
+		return zavrsen;
+	}
+
+	public void setZavrsen(Boolean zavrsen) {
+		this.zavrsen = zavrsen;
 	}
 }

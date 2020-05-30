@@ -69,17 +69,17 @@ public class PregledController {
 		return pregledService.nadjiSvePredefinisanePreglede();
 	}
 	
-	@GetMapping(value = "/doktoroviPregledi/{lekarID}")
+	@GetMapping(value = "/lekarPregledi/{lekarID}")
 	public ArrayList<Pregled> sviDoktoroviPregledi(@PathVariable Integer lekarID) {
 		return pregledService.sviDoktoroviPregledi(lekarID);
 	}
 
-	@GetMapping(value = "/doktoroviPreglediTrazenogDatuma/{lekarID}/{datum}")
+	@GetMapping(value = "/lekarPreglediDatum/{lekarID}/{datum}")
 	public ArrayList<Pregled> sviDoktoroviPreglediTrazenogDatuma(@PathVariable Integer lekarID, @PathVariable Date datum) throws ParseException {
 		return pregledService.sviDoktoroviPreglediTrazenogDatuma(lekarID, datum);
 	}
 
-	@GetMapping(value = "/preglediNaKliniciTrazenogDatuma/{klinikaID}/{datum}")
+	@GetMapping(value = "/klinikaPreglediDatum/{klinikaID}/{datum}")
 	public ArrayList<Pregled> sviPreglediNaKliniciTrazenogDatuma(@PathVariable Integer klinikaID, @PathVariable Date datum) throws ParseException {
 		return pregledService.sviPreglediNaKliniciTrazenogDatuma(klinikaID, datum);
 	}
