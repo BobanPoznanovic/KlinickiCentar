@@ -132,8 +132,17 @@ insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pre
 
 -- Predefinisan pregled
 INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (1, '2020-06-26', '12:00', '12:59', 1, 1, 1, 40);
-
+					VALUES (1, '2020-06-26', '12:00', '12:59', 1, 1, 1, 200);
+INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+					VALUES (1, '2020-06-29', '11:00', '11:39', 3, 2, 2, 200);
+INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+					VALUES (3, '2020-07-01', '10:00', '10:59', 5, 3, 6, 300);
+INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+					VALUES (3, '2020-07-14', '13:00', '13:59', 7, 4, 8, 150);
+INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+					VALUES (4, '2020-06-22', '10:00', '10:29', 11, 6, 1, 200);
+INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+					VALUES (4, '2020-07-16', '14:00', '14:29', 13, 7, 1, 200);					
 
 --Operacije
 insert into operacija (lekarID, datum_operacije, satnica_pocetka_operacije, satnica_kraja_operacije) values (1, '2020-03-03', '15:30', '16:00');
