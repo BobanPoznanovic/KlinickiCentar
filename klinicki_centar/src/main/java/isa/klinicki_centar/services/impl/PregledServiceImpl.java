@@ -1,5 +1,7 @@
 package isa.klinicki_centar.services.impl;
 
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +61,26 @@ public class PregledServiceImpl implements PregledService{
 	@Override
 	public void zakaziPredefinisanPregled(Integer pregledID, Integer pacijentID) {
 		pregledRepository.zakaziPredefinisanPregled(pregledID, pacijentID);		
+	}
+
+	@Override
+	public ArrayList<Pregled> nadjiSvePredefinisanePreglede() {
+		return pregledRepository.nadjiSvePredefinisanePreglede();
+	}
+
+	@Override
+	public ArrayList<Pregled> sviDoktoroviPregledi(Integer lekarID) {
+		return pregledRepository.sviDoktoroviPregledi(lekarID);
+	}
+
+	@Override
+	public ArrayList<Pregled> sviDoktoroviPreglediTrazenogDatuma(Integer lekarID, Date datum) throws ParseException {
+		return pregledRepository.sviDoktoroviPreglediTrazenogDatuma(lekarID, datum);
+	}
+
+	@Override
+	public ArrayList<Pregled> sviPreglediNaKliniciTrazenogDatuma(Integer klinikaID, Date datum) throws ParseException {
+		return pregledRepository.sviPreglediNaKliniciTrazenogDatuma(klinikaID, datum);
 	}
 
 }

@@ -1,5 +1,7 @@
 package isa.klinicki_centar.services;
 
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,4 +26,13 @@ public interface PregledService {
 	ArrayList<Pregled> nadjiPredefinisanePregledeKlinike2(Integer klinikaID);
 	
 	void zakaziPredefinisanPregled(Integer pregledID, Integer pacijentID);
+	
+	ArrayList<Pregled> nadjiSvePredefinisanePreglede();
+	
+	ArrayList<Pregled> sviDoktoroviPregledi(Integer lekarID);
+	
+	ArrayList<Pregled> sviDoktoroviPreglediTrazenogDatuma(Integer lekarID, Date datum) throws ParseException;
+	
+	ArrayList<Pregled> sviPreglediNaKliniciTrazenogDatuma(Integer klinikaID, Date datum) throws ParseException;
+	
 }
