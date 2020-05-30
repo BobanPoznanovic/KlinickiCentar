@@ -258,8 +258,10 @@ CREATE TABLE PREDEF_PREGLED (
     lekarID int,
     tip_pregledaID int,
     popust float,
+    pacijentID int,
     CONSTRAINT fk_predef_pregled_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID),
     CONSTRAINT fk_predef_pregled_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID),
+    CONSTRAINT fk_predef_pregled_pacijentID FOREIGN KEY (pacijentID) REFERENCES PACIJENT(pacijentID),
     CONSTRAINT fk_predef_pregled_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID),
     CONSTRAINT fk_predef_pregled_tip_pregledaID FOREIGN KEY (tip_pregledaID) REFERENCES TIP_PREGLEDA(tip_pregledaID)
 );

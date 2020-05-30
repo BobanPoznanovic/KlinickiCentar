@@ -1,5 +1,6 @@
 package isa.klinicki_centar.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import isa.klinicki_centar.model.Pregled;
@@ -19,4 +20,8 @@ public interface PregledService {
 	List<Pregled> byDate(String date);
 	
 	List<Pregled> byDateAndSalaIDSortedByStartTime(String date, Integer salaID);
+	
+	ArrayList<Pregled> nadjiPredefinisanePregledeKlinike2(Integer klinikaID);
+	
+	void zakaziPredefinisanPregled(Integer pregledID, Integer pacijentID);
 }

@@ -124,11 +124,24 @@ insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala
 
 
 --Pregled
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 1, 1, '2020-02-19', '10:00', '10:29', 1, 0);
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 1, 1, '2020-02-29', '11:00', '11:29', 1, 0);
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 2, 1, '2020-02-19', '12:00', '12:29', 1, 0);
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 2, 1, '2020-02-27', '10:30', '10:59', 1, 0);
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 2, 2, '2020-03-03', '08:30', '09:29', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 1, 1, 1, '2020-06-19', '10:00', '10:29', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 2, 1, 3, '2020-06-29', '11:00', '11:29', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 3, 2, 5, '2020-06-19', '12:00', '12:29', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 4, 2, 7, '2020-06-27', '10:30', '10:59', 1, 0);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) values ("Normalan", 6, 2, 11, '2020-07-03', '08:30', '09:29', 1, 0);
+
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) 
+			values ("Predefinisan", 1, null, 1, '2020-06-26', '12:00', '12:59', 1, 200);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) 
+			values ("Predefinisan", 2, null, 3, '2020-06-29', '12:00', '12:29', 2, 200);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) 
+			values ("Predefinisan", 3, null, 5, '2020-07-01', '10:00', '10:59', 6, 300);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) 
+			values ("Predefinisan", 4, null, 7, '2020-07-14', '13:00', '13:59', 7, 150);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) 
+			values ("Predefinisan", 6, null, 11, '2020-06-22', '10:00', '10:29', 1, 200);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust) 
+			values ("Predefinisan", 7, null, 13, '2020-07-16', '14:00', '14:29', 1, 200);
 
 -- Predefinisan pregled
 INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)

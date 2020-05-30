@@ -1,5 +1,6 @@
 package isa.klinicki_centar.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,16 @@ public class PregledServiceImpl implements PregledService{
 	@Override
 	public List<Pregled> byDateAndSalaIDSortedByStartTime(String date, Integer salaID) {
 		return pregledRepository.byDateAndSalaIDSortedByStartTime(date, salaID);
+	}
+	
+	@Override
+	public ArrayList<Pregled> nadjiPredefinisanePregledeKlinike2(Integer klinikaID) {
+		return pregledRepository.nadjiPredefinisanePregledeKlinike2(klinikaID);
+	}
+
+	@Override
+	public void zakaziPredefinisanPregled(Integer pregledID, Integer pacijentID) {
+		pregledRepository.zakaziPredefinisanPregled(pregledID, pacijentID);		
 	}
 
 }
