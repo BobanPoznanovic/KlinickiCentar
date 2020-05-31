@@ -157,6 +157,28 @@ INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_
 INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
 					VALUES (4, '2020-07-16', '14:00', '14:29', 13, 7, 1, 200);					
 
+-- Zahtev za odsustvo lekar
+INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
+							  VALUES (1, 'Godisnji_odmor', '2020-07-20', '2020-07-24', 'Na_cekanju', '');
+INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
+							  VALUES (1, 'Odsustvo', '2020-06-16', '2020-06-18', 'Na_cekanju', '');
+INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
+							  VALUES (2, 'Odsustvo', '2020-06-22', '2020-06-25', 'Na_cekanju', '');
+INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
+							  VALUES (2, 'Godisnji_odmor', '2020-07-20', '2020-07-31', 'Na_cekanju', '');
+INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
+							  VALUES (3, 'Godisnji_odmor', '2020-06-15', '2020-06-26', 'Na_cekanju', '');
+INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
+							  VALUES (4, 'Godisnji_odmor', '2020-06-22', '2020-06-30', 'Na_cekanju', '');
+INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
+							  VALUES (5, 'Godisnji_odmor', '2020-06-29', '2020-07-10', 'Na_cekanju', '');
+INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
+							  VALUES (6, 'Godisnji_odmor', '2020-07-06', '2020-07-17', 'Na_cekanju', '');
+INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
+							  VALUES (7, 'Godisnji_odmor', '2020-07-13', '2020-07-24', 'Na_cekanju', '');	  							  
+
+					
+					
 --Operacije
 insert into operacija (lekarID, datum_operacije, satnica_pocetka_operacije, satnica_kraja_operacije) values (1, '2020-03-03', '15:30', '16:00');
 insert into operacija (lekarID, datum_operacije, satnica_pocetka_operacije, satnica_kraja_operacije) values (1, '2020-03-03', '11:00', '12:00');

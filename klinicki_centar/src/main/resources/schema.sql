@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS ADMIN_KLINIKE;
 DROP TABLE IF EXISTS CENOVNIK_KLINIKE;
 DROP TABLE IF EXISTS TIP_PREGLEDA;
 DROP TABLE IF EXISTS ZAHTEV_ZA_ODSUSTVO;
+DROP TABLE IF EXISTS ZAHTEV_ZA_ODSUSTVO_LEKAR;
 DROP TABLE IF EXISTS MEDICINSKA_SESTRA;
 DROP TABLE IF EXISTS SPISAK_LEKARA_NA_OPERACIJI;
 DROP TABLE IF EXISTS OPERACIJA;
@@ -220,6 +221,17 @@ CREATE TABLE ZAHTEV_ZA_ODSUSTVO (
 	status_odobrenja varchar(255) CHECK (status_odobrenja IN ('Na_cekanju','Odobren','Odbijen')),
 	razlog_odbijanja varchar(255),
 	CONSTRAINT fk_odsustvo_medicinska_sestraID FOREIGN KEY (podnosilac_zahtevaID) REFERENCES MEDICINSKA_SESTRA(medicinska_sestraID)
+);
+
+CREATE TABLE ZAHTEV_ZA_ODSUSTVO_LEKAR (
+	zahtevID int AUTO_INCREMENT PRIMARY KEY,
+	lekarID int,
+	tip_odsustva varchar(255) CHECK (tip_odsustva IN ('Godisnji_odmor','Odsustvo')),
+	datum_pocetka date,
+	datum_kraja date,
+	status_odobrenja varchar(255) CHECK (status_odobrenja IN ('Na_cekanju','Odobren','Odbijen')),
+	razlog_odbijanja varchar(255),
+	CONSTRAINT fk_odsustvo_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID)
 );
 
 CREATE TABLE ZAHTEV_ZA_PREGLED (
