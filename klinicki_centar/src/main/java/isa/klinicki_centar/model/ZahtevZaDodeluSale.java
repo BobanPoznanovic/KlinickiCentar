@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class ZahtevZaDodeluSale {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer zahtevID;
 	
 	private Integer operacijaID;

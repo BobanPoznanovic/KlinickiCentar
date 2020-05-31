@@ -16,7 +16,7 @@ public class Dijagnoza {
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "dijagnozaID")
 	private Integer dijagnozaID;
 	

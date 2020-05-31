@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class PredefPregled {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer predef_pregledID;
 	
 	private Integer klinikaID;

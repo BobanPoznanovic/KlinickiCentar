@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class ZahtevZaRegistraciju {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer zahtevID;
 	
 	private Integer broj_osiguranika;

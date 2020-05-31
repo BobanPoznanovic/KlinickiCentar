@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Sala {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer salaID;
 	
 	private Integer klinikaID;

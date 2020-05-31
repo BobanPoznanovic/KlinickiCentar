@@ -1,5 +1,6 @@
 package isa.klinicki_centar.controllers;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import isa.klinicki_centar.model.Klinika;
 import isa.klinicki_centar.model.dto.KlinikaDTO;
 import isa.klinicki_centar.services.KlinikaService;
 
-@Controller
+@RestController
 @RequestMapping(path = "/klinika")
 @CrossOrigin(origins = "*")
 public class KlinikaController {
@@ -112,6 +116,36 @@ public class KlinikaController {
 		else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+//	@GetMapping(value = "/search/tipPregleda_datum")
+//	@ResponseBody
+//	ArrayList<Klinika> nadjiKlinikePoTipuPregledaIDatumu(@RequestParam(name = "tipPregledaID") Integer tipPregledaID, @RequestParam(name = "datum") Date datum) {
+//		return klinikaService.nadjiKlinikePoTipuPregledaIDatumu(tipPregledaID, datum);
+//	}
+	
+	@GetMapping(value = "/search/tipPregleda")
+	@ResponseBody
+	ArrayList<Klinika> nadjiKlinikePoTipuPregleda(@RequestParam(name = "tipPregledaID") Integer tipPregledaID) {
+		return klinikaService.nadjiKlinikePoTipuPregleda(tipPregledaID);
+	}
+	
+	@GetMapping(value = "/search/tipPregleda_ocena")
+	@ResponseBody
+	ArrayList<Klinika> nadjiKlinikePoTipuPregledaIOceni(@RequestParam(name = "tipPregledaID") Integer tipPregledaID, @RequestParam(name = "ocena") float ocena) {
+		return klinikaService.nadjiKlinikePoTipuPregledaIOceni(tipPregledaID, ocena);
+	}
+	
+	@GetMapping(value = "/search/tipPregleda_grad")
+	@ResponseBody
+	ArrayList<Klinika> nadjiKlinikePoTipuPregledaIGradu(@RequestParam(name = "tipPregledaID") Integer tipPregledaID, @RequestParam(name = "grad") String grad) {
+		return klinikaService.nadjiKlinikePoTipuPregledaIGradu(tipPregledaID, grad);
+	}
+	
+	@GetMapping(value = "/search/tipPregleda_grad_ocena")
+	@ResponseBody
+	ArrayList<Klinika> nadjiKlinikePoTipuPregledaGraduIOceni(@RequestParam(name = "tipPregledaID") Integer tipPregledaID, @RequestParam(name = "grad") String grad, @RequestParam(name = "ocena") float ocena) {
+		return klinikaService.nadjiKlinikePoTipuPregledaGraduIOceni(tipPregledaID, grad, ocena);
 	}
 	
 

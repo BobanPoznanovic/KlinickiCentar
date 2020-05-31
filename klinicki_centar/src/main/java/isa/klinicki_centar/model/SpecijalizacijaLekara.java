@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class SpecijalizacijaLekara {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer specijalizacijaID;
 	
 	private String naziv_specijalizacije;

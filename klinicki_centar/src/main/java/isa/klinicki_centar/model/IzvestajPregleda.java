@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class IzvestajPregleda {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer izvestaj_pregledaID;
 	
 	private Integer pregledID;
