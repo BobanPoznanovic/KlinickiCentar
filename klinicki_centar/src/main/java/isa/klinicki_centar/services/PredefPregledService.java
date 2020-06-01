@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import isa.klinicki_centar.model.PredefPregled;
+import isa.klinicki_centar.model.Pregled;
 
 public interface PredefPregledService {
 	
@@ -18,6 +19,6 @@ public interface PredefPregledService {
 	void zakaziPredefinisanPregled(Integer predefPregledID, Integer pacijentID);
 	
 	ArrayList<PredefPregled> nadjiPredefinisanePregledeKlinike(Integer klinikaID);
-		
+			
 	
 }

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class CenovnikKlinike {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer cenovnik_klinikeID;
 	
 	private Integer klinikaID;

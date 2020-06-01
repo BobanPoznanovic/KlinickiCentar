@@ -11,14 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "ZAHTEV_ZA_ODSUSTVO")
-public class ZahtevZaOdsustvo {
-	
+@Table( name = "ZAHTEV_ZA_ODSUSTVO_LEKAR")
+public class ZahtevZaOdsustvoLekar {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer zahtevID;
 	
-	private Integer podnosilac_zahtevaID;
+	private Integer lekarID;
 	
 	@Enumerated(EnumType.STRING)
 	private TipOdsustva tip_odsustva;
@@ -31,10 +31,8 @@ public class ZahtevZaOdsustvo {
 	private StatusZahtevaZaOdsustvo status_odobrenja;
 	
 	private String razlog_odbijanja;
-	
-	public ZahtevZaOdsustvo() {
-		
-	}
+
+	public ZahtevZaOdsustvoLekar() { }
 
 	public Integer getZahtevID() {
 		return zahtevID;
@@ -44,12 +42,12 @@ public class ZahtevZaOdsustvo {
 		this.zahtevID = zahtevID;
 	}
 
-	public Integer getPodnosilac_zahtevaID() {
-		return podnosilac_zahtevaID;
+	public Integer getLekarID() {
+		return lekarID;
 	}
 
-	public void setPodnosilac_zahtevaID(Integer podnosilac_zahtevaID) {
-		this.podnosilac_zahtevaID = podnosilac_zahtevaID;
+	public void setLekarID(Integer lekarID) {
+		this.lekarID = lekarID;
 	}
 
 	public TipOdsustva getTip_odsustva() {
@@ -92,5 +90,4 @@ public class ZahtevZaOdsustvo {
 		this.razlog_odbijanja = razlog_odbijanja;
 	}
 	
-
 }

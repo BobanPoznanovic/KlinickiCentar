@@ -16,7 +16,7 @@ public class Klinika {
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "klinikaID")
 	private Integer klinikaID;
 	

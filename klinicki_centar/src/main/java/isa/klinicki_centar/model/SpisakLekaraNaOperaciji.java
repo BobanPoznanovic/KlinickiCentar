@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class SpisakLekaraNaOperaciji {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer spisakID;
 	
 	private Integer operacijaID;

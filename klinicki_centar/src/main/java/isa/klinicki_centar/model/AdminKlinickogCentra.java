@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class AdminKlinickogCentra {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer adminID;
 	
 	private String ime;
