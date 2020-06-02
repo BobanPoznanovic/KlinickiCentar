@@ -177,7 +177,7 @@ public class ZahtevZaRegistracijuController {
 		
 		// Slanje mejla za aktivaciju
 		Pacijent p = pacijentService.findByEmail(queryResult.getEmail());
-		emailService.sendMailToUser(pacijent.getEmail(), "http://localhost:4200/activateUser/" + p.getPacijentID(), "Automatski generisan mejl : Aktivacija naloga");
+		emailService.sendMailToUser(pacijent.getEmail(), "http://localhost:8080/pacijent/aktivacija/" + p.getPacijentID(), "Automatski generisan mejl : Aktivacija naloga");
 		
 		return new ResponseEntity<ZahtevZaRegistracijuDTO>(new ZahtevZaRegistracijuDTO(queryResult), HttpStatus.OK);
 	}

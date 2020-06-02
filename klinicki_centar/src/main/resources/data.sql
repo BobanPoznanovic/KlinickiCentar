@@ -22,9 +22,6 @@ insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prez
 insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1234, 'pacijent1@gmail.com', 'pacijent1sifra', 'Pera', 'Peric', 'Safarikova 1', 'Novi Sad', 'Srbija', '0213001486', 1, 0, 0);
 insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (2345, 'pacijent2@gmail.com' ,'pacijent2sifra', 'Mika', 'Mikic', 'Pasterova 1', 'Novi Sad', 'Srbija', '021445522', 2, 0, 0);
 
---za testiranje mejla - OBRISI POSLE !
-insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1111, 'obendtner@gmail.com' ,'pacijent2sifra', 'Mika', 'Mikic', 'Pasterova 1', 'Novi Sad', 'Srbija', '021445522', 2, 0, 0);
-
 --ZdravstveniKarton
 INSERT INTO zdravstveni_karton (pacijentID, datum_rodjenja , visina_pacijenta , tezina_pacijenta , krvna_grupa , dioptrija) VALUES (1, '1990-02-20', '190', '80.5', 'AB+', '+1');
 INSERT INTO zdravstveni_karton (pacijentID, datum_rodjenja , visina_pacijenta , tezina_pacijenta , krvna_grupa , dioptrija) VALUES (2, '1980-05-16', '180', '72.0', 'B+', '+2');
@@ -84,7 +81,6 @@ insert into tip_pregleda (naziv, cena) values ("Stomatoloski pregled", 1400.0);
 insert into tip_pregleda (naziv, cena) values ("Pregled stitaste zlezde", 2000.0);
 
 --Tipovi_Pregleda_Lekara
-
 INSERT INTO tipovi_pregleda_lekara (lekar_id, tip_pregleda_id) VALUES (1, 1);
 INSERT INTO tipovi_pregleda_lekara (lekar_id, tip_pregleda_id) VALUES (1, 2);
 INSERT INTO tipovi_pregleda_lekara (lekar_id, tip_pregleda_id) VALUES (1, 5);

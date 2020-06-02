@@ -1,22 +1,14 @@
-package isa.klinicki_centar.model;
+package isa.klinicki_centar.model.dto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import isa.klinicki_centar.model.ZahtevZaPregled;
 
-@Entity
-@Table( name = "ZAHTEV_ZA_PREGLED")
-public class ZahtevZaPregled {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ZahtevZaPregledDTO {
+
 	private Integer zahtevID;
-	
+
 	private Integer klinikaID;
 	
 	private Integer pacijentID;
@@ -33,9 +25,39 @@ public class ZahtevZaPregled {
 	
 	private Integer popust;
 	
-	public ZahtevZaPregled() {
-		
+	public ZahtevZaPregledDTO() {
 	}
+	
+	public ZahtevZaPregledDTO(ZahtevZaPregled zahtevZaPregled) {
+		this(
+				zahtevZaPregled.getZahtevID(),
+				zahtevZaPregled.getKlinikaID(),
+				zahtevZaPregled.getPacijentID(),
+				zahtevZaPregled.getDatum(),
+				zahtevZaPregled.getSatnica_pocetak(),
+				zahtevZaPregled.getSatnica_kraj(),
+				zahtevZaPregled.getLekarID(),
+				zahtevZaPregled.getTip_pregledaID(),
+				zahtevZaPregled.getPopust()
+			);
+	}
+
+	public ZahtevZaPregledDTO(Integer zahtevID, Integer klinikaID, Integer pacijentID, LocalDate datum,
+			LocalTime satnica_pocetak, LocalTime satnica_kraj, Integer lekarID, Integer tip_pregledaID,
+			Integer popust) {
+		super();
+		this.zahtevID = zahtevID;
+		this.klinikaID = klinikaID;
+		this.pacijentID = pacijentID;
+		this.datum = datum;
+		this.satnica_pocetak = satnica_pocetak;
+		this.satnica_kraj = satnica_kraj;
+		this.lekarID = lekarID;
+		this.tip_pregledaID = tip_pregledaID;
+		this.popust = popust;
+	}
+
+
 
 	public Integer getZahtevID() {
 		return zahtevID;
@@ -108,4 +130,5 @@ public class ZahtevZaPregled {
 	public void setPopust(Integer popust) {
 		this.popust = popust;
 	}
+	
 }
