@@ -11,7 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import isa.klinicki_centar.model.Klinika;
 
-public interface KlinikaRepository extends CrudRepository<Klinika, Integer>{
+@Repository
+public interface KlinikaRepository extends JpaRepository<Klinika, Integer>{
 	
 	@Query(value = "SELECT * FROM `db_example`.`klinika` k WHERE (k.naziv = ?1 OR k.grad = ?1)", nativeQuery = true)
 	Klinika findByNazivOrGrad(String nazivOrGrad);

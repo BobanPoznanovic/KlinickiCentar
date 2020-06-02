@@ -1,13 +1,9 @@
 package isa.klinicki_centar.services.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import isa.klinicki_centar.model.PredefPregled;
-import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.repositories.PredefPregledRepository;
 import isa.klinicki_centar.services.PredefPregledService;
 
@@ -35,16 +31,6 @@ public class PredefPregledServiceImpl implements PredefPregledService {
 	@Override
 	public void remove(Integer id) {
 		predefPregledRepository.deleteById(id);
-	}
-	
-	@Override
-	public void zakaziPredefinisanPregled(Integer predefPregledID, Integer pacijentID) {
-		
-	}
-
-	@Override
-	public ArrayList<PredefPregled> nadjiPredefinisanePregledeKlinike(Integer klinikaID) {
-		return predefPregledRepository.nadjiPredefinisanePregledeKlinike(klinikaID);
 	}
 
 }

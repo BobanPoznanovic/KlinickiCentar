@@ -23,7 +23,7 @@ public interface PregledService {
 	
 	List<Pregled> byDateAndSalaIDSortedByStartTime(String date, Integer salaID);
 	
-	ArrayList<Pregled> nadjiPredefinisanePregledeKlinike2(Integer klinikaID);
+	ArrayList<Pregled> nadjiPredefinisanePregledeKlinike(Integer klinikaID);
 	
 	void zakaziPredefinisanPregled(Integer pregledID, Integer pacijentID);
 	

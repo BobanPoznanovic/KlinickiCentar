@@ -1,10 +1,6 @@
 package isa.klinicki_centar.services;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import isa.klinicki_centar.model.PredefPregled;
-import isa.klinicki_centar.model.Pregled;
 
 public interface PredefPregledService {
 	
@@ -14,11 +10,6 @@ public interface PredefPregledService {
 	
 	PredefPregled save(PredefPregled predefPregled);
 	
-	void remove(Integer id);
-
-	void zakaziPredefinisanPregled(Integer predefPregledID, Integer pacijentID);
-	
-	ArrayList<PredefPregled> nadjiPredefinisanePregledeKlinike(Integer klinikaID);
-			
+	void remove(Integer id);			
 	
 }

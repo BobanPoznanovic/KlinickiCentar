@@ -22,6 +22,9 @@ insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prez
 insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1234, 'pacijent1@gmail.com', 'pacijent1sifra', 'Pera', 'Peric', 'Safarikova 1', 'Novi Sad', 'Srbija', '0213001486', 1, 0, 0);
 insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (2345, 'pacijent2@gmail.com' ,'pacijent2sifra', 'Mika', 'Mikic', 'Pasterova 1', 'Novi Sad', 'Srbija', '021445522', 2, 0, 0);
 
+--za testiranje mejla - OBRISI POSLE !
+insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1111, 'obendtner@gmail.com' ,'pacijent2sifra', 'Mika', 'Mikic', 'Pasterova 1', 'Novi Sad', 'Srbija', '021445522', 2, 0, 0);
+
 --ZdravstveniKarton
 INSERT INTO zdravstveni_karton (pacijentID, datum_rodjenja , visina_pacijenta , tezina_pacijenta , krvna_grupa , dioptrija) VALUES (1, '1990-02-20', '190', '80.5', 'AB+', '+1');
 INSERT INTO zdravstveni_karton (pacijentID, datum_rodjenja , visina_pacijenta , tezina_pacijenta , krvna_grupa , dioptrija) VALUES (2, '1980-05-16', '180', '72.0', 'B+', '+2');
@@ -144,18 +147,18 @@ insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pre
 			values ("Predefinisan", 7, null, 13, '2020-07-16', '14:00', '14:29', 1, 200, false, false);
 
 -- Predefinisan pregled
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (1, '2020-06-26', '12:00', '12:59', 1, 1, 1, 200);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (1, '2020-06-29', '11:00', '11:39', 3, 2, 2, 200);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (3, '2020-07-01', '10:00', '10:59', 5, 3, 6, 300);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (3, '2020-07-14', '13:00', '13:59', 7, 4, 8, 150);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (4, '2020-06-22', '10:00', '10:29', 11, 6, 1, 200);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (4, '2020-07-16', '14:00', '14:29', 13, 7, 1, 200);					
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (1, '2020-06-26', '12:00', '12:59', 1, 1, 1, 200);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (1, '2020-06-29', '11:00', '11:39', 3, 2, 2, 200);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (3, '2020-07-01', '10:00', '10:59', 5, 3, 6, 300);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (3, '2020-07-14', '13:00', '13:59', 7, 4, 8, 150);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (4, '2020-06-22', '10:00', '10:29', 11, 6, 1, 200);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (4, '2020-07-16', '14:00', '14:29', 13, 7, 1, 200);					
 
 -- Zahtev za odsustvo lekar
 INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)
