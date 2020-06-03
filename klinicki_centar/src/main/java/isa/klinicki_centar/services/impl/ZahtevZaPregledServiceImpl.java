@@ -1,9 +1,21 @@
 package isa.klinicki_centar.services.impl;
 
+
+
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import isa.klinicki_centar.model.Klinika;
+import isa.klinicki_centar.model.Lekar;
+import isa.klinicki_centar.model.Pacijent;
+import isa.klinicki_centar.model.TipPregleda;
 import isa.klinicki_centar.model.ZahtevZaPregled;
+import isa.klinicki_centar.repositories.KlinikaRepository;
+import isa.klinicki_centar.repositories.LekarRepository;
+import isa.klinicki_centar.repositories.PacijentRepository;
+import isa.klinicki_centar.repositories.TipPregledaRepository;
 import isa.klinicki_centar.repositories.ZahtevZaPregledRepository;
 import isa.klinicki_centar.services.ZahtevZaPregledService;
 
@@ -12,6 +24,18 @@ public class ZahtevZaPregledServiceImpl implements ZahtevZaPregledService {
 
 	@Autowired
 	private ZahtevZaPregledRepository zahtevZaPregledRepository;
+	
+	@Autowired
+	private KlinikaRepository klinikaRepository;
+	
+	@Autowired
+	private LekarRepository lekarRepository;
+	
+	@Autowired
+	private PacijentRepository pacijentRepository;
+	
+	@Autowired
+	private TipPregledaRepository tipPregledaRepository;
 	
 	@Override
 	public Iterable<ZahtevZaPregled> findAll() {
@@ -31,6 +55,25 @@ public class ZahtevZaPregledServiceImpl implements ZahtevZaPregledService {
 	@Override
 	public void remove(Integer id) {
 		zahtevZaPregledRepository.deleteById(id);
+	}
+
+	@Override
+	public void posaljiZahtev(Integer tipPregledaID, Date datum, Integer klinikaID, Integer lekarID, Integer pacijentID) {
+		TipPregleda tipPregleda = tipPregledaRepository.findById(tipPregledaID).get();
+		Klinika klinika = klinikaRepository.findById(klinikaID).get();
+		Lekar lekar = lekarRepository.findById(lekarID).get();
+		Pacijent pacijent = pacijentRepository.findById(pacijentID).get();
+		
+		ZahtevZaPregled zahtevZaPregled = new ZahtevZaPregled(tipPregledaID, datum, klinikaID, lekarID, pacijentID);
+		zahtevZaPregledRepository.save(zahtevZaPregled);
+		
+		System.out.println("\nZahtev za pregled je sacuvan."
+				+ "\n\n\tDatum: " + datum
+				+ "\n\tKlinika: ID-" + klinikaID + ", " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+				+ "\n\tTip regleda: " + tipPregleda.getNaziv()
+				+ "\n\tLekar: " + lekar.getIme() + " " + lekar.getPrezime()
+				+ "\n\tPacijent: " + pacijent.getIme() + " " + pacijent.getPrezime()
+				+ "\n\tCena: " + tipPregleda.getCena());
 	}
 
 }

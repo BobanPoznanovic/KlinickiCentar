@@ -1,7 +1,7 @@
 package isa.klinicki_centar.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,11 +21,11 @@ public class ZahtevZaPregled {
 	
 	private Integer pacijentID;
 	
-	private LocalDate datum;
+	private Date datum;
 	
-	private LocalTime satnica_pocetak;
+	private Time satnica_pocetak;
 	
-	private LocalTime satnica_kraj;
+	private Time satnica_kraj;
 	
 	private Integer lekarID;
 	
@@ -33,8 +33,35 @@ public class ZahtevZaPregled {
 	
 	private Integer popust;
 	
+	private Boolean potvrdjen;
+	
 	public ZahtevZaPregled() {
 		
+	}
+
+	public ZahtevZaPregled(Integer tip_pregledaID, Date datum, Integer klinikaID, Integer lekarID, Integer pacijentID) {
+		this.klinikaID = klinikaID;
+		this.pacijentID = pacijentID;
+		this.datum = datum;
+		this.lekarID = lekarID;
+		this.tip_pregledaID = tip_pregledaID;
+		this.popust = 0;
+		this.potvrdjen = false;
+	}
+
+	public ZahtevZaPregled(Integer zahtevID, Integer klinikaID, Integer pacijentID, Date datum,
+			Time satnica_pocetak, Time satnica_kraj, Integer lekarID, Integer tip_pregledaID,
+			Integer popust, Boolean potvrdjen) {
+		this.zahtevID = zahtevID;
+		this.klinikaID = klinikaID;
+		this.pacijentID = pacijentID;
+		this.datum = datum;
+		this.satnica_pocetak = satnica_pocetak;
+		this.satnica_kraj = satnica_kraj;
+		this.lekarID = lekarID;
+		this.tip_pregledaID = tip_pregledaID;
+		this.popust = popust;
+		this.potvrdjen = potvrdjen;
 	}
 
 	public Integer getZahtevID() {
@@ -61,27 +88,27 @@ public class ZahtevZaPregled {
 		this.pacijentID = pacijentID;
 	}
 
-	public LocalDate getDatum() {
+	public Date getDatum() {
 		return datum;
 	}
 
-	public void setDatum(LocalDate datum) {
+	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
 
-	public LocalTime getSatnica_pocetak() {
+	public Time getSatnica_pocetak() {
 		return satnica_pocetak;
 	}
 
-	public void setSatnica_pocetak(LocalTime satnica_pocetak) {
+	public void setSatnica_pocetak(Time satnica_pocetak) {
 		this.satnica_pocetak = satnica_pocetak;
 	}
 
-	public LocalTime getSatnica_kraj() {
+	public Time getSatnica_kraj() {
 		return satnica_kraj;
 	}
 
-	public void setSatnica_kraj(LocalTime satnica_kraj) {
+	public void setSatnica_kraj(Time satnica_kraj) {
 		this.satnica_kraj = satnica_kraj;
 	}
 
@@ -107,5 +134,13 @@ public class ZahtevZaPregled {
 
 	public void setPopust(Integer popust) {
 		this.popust = popust;
+	}
+
+	public Boolean getPotvrdjen() {
+		return potvrdjen;
+	}
+
+	public void setPotvrdjen(Boolean potvrdjen) {
+		this.potvrdjen = potvrdjen;
 	}
 }

@@ -1,9 +1,12 @@
 package isa.klinicki_centar.controllers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -66,6 +69,7 @@ public class ZahtevZaPregledController {
 		noviZahtevZaPregled.setLekarID(zahtevZaPregledDTO.getLekarID());
 		noviZahtevZaPregled.setTip_pregledaID(zahtevZaPregledDTO.getTip_pregledaID());
 		noviZahtevZaPregled.setPopust(zahtevZaPregledDTO.getPopust());
+		noviZahtevZaPregled.setPotvrdjen(false);
 		
 		noviZahtevZaPregled = zahtevZaPregledService.save(noviZahtevZaPregled);
 		
@@ -89,6 +93,7 @@ public class ZahtevZaPregledController {
 		queryResult.setLekarID(zahtevZaPregledDTO.getLekarID());
 		queryResult.setTip_pregledaID(zahtevZaPregledDTO.getTip_pregledaID());
 		queryResult.setPopust(zahtevZaPregledDTO.getPopust());
+		queryResult.setPotvrdjen(zahtevZaPregledDTO.getPotvrdjen());
 		
 		queryResult = zahtevZaPregledService.save(queryResult);
 		
@@ -109,4 +114,31 @@ public class ZahtevZaPregledController {
 		}
 	}
 	
+	
+	// termin prosledjivati kao string ?
+	
+	@PutMapping("slanjeZahteva/{tipPregledaID}/{datum}/{klinikaID}/{lekarID}/{pacijentID}/{termin}")
+	public void posaljiZahtev(
+						@PathVariable Integer tipPregledaID,
+						@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date datum,
+						@PathVariable Integer klinikaID,
+						@PathVariable Integer lekarID,
+						@PathVariable Integer pacijentID,
+						@PathVariable String termin) {
+		
+        String[] time = termin.split(":");
+        String hours = time[0];
+        String minutes = time[1];
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(datum);
+
+        cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hours));
+        cal.set(Calendar.MINUTE, Integer.parseInt(minutes));
+
+        Date d = cal.getTime();
+		
+		zahtevZaPregledService.posaljiZahtev(tipPregledaID, d, klinikaID, lekarID, pacijentID);
+
+	}
 }

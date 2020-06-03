@@ -1,7 +1,7 @@
 package isa.klinicki_centar.model.dto;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.sql.Time;
+import java.util.Date;
 
 import isa.klinicki_centar.model.ZahtevZaPregled;
 
@@ -13,17 +13,19 @@ public class ZahtevZaPregledDTO {
 	
 	private Integer pacijentID;
 	
-	private LocalDate datum;
+	private Date datum;
 	
-	private LocalTime satnica_pocetak;
+	private Time satnica_pocetak;
 	
-	private LocalTime satnica_kraj;
+	private Time satnica_kraj;
 	
 	private Integer lekarID;
 	
 	private Integer tip_pregledaID;
 	
 	private Integer popust;
+	
+	private Boolean potvrdjen;
 	
 	public ZahtevZaPregledDTO() {
 	}
@@ -38,13 +40,14 @@ public class ZahtevZaPregledDTO {
 				zahtevZaPregled.getSatnica_kraj(),
 				zahtevZaPregled.getLekarID(),
 				zahtevZaPregled.getTip_pregledaID(),
-				zahtevZaPregled.getPopust()
+				zahtevZaPregled.getPopust(),
+				zahtevZaPregled.getPotvrdjen()
 			);
 	}
 
-	public ZahtevZaPregledDTO(Integer zahtevID, Integer klinikaID, Integer pacijentID, LocalDate datum,
-			LocalTime satnica_pocetak, LocalTime satnica_kraj, Integer lekarID, Integer tip_pregledaID,
-			Integer popust) {
+	public ZahtevZaPregledDTO(Integer zahtevID, Integer klinikaID, Integer pacijentID, Date datum,
+			Time satnica_pocetak, Time satnica_kraj, Integer lekarID, Integer tip_pregledaID,
+			Integer popust, Boolean potvrdjen) {
 		super();
 		this.zahtevID = zahtevID;
 		this.klinikaID = klinikaID;
@@ -55,6 +58,7 @@ public class ZahtevZaPregledDTO {
 		this.lekarID = lekarID;
 		this.tip_pregledaID = tip_pregledaID;
 		this.popust = popust;
+		this.potvrdjen = potvrdjen;
 	}
 
 
@@ -83,27 +87,27 @@ public class ZahtevZaPregledDTO {
 		this.pacijentID = pacijentID;
 	}
 
-	public LocalDate getDatum() {
+	public Date getDatum() {
 		return datum;
 	}
 
-	public void setDatum(LocalDate datum) {
+	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
 
-	public LocalTime getSatnica_pocetak() {
+	public Time getSatnica_pocetak() {
 		return satnica_pocetak;
 	}
 
-	public void setSatnica_pocetak(LocalTime satnica_pocetak) {
+	public void setSatnica_pocetak(Time satnica_pocetak) {
 		this.satnica_pocetak = satnica_pocetak;
 	}
 
-	public LocalTime getSatnica_kraj() {
+	public Time getSatnica_kraj() {
 		return satnica_kraj;
 	}
 
-	public void setSatnica_kraj(LocalTime satnica_kraj) {
+	public void setSatnica_kraj(Time satnica_kraj) {
 		this.satnica_kraj = satnica_kraj;
 	}
 
@@ -129,6 +133,14 @@ public class ZahtevZaPregledDTO {
 
 	public void setPopust(Integer popust) {
 		this.popust = popust;
+	}
+
+	public Boolean getPotvrdjen() {
+		return potvrdjen;
+	}
+
+	public void setPotvrdjen(Boolean potvrdjen) {
+		this.potvrdjen = potvrdjen;
 	}
 	
 }
