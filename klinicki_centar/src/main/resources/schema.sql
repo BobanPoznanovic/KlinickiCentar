@@ -2,7 +2,7 @@ USE db_example;
 
 DROP TABLE IF EXISTS IZVESTAJ_PREGLEDA;
 DROP TABLE IF EXISTS PREGLED;
-DROP TABLE IF EXISTS PREDEF_PREGLED;
+--DROP TABLE IF EXISTS PREDEF_PREGLED;
 DROP TABLE IF EXISTS TIPOVI_PREGLEDA_LEKARA;
 DROP TABLE IF EXISTS ZAHTEV_ZA_DODELU_SALE;
 DROP TABLE IF EXISTS ZAHTEV_ZA_PREGLED;
@@ -243,6 +243,7 @@ CREATE TABLE ZAHTEV_ZA_PREGLED (
     satnica_kraj time,
     lekarID int,
     tip_pregledaID int,
+    popust float,
     CONSTRAINT fk_zahtev_za_pregled_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID),
     CONSTRAINT fk_zahtev_za_pregled_pacijentID FOREIGN KEY (pacijentID) REFERENCES PACIJENT(pacijentID),
     CONSTRAINT fk_zahtev_za_pregled_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID),
@@ -260,23 +261,23 @@ CREATE TABLE ZAHTEV_ZA_DODELU_SALE (
     CONSTRAINT fk_zahtev_za_dodelu_sale_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID)
 );
 
-CREATE TABLE PREDEF_PREGLED (
-	predef_pregledID int AUTO_INCREMENT PRIMARY KEY,
-    klinikaID int,
-    datum_pregleda date,
-    satnica_pocetak time,
-    satnica_kraj time,
-    salaID int,
-    lekarID int,
-    tip_pregledaID int,
-    popust float,
-    pacijentID int,
-    CONSTRAINT fk_predef_pregled_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID),
-    CONSTRAINT fk_predef_pregled_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID),
-    CONSTRAINT fk_predef_pregled_pacijentID FOREIGN KEY (pacijentID) REFERENCES PACIJENT(pacijentID),
-    CONSTRAINT fk_predef_pregled_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID),
-    CONSTRAINT fk_predef_pregled_tip_pregledaID FOREIGN KEY (tip_pregledaID) REFERENCES TIP_PREGLEDA(tip_pregledaID)
-);
+--CREATE TABLE PREDEF_PREGLED (
+--	predef_pregledID int AUTO_INCREMENT PRIMARY KEY,
+--    klinikaID int,
+--    datum_pregleda date,
+--    satnica_pocetak time,
+--    satnica_kraj time,
+--    salaID int,
+--    lekarID int,
+--    tip_pregledaID int,
+--    popust float,
+--    pacijentID int,
+--    CONSTRAINT fk_predef_pregled_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID),
+--    CONSTRAINT fk_predef_pregled_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID),
+--    CONSTRAINT fk_predef_pregled_pacijentID FOREIGN KEY (pacijentID) REFERENCES PACIJENT(pacijentID),
+--    CONSTRAINT fk_predef_pregled_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID),
+--    CONSTRAINT fk_predef_pregled_tip_pregledaID FOREIGN KEY (tip_pregledaID) REFERENCES TIP_PREGLEDA(tip_pregledaID)
+--);
 
 CREATE TABLE PREGLED (
 	pregledID int AUTO_INCREMENT PRIMARY KEY,

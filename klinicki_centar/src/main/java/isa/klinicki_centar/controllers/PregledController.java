@@ -54,14 +54,13 @@ public class PregledController {
 	}
 	
 	@GetMapping(value = "/predefinisanNaKlinici/{klinikaID}")
-	public ArrayList<Pregled> nadjiPredefinisanePregledeKlinike2(@PathVariable Integer klinikaID) {
-		return pregledService.nadjiPredefinisanePregledeKlinike2(klinikaID);
+	public ArrayList<Pregled> nadjiPredefinisanePregledeKlinike(@PathVariable Integer klinikaID) {
+		return pregledService.nadjiPredefinisanePregledeKlinike(klinikaID);
 	}
 	
 	@PutMapping(value = "zakazivanjePredefinisanogPregleda/{pregledID}/{pacijentID}")
 	public void zakaziPredefinisanPregled(@PathVariable Integer pregledID, @PathVariable Integer pacijentID) {
 		pregledService.zakaziPredefinisanPregled(pregledID, pacijentID);
-		System.out.println("Predefinisani pregled, ID - " + pregledID + " je uspesno zakazan za pacijenta, ID - " + pacijentID);
 	}
 	
 	@GetMapping(value = "/predefinisaniPregledi")

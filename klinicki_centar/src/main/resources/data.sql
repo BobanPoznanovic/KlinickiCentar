@@ -81,7 +81,6 @@ insert into tip_pregleda (naziv, cena) values ("Stomatoloski pregled", 1400.0);
 insert into tip_pregleda (naziv, cena) values ("Pregled stitaste zlezde", 2000.0);
 
 --Tipovi_Pregleda_Lekara
-
 INSERT INTO tipovi_pregleda_lekara (lekar_id, tip_pregleda_id) VALUES (1, 1);
 INSERT INTO tipovi_pregleda_lekara (lekar_id, tip_pregleda_id) VALUES (1, 2);
 INSERT INTO tipovi_pregleda_lekara (lekar_id, tip_pregleda_id) VALUES (1, 5);
@@ -144,18 +143,18 @@ insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pre
 			values ("Predefinisan", 7, null, 13, '2020-07-16', '14:00', '14:29', 1, 200, false, false);
 
 -- Predefinisan pregled
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (1, '2020-06-26', '12:00', '12:59', 1, 1, 1, 200);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (1, '2020-06-29', '11:00', '11:39', 3, 2, 2, 200);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (3, '2020-07-01', '10:00', '10:59', 5, 3, 6, 300);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (3, '2020-07-14', '13:00', '13:59', 7, 4, 8, 150);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (4, '2020-06-22', '10:00', '10:29', 11, 6, 1, 200);
-INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
-					VALUES (4, '2020-07-16', '14:00', '14:29', 13, 7, 1, 200);					
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (1, '2020-06-26', '12:00', '12:59', 1, 1, 1, 200);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (1, '2020-06-29', '11:00', '11:39', 3, 2, 2, 200);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (3, '2020-07-01', '10:00', '10:59', 5, 3, 6, 300);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (3, '2020-07-14', '13:00', '13:59', 7, 4, 8, 150);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (4, '2020-06-22', '10:00', '10:29', 11, 6, 1, 200);
+--INSERT INTO predef_pregled (klinikaID, datum_pregleda, satnica_pocetak, satnica_kraj, salaID, lekarID, tip_pregledaID, popust)
+--					VALUES (4, '2020-07-16', '14:00', '14:29', 13, 7, 1, 200);					
 
 -- Zahtev za odsustvo lekar
 INSERT INTO zahtev_za_odsustvo_lekar (lekarID, tip_odsustva, datum_pocetka, datum_kraja, status_odobrenja, razlog_odbijanja)

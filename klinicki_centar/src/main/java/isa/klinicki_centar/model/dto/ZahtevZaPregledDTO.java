@@ -1,22 +1,14 @@
-package isa.klinicki_centar.model;
+package isa.klinicki_centar.model.dto;
 
 import java.sql.Time;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import isa.klinicki_centar.model.ZahtevZaPregled;
 
-@Entity
-@Table( name = "ZAHTEV_ZA_PREGLED")
-public class ZahtevZaPregled {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ZahtevZaPregledDTO {
+
 	private Integer zahtevID;
-	
+
 	private Integer klinikaID;
 	
 	private Integer pacijentID;
@@ -35,23 +27,28 @@ public class ZahtevZaPregled {
 	
 	private Boolean potvrdjen;
 	
-	public ZahtevZaPregled() {
-		
+	public ZahtevZaPregledDTO() {
+	}
+	
+	public ZahtevZaPregledDTO(ZahtevZaPregled zahtevZaPregled) {
+		this(
+				zahtevZaPregled.getZahtevID(),
+				zahtevZaPregled.getKlinikaID(),
+				zahtevZaPregled.getPacijentID(),
+				zahtevZaPregled.getDatum(),
+				zahtevZaPregled.getSatnica_pocetak(),
+				zahtevZaPregled.getSatnica_kraj(),
+				zahtevZaPregled.getLekarID(),
+				zahtevZaPregled.getTip_pregledaID(),
+				zahtevZaPregled.getPopust(),
+				zahtevZaPregled.getPotvrdjen()
+			);
 	}
 
-	public ZahtevZaPregled(Integer tip_pregledaID, Date datum, Integer klinikaID, Integer lekarID, Integer pacijentID) {
-		this.klinikaID = klinikaID;
-		this.pacijentID = pacijentID;
-		this.datum = datum;
-		this.lekarID = lekarID;
-		this.tip_pregledaID = tip_pregledaID;
-		this.popust = 0;
-		this.potvrdjen = false;
-	}
-
-	public ZahtevZaPregled(Integer zahtevID, Integer klinikaID, Integer pacijentID, Date datum,
+	public ZahtevZaPregledDTO(Integer zahtevID, Integer klinikaID, Integer pacijentID, Date datum,
 			Time satnica_pocetak, Time satnica_kraj, Integer lekarID, Integer tip_pregledaID,
 			Integer popust, Boolean potvrdjen) {
+		super();
 		this.zahtevID = zahtevID;
 		this.klinikaID = klinikaID;
 		this.pacijentID = pacijentID;
@@ -63,6 +60,8 @@ public class ZahtevZaPregled {
 		this.popust = popust;
 		this.potvrdjen = potvrdjen;
 	}
+
+
 
 	public Integer getZahtevID() {
 		return zahtevID;
@@ -143,4 +142,5 @@ public class ZahtevZaPregled {
 	public void setPotvrdjen(Boolean potvrdjen) {
 		this.potvrdjen = potvrdjen;
 	}
+	
 }

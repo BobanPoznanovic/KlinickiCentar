@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import isa.klinicki_centar.model.PredefPregled;
-import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.dto.PredefPregledDTO;
 import isa.klinicki_centar.services.PredefPregledService;
 
@@ -50,10 +49,5 @@ public class PredefPregledController {
 		
 		return new ResponseEntity<PredefPregledDTO>(new PredefPregledDTO(queryResult), HttpStatus.OK);
 	}
-	
-	@GetMapping("/klinika/{klinikaID}")
-	public ArrayList<PredefPregled> nadjiPredefinisanePregledeKlinike(@PathVariable Integer klinikaID) {
-		return predefPregledService.nadjiPredefinisanePregledeKlinike(klinikaID);
-	}
-	
+		
 }

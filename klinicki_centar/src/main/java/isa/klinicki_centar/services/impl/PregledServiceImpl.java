@@ -8,8 +8,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import isa.klinicki_centar.model.Klinika;
+import isa.klinicki_centar.model.Lekar;
+import isa.klinicki_centar.model.Pacijent;
 import isa.klinicki_centar.model.Pregled;
+import isa.klinicki_centar.model.Sala;
+import isa.klinicki_centar.model.TipPregleda;
+import isa.klinicki_centar.repositories.KlinikaRepository;
+import isa.klinicki_centar.repositories.LekarRepository;
+import isa.klinicki_centar.repositories.PacijentRepository;
 import isa.klinicki_centar.repositories.PregledRepository;
+import isa.klinicki_centar.repositories.SalaRepository;
+import isa.klinicki_centar.repositories.TipPregledaRepository;
+import isa.klinicki_centar.services.EmailService;
 import isa.klinicki_centar.services.PregledService;
 
 @Service
@@ -17,6 +28,24 @@ public class PregledServiceImpl implements PregledService{
 
 	@Autowired
 	private PregledRepository pregledRepository;
+	
+	@Autowired
+	private EmailService emailService;
+	
+	@Autowired
+	private PacijentRepository pacijentRepository;
+	
+	@Autowired
+	private LekarRepository lekarRepository;
+	
+	@Autowired
+	private KlinikaRepository klinikaRepository;
+	
+	@Autowired
+	private TipPregledaRepository tipPregledaRepository;
+	
+	@Autowired
+	private SalaRepository salaRepository;
 	
 	@Override
 	public Iterable<Pregled> findAll() {
@@ -54,13 +83,33 @@ public class PregledServiceImpl implements PregledService{
 	}
 	
 	@Override
-	public ArrayList<Pregled> nadjiPredefinisanePregledeKlinike2(Integer klinikaID) {
-		return pregledRepository.nadjiPredefinisanePregledeKlinike2(klinikaID);
+	public ArrayList<Pregled> nadjiPredefinisanePregledeKlinike(Integer klinikaID) {
+		return pregledRepository.nadjiPredefinisanePregledeKlinike(klinikaID);
 	}
 
 	@Override
 	public void zakaziPredefinisanPregled(Integer pregledID, Integer pacijentID) {
-		pregledRepository.zakaziPredefinisanPregled(pregledID, pacijentID);		
+		pregledRepository.zakaziPredefinisanPregled(pregledID, pacijentID);
+		Pregled pregled = pregledRepository.getOne(pregledID);
+		Pacijent pacijent = pacijentRepository.getOne(pacijentID);
+		Lekar lekar = lekarRepository.getOne(pregled.getLekarID());
+		Klinika klinika = klinikaRepository.getOne(lekar.getKlinikaID());
+		TipPregleda tipPregleda = tipPregledaRepository.getOne(pregled.getTip_pregledaID());
+		Sala sala = salaRepository.getOne(pregled.getSalaID());
+		
+		String message = "Predefinisani pregled, ID: " + pregledID + ", je uspesno zakazan." 
+				+ "\n Detalji zakazanog pregleda: "
+				+ "\n Datum: " + pregled.getDatum_pregleda()
+				+ "\n Klinika: " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+				+ "\n Lekar: " + lekar.getIme() + " " + lekar.getPrezime()
+				+ "\n Sala: " + sala.getBroj_sale()
+				+ "\n Pocetak pregleda: " + pregled.getSatnica_pocetak()
+				+ "\n Kraj pregleda: " + pregled.getSatnica_kraj()
+				+ "\n Tip pregleda: " + tipPregleda.getNaziv()
+				+ "\n Originalna cena: " + tipPregleda.getCena()
+				+ "\n Popust: " + pregled.getPopust() + "\n" ;
+		
+		emailService.sendMailToUser(pacijent.getEmail(), message, "Automatski generisan mejl: Zakazivanje predefinisanog pregleda");
 	}
 
 	@Override

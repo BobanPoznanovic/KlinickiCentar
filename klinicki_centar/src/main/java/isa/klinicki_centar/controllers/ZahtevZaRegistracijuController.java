@@ -2,6 +2,7 @@ package isa.klinicki_centar.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,8 +75,11 @@ public class ZahtevZaRegistracijuController {
 		
 		ZahtevZaRegistraciju noviZahtev = new ZahtevZaRegistraciju();
 		
+		Random rand = new Random();
+		int num = rand. nextInt(90000000) + 10000000;
+		
+		noviZahtev.setBroj_osiguranika(num);
 		noviZahtev.setAdresa(zahtev.getAdresa());
-		noviZahtev.setBroj_osiguranika(zahtev.getBroj_osiguranika());
 		noviZahtev.setBroj_telefona(zahtev.getBroj_telefona());
 		noviZahtev.setDrzava(zahtev.getDrzava());
 		noviZahtev.setEmail(zahtev.getEmail());
@@ -83,12 +87,8 @@ public class ZahtevZaRegistracijuController {
 		noviZahtev.setIme(zahtev.getIme());
 		noviZahtev.setPassword(zahtev.getPassword());
 		noviZahtev.setPrezime(zahtev.getPrezime());
-		noviZahtev.setRazlog_odbijanja(zahtev.getRazlog_odbijanja());
-		for(StatusZahtevZaRegistraciju status : StatusZahtevZaRegistraciju.values()) {
-			if(status.name().equalsIgnoreCase(zahtev.getStatus_zahteva())) {
-				noviZahtev.setStatus_zahteva(status);
-			}
-		}
+		noviZahtev.setRazlog_odbijanja("");
+		noviZahtev.setStatus_zahteva(StatusZahtevZaRegistraciju.Na_cekanju);
 		noviZahtev.setZahtevID(zahtev.getZahtevID());
 		
 		noviZahtev = zahtevZaRegistracijuService.save(noviZahtev);
@@ -105,11 +105,12 @@ public class ZahtevZaRegistracijuController {
 			return new ResponseEntity<ZahtevZaRegistracijuDTO>(HttpStatus.BAD_REQUEST);
 		}
 		
-		queryResult.setAdresa(zahtev.getAdresa());
+		queryResult.setEmail(zahtev.getEmail());
 		queryResult.setBroj_osiguranika(zahtev.getBroj_osiguranika());
+		
+		queryResult.setAdresa(zahtev.getAdresa());
 		queryResult.setBroj_telefona(zahtev.getBroj_telefona());
 		queryResult.setDrzava(zahtev.getDrzava());
-		queryResult.setEmail(zahtev.getEmail());
 		queryResult.setGrad(zahtev.getGrad());
 		queryResult.setIme(zahtev.getIme());
 		queryResult.setPassword(zahtev.getPassword());
@@ -177,7 +178,7 @@ public class ZahtevZaRegistracijuController {
 		
 		// Slanje mejla za aktivaciju
 		Pacijent p = pacijentService.findByEmail(queryResult.getEmail());
-		emailService.sendMailToUser(pacijent.getEmail(), "http://localhost:4200/activateUser/" + p.getPacijentID(), "Automatski generisan mejl : Aktivacija naloga");
+		emailService.sendMailToUser(pacijent.getEmail(), "Kliknite na sledeci link kako biste aktivirali vas nalog: http://localhost:8080/pacijent/aktivacija/" + p.getPacijentID(), "Automatski generisan mejl : Aktivacija naloga");
 		
 		return new ResponseEntity<ZahtevZaRegistracijuDTO>(new ZahtevZaRegistracijuDTO(queryResult), HttpStatus.OK);
 	}
