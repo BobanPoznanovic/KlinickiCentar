@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import isa.klinicki_centar.model.Pacijent;
 import isa.klinicki_centar.model.dto.PacijentDTO;
 import isa.klinicki_centar.services.PacijentService;
 
-@Controller
+@RestController
 @RequestMapping(path = "/pacijent")
 @CrossOrigin(origins = "*")
 public class PacijentController {

@@ -243,6 +243,7 @@ CREATE TABLE ZAHTEV_ZA_PREGLED (
     satnica_kraj time,
     lekarID int,
     tip_pregledaID int,
+    popust float,
     CONSTRAINT fk_zahtev_za_pregled_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID),
     CONSTRAINT fk_zahtev_za_pregled_pacijentID FOREIGN KEY (pacijentID) REFERENCES PACIJENT(pacijentID),
     CONSTRAINT fk_zahtev_za_pregled_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID),

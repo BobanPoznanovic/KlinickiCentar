@@ -55,10 +55,10 @@ public class PacijentServiceImpl implements PacijentService{
 
 	@Override
 	public void activatePatientAccount(Integer id) {
-		Pacijent pacijent = pacijentRepository.findById(id).get();
-		pacijent.setAktivan(true);
-		System.out.println("Nalog pacijenta je  -  " + (pacijent.isAktivan() ? "aktivan" : "neaktivan") );
+		Pacijent pacijent = pacijentRepository.getOne(id);
+		pacijent.setAktivan(true);		
 		pacijentRepository.activatePatientAccount(id);
+		System.out.println("Nalog pacijenta je  -  " + (pacijent.isAktivan() ? "aktivan" : "neaktivan") );
 	}
 
 }
