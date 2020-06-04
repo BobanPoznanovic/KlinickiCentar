@@ -17,7 +17,7 @@ export class ZahteviZaRegistracijuService {
   };
 
   getZahtevi(): Observable<ZahtevZaRegistraciju[]> {
-    return this.http.get<ZahtevZaRegistraciju[]>(this.backEndURL+'/all');  
+    return this.http.get<ZahtevZaRegistraciju[]>(this.backEndURL+'/all');
   }
 
   prihvatiZahtev(id: number): Observable<ZahtevZaRegistraciju> {
@@ -28,5 +28,10 @@ export class ZahteviZaRegistracijuService {
   odbitiZahtev(zahtev: ZahtevZaRegistraciju): Observable<ZahtevZaRegistraciju> {
     const url = '/odbiti'
     return this.http.post<ZahtevZaRegistraciju>(this.backEndURL+url, zahtev, this.httpOptions);
+  }
+
+  odbijanjeZahteva(id: number, message: string) {
+    const url = '/odbijanje/'
+    return this.http.delete(this.backEndURL + url + id + '/' + message, this.httpOptions);
   }
 }

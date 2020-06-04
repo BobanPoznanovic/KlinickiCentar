@@ -202,11 +202,11 @@ public class ZahtevZaRegistracijuController {
 		return updateZahtevZaRegistraciju(zahtev);
 	}
 	
-	@DeleteMapping(value = "/odbijanje/{id}")
+	@DeleteMapping(value = "/odbijanje/{id}/{message}")
 	public void odbijanjeZahtevaZaRegistraciju(@PathVariable Integer id, @PathVariable String message) {
 		
 		ZahtevZaRegistraciju zahtevZaRegistraciju = zahtevZaRegistracijuService.findOne(id);
-		emailService.sendMailToUser(zahtevZaRegistraciju.getEmail(), "Vas zahtev je odbijen.", "Automatski generisan mejl : Zahtev odbijen");
+		emailService.sendMailToUser(zahtevZaRegistraciju.getEmail(), message, "Automatski generisan mejl : Zahtev odbijen");
 		
 		zahtevZaRegistraciju.setStatus_zahteva(StatusZahtevZaRegistraciju.Odbijen);
 		
