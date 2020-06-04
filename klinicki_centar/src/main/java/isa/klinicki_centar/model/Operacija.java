@@ -27,6 +27,8 @@ public class Operacija {
 	
 	private Integer salaID;
 	
+	private Integer pacijentID;
+	
 	public Operacija() {
 		
 	}
@@ -77,5 +79,13 @@ public class Operacija {
 
 	public void setSalaID(Integer salaID) {
 		this.salaID = salaID;
+	}
+
+	public Integer getPacijentID() {
+		return pacijentID;
+	}
+
+	public void setPacijentID(Integer pacijentID) {
+		this.pacijentID = pacijentID;
 	}
 }

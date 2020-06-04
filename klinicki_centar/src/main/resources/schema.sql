@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS ZAHTEV_ZA_DODELU_SALE;
 DROP TABLE IF EXISTS ZAHTEV_ZA_PREGLED;
 DROP TABLE IF EXISTS ALERGIJE_PACIJENTA;
 DROP TABLE IF EXISTS ZDRAVSTVENI_KARTON;
+DROP TABLE IF EXISTS SPISAK_LEKARA_NA_OPERACIJI;
+DROP TABLE IF EXISTS OPERACIJA;
 DROP TABLE IF EXISTS PACIJENT;
 DROP TABLE IF EXISTS ADMIN_KLINICKOG_CENTRA;
 DROP TABLE IF EXISTS ADMIN_KLINIKE;
@@ -16,8 +18,6 @@ DROP TABLE IF EXISTS TIP_PREGLEDA;
 DROP TABLE IF EXISTS ZAHTEV_ZA_ODSUSTVO;
 DROP TABLE IF EXISTS ZAHTEV_ZA_ODSUSTVO_LEKAR;
 DROP TABLE IF EXISTS MEDICINSKA_SESTRA;
-DROP TABLE IF EXISTS SPISAK_LEKARA_NA_OPERACIJI;
-DROP TABLE IF EXISTS OPERACIJA;
 DROP TABLE IF EXISTS LEKAR;
 DROP TABLE IF EXISTS SALA;
 DROP TABLE IF EXISTS KLINIKA;
@@ -200,8 +200,10 @@ CREATE TABLE OPERACIJA (
 	satnica_pocetka_operacije time,
 	satnica_kraja_operacije time,
 	salaID int,
+	pacijentID int,
 	CONSTRAINT fk_operacija_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID),
-	CONSTRAINT fk_operacija_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID)
+	CONSTRAINT fk_operacija_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID),
+	CONSTRAINT fk_operacija_pacijentID FOREIGN KEY (pacijentID) REFERENCES PACIJENT(pacijentID)
 );
 
 CREATE TABLE SPISAK_LEKARA_NA_OPERACIJI (
@@ -244,6 +246,7 @@ CREATE TABLE ZAHTEV_ZA_PREGLED (
     lekarID int,
     tip_pregledaID int,
     popust float,
+    potvrdjen bit,
     CONSTRAINT fk_zahtev_za_pregled_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID),
     CONSTRAINT fk_zahtev_za_pregled_pacijentID FOREIGN KEY (pacijentID) REFERENCES PACIJENT(pacijentID),
     CONSTRAINT fk_zahtev_za_pregled_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID),
@@ -260,24 +263,6 @@ CREATE TABLE ZAHTEV_ZA_DODELU_SALE (
     CONSTRAINT fk_zahtev_za_dodelu_sale_zahtev_za_pregledID FOREIGN KEY (operacijaID) REFERENCES OPERACIJA(operacijaID),
     CONSTRAINT fk_zahtev_za_dodelu_sale_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID)
 );
-
---CREATE TABLE PREDEF_PREGLED (
---	predef_pregledID int AUTO_INCREMENT PRIMARY KEY,
---    klinikaID int,
---    datum_pregleda date,
---    satnica_pocetak time,
---    satnica_kraj time,
---    salaID int,
---    lekarID int,
---    tip_pregledaID int,
---    popust float,
---    pacijentID int,
---    CONSTRAINT fk_predef_pregled_klinikaID FOREIGN KEY (klinikaID) REFERENCES KLINIKA(klinikaID),
---    CONSTRAINT fk_predef_pregled_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID),
---    CONSTRAINT fk_predef_pregled_pacijentID FOREIGN KEY (pacijentID) REFERENCES PACIJENT(pacijentID),
---    CONSTRAINT fk_predef_pregled_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID),
---    CONSTRAINT fk_predef_pregled_tip_pregledaID FOREIGN KEY (tip_pregledaID) REFERENCES TIP_PREGLEDA(tip_pregledaID)
---);
 
 CREATE TABLE PREGLED (
 	pregledID int AUTO_INCREMENT PRIMARY KEY,

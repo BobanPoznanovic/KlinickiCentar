@@ -1,6 +1,6 @@
 package isa.klinicki_centar.repositories;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +41,9 @@ public interface PregledRepository extends JpaRepository<Pregled, Integer>{
 	
 	@Query(value = "SELECT * FROM pregled p WHERE p.lekarID = ?1 AND p.datum_pregleda = ?2", nativeQuery = true)
 	ArrayList<Pregled> sviDoktoroviPreglediTrazenogDatuma(Integer lekarID, Date datum);
+	
+	@Query(value = "SELECT * FROM pregled p WHERE p.lekarID = ?1 AND p.datum_pregleda BETWEEN ?2 AND ?3", nativeQuery = true)
+	ArrayList<Pregled> sviDoktoroviPreglediPoDatumu(Integer lekarID, Date pocetak, Date kraj);
 	
 	@Query(value = "SELECT * FROM pregled p WHERE p.datum_pregleda = ?2 AND p.lekarID IN (SELECT l.lekarID FROM lekar l WHERE l.klinikaID = ?1)", nativeQuery = true)
 	ArrayList<Pregled> sviPreglediNaKliniciTrazenogDatuma(Integer klinikaID, Date datum);
