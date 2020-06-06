@@ -19,7 +19,10 @@ public interface ZahtevZaPregledRepository extends JpaRepository<ZahtevZaPregled
     @Override
     ZahtevZaPregled save(ZahtevZaPregled zahtevZaPregled);
 	
+    @Query(value = "SELECT * FROM zahtev_za_pregled zzp WHERE zzp.lekarID = ?1 AND zzp.datum = ?2", nativeQuery = true)
+	ArrayList<ZahtevZaPregled> nadjiLekaroveZahtevePoDatumu(Integer lekarID, Date datum);
+    
     @Query(value = "SELECT * FROM zahtev_za_pregled zzp WHERE zzp.lekarID = ?1 AND zzp.datum BETWEEN ?2 AND ?3", nativeQuery = true)
-	ArrayList<ZahtevZaPregled> nadjiLekaroveZahtevePoDatumu(Integer lekarID, Date pocetak, Date kraj);
+	ArrayList<ZahtevZaPregled> nadjiLekaroveZahteveUNekomPeriodu(Integer lekarID, Date pocetak, Date kraj);
 	
 }
