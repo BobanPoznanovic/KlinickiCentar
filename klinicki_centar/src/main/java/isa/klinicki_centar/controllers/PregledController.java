@@ -3,6 +3,7 @@ package isa.klinicki_centar.controllers;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +83,12 @@ public class PregledController {
 	public ArrayList<Pregled> sviPreglediNaKliniciTrazenogDatuma(@PathVariable Integer klinikaID, @PathVariable Date datum) throws ParseException {
 		return pregledService.sviPreglediNaKliniciTrazenogDatuma(klinikaID, datum);
 	}
+	
+	@GetMapping(value = "/slobodniTermini/{lekarID}/{datum}")
+	public Collection<String> nadjiSlobodneTermineLekara(@PathVariable Integer lekarID, @PathVariable String datum) throws ParseException {
+		return pregledService.nadjiSlobodneTermineLekara(lekarID, datum);
+	}
+	
 	
 	//Pregledi jednog lekara
 	

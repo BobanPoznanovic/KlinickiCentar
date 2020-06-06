@@ -152,7 +152,12 @@ public class PregledServiceImpl implements PregledService{
 		return pregledRepository.sviPreglediNaKliniciTrazenogDatuma(klinikaID, datum);
 	}
 	
-	public Collection<String> nadjiSlobodneTermineLekara(Integer lekarID, String date, Integer zahtevZaPregledID) throws ParseException {
+	@Override
+	public Collection<String> nadjiSlobodneTermineLekara(Integer lekarID, String datum) throws ParseException {
+		return this.nadjiSlobodneTermine(lekarID, datum, null);
+	}
+	
+	public Collection<String> nadjiSlobodneTermine(Integer lekarID, String date, Integer zahtevZaPregledID) throws ParseException {
 		
 		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		
@@ -180,6 +185,7 @@ public class PregledServiceImpl implements PregledService{
 		// operacije na kojima prisustvuje ?
 		
 		Collection<String> sviSlobodniTermini = new ArrayList<>();
+		Collection<String> sviSlobodniTerminiPregled = new ArrayList<>();
 		Collection<String> sviSlobodniTerminiZahtevZaPregled = new ArrayList<>();
 		Collection<String> sviSlobodniTerminiOperacija = new ArrayList<>();
 
@@ -202,7 +208,12 @@ public class PregledServiceImpl implements PregledService{
 			pocetakPregleda = LocalTime.parse(pregPoc);
 			krajPregleda = LocalTime.parse(pregKraj);
 			
-			sviSlobodniTermini = termini(lekarPocetakSmene, lekarKrajSmene, pocetakPregleda, krajPregleda);
+			sviSlobodniTerminiPregled = termini(lekarPocetakSmene, lekarKrajSmene, pocetakPregleda, krajPregleda);
+			
+			if(sviSlobodniTerminiPregled.size() != 0) {
+				sviSlobodniTermini = sviSlobodniTerminiPregled;
+			}
+			
 		}
 		
 		for(ZahtevZaPregled zahtev : zahteviZaPregledKodLekara) {
@@ -221,7 +232,11 @@ public class PregledServiceImpl implements PregledService{
 			
 			sviSlobodniTerminiZahtevZaPregled = termini(lekarPocetakSmene, lekarKrajSmene, pocetakPregleda, krajPregleda);
 			
-			sviSlobodniTermini.retainAll(sviSlobodniTerminiZahtevZaPregled);
+			if(sviSlobodniTermini.size() != 0) {
+				sviSlobodniTermini.retainAll(sviSlobodniTerminiZahtevZaPregled);
+			} else {
+				sviSlobodniTermini = sviSlobodniTerminiZahtevZaPregled;
+			}
 		}
 		
 		for (Operacija operacija : operacijeLekara) {
@@ -236,7 +251,12 @@ public class PregledServiceImpl implements PregledService{
 			
 			sviSlobodniTerminiOperacija = termini(lekarPocetakSmene, lekarKrajSmene, pocetakOperacije, krajOperacije);
 			
-			sviSlobodniTermini.retainAll(sviSlobodniTerminiOperacija);
+			if(sviSlobodniTermini.size() != 0) {
+				sviSlobodniTermini.retainAll(sviSlobodniTerminiOperacija);
+			} else {
+				sviSlobodniTermini = sviSlobodniTerminiOperacija;
+			}
+			
 		}
 		
 		if(sviSlobodniTermini.size() == 0) {
@@ -329,5 +349,7 @@ public class PregledServiceImpl implements PregledService{
 		return slobodniTermini;
 		
 	}
+
+	
 
 }

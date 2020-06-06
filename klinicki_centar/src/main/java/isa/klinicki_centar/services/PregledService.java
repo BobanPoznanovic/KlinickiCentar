@@ -3,6 +3,7 @@ package isa.klinicki_centar.services;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import isa.klinicki_centar.model.Pregled;
@@ -37,4 +38,5 @@ public interface PregledService {
 	
 	ArrayList<Pregled> sviPreglediNaKliniciTrazenogDatuma(Integer klinikaID, Date datum) throws ParseException;
 	
+	Collection<String> nadjiSlobodneTermineLekara(Integer lekarID, String datum) throws ParseException;
 }
