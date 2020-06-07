@@ -213,7 +213,7 @@ public class ZahtevZaRegistracijuController {
 		zahtev.setStatus_zahteva(StatusZahtevZaRegistraciju.Odbijen.name());
 		
 		//SEND EMAIL
-		emailService.sendMailToUser(zahtev.getEmail(), "Odbijeni ste zbog" + zahtev.getRazlog_odbijanja(), "Odbijena registracija za Klinicki centar");
+		emailService.sendMailToUser(zahtev.getEmail(), "Odbijeni ste zbog: " + zahtev.getRazlog_odbijanja(), "Odbijena registracija za Klinicki centar");
 		
 		return updateZahtevZaRegistraciju(zahtev);
 	}

@@ -16,7 +16,7 @@ export class ZahteviZaRegistracijuComponent implements OnInit {
     private zahteviService : ZahteviZaRegistracijuService) { }
 
   ngOnInit(): void {
-    this.zahteviService.getZahtevi()
+    this.zahteviService.getNonProcessed()
     .subscribe(zahtevi => this.zahtevi = zahtevi);
   }
 
