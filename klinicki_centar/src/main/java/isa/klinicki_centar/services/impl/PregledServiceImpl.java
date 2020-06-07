@@ -350,6 +350,42 @@ public class PregledServiceImpl implements PregledService{
 		
 	}
 
+	@Override
+	public void potvrditiZakazanPregled(Integer pregledID) {
+		pregledRepository.potvrdiPregled(pregledID);
+	}
 	
+	@Override
+	public void odbitiZakazanPregled(Integer pregledID) {
+		pregledRepository.deleteById(pregledID);
+	}
+
+	
+	// zavrsiPregled koristiti prilikom pravljenja izvestaja pregleda
+	
+	@Override
+	public void zavrsiPregled(Integer pregledID) {
+		pregledRepository.zavrsiPregled(pregledID);
+	}
+	
+	@Override
+	public void doktorOcenjenZaPregled(Integer pregledID) {
+		pregledRepository.doktorOcenjenZaPregled(pregledID);
+	}
+
+	@Override
+	public void klinikaOcenjenaZaPregled(Integer pregledID) {
+		pregledRepository.klinikaOcenjenaZaPregled(pregledID);
+	}
+
+	@Override
+	public ArrayList<Pregled> nadjiSvePacijentovePreglede(Integer pacijentID) {
+		return pregledRepository.nadjiSvePacijentovePreglede(pacijentID);
+	}
+
+	@Override
+	public ArrayList<Pregled> nadjiSvePregledaZaOcenjivanje(Integer pacijentID) {
+		return pregledRepository.nadjiSvePregledaZaOcenjivanje(pacijentID);
+	}
 
 }

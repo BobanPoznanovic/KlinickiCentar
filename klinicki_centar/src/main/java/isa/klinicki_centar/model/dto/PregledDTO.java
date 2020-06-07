@@ -32,6 +32,10 @@ public class PregledDTO {
 	
 	private Boolean zavrsen;
 	
+	private Boolean doktor_ocenjen;
+	
+	private Boolean klinika_ocenjena;
+	
 	public PregledDTO() {
 		
 	}
@@ -42,7 +46,7 @@ public class PregledDTO {
 				pregled.getSalaID(), pregled.getDatum_pregleda().toString(), pregled.getSatnica_pocetak().toString(),
 				pregled.getSatnica_kraj().toString(), pregled.getTip_pregledaID(), pregled.getPopust(),
 				pregled.getZakazan_dodatan_pregled(), pregled.getZakazana_operacija(),
-				pregled.getPotvrdjen(), pregled.getZavrsen()
+				pregled.getPotvrdjen(), pregled.getZavrsen(), pregled.getDoktor_ocenjen(), pregled.getKlinika_ocenjena()
 				);
 	}
 	
@@ -51,7 +55,7 @@ public class PregledDTO {
 			String datum_pregleda, String satnica_pocetak, String satnica_kraj, 
 			Integer tip_pregledaID, float popust, 
 			Boolean zakazan_dodatan_pregled, Boolean zakazana_operacija,
-			Boolean potvrdjen, Boolean zavrsen
+			Boolean potvrdjen, Boolean zavrsen, Boolean doktor_ocenjen, Boolean klinika_ocenjena
 			) {
 		super();
 		this.setPregledID(pregledID);
@@ -66,6 +70,8 @@ public class PregledDTO {
 		this.setPopust(popust);
 		this.setZakazan_dodatan_pregled(zakazan_dodatan_pregled);
 		this.setZakazana_operacija(zakazana_operacija);
+		this.setDoktor_ocenjen(doktor_ocenjen);
+		this.setKlinika_ocenjena(klinika_ocenjena);
 	}
 
 	public Integer getPregledID() {
@@ -178,5 +184,21 @@ public class PregledDTO {
 
 	public void setZavrsen(Boolean zavrsen) {
 		this.zavrsen = zavrsen;
+	}
+
+	public Boolean getDoktor_ocenjen() {
+		return doktor_ocenjen;
+	}
+
+	public void setDoktor_ocenjen(Boolean doktor_ocenjen) {
+		this.doktor_ocenjen = doktor_ocenjen;
+	}
+
+	public Boolean getKlinika_ocenjena() {
+		return klinika_ocenjena;
+	}
+
+	public void setKlinika_ocenjena(Boolean klinika_ocenjena) {
+		this.klinika_ocenjena = klinika_ocenjena;
 	}
 }

@@ -46,6 +46,10 @@ public class Pregled {
 	
 	private Boolean zavrsen;
 	
+	private Boolean doktor_ocenjen;
+	
+	private Boolean klinika_ocenjena;
+	
 	public Pregled() {
 		
 	}
@@ -160,5 +164,21 @@ public class Pregled {
 
 	public void setZavrsen(Boolean zavrsen) {
 		this.zavrsen = zavrsen;
+	}
+
+	public Boolean getDoktor_ocenjen() {
+		return doktor_ocenjen;
+	}
+
+	public void setDoktor_ocenjen(Boolean doktor_ocenjen) {
+		this.doktor_ocenjen = doktor_ocenjen;
+	}
+
+	public Boolean getKlinika_ocenjena() {
+		return klinika_ocenjena;
+	}
+
+	public void setKlinika_ocenjena(Boolean klinika_ocenjena) {
+		this.klinika_ocenjena = klinika_ocenjena;
 	}
 }

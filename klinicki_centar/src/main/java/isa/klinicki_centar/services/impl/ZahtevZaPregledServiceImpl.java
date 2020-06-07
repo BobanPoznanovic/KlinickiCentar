@@ -1,7 +1,5 @@
 package isa.klinicki_centar.services.impl;
 
-
-
 import java.util.ArrayList;
 import java.util.Date;
 

@@ -16,6 +16,8 @@ public interface LekarService {
 	
 	void remove(Integer id);
 	
+	void oceniLekara(Integer lekarID, Integer ocena);
+	
 	ArrayList<Lekar> pretregaLekaraPoImenu(String ime);
 	
 	ArrayList<Lekar> pretregaLekaraPoPrezimenu(String prezime);
@@ -37,5 +39,7 @@ public interface LekarService {
 	ArrayList<Lekar> pretregaLekaraIzKlinike(String ime, String prezime, float prosecnaOcena, Integer klinikaID);
 	
 	ArrayList<Lekar> pretregaLekaraAdvanced(String ime, String prezime, float prosecnaOcena, Integer tipPregledaID, Integer klinikaID);
+	
+	ArrayList<Lekar> nadjiLekareZaTipPregledaIDatum(Integer tipPregledaID, Integer klinikaID, String datum);
 	
 }
