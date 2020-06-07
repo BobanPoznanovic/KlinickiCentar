@@ -20,6 +20,10 @@ export class ZahteviZaRegistracijuService {
     return this.http.get<ZahtevZaRegistraciju[]>(this.backEndURL+'/all');
   }
 
+  getNonProcessed() : Observable<ZahtevZaRegistraciju[]> {
+    return this.http.get<ZahtevZaRegistraciju[]>(this.backEndURL+'/waiting');
+  }
+
   prihvatiZahtev(id: number): Observable<ZahtevZaRegistraciju> {
     const url = '/prihvati/';
     return this.http.get<ZahtevZaRegistraciju>(this.backEndURL+url+id);
@@ -27,7 +31,7 @@ export class ZahteviZaRegistracijuService {
 
   odbitiZahtev(zahtev: ZahtevZaRegistraciju): Observable<ZahtevZaRegistraciju> {
     const url = '/odbiti'
-    return this.http.post<ZahtevZaRegistraciju>(this.backEndURL+url, zahtev, this.httpOptions);
+    return this.http.put<ZahtevZaRegistraciju>(this.backEndURL+url, zahtev, this.httpOptions);
   }
 
   odbijanjeZahteva(id: number, message: string) {

@@ -58,6 +58,19 @@ public class ZahtevZaRegistracijuController {
 		return new ResponseEntity<List<ZahtevZaRegistracijuDTO>>(retVal, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/waiting")
+	public ResponseEntity<List<ZahtevZaRegistracijuDTO>> getNonProcessed() {
+		List<ZahtevZaRegistracijuDTO> retVal = new ArrayList<ZahtevZaRegistracijuDTO>();
+		
+		Iterable<ZahtevZaRegistraciju> zahtevi = zahtevZaRegistracijuService.nonProcessed("Na_cekanju");
+		
+		for(ZahtevZaRegistraciju zahtev : zahtevi) {
+			retVal.add(new ZahtevZaRegistracijuDTO(zahtev));
+		}
+		
+		return new ResponseEntity<List<ZahtevZaRegistracijuDTO>>(retVal, HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ZahtevZaRegistracijuDTO> getZahtevZaRegistraciju(@PathVariable Integer id) {
 		
@@ -183,7 +196,7 @@ public class ZahtevZaRegistracijuController {
 		return new ResponseEntity<ZahtevZaRegistracijuDTO>(new ZahtevZaRegistracijuDTO(queryResult), HttpStatus.OK);
 	}
 	
-	@PostMapping(
+	@PutMapping(
 			value = "/odbiti",
 			consumes = "application/json")
 	public ResponseEntity<ZahtevZaRegistracijuDTO> odbitiZahtevZaRegistraciju(@RequestBody ZahtevZaRegistracijuDTO zahtev) {
@@ -198,6 +211,9 @@ public class ZahtevZaRegistracijuController {
 		}
 		
 		zahtev.setStatus_zahteva(StatusZahtevZaRegistraciju.Odbijen.name());
+		
+		//SEND EMAIL
+		emailService.sendMailToUser(zahtev.getEmail(), "Odbijeni ste zbog: " + zahtev.getRazlog_odbijanja(), "Odbijena registracija za Klinicki centar");
 		
 		return updateZahtevZaRegistraciju(zahtev);
 	}
