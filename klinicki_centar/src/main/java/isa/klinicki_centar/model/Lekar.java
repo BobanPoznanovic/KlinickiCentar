@@ -1,6 +1,6 @@
 package isa.klinicki_centar.model;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -43,9 +43,9 @@ public class Lekar {
 	
 	private String adresa;
 	
-	private Time pocetak_radnog_vremena;
+	private LocalTime pocetak_radnog_vremena;
 	
-	private Time kraj_radnog_vremena;
+	private LocalTime kraj_radnog_vremena;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "TIPOVI_PREGLEDA_LEKARA", joinColumns = @JoinColumn(name = "lekar_id", referencedColumnName = "lekarID"),
@@ -146,19 +146,19 @@ public class Lekar {
 		this.adresa = adresa;
 	}
 
-	public Time getPocetak_radnog_vremena() {
+	public LocalTime getPocetak_radnog_vremena() {
 		return pocetak_radnog_vremena;
 	}
 
-	public void setPocetak_radnog_vremena(Time pocetak_radnog_vremena) {
+	public void setPocetak_radnog_vremena(LocalTime pocetak_radnog_vremena) {
 		this.pocetak_radnog_vremena = pocetak_radnog_vremena;
 	}
 
-	public Time getKraj_radnog_vremena() {
+	public LocalTime getKraj_radnog_vremena() {
 		return kraj_radnog_vremena;
 	}
 
-	public void setKraj_radnog_vremena(Time kraj_radnog_vremena) {
+	public void setKraj_radnog_vremena(LocalTime kraj_radnog_vremena) {
 		this.kraj_radnog_vremena = kraj_radnog_vremena;
 	}
 	

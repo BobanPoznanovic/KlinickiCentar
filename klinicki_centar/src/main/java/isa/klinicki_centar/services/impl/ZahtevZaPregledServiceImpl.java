@@ -1,7 +1,6 @@
 package isa.klinicki_centar.services.impl;
 
-
-
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +73,16 @@ public class ZahtevZaPregledServiceImpl implements ZahtevZaPregledService {
 				+ "\n\tLekar: " + lekar.getIme() + " " + lekar.getPrezime()
 				+ "\n\tPacijent: " + pacijent.getIme() + " " + pacijent.getPrezime()
 				+ "\n\tCena: " + tipPregleda.getCena());
+	}
+
+	@Override
+	public ArrayList<ZahtevZaPregled> nadjiLekaroveZahtevePoDatumu(Integer lekarID, Date datum) {
+		return zahtevZaPregledRepository.nadjiLekaroveZahtevePoDatumu(lekarID, datum);
+	}
+
+	@Override
+	public ArrayList<ZahtevZaPregled> nadjiLekaroveZahteveUNekomPeriodu(Integer lekarID, Date pocetak, Date kraj) {
+		return zahtevZaPregledRepository.nadjiLekaroveZahteveUNekomPeriodu(lekarID, pocetak, kraj);
 	}
 
 }

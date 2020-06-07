@@ -1,9 +1,6 @@
 package isa.klinicki_centar.services;
 
-import java.sql.Date;
 import java.util.ArrayList;
-
-import org.springframework.data.repository.query.Param;
 
 import isa.klinicki_centar.model.Klinika;
 
@@ -29,4 +26,5 @@ public interface KlinikaService {
 	
 	ArrayList<Klinika> nadjiKlinikePoTipuPregledaGraduIOceni(Integer tipPregledaID, String grad, float ocena);
 	
+	void oceniKliniku(Integer klinikaID, Integer ocena);
 }

@@ -3,12 +3,14 @@ package isa.klinicki_centar.controllers;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -83,9 +85,31 @@ public class PregledController {
 		return pregledService.sviPreglediNaKliniciTrazenogDatuma(klinikaID, datum);
 	}
 	
-	//Pregledi jednog lekara
+	@GetMapping(value = "/slobodniTermini/{lekarID}/{datum}")
+	public Collection<String> nadjiSlobodneTermineLekara(@PathVariable Integer lekarID, @PathVariable String datum) throws ParseException {
+		return pregledService.nadjiSlobodneTermineLekara(lekarID, datum);
+	}
+	
+	@PutMapping("/potvrditi/{pregledID}")
+	public void potvrditiZakazanPregled(@PathVariable Integer pregledID) {
+		pregledService.potvrditiZakazanPregled(pregledID);
+	}
+	
+	@DeleteMapping("/odbiti/{pregledID}")
+	public void odbitiZakazanPregled(@PathVariable Integer pregledID) {
+		pregledService.odbitiZakazanPregled(pregledID);
+	}
+	
+	@GetMapping("/pacijentoviPregledi/{pacijentID}")
+	public ArrayList<Pregled> nadjiSvePacijentovePreglede(@PathVariable Integer pacijentID) {
+		return pregledService.nadjiSvePacijentovePreglede(pacijentID);
+	}
+
+	@GetMapping("/pacijentoviPreglediOcenjivanje/{pacijentID}")
+	public ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(@PathVariable Integer pacijentID) {
+		return pregledService.nadjiSvePregledeZaOcenjivanje(pacijentID);
+	}
 	
 	//Pregledi u jednoj sali
 	
-	//Pregledi jednog pacijenta
 }

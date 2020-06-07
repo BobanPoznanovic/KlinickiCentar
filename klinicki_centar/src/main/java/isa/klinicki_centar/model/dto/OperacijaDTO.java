@@ -1,20 +1,12 @@
-package isa.klinicki_centar.model;
+package isa.klinicki_centar.model.dto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import isa.klinicki_centar.model.Operacija;
 
-@Entity
-@Table( name = "OPERACIJA")
-public class Operacija {
+public class OperacijaDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer operacijaID;
 	
 	private Integer lekarID;
@@ -32,9 +24,29 @@ public class Operacija {
 	private Boolean lekar_ocenjen;
 	
 	private Boolean klinika_ocenjena;
-	
-	public Operacija() {
-		
+
+	public OperacijaDTO(Operacija operacija) {
+		this(
+				operacija.getOperacijaID(), operacija.getLekarID(), operacija.getDatum_operacije(),
+				operacija.getSatnica_pocetka_operacije(), operacija.getSatnica_kraja_operacije(),
+				operacija.getSalaID(), operacija.getPacijentID(),
+				operacija.getLekar_ocenjen(), operacija.getKlinika_ocenjena()
+			);
+	}
+
+	public OperacijaDTO(Integer operacijaID, Integer lekarID, LocalDate datum_operacije, LocalTime satnica_pocetka_operacije,
+			LocalTime satnica_kraja_operacije, Integer salaID, Integer pacijentID, Boolean lekar_ocenjen,
+			Boolean klinika_ocenjena) {
+		super();
+		this.operacijaID = operacijaID;
+		this.lekarID = lekarID;
+		this.datum_operacije = datum_operacije;
+		this.satnica_pocetka_operacije = satnica_pocetka_operacije;
+		this.satnica_kraja_operacije = satnica_kraja_operacije;
+		this.salaID = salaID;
+		this.pacijentID = pacijentID;
+		this.lekar_ocenjen = lekar_ocenjen;
+		this.klinika_ocenjena = klinika_ocenjena;
 	}
 
 	public Integer getOperacijaID() {
@@ -108,4 +120,5 @@ public class Operacija {
 	public void setKlinika_ocenjena(Boolean klinika_ocenjena) {
 		this.klinika_ocenjena = klinika_ocenjena;
 	}
+	
 }

@@ -11,4 +11,6 @@ public interface ZdravstveniKartonService {
 	ZdravstveniKarton save(ZdravstveniKarton karton);
 	
 	void remove(Integer id);
+	
+	ZdravstveniKarton nadjiPacijentovKarton(Integer pacijentID);
 }
