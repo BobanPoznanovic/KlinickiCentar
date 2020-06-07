@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import isa.klinicki_centar.model.Klinika;
 import isa.klinicki_centar.model.dto.KlinikaDTO;
 import isa.klinicki_centar.services.KlinikaService;
+import isa.klinicki_centar.services.PregledService;
 
 @RestController
 @RequestMapping(path = "/klinika")
@@ -31,6 +32,9 @@ public class KlinikaController {
 	
 	@Autowired
 	private KlinikaService klinikaService;
+	
+	@Autowired
+	private PregledService pregledService;
 	
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<KlinikaDTO>> getAll() {
@@ -148,5 +152,10 @@ public class KlinikaController {
 		return klinikaService.nadjiKlinikePoTipuPregledaGraduIOceni(tipPregledaID, grad, ocena);
 	}
 	
-
+	@PutMapping("/oceniKliniku/{pregledID}/{ocena}/{klinikaID}")
+	public void oceniKliniku(@PathVariable Integer pregledID, @PathVariable Integer ocena, @PathVariable Integer klinikaID) {
+		klinikaService.oceniKliniku(klinikaID, ocena);
+		pregledService.klinikaOcenjenaZaPregled(pregledID);
+	}
+	
 }

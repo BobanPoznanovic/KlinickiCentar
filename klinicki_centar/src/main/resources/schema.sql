@@ -279,6 +279,8 @@ CREATE TABLE PREGLED (
     zakazana_operacija bit,
     potvrdjen bit,
     zavrsen bit,
+    doktor_ocenjen bit,
+    klinika_ocenjena bit,
     CONSTRAINT fk_pregled_lekarID FOREIGN KEY (lekarID) REFERENCES LEKAR(lekarID),
     CONSTRAINT fk_pregled_pacijentID FOREIGN KEY (pacijentID) REFERENCES PACIJENT(pacijentID),
     CONSTRAINT fk_pregled_salaID FOREIGN KEY (salaID) REFERENCES SALA(salaID),

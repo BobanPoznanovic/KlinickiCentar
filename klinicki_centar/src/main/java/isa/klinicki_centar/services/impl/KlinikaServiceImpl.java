@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import isa.klinicki_centar.model.Klinika;
@@ -65,6 +66,19 @@ public class KlinikaServiceImpl implements KlinikaService {
 	@Override
 	public ArrayList<Klinika> nadjiKlinikePoTipuPregledaGraduIOceni(Integer tipPregledaID, String grad, float ocena) {
 		return klinikaRepository.nadjiKlinikePoTipuPregledaGraduIOceni(tipPregledaID, grad, ocena);
+	}
+	
+	@Transactional
+	@Override
+	public void oceniKliniku(Integer klinikaID, Integer ocena) {
+		Klinika klinika = klinikaRepository.getOne(klinikaID);
+		int brojOcena = klinika.getBrojOcena();
+		float prosecnaOcena = klinika.getProsecnaOcena();
+		float novaProsecna = (prosecnaOcena * brojOcena + ocena) / (brojOcena + 1);
+		klinika.setBrojOcena(brojOcena + 1);
+		klinika.setProsecnaOcena(novaProsecna);
+		
+		klinikaRepository.updateRatingKlinika(klinikaID, novaProsecna, brojOcena + 1);
 	}
 
 

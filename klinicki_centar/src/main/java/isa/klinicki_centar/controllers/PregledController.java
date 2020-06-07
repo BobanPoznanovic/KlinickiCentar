@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -89,10 +90,26 @@ public class PregledController {
 		return pregledService.nadjiSlobodneTermineLekara(lekarID, datum);
 	}
 	
+	@PutMapping("/potvrditi/{pregledID}")
+	public void potvrditiZakazanPregled(@PathVariable Integer pregledID) {
+		pregledService.potvrditiZakazanPregled(pregledID);
+	}
 	
-	//Pregledi jednog lekara
+	@DeleteMapping("/odbiti/{pregledID}")
+	public void odbitiZakazanPregled(@PathVariable Integer pregledID) {
+		pregledService.odbitiZakazanPregled(pregledID);
+	}
+	
+	@GetMapping("/pacijentoviPregledi/{pacijentID}")
+	public ArrayList<Pregled> nadjiSvePacijentovePreglede(@PathVariable Integer pacijentID) {
+		return pregledService.nadjiSvePacijentovePreglede(pacijentID);
+	}
+
+	@GetMapping("/pacijentoviPreglediOcenjivanje/{pacijentID}")
+	public ArrayList<Pregled> nadjiSvePregledaZaOcenjivanje(@PathVariable Integer pacijentID) {
+		return pregledService.nadjiSvePregledaZaOcenjivanje(pacijentID);
+	}
 	
 	//Pregledi u jednoj sali
 	
-	//Pregledi jednog pacijenta
 }

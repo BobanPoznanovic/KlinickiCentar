@@ -15,26 +15,27 @@ public class ZdravstveniKartonServiceImpl implements ZdravstveniKartonService{
 	
 	@Override
 	public Iterable<ZdravstveniKarton> findAll() {
-		// TODO Auto-generated method stub
 		return zdravstveniKartonRepository.findAll();
 	}
 
 	@Override
 	public ZdravstveniKarton findOne(Integer id) {
-		// TODO Auto-generated method stub
 		return zdravstveniKartonRepository.findById(id).orElseGet(null);
 	}
 
 	@Override
 	public ZdravstveniKarton save(ZdravstveniKarton karton) {
-		// TODO Auto-generated method stub
 		return zdravstveniKartonRepository.save(karton);
 	}
 
 	@Override
 	public void remove(Integer id) {
-		// TODO Auto-generated method stub
 		zdravstveniKartonRepository.deleteById(id);
+	}
+
+	@Override
+	public ZdravstveniKarton nadjiPacijentovKarton(Integer pacijentID) {
+		return zdravstveniKartonRepository.nadjiPacijentovKarton(pacijentID);
 	}
 
 }

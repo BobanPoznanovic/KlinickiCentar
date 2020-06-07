@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import isa.klinicki_centar.model.Pacijent;
 import isa.klinicki_centar.model.ZdravstveniKarton;
@@ -23,7 +23,7 @@ import isa.klinicki_centar.model.dto.ZdravstveniKartonDTO;
 import isa.klinicki_centar.services.PacijentService;
 import isa.klinicki_centar.services.ZdravstveniKartonService;
 
-@Controller
+@RestController
 @RequestMapping(path = "/karton")
 @CrossOrigin(origins = "*")
 public class ZdravstveniKartonController {
@@ -123,4 +123,18 @@ public class ZdravstveniKartonController {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping(value = "/pacijent/{id}")
+	public ResponseEntity<ZdravstveniKartonDTO> nadjiPacijentovKarton(@PathVariable Integer id) {
+		
+		ZdravstveniKarton queryResult = zdravstveniKartonService.nadjiPacijentovKarton(id);
+		
+		if(queryResult == null) {
+			return new ResponseEntity<ZdravstveniKartonDTO>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<ZdravstveniKartonDTO>(new ZdravstveniKartonDTO(queryResult), HttpStatus.OK);
+	}
+	
+	
 }
