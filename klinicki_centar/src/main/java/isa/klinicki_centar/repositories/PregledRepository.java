@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,8 +51,8 @@ public interface PregledRepository extends JpaRepository<Pregled, Integer>{
 	
 	@Transactional
 	@Modifying
-	@Query(value = "UPDATE pregled SET doktor_ocenjen = true WHERE pregledID = ?1", nativeQuery = true)
-	void doktorOcenjenZaPregled(Integer pregledID);
+	@Query(value = "UPDATE pregled SET lekar_ocenjen = true WHERE pregledID = ?1", nativeQuery = true)
+	void lekarOcenjenZaPregled(Integer pregledID);
 	
 	@Transactional
 	@Modifying
@@ -79,6 +78,6 @@ public interface PregledRepository extends JpaRepository<Pregled, Integer>{
 	ArrayList<Pregled> nadjiSvePacijentovePreglede(Integer pacijentID);
 	
 	@Query(value = "SELECT * FROM pregled p WHERE p.pacijentID = ?1 AND p.zavrsen = true", nativeQuery = true)
-	ArrayList<Pregled> nadjiSvePregledaZaOcenjivanje(Integer pacijentID);
+	ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(Integer pacijentID);
 	
 }

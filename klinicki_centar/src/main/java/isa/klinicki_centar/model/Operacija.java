@@ -29,6 +29,10 @@ public class Operacija {
 	
 	private Integer pacijentID;
 	
+	private Boolean lekar_ocenjen;
+	
+	private Boolean klinika_ocenjena;
+	
 	public Operacija() {
 		
 	}
@@ -87,5 +91,21 @@ public class Operacija {
 
 	public void setPacijentID(Integer pacijentID) {
 		this.pacijentID = pacijentID;
+	}
+
+	public Boolean getLekar_ocenjen() {
+		return lekar_ocenjen;
+	}
+
+	public void setLekar_ocenjen(Boolean lekar_ocenjen) {
+		this.lekar_ocenjen = lekar_ocenjen;
+	}
+
+	public Boolean getKlinika_ocenjena() {
+		return klinika_ocenjena;
+	}
+
+	public void setKlinika_ocenjena(Boolean klinika_ocenjena) {
+		this.klinika_ocenjena = klinika_ocenjena;
 	}
 }

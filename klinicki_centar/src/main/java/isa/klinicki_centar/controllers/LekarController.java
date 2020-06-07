@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import isa.klinicki_centar.model.Lekar;
 import isa.klinicki_centar.model.dto.LekarDTO;
 import isa.klinicki_centar.services.LekarService;
+import isa.klinicki_centar.services.OperacijaService;
 import isa.klinicki_centar.services.PregledService;
 
 @RestController
@@ -31,6 +32,9 @@ public class LekarController {
 	
 	@Autowired
 	private PregledService pregledService;
+	
+	@Autowired
+	private OperacijaService operacijaService;
 
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<LekarDTO>> getAll() {
@@ -271,10 +275,16 @@ public class LekarController {
 		return lekarService.nadjiLekareZaTipPregledaIDatum(tipPregledaID, klinikaID, datum);
 	}
 	
-	@PutMapping("/oceniLekara/{pregledID}/{ocena}/{lekarID}")
-	public void oceniLekara(@PathVariable Integer pregledID, @PathVariable Integer ocena, @PathVariable Integer lekarID) {
+	@PutMapping("/oceniLekaraPregled/{pregledID}/{ocena}/{lekarID}")
+	public void oceniLekaraPregled(@PathVariable Integer pregledID, @PathVariable Integer ocena, @PathVariable Integer lekarID) {
 		lekarService.oceniLekara(lekarID, ocena);
-		pregledService.doktorOcenjenZaPregled(pregledID);
+		pregledService.lekarOcenjenZaPregled(pregledID);
+	}
+	
+	@PutMapping("/oceniLekaraOperacija/{operacijaID}/{ocena}/{lekarID}")
+	public void oceniLekaraOperacija(@PathVariable Integer operacijaID, @PathVariable Integer ocena, @PathVariable Integer lekarID) {
+		lekarService.oceniLekara(lekarID, ocena);
+		operacijaService.lekarOcenjenZaOperaciju(operacijaID);
 	}
 	
 }

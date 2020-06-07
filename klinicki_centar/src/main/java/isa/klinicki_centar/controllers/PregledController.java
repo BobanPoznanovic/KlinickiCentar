@@ -106,8 +106,8 @@ public class PregledController {
 	}
 
 	@GetMapping("/pacijentoviPreglediOcenjivanje/{pacijentID}")
-	public ArrayList<Pregled> nadjiSvePregledaZaOcenjivanje(@PathVariable Integer pacijentID) {
-		return pregledService.nadjiSvePregledaZaOcenjivanje(pacijentID);
+	public ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(@PathVariable Integer pacijentID) {
+		return pregledService.nadjiSvePregledeZaOcenjivanje(pacijentID);
 	}
 	
 	//Pregledi u jednoj sali

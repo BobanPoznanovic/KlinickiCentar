@@ -34,7 +34,7 @@ public interface PregledService {
 	
 	void zavrsiPregled(Integer pregledID);
 	
-	void doktorOcenjenZaPregled(Integer pregledID);
+	void lekarOcenjenZaPregled(Integer pregledID);
 	
 	void klinikaOcenjenaZaPregled(Integer pregledID);
 	
@@ -52,6 +52,6 @@ public interface PregledService {
 	
 	ArrayList<Pregled> nadjiSvePacijentovePreglede(Integer pacijentID);
 	
-	ArrayList<Pregled> nadjiSvePregledaZaOcenjivanje(Integer pacijentID);
+	ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(Integer pacijentID);
 
 }

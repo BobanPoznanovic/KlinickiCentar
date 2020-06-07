@@ -1,13 +1,11 @@
 package isa.klinicki_centar.controllers;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import isa.klinicki_centar.model.Klinika;
 import isa.klinicki_centar.model.dto.KlinikaDTO;
 import isa.klinicki_centar.services.KlinikaService;
+import isa.klinicki_centar.services.OperacijaService;
 import isa.klinicki_centar.services.PregledService;
 
 @RestController
@@ -35,6 +34,9 @@ public class KlinikaController {
 	
 	@Autowired
 	private PregledService pregledService;
+	
+	@Autowired
+	private OperacijaService operacijaService;
 	
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<KlinikaDTO>> getAll() {
@@ -152,10 +154,16 @@ public class KlinikaController {
 		return klinikaService.nadjiKlinikePoTipuPregledaGraduIOceni(tipPregledaID, grad, ocena);
 	}
 	
-	@PutMapping("/oceniKliniku/{pregledID}/{ocena}/{klinikaID}")
-	public void oceniKliniku(@PathVariable Integer pregledID, @PathVariable Integer ocena, @PathVariable Integer klinikaID) {
+	@PutMapping("/oceniKlinikuPregled/{pregledID}/{ocena}/{klinikaID}")
+	public void oceniKlinikuPregled(@PathVariable Integer pregledID, @PathVariable Integer ocena, @PathVariable Integer klinikaID) {
 		klinikaService.oceniKliniku(klinikaID, ocena);
 		pregledService.klinikaOcenjenaZaPregled(pregledID);
+	}
+	
+	@PutMapping("/oceniKlinikuOperacija/{operacijaID}/{ocena}/{klinikaID}")
+	public void oceniKlinikuOperacija(@PathVariable Integer operacijaID, @PathVariable Integer ocena, @PathVariable Integer klinikaID) {
+		klinikaService.oceniKliniku(klinikaID, ocena);
+		operacijaService.klinikaOcenjenaZaOperaciju(operacijaID);
 	}
 	
 }

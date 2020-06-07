@@ -46,7 +46,7 @@ public class Pregled {
 	
 	private Boolean zavrsen;
 	
-	private Boolean doktor_ocenjen;
+	private Boolean lekar_ocenjen;
 	
 	private Boolean klinika_ocenjena;
 	
@@ -166,12 +166,12 @@ public class Pregled {
 		this.zavrsen = zavrsen;
 	}
 
-	public Boolean getDoktor_ocenjen() {
-		return doktor_ocenjen;
+	public Boolean getLekar_ocenjen() {
+		return lekar_ocenjen;
 	}
 
-	public void setDoktor_ocenjen(Boolean doktor_ocenjen) {
-		this.doktor_ocenjen = doktor_ocenjen;
+	public void setLekar_ocenjen(Boolean lekar_ocenjen) {
+		this.lekar_ocenjen = lekar_ocenjen;
 	}
 
 	public Boolean getKlinika_ocenjena() {

@@ -1,5 +1,7 @@
 package isa.klinicki_centar.services.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,44 +23,67 @@ public class OperacijaServiceImpl implements OperacijaService {
 	
 	@Override
 	public Iterable<Operacija> findAll() {
-		// TODO Auto-generated method stub
 		return operacijaRepository.findAll();
 	}
 
 	@Override
 	public Operacija findOne(Integer id) {
-		// TODO Auto-generated method stub
 		return operacijaRepository.findById(id).orElseGet(null);
 	}
 
 	@Override
 	public Operacija save(Operacija operacija) {
-		// TODO Auto-generated method stub
 		return operacijaRepository.save(operacija);
 	}
 
 	@Override
 	public void remove(Integer id) {
-		// TODO Auto-generated method stub
 		operacijaRepository.deleteById(id);
 	}
 
 	@Override
 	public List<Operacija> fromDate(String date) {
-		// TODO Auto-generated method stub
 		return operacijaRepository.fromDate(date);
 	}
 
 	@Override
 	public List<Operacija> byDateAndSalaID(String date, Integer salaID) {
-		// TODO Auto-generated method stub
 		return operacijaAdvanceRepository.byDateAndSalaID(date, salaID);
 	}
 
 	@Override
 	public List<Operacija> byDateAndSalaIDSortedByStartTime(String date, Integer salaID) {
-		// TODO Auto-generated method stub
 		return operacijaAdvanceRepository.byDateAndSalaIDSortedByStartTime(date, salaID);
 	}
+
+	@Override
+	public void lekarOcenjenZaOperaciju(Integer operacijaID) {
+		operacijaRepository.lekarOcenjenZaOperaciju(operacijaID);		
+	}
+
+	@Override
+	public void klinikaOcenjenaZaOperaciju(Integer operacijaID) {
+		operacijaRepository.klinikaOcenjenaZaOperaciju(operacijaID);
+	}
+
+	@Override
+	public ArrayList<Operacija> nadjiSvePacijentoveOperacije(Integer pacijentID) {
+		return operacijaRepository.nadjiSvePacijentoveOperacije(pacijentID);
+	}
+
+	@Override
+	public ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(Integer pacijentID, Date datumOperacije) {
+		return operacijaRepository.nadjiSveOperacijeZaOcenjivanje(pacijentID, datumOperacije);
+	}
+	
+	
+	
+	// mozda ovako da se uzima danasnji datum ???
+	
+//	/*@Override
+//	public ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(Integer pacijentID) {
+//		Date date = new Date();
+//		return return operacijaRepository.nadjiSveOperacijeZaOcenjivanje(pacijentID);
+//	}*/
 
 }

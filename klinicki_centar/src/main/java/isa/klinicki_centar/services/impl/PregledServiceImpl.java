@@ -369,8 +369,8 @@ public class PregledServiceImpl implements PregledService{
 	}
 	
 	@Override
-	public void doktorOcenjenZaPregled(Integer pregledID) {
-		pregledRepository.doktorOcenjenZaPregled(pregledID);
+	public void lekarOcenjenZaPregled(Integer pregledID) {
+		pregledRepository.lekarOcenjenZaPregled(pregledID);
 	}
 
 	@Override
@@ -384,8 +384,8 @@ public class PregledServiceImpl implements PregledService{
 	}
 
 	@Override
-	public ArrayList<Pregled> nadjiSvePregledaZaOcenjivanje(Integer pacijentID) {
-		return pregledRepository.nadjiSvePregledaZaOcenjivanje(pacijentID);
+	public ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(Integer pacijentID) {
+		return pregledRepository.nadjiSvePregledeZaOcenjivanje(pacijentID);
 	}
 
 }
