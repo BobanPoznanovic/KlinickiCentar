@@ -36,6 +36,13 @@ public class ZahtevZaRegistracijuServiceImpl implements ZahtevZaRegistracijuServ
 		// TODO Auto-generated method stub
 		zahtevZaRegistracijuRepository.deleteById(id);
 	}
+
+	@Override
+	public Iterable<ZahtevZaRegistraciju> nonProcessed(String status) {
+		// TODO Auto-generated method stub
+		
+		return zahtevZaRegistracijuRepository.findNonProcessed(status);
+	}
 	
 	
 

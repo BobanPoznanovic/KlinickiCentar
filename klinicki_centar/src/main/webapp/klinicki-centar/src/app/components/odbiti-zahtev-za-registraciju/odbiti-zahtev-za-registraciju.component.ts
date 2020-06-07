@@ -24,8 +24,8 @@ export class OdbitiZahtevZaRegistracijuComponent implements OnInit {
   onSubmit() {
     this.zahtev.razlog_odbijanja = this.zahtevForm.controls.razlog_odbijanja.value;
     this.zahtev.status_zahteva = "Odbijen";
-    //this.zahtevService.odbitiZahtev(this.zahtev).subscribe(data => console.log(data));
-    this.zahtevService.odbijanjeZahteva(this.zahtev.zahtevID, this.zahtev.razlog_odbijanja).subscribe(data => console.log(data));
+    this.zahtevService.odbitiZahtev(this.zahtev).subscribe(data => console.log(data));
+    setTimeout(() => window.location.reload(), 1000)
   }
 
 }

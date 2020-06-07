@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import isa.klinicki_centar.model.Lekar;
 import isa.klinicki_centar.repositories.LekarRepository;
@@ -33,6 +34,19 @@ public class LekarServiceImpl implements LekarService{
 	@Override
 	public void remove(Integer id) {
 		lekarRepository.deleteById(id);
+	}
+	
+	@Transactional
+	@Override
+	public void oceniLekara(Integer lekarID, Integer ocena) {
+		Lekar lekar = lekarRepository.getOne(lekarID);
+		int brojOcena = lekar.getBroj_ocena();
+		float prosecnaOcena = lekar.getProsecna_ocena();
+		float novaProsecna = (prosecnaOcena * brojOcena + ocena) / (brojOcena + 1);
+		lekar.setBroj_ocena(brojOcena + 1);
+		lekar.setProsecna_ocena(novaProsecna);
+		
+		lekarRepository.updateRating(lekarID, novaProsecna, brojOcena + 1);
 	}
 
 	@Override
@@ -88,6 +102,11 @@ public class LekarServiceImpl implements LekarService{
 	@Override
 	public ArrayList<Lekar> pretregaLekaraPoImenuIPrezimenuITipuPregleda(String ime, String prezime, Integer tipPregledaID) {
 		return lekarRepository.pretregaLekaraPoImenuIPrezimenuITipuPregleda(ime, prezime, tipPregledaID);
+	}
+
+	@Override
+	public ArrayList<Lekar> nadjiLekareZaTipPregledaIDatum(Integer tipPregledaID, Integer klinikaID, String datum) {
+		return lekarRepository.nadjiLekareZaTipPregledaIDatum(tipPregledaID, klinikaID, datum);
 	}
 
 }

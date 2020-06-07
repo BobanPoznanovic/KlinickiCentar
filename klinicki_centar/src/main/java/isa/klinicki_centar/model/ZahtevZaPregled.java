@@ -1,6 +1,6 @@
 package isa.klinicki_centar.model;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -23,9 +23,9 @@ public class ZahtevZaPregled {
 	
 	private Date datum;
 	
-	private Time satnica_pocetak;
+	private LocalTime satnica_pocetak;
 	
-	private Time satnica_kraj;
+	private LocalTime satnica_kraj;
 	
 	private Integer lekarID;
 	
@@ -50,7 +50,7 @@ public class ZahtevZaPregled {
 	}
 
 	public ZahtevZaPregled(Integer zahtevID, Integer klinikaID, Integer pacijentID, Date datum,
-			Time satnica_pocetak, Time satnica_kraj, Integer lekarID, Integer tip_pregledaID,
+			LocalTime satnica_pocetak, LocalTime satnica_kraj, Integer lekarID, Integer tip_pregledaID,
 			Integer popust, Boolean potvrdjen) {
 		this.zahtevID = zahtevID;
 		this.klinikaID = klinikaID;
@@ -96,19 +96,19 @@ public class ZahtevZaPregled {
 		this.datum = datum;
 	}
 
-	public Time getSatnica_pocetak() {
+	public LocalTime getSatnica_pocetak() {
 		return satnica_pocetak;
 	}
 
-	public void setSatnica_pocetak(Time satnica_pocetak) {
+	public void setSatnica_pocetak(LocalTime satnica_pocetak) {
 		this.satnica_pocetak = satnica_pocetak;
 	}
 
-	public Time getSatnica_kraj() {
+	public LocalTime getSatnica_kraj() {
 		return satnica_kraj;
 	}
 
-	public void setSatnica_kraj(Time satnica_kraj) {
+	public void setSatnica_kraj(LocalTime satnica_kraj) {
 		this.satnica_kraj = satnica_kraj;
 	}
 

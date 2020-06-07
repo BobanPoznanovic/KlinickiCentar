@@ -3,9 +3,10 @@ package isa.klinicki_centar.repositories;
 import java.util.ArrayList;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import isa.klinicki_centar.model.Lekar;
 
@@ -44,5 +45,13 @@ public interface LekarRepository extends JpaRepository<Lekar, Integer>{
 	
 	@Query(value = "SELECT * FROM lekar l WHERE l.klinikaID = ?5 AND l.ime = ?1 AND l.prezime = ?2 AND l.prosecna_ocena >= ?3 AND l.lekarID IN (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_ID = ?4)", nativeQuery = true)
 	ArrayList<Lekar> pretregaLekaraAdvanced(String ime, String prezime, float prosecnaOcena, Integer tipPregledaID, Integer klinikaID);
+	
+	@Query(value = "SELECT * FROM lekar l WHERE l.klinikaID = ?2 AND l.lekarID in (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_id = ?1) AND l.lekarID NOT IN (SELECT zzol.lekarID FROM zahtev_za_odsustvo_lekar zzol WHERE ?3 BETWEEN zzol.datum_pocetka AND zzol.datum_kraja)", nativeQuery = true)
+	ArrayList<Lekar> nadjiLekareZaTipPregledaIDatum(Integer tipPregledaID, Integer klinikaID, String datum);
+	
+	@Transactional
+    @Modifying
+    @Query(value = "UPDATE lekar l SET l.prosecna_ocena = ?2, l.broj_ocena = ?3 WHERE l.lekarID = ?1", nativeQuery = true)
+    void updateRating(Integer lekarID, float prosecnaOcena, int brojOcena);
 	
 }

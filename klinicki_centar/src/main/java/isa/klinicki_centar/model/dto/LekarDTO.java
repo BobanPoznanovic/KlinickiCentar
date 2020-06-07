@@ -1,6 +1,6 @@
 package isa.klinicki_centar.model.dto;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 import isa.klinicki_centar.model.Lekar;
 
@@ -26,12 +26,10 @@ public class LekarDTO {
 	
 	private String adresa;
 	
-	private Time pocetak_radnog_vremena;
+	private LocalTime pocetak_radnog_vremena;
 	
-	private Time kraj_radnog_vremena;
-	
-	// tipovi pregleda
-	
+	private LocalTime kraj_radnog_vremena;
+		
 	private float prosecna_ocena;
 	
 	private Integer broj_ocena;
@@ -54,7 +52,7 @@ public class LekarDTO {
 	
 	public LekarDTO(
 			Integer lekarID,  Integer klinikaID, String ime, String prezime, String username, String password,
-			String email, String kontakt_telefon, String adresa, Time pocetak_radnog_vremena, Time kraj_radnog_vremena, 
+			String email, String kontakt_telefon, String adresa, LocalTime pocetak_radnog_vremena, LocalTime kraj_radnog_vremena, 
 			float prosecnaOcena, Integer brojOcena, Boolean izmenjena_sifra_nakon_prvog_logovanja
 			) {
 		super();
@@ -155,19 +153,19 @@ public class LekarDTO {
 		this.adresa = adresa;
 	}
 
-	public Time getPocetak_radnog_vremena() {
+	public LocalTime getPocetak_radnog_vremena() {
 		return pocetak_radnog_vremena;
 	}
 
-	public void setPocetak_radnog_vremena(Time pocetak_radnog_vremena) {
+	public void setPocetak_radnog_vremena(LocalTime pocetak_radnog_vremena) {
 		this.pocetak_radnog_vremena = pocetak_radnog_vremena;
 	}
 
-	public Time getKraj_radnog_vremena() {
+	public LocalTime getKraj_radnog_vremena() {
 		return kraj_radnog_vremena;
 	}
 
-	public void setKraj_radnog_vremena(Time kraj_radnog_vremena) {
+	public void setKraj_radnog_vremena(LocalTime kraj_radnog_vremena) {
 		this.kraj_radnog_vremena = kraj_radnog_vremena;
 	}
 
