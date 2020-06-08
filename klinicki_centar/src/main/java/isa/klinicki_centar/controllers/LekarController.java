@@ -301,4 +301,19 @@ public class LekarController {
 		operacijaService.lekarOcenjenZaOperaciju(operacijaID);
 	}
 	
+	@GetMapping("/sortPoImenu")
+	public ArrayList<Lekar> sortLekaraPoImenu() {
+		return lekarService.sortLekaraPoImenu();
+	}
+
+	@GetMapping("/sortPoPrezimenu")
+	public ArrayList<Lekar> sortLekaraPoPrezimenu() {
+		return lekarService.sortLekaraPoPrezimenu();
+	}
+
+	@GetMapping("/sortPoOceni")
+	public ArrayList<Lekar> sortLekaraPoOceni() {
+		return lekarService.sortLekaraPoOceni();
+	}
+	
 }

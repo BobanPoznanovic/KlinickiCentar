@@ -43,4 +43,10 @@ public interface LekarService {
 	ArrayList<Lekar> nadjiLekareZaTipPregledaIDatum(Integer tipPregledaID, Integer klinikaID, String datum);
 	
 	ArrayList<Lekar> pretregaLekara(String ime, String prezime, float prosecnaOcena, Integer tipPregledaID, String datum);
+	
+	ArrayList<Lekar> sortLekaraPoImenu();
+	
+	ArrayList<Lekar> sortLekaraPoPrezimenu();
+	
+	ArrayList<Lekar> sortLekaraPoOceni();
 }

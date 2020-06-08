@@ -3,7 +3,6 @@ package isa.klinicki_centar.services.impl;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -536,6 +535,11 @@ public class PregledServiceImpl implements PregledService{
 			
 		}
 		
+	}
+
+	@Override
+	public ArrayList<Pregled> sortPregledPoDatumu() {
+		return pregledRepository.sortPregledPoDatumu();
 	}
 
 }

@@ -137,6 +137,11 @@ public class PregledController {
 		
 	}
 	
+	@GetMapping("/sortPoDatumu")
+	public ArrayList<Pregled> sortPregledPoDatumu() {
+		return pregledService.sortPregledPoDatumu();
+	}
+	
 	//Pregledi u jednoj sali
 	
 }

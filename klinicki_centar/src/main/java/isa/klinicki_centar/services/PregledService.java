@@ -2,8 +2,6 @@ package isa.klinicki_centar.services;
 
 import java.util.Date;
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -60,5 +58,7 @@ public interface PregledService {
 	ArrayList<Pregled> nadjiSvePacijentovePreglede(Integer pacijentID);
 	
 	ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(Integer pacijentID);
+	
+	ArrayList<Pregled> sortPregledPoDatumu();
 
 }

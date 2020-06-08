@@ -42,4 +42,7 @@ public interface OperacijaRepository extends JpaRepository<Operacija, Integer> {
 	
 	@Query(value = "SELECT * FROM operacija o WHERE o.pacijentID = ?1 AND o.datum_operacije < ?2", nativeQuery = true)
 	ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(Integer pacijentID, Date datumOperacije);
+	
+	@Query(value = "SELECT * FROM operacija ORDER BY datum_operacije", nativeQuery = true)
+	ArrayList<Operacija> sortOperacijePoDatumu();
 }

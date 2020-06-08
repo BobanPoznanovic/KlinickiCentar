@@ -114,4 +114,19 @@ public class LekarServiceImpl implements LekarService{
 		return lekarRepository.pretregaLekara(ime, prezime, prosecnaOcena, tipPregledaID, datum);
 	}
 
+	@Override
+	public ArrayList<Lekar> sortLekaraPoImenu() {
+		return lekarRepository.sortLekaraPoImenu();
+	}
+
+	@Override
+	public ArrayList<Lekar> sortLekaraPoPrezimenu() {
+		return lekarRepository.sortLekaraPoPrezimenu();
+	}
+
+	@Override
+	public ArrayList<Lekar> sortLekaraPoOceni() {
+		return lekarRepository.sortLekaraPoOceni();
+	}
+
 }

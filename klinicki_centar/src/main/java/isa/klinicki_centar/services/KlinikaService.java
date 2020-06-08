@@ -27,4 +27,12 @@ public interface KlinikaService {
 	ArrayList<Klinika> nadjiKlinikePoTipuPregledaGraduIOceni(Integer tipPregledaID, String grad, float ocena);
 	
 	void oceniKliniku(Integer klinikaID, Integer ocena);
+	
+	ArrayList<Klinika> sortKlinikePoNazivu();
+	
+	ArrayList<Klinika> sortKlinikePoAdresi();
+	
+	ArrayList<Klinika> sortKlinikePoGradu();
+	
+	ArrayList<Klinika> sortKlinikePoOceni();
 }
