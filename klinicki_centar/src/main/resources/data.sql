@@ -33,8 +33,8 @@ insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prez
 insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, broj_telefona, status_zahteva, razlog_odbijanja) values (3214, 'joka@gmail.com', 'jokajoka', 'Joka', 'Jokic', 'Temerinska 1', 'Novi Sad', 'Srbija', '060445566', 1, '');
 
 --Pacijent
-insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1234, 'pacijent1@gmail.com', 'pacijent1sifra', 'Pera', 'Peric', 'Safarikova 1', 'Novi Sad', 'Srbija', '0213001486', 1, 0, 0);
-insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (2345, 'obendtner@gmail.com' ,'pacijent2sifra', 'Mika', 'Mikic', 'Pasterova 1', 'Novi Sad', 'Srbija', '021445522', 2, 0, 0);
+insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1234, 'obendtner@gmail.com', 'pacijent1sifra', 'Pera', 'Peric', 'Safarikova 1', 'Novi Sad', 'Srbija', '0213001486', 1, 0, 0);
+insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (2345, 'pacijent2@gmail.com' ,'pacijent2sifra', 'Mika', 'Mikic', 'Pasterova 1', 'Novi Sad', 'Srbija', '021445522', 2, 0, 0);
 
 --ZdravstveniKarton
 INSERT INTO zdravstveni_karton (pacijentID, datum_rodjenja , visina_pacijenta , tezina_pacijenta , krvna_grupa , dioptrija) VALUES (1, '1990-02-20', '190', '80.5', 'AB+', '+1');

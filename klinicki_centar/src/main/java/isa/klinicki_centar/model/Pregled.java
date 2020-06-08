@@ -2,6 +2,7 @@ package isa.klinicki_centar.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -28,7 +29,7 @@ public class Pregled {
 	
 	private Integer salaID;
 	
-	private LocalDate datum_pregleda;
+	private Date datum_pregleda;
 	
 	private LocalTime satnica_pocetak;
 	
@@ -52,6 +53,26 @@ public class Pregled {
 	
 	public Pregled() {
 		
+	}
+
+	public Pregled(KategorijaPregleda kategorija_pregleda, Integer lekarID, Integer pacijentID, Integer salaID,
+			Date datum_pregleda, LocalTime satnica_pocetak, LocalTime satnica_kraj, Integer tip_pregledaID,
+			float popust) {
+		this.kategorija_pregleda = kategorija_pregleda;
+		this.lekarID = lekarID;
+		this.pacijentID = pacijentID;
+		this.salaID = salaID;
+		this.datum_pregleda = datum_pregleda;
+		this.satnica_pocetak = satnica_pocetak;
+		this.satnica_kraj = satnica_kraj;
+		this.tip_pregledaID = tip_pregledaID;
+		this.popust = popust;
+		this.zakazan_dodatan_pregled = false;
+		this.zakazana_operacija = false;
+		this.potvrdjen = false;
+		this.zavrsen = false;
+		this.lekar_ocenjen = false;
+		this.klinika_ocenjena = false;
 	}
 
 	public Integer getPregledID() {
@@ -94,11 +115,11 @@ public class Pregled {
 		this.salaID = salaID;
 	}
 
-	public LocalDate getDatum_pregleda() {
+	public Date getDatum_pregleda() {
 		return datum_pregleda;
 	}
 
-	public void setDatum_pregleda(LocalDate datum_pregleda) {
+	public void setDatum_pregleda(Date datum_pregleda) {
 		this.datum_pregleda = datum_pregleda;
 	}
 

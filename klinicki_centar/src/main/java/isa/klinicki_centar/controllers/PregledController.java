@@ -1,12 +1,15 @@
 package isa.klinicki_centar.controllers;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import isa.klinicki_centar.model.KategorijaPregleda;
 import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.dto.PregledDTO;
 import isa.klinicki_centar.services.PregledService;
@@ -108,6 +112,29 @@ public class PregledController {
 	@GetMapping("/pacijentoviPreglediOcenjivanje/{pacijentID}")
 	public ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(@PathVariable Integer pacijentID) {
 		return pregledService.nadjiSvePregledeZaOcenjivanje(pacijentID);
+	}
+	
+//	@PutMapping("/sacuvajPregled/{datum}/{satnica_pocetak}/{satnica_kraj}/{popust}/{salaID}/{klinikaID}/{lekarID}/{pacijentID}/{tipPregledaID}/{zahtevZaPregledID}/{kategorijaPregleda}")
+//	public void sacuvajPregled(
+//					@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date datum, @PathVariable String satnica_pocetak,
+//					@PathVariable String satnica_kraj, @PathVariable float popust,
+//					@PathVariable Integer salaID, @PathVariable Integer klinikaID,
+//					@PathVariable Integer lekarID, @PathVariable Integer pacijentID, 
+//					@PathVariable Integer tipPregledaID, @PathVariable Integer zahtevZaPregledID,
+//					@PathVariable KategorijaPregleda kategorijaPregleda) throws ParseException {
+//		
+//		pregledService.sacuvajPregled(datum, satnica_pocetak, satnica_kraj, popust, salaID, klinikaID, lekarID, pacijentID, tipPregledaID, zahtevZaPregledID, kategorijaPregleda);
+//		
+//	}
+	
+	
+	// admin treba da dodeli salu nakon sto je pregled sacuvan
+	
+	@PutMapping("/sacuvajZahtevaniPregled/{zahtevZaPregledID}")
+	public void sacuvajZahtevaniPregled( @PathVariable Integer zahtevZaPregledID) {
+		
+		pregledService.sacuvajZahtevaniPregled(zahtevZaPregledID);
+		
 	}
 	
 	//Pregledi u jednoj sali
