@@ -109,4 +109,9 @@ public class LekarServiceImpl implements LekarService{
 		return lekarRepository.nadjiLekareZaTipPregledaIDatum(tipPregledaID, klinikaID, datum);
 	}
 
+	@Override
+	public ArrayList<Lekar> pretregaLekara(String ime, String prezime, float prosecnaOcena, Integer tipPregledaID, String datum) {
+		return lekarRepository.pretregaLekara(ime, prezime, prosecnaOcena, tipPregledaID, datum);
+	}
+
 }

@@ -46,6 +46,9 @@ public interface LekarRepository extends JpaRepository<Lekar, Integer>{
 	@Query(value = "SELECT * FROM lekar l WHERE l.klinikaID = ?5 AND l.ime = ?1 AND l.prezime = ?2 AND l.prosecna_ocena >= ?3 AND l.lekarID IN (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_ID = ?4)", nativeQuery = true)
 	ArrayList<Lekar> pretregaLekaraAdvanced(String ime, String prezime, float prosecnaOcena, Integer tipPregledaID, Integer klinikaID);
 	
+	@Query(value = "SELECT * FROM lekar l WHERE l.ime = ?1 AND l.prezime = ?2 AND l.prosecna_ocena >= ?3 AND l.lekarID IN (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_ID = ?4) AND l.lekarID NOT IN (SELECT zzol.lekarID FROM zahtev_za_odsustvo_lekar zzol WHERE ?5 BETWEEN zzol.datum_pocetka AND zzol.datum_kraja)", nativeQuery = true)
+	ArrayList<Lekar> pretregaLekara(String ime, String prezime, float prosecnaOcena, Integer tipPregledaID, String datum);
+		
 	@Query(value = "SELECT * FROM lekar l WHERE l.klinikaID = ?2 AND l.lekarID in (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_id = ?1) AND l.lekarID NOT IN (SELECT zzol.lekarID FROM zahtev_za_odsustvo_lekar zzol WHERE ?3 BETWEEN zzol.datum_pocetka AND zzol.datum_kraja)", nativeQuery = true)
 	ArrayList<Lekar> nadjiLekareZaTipPregledaIDatum(Integer tipPregledaID, Integer klinikaID, String datum);
 	
