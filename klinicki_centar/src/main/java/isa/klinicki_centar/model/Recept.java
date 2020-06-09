@@ -18,6 +18,10 @@ public class Recept {
 	
 	private Boolean overen;
 	
+	private Integer lekID;
+	
+	private String upotreba;
+	
 	public Recept() {
 		
 	}
@@ -44,6 +48,22 @@ public class Recept {
 
 	public void setOveren(Boolean overen) {
 		this.overen = overen;
+	}
+
+	public Integer getLekID() {
+		return lekID;
+	}
+
+	public void setLekID(Integer lekID) {
+		this.lekID = lekID;
+	}
+
+	public String getUpotreba() {
+		return upotreba;
+	}
+
+	public void setUpotreba(String upotreba) {
+		this.upotreba = upotreba;
 	}
 
 }

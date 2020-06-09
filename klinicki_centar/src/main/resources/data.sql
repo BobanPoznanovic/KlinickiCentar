@@ -215,3 +215,5 @@ insert into operacija (lekarID, datum_operacije, satnica_pocetka_operacije, satn
 insert into zahtev_za_dodelu_sale (operacijaID, salaID, datum_kreiranja_zahteva, vreme_kreiranja_zahteva, status_zahteva) values (1, 2, '2020-02-09', '10:00', "Nije_procesuiran");
 insert into zahtev_za_dodelu_sale (operacijaID, salaID, datum_kreiranja_zahteva, vreme_kreiranja_zahteva, status_zahteva) values (2, 2, '2020-02-09', '10:00', "Nije_procesuiran");
 insert into zahtev_za_dodelu_sale (operacijaID, salaID, datum_kreiranja_zahteva, vreme_kreiranja_zahteva, status_zahteva) values (3, 2, '2020-02-09', '10:00', "Nije_procesuiran");
+
+--IzvestajPregleda

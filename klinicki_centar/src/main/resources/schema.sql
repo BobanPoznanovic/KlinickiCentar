@@ -302,6 +302,9 @@ CREATE TABLE IZVESTAJ_PREGLEDA (
 CREATE TABLE RECEPT (
 	receptID int AUTO_INCREMENT PRIMARY KEY,
 	izvestaj_pregledaID int,
-	overen boolean
-	CONSTRAINT fk_recept_izvestaj_pregledaID FOREIGN KEY (izvestaj_pregledaID) REFERENCES IZVESTAJ_PREGLEDA(izvestaj_pregledaID)
+	overen boolean,
+	lekID int,
+	upotreba varchar(255),
+	CONSTRAINT fk_recept_izvestaj_pregledaID FOREIGN KEY (izvestaj_pregledaID) REFERENCES IZVESTAJ_PREGLEDA(izvestaj_pregledaID),
+	CONSTRAINT fk_recept_lekID FOREIGN KEY (lekID) REFERENCES LEK(lekID)
 );
