@@ -42,6 +42,20 @@ public class ReceptController {
 		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/all/neovereni")
+	public ResponseEntity<List<ReceptDTO>> getNeovereni() {
+		
+		List<ReceptDTO> retVal = new ArrayList<ReceptDTO>();
+		
+		Iterable<Recept> recepti = receptService.findByOveren(false);
+		
+		for(Recept recept : recepti) {
+			retVal.add(new ReceptDTO(recept));
+		}
+		
+		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ReceptDTO> getRecept(@PathVariable Integer id) {
 		

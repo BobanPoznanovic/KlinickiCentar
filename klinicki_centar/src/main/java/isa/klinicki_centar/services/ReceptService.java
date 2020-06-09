@@ -11,4 +11,6 @@ public interface ReceptService {
 	Recept save(Recept recept);
 	
 	void remove(Integer id);
+	
+	Iterable<Recept> findByOveren(Boolean status);
 }
