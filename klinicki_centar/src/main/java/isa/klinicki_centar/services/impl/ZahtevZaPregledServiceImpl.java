@@ -1,21 +1,25 @@
 package isa.klinicki_centar.services.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import isa.klinicki_centar.model.AdminKlinike;
 import isa.klinicki_centar.model.Klinika;
 import isa.klinicki_centar.model.Lekar;
 import isa.klinicki_centar.model.Pacijent;
 import isa.klinicki_centar.model.TipPregleda;
 import isa.klinicki_centar.model.ZahtevZaPregled;
+import isa.klinicki_centar.repositories.AdminKlinikeRepository;
 import isa.klinicki_centar.repositories.KlinikaRepository;
 import isa.klinicki_centar.repositories.LekarRepository;
 import isa.klinicki_centar.repositories.PacijentRepository;
 import isa.klinicki_centar.repositories.TipPregledaRepository;
 import isa.klinicki_centar.repositories.ZahtevZaPregledRepository;
+import isa.klinicki_centar.services.EmailService;
 import isa.klinicki_centar.services.ZahtevZaPregledService;
 
 @Service
@@ -35,6 +39,12 @@ public class ZahtevZaPregledServiceImpl implements ZahtevZaPregledService {
 	
 	@Autowired
 	private TipPregledaRepository tipPregledaRepository;
+	
+	@Autowired
+	private AdminKlinikeRepository adminKlinikeRepository;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@Override
 	public Iterable<ZahtevZaPregled> findAll() {
@@ -66,6 +76,9 @@ public class ZahtevZaPregledServiceImpl implements ZahtevZaPregledService {
 		ZahtevZaPregled zahtevZaPregled = new ZahtevZaPregled(tipPregledaID, datum, klinikaID, lekarID, pacijentID);
 		zahtevZaPregledRepository.save(zahtevZaPregled);
 		
+		AdminKlinike adminKlinike = adminKlinikeRepository.nadjiAdminaKlinike(klinika.getKlinikaID());
+		
+		
 		System.out.println("\nZahtev za pregled je sacuvan."
 				+ "\n\n\tDatum: " + datum
 				+ "\n\tKlinika: ID-" + klinikaID + ", " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
@@ -73,6 +86,19 @@ public class ZahtevZaPregledServiceImpl implements ZahtevZaPregledService {
 				+ "\n\tLekar: " + lekar.getIme() + " " + lekar.getPrezime()
 				+ "\n\tPacijent: " + pacijent.getIme() + " " + pacijent.getPrezime()
 				+ "\n\tCena: " + tipPregleda.getCena());
+		
+		String message = "\n Detalji zakazanog pregleda: "
+				+ "\n Datum: " + zahtevZaPregled.getDatum()
+				+ "\n Klinika: " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+				+ "\n Lekar: " + lekar.getIme() + " " + lekar.getPrezime()
+				+ "\n Pocetak pregleda: " + zahtevZaPregled.getSatnica_pocetak()
+				+ "\n Kraj pregleda: " + zahtevZaPregled.getSatnica_kraj()
+				+ "\n Tip pregleda: " + tipPregleda.getNaziv()
+				+ "\n Originalna cena: " + tipPregleda.getCena()
+				+ "\n Popust: " + zahtevZaPregled.getPopust() + "\n" ;
+		
+		emailService.sendMailToUser(adminKlinike.getEmail(), message, "Automatski generisan mejl: Pacijent je zakazao pregled");
+		
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import isa.klinicki_centar.model.AdminKlinike;
 import isa.klinicki_centar.model.KategorijaPregleda;
 import isa.klinicki_centar.model.Klinika;
 import isa.klinicki_centar.model.Lekar;
@@ -22,6 +23,7 @@ import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.Sala;
 import isa.klinicki_centar.model.TipPregleda;
 import isa.klinicki_centar.model.ZahtevZaPregled;
+import isa.klinicki_centar.repositories.AdminKlinikeRepository;
 import isa.klinicki_centar.repositories.KlinikaRepository;
 import isa.klinicki_centar.repositories.LekarRepository;
 import isa.klinicki_centar.repositories.OperacijaRepository;
@@ -62,6 +64,9 @@ public class PregledServiceImpl implements PregledService{
 	
 	@Autowired
 	private OperacijaRepository operacijaRepository;
+	
+	@Autowired
+	private AdminKlinikeRepository adminKlinikeRepository;
 	
 	@Override
 	public Iterable<Pregled> findAll() {
@@ -112,6 +117,7 @@ public class PregledServiceImpl implements PregledService{
 		Klinika klinika = klinikaRepository.getOne(lekar.getKlinikaID());
 		TipPregleda tipPregleda = tipPregledaRepository.getOne(pregled.getTip_pregledaID());
 		Sala sala = salaRepository.getOne(pregled.getSalaID());
+		AdminKlinike adminKlinike = adminKlinikeRepository.nadjiAdminaKlinike(klinika.getKlinikaID());
 		
 		String message = "Predefinisani pregled, ID: " + pregledID + ", je uspesno zakazan." 
 				+ "\n Detalji zakazanog pregleda: "
@@ -125,7 +131,19 @@ public class PregledServiceImpl implements PregledService{
 				+ "\n Originalna cena: " + tipPregleda.getCena()
 				+ "\n Popust: " + pregled.getPopust() + "\n" ;
 		
+		String message2 = "\n Detalji zakazanog pregleda: "
+				+ "\n Datum: " + pregled.getDatum_pregleda()
+				+ "\n Klinika: " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+				+ "\n Lekar: " + lekar.getIme() + " " + lekar.getPrezime()
+				+ "\n Sala: " + sala.getBroj_sale()
+				+ "\n Pocetak pregleda: " + pregled.getSatnica_pocetak()
+				+ "\n Kraj pregleda: " + pregled.getSatnica_kraj()
+				+ "\n Tip pregleda: " + tipPregleda.getNaziv()
+				+ "\n Originalna cena: " + tipPregleda.getCena()
+				+ "\n Popust: " + pregled.getPopust() + "\n" ;
+		
 		emailService.sendMailToUser(pacijent.getEmail(), message, "Automatski generisan mejl: Zakazivanje predefinisanog pregleda");
+		emailService.sendMailToUser(adminKlinike.getEmail(), message2, "Automatski generisan mejl: Pacijent je zakazao predefinisani pregled");
 	}
 
 	@Override

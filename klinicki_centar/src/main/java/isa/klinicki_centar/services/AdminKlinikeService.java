@@ -11,5 +11,7 @@ public interface AdminKlinikeService {
 	AdminKlinike save(AdminKlinike admin);
 	
 	void remove(Integer id);
+	
+	AdminKlinike nadjiAdminaKlinike(Integer klinikaID);
 
 }
