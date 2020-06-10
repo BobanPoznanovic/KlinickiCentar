@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import isa.klinicki_centar.model.KategorijaPregleda;
 import isa.klinicki_centar.model.Pregled;
 
 public interface PregledService {
@@ -38,6 +39,10 @@ public interface PregledService {
 	
 	void klinikaOcenjenaZaPregled(Integer pregledID);
 	
+	void sacuvajPregled(Date datum, String satnica_pocetak, String satnica_kraj, float popust, Integer salaID, Integer klinikaID, Integer lekarID, Integer pacijentID, Integer tipPregledaID, Integer zahtevZaPregledID, KategorijaPregleda kategorijaPregleda);
+	
+	void sacuvajZahtevaniPregled(Integer zahtevZaPregledID);
+	
 	ArrayList<Pregled> nadjiSvePredefinisanePreglede();
 	
 	ArrayList<Pregled> sviDoktoroviPregledi(Integer lekarID);
@@ -53,5 +58,7 @@ public interface PregledService {
 	ArrayList<Pregled> nadjiSvePacijentovePreglede(Integer pacijentID);
 	
 	ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(Integer pacijentID);
+	
+	ArrayList<Pregled> sortPregledPoDatumu();
 
 }

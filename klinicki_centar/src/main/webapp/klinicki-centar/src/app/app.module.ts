@@ -22,6 +22,10 @@ import { ListaZahtevaZaDodeluSaleComponent } from './components/lista-zahteva-za
 import { OdbitiZahtevZaRegistracijuComponent } from './components/odbiti-zahtev-za-registraciju/odbiti-zahtev-za-registraciju.component';
 import { DodajZdravstveniKartonComponent } from './components/dodaj-zdravstveni-karton/dodaj-zdravstveni-karton.component';
 import { IzmeniZdravstveniKartonComponent } from './components/izmeni-zdravstveni-karton/izmeni-zdravstveni-karton.component';
+import { RegistracijaComponent } from './components/registracija/registracija.component';
+import { LoginComponent } from './components/login/login.component';
+import { PacijentHomePageComponent } from './components/pacijent-home-page/pacijent-home-page.component';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { IzmeniZdravstveniKartonComponent } from './components/izmeni-zdravstven
     ListaZahtevaZaDodeluSaleComponent,
     OdbitiZahtevZaRegistracijuComponent,
     DodajZdravstveniKartonComponent,
-    IzmeniZdravstveniKartonComponent
+    IzmeniZdravstveniKartonComponent,
+    RegistracijaComponent,
+    LoginComponent,
+    PacijentHomePageComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

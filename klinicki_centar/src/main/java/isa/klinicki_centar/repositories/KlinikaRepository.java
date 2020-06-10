@@ -39,4 +39,16 @@ public interface KlinikaRepository extends JpaRepository<Klinika, Integer>{
     @Query(value = "UPDATE klinika k SET k.prosecna_ocena = ?2, k.broj_ocena = ?3 WHERE k.klinikaID = ?1", nativeQuery = true)
     void updateRatingKlinika(Integer klinikaID, float prosecnaOcena, int brojOcena);
 	
+	@Query(value = "SELECT * FROM db_example.klinika ORDER BY naziv", nativeQuery = true)
+	ArrayList<Klinika> sortKlinikePoNazivu();
+	
+	@Query(value = "SELECT * FROM db_example.klinika ORDER BY adresa", nativeQuery = true)
+	ArrayList<Klinika> sortKlinikePoAdresi();
+	
+	@Query(value = "SELECT * FROM db_example.klinika ORDER BY grad", nativeQuery = true)
+	ArrayList<Klinika> sortKlinikePoGradu();
+	
+	@Query(value = "SELECT * FROM db_example.klinika ORDER BY prosecna_ocena", nativeQuery = true)
+	ArrayList<Klinika> sortKlinikePoOceni();
+	
 }

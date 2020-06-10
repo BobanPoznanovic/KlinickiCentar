@@ -166,4 +166,24 @@ public class KlinikaController {
 		operacijaService.klinikaOcenjenaZaOperaciju(operacijaID);
 	}
 	
+	@GetMapping(value = "/sortPoNazivu")
+	public ArrayList<Klinika> sortKlinikePoNazivu() {
+		return klinikaService.sortKlinikePoNazivu();
+	}
+
+	@GetMapping(value = "/sortPoAdresi")
+	public ArrayList<Klinika> sortKlinikePoAdresi() {
+		return klinikaService.sortKlinikePoAdresi();
+	}
+
+	@GetMapping(value = "/sortPoGradu")
+	public ArrayList<Klinika> sortKlinikePoGradu() {
+		return klinikaService.sortKlinikePoGradu();
+	}
+
+	@GetMapping(value = "/sortPoOceni")
+	public ArrayList<Klinika> sortKlinikePoOceni() {
+		return klinikaService.sortKlinikePoOceni();
+	}
+	
 }

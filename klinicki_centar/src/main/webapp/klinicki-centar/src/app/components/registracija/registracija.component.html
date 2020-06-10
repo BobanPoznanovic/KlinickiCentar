@@ -1,0 +1,150 @@
+<!--<app-nav></app-nav>-->
+
+<div id="regFormContainer">
+
+  <form [formGroup]="userData" (ngSubmit)="onSubmit()">
+
+    <h5 *ngIf="success">Your registration is valid</h5>
+
+    <div class="container">
+      <div id="login-box">
+        <div class="left">
+
+          <h1>Register Form</h1>
+          <br>
+          <label for="inputBrojOsiguranika">Broj osiguranika: </label>
+
+            <input [(ngModel)]="pacijent.broj_osiguranika"
+                    id="inputBrojOsiguranika"
+                    name="brojOsiguranika"
+                    formControlName="brojOsiguranika"
+                    placeholder="Enter your username"
+                   class="form-control"
+                    required>
+            <div *ngIf="submitted && userData.controls.brojOsiguranika.errors">
+              <div *ngIf="userData.controls.brojOsiguranika.errors.required">Broj osiguranika je obavezan</div>
+            </div>
+
+          <label for="inputEmail">Email</label>
+
+            <input [(ngModel)]="pacijent.email"
+                   class="form-control"
+                   id="inputEmail"
+                   name="email" formControlName="email"
+                   placeholder="Unesite email"
+                   required>
+            <div *ngIf="submitted && userData.controls.email.errors">
+              <div *ngIf="userData.controls.email.errors.required">Email je obavezan</div>
+            </div>
+
+          <label for="inputPassword">Password</label>
+            <input [(ngModel)]="pacijent.password"
+                   type="password"
+                   class="form-control"
+                   id="inputPassword"
+                   name="password" formControlName="password"
+                   placeholder="Unesite password"
+                   required>
+            <div *ngIf="submitted && userData.controls.password.errors">
+              <div *ngIf="userData.controls.password.errors.required">Password je obavezan</div>
+            </div>
+
+
+          <label for="inputPasswordRepeat">Repeat password</label>
+            <input [(ngModel)]="passwordRepeat"
+                   type="password"
+                   class="form-control"
+                   id="inputPasswordRepeat"
+                   name="passwordRepeat" formControlName="passwordRepeat"
+                   placeholder="Ponovo unesite password"
+                   required>
+            <div *ngIf="submitted && userData.controls.passwordRepeat.errors">
+              <div *ngIf="userData.controls.passwordRepeat.errors.required">Password mora biti isti</div>
+            </div>
+
+          <label for="InputFirstName">First name</label>
+            <input [(ngModel)]="pacijent.ime"
+                   class="form-control"
+                   id="InputFirstName"
+                   name="firstName" formControlName="firstName"
+                   placeholder="Unesite ime"
+                   required>
+            <div *ngIf="submitted && userData.controls.firstName.errors">
+              <div *ngIf="userData.controls.firstName.errors.required">Ime je obavezano</div>
+            </div>
+
+
+          <label for="InputLastName">Last name</label>
+            <input [(ngModel)]="pacijent.prezime"
+                   class="form-control"
+                   id="InputLastName"
+                   name="lastName" formControlName="lastName"
+                   placeholder="Unesite prezime"
+                   required>
+            <div *ngIf="submitted && userData.controls.lastName.errors">
+              <div *ngIf="userData.controls.lastName.errors.required">Prezime je obavezano</div>
+            </div>
+
+          <label for="inputCountry">Drzava</label>
+            <input [(ngModel)]="pacijent.drzava"
+                   class="form-control"
+                   id="inputCountry"
+                   name="country" formControlName="country"
+                   placeholder="Unesite drzavu"
+                   required>
+            <div *ngIf="submitted && userData.controls.country.errors">
+              <div *ngIf="userData.controls.country.errors.required">Drzava je obavezna</div>
+            </div>
+
+          <label for="inputCity">Grad</label>
+          <input [(ngModel)]="pacijent.grad"
+                 class="form-control"
+                 id="inputCity"
+                 name="city" formControlName="city"
+                 placeholder="Unesite grad"
+                 required>
+          <div *ngIf="submitted && userData.controls.city.errors">
+            <div *ngIf="userData.controls.city.errors.required">Grad je obavezan</div>
+          </div>
+
+          <label for="inputAddress">Adresa</label>
+          <input [(ngModel)]="pacijent.adresa"
+                 class="form-control"
+                 id="inputAddress"
+                 name="address" formControlName="address"
+                 placeholder="Unesite adresu"
+                 required>
+          <div *ngIf="submitted && userData.controls.address.errors">
+            <div *ngIf="userData.controls.address.errors.required">Adresa je obavezna</div>
+          </div>
+
+          <label for="inputPhone">Telefon</label>
+          <input [(ngModel)]="pacijent.kontakt_telefon"
+                 class="form-control"
+                 id="inputPhone"
+                 name="phone" formControlName="phone"
+                 placeholder="Unesite telefon"
+                 required>
+          <div *ngIf="submitted && userData.controls.phone.errors">
+            <div *ngIf="userData.controls.phone.errors.required">Telefon je obavezan</div>
+          </div>
+
+
+          <button [ngClass]="!userData.valid ? 'btn btn-danger' : 'btn btn-success'"
+                  type="submit"
+                  [disabled]="!userData.valid">Register</button>
+
+          <br>
+          <br>
+          <br>
+          Already have account?
+          <a routerLink="/login"> Login</a>
+
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+

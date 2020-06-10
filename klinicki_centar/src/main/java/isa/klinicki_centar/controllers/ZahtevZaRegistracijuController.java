@@ -88,10 +88,10 @@ public class ZahtevZaRegistracijuController {
 		
 		ZahtevZaRegistraciju noviZahtev = new ZahtevZaRegistraciju();
 		
-		Random rand = new Random();
-		int num = rand. nextInt(90000000) + 10000000;
+//		Random rand = new Random();
+//		int num = rand. nextInt(90000000) + 10000000;
 		
-		noviZahtev.setBroj_osiguranika(num);
+		noviZahtev.setBroj_osiguranika(zahtev.getBroj_osiguranika());
 		noviZahtev.setAdresa(zahtev.getAdresa());
 		noviZahtev.setBroj_telefona(zahtev.getBroj_telefona());
 		noviZahtev.setDrzava(zahtev.getDrzava());
