@@ -14,6 +14,7 @@ import { ListaPregledaComponent } from './components/lista-pregleda/lista-pregle
 import { DodajIzvestajPregledaComponent } from './components/dodaj-izvestaj-pregleda/dodaj-izvestaj-pregleda.component';
 import { ListaZahtevaZaDodeluSaleComponent } from './components/lista-zahteva-za-dodelu-sale/lista-zahteva-za-dodelu-sale.component';
 import {LoginComponent} from './components/login/login.component';
+import {RegistracijaComponent} from './components/registracija/registracija.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'pregled/all', component: ListaPregledaComponent},
   { path: 'pregled/izvestaj/dodaj', component: DodajIzvestajPregledaComponent},
   { path: 'admin.klinika/zahtevi/sala', component: ListaZahtevaZaDodeluSaleComponent},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegistracijaComponent}
 ];
 
 @NgModule({

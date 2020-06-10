@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {Pacijent} from '../../model/pacijent';
 
 @Component({
   selector: 'app-registracija',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistracijaComponent implements OnInit {
 
+  userData: FormGroup;
+  submitted = false;
+  success = false;
+  passwordRepeat: string;
+
+  pacijent: Pacijent;
+
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+
+  }
 }
