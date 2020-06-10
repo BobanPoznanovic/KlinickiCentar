@@ -1,6 +1,7 @@
 package isa.klinicki_centar.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,5 +134,32 @@ public class PacijentController {
 		else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@PostMapping(
+			value = "/login",
+			consumes = "application/json")
+	public ResponseEntity<Object> login(@RequestBody PacijentDTO pacijent) {
+		
+		if (pacijent.getEmail() == null || pacijent.getEmail().equals("")) {
+			return new ResponseEntity<>("Enter username", HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		Pacijent pacijentIzBaze = pacijentService.findByEmail(pacijent.getEmail());
+		
+		if(pacijentIzBaze != null) {
+			if( pacijentIzBaze.getPassword().equals(pacijent.getPassword()) ) {
+				String token = pacijentIzBaze.getEmail();
+				HashMap<String, Object> response = new HashMap<>();
+				response.put("token", token);
+				
+				return new ResponseEntity<>(response, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			}
+		} else {
+			return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+		
 	}
 }
