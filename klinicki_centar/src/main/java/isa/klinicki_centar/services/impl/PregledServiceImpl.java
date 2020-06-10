@@ -388,4 +388,10 @@ public class PregledServiceImpl implements PregledService{
 		return pregledRepository.nadjiSvePregledeZaOcenjivanje(pacijentID);
 	}
 
+	@Override
+	public ArrayList<Pregled> sviZavrseniDoktoroviPregledi(Integer lekarID) {
+		// TODO Auto-generated method stub
+		return pregledRepository.sviZavrseniDoktoroviPregledi(lekarID);
+	}
+
 }

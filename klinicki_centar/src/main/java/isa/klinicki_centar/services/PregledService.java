@@ -53,5 +53,7 @@ public interface PregledService {
 	ArrayList<Pregled> nadjiSvePacijentovePreglede(Integer pacijentID);
 	
 	ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(Integer pacijentID);
+	
+	ArrayList<Pregled> sviZavrseniDoktoroviPregledi(Integer lekarID);
 
 }

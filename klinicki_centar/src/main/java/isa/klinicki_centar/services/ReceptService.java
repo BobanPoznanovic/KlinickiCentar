@@ -13,4 +13,8 @@ public interface ReceptService {
 	void remove(Integer id);
 	
 	Iterable<Recept> findByOveren(Boolean status);
+	
+	Iterable<Recept> findAllNeovereniByPregledID(Integer pregledID);
+	
+	Iterable<Recept> findAllNeovereniByKlinika(Integer id);
 }

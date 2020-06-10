@@ -56,6 +56,16 @@ public class ReceptController {
 		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/all/neovereni/{id}")
+	public ResponseEntity<List<ReceptDTO>> getNeovereniSaKlinike() {
+		
+		List<ReceptDTO> retVal = new ArrayList<ReceptDTO>();
+		
+		
+		
+		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ReceptDTO> getRecept(@PathVariable Integer id) {
 		
