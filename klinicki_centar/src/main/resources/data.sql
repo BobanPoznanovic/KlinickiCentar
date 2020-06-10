@@ -215,3 +215,18 @@ insert into operacija (lekarID, datum_operacije, satnica_pocetka_operacije, satn
 insert into zahtev_za_dodelu_sale (operacijaID, salaID, datum_kreiranja_zahteva, vreme_kreiranja_zahteva, status_zahteva) values (1, 2, '2020-02-09', '10:00', "Nije_procesuiran");
 insert into zahtev_za_dodelu_sale (operacijaID, salaID, datum_kreiranja_zahteva, vreme_kreiranja_zahteva, status_zahteva) values (2, 2, '2020-02-09', '10:00', "Nije_procesuiran");
 insert into zahtev_za_dodelu_sale (operacijaID, salaID, datum_kreiranja_zahteva, vreme_kreiranja_zahteva, status_zahteva) values (3, 2, '2020-02-09', '10:00', "Nije_procesuiran");
+
+--Lek
+insert into lek (naziv, proizvodjac, doza) values ("Aspirin", "Hemofarm", "500mg");
+insert into lek (naziv, proizvodjac, doza) values ("Aspirin", "Bayer", "500mg");
+insert into lek (naziv, proizvodjac, doza) values ("Vitamin C", "Galenika", "500mg");
+
+--IzvestajPregleda
+insert into izvestaj_pregleda (pregledID, dijagnozaID, opis_pregleda) values (1, 1, "Prehladjen je Peraaaaa");
+							  
+--Recept
+insert into recept (izvestaj_pregledaID, overen, lekID, upotreba) values (1, false, 1, "Jednom dnevno");
+insert into recept (izvestaj_pregledaID, overen, lekID, upotreba) values (1, false, 2, "Dva puta dnevno");
+insert into recept (izvestaj_pregledaID, overen, lekID, upotreba) values (1, false, 3, "Tri puta dnevno");
+							 
+				

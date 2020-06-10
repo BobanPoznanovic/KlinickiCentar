@@ -408,6 +408,12 @@ public class PregledServiceImpl implements PregledService{
 	}
 
 	@Override
+	public ArrayList<Pregled> sviZavrseniDoktoroviPregledi(Integer lekarID) {
+		// TODO Auto-generated method stub
+		return pregledRepository.sviZavrseniDoktoroviPregledi(lekarID);
+	}
+
+	@Override
 	public void sacuvajPregled(Date datum, String satnica_pocetak, String satnica_kraj, float popust,
 			Integer salaID, Integer klinikaID, Integer lekarID, Integer pacijentID, Integer tipPregledaID,
 			Integer zahtevZaPregledID, KategorijaPregleda kategorijaPregleda) {

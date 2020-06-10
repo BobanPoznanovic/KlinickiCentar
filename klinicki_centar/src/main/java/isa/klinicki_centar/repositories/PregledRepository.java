@@ -80,6 +80,9 @@ public interface PregledRepository extends JpaRepository<Pregled, Integer>{
 	@Query(value = "SELECT * FROM pregled p WHERE p.pacijentID = ?1 AND p.zavrsen = true", nativeQuery = true)
 	ArrayList<Pregled> nadjiSvePregledeZaOcenjivanje(Integer pacijentID);
 	
+	@Query(value = "SELECT * FROM pregled p WHERE p.lekarID = ?1 AND p.zavrsen = true AND p.pacijentID != null", nativeQuery = true)
+	ArrayList<Pregled> sviZavrseniDoktoroviPregledi(Integer lekarID);
+	
 	@Query(value = "SELECT * FROM pregled ORDER BY datum_pregleda", nativeQuery = true)
 	ArrayList<Pregled> sortPregledPoDatumu();
 	
