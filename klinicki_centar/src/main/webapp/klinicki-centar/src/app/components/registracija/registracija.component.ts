@@ -43,7 +43,7 @@ export class RegistracijaComponent implements OnInit {
       country: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
       city: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
       address: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(9), Validators.maxLength(10)]]
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(6), Validators.maxLength(10)]]
     },
       {validator: this.checkPasswords});
   }
