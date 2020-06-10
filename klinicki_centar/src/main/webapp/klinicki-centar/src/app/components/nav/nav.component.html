@@ -1,0 +1,59 @@
+<!--*ngIf="!userIsLoggedIn"-->
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+
+
+
+    <div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a routerLink="/register">Register</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!--<nav *ngIf="userIsLoggedIn" class="navbar navbar-inverse" role="navigation">-->
+<!--  <div class="container-fluid">-->
+
+<!--    <div class="navbar-header">-->
+<!--      <a class="navbar-brand" routerLink="/">-->
+<!--        <i class="glyphicon glyphicon-home"></i> Home-->
+<!--      </a>-->
+
+<!--      <ul class="nav navbar-nav" id="navListFHClogged">-->
+<!--        <li routerLinkActive="active">-->
+<!--          <a class="navbar-brand" routerLink="/">-->
+<!--          </a>-->
+<!--        </li>-->
+<!--        <li routerLinkActive="active">-->
+<!--          <a class="navbar-brand" routerLink="/">-->
+<!--          </a>-->
+<!--        </li>-->
+<!--        <li routerLinkActive="active">-->
+<!--          <a class="navbar-brand" routerLink="/">-->
+<!--          </a>-->
+<!--        </li>-->
+<!--      </ul>-->
+
+<!--    </div>-->
+
+<!--    <div>-->
+<!--      <ul class="nav navbar-nav navbar-right">-->
+<!--        <li>-->
+<!--          <a routerLink="/profile">-->
+<!--            <i class="glyphicon glyphicon-user"></i> My Profile-->
+<!--          </a>-->
+<!--        </li>-->
+
+<!--        <li>-->
+<!--          <a (click)="logout()">-->
+<!--            <span class="glyphicon glyphicon-log-out"></span>Logout-->
+<!--          </a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</nav>-->

@@ -112,5 +112,10 @@ public class AdminKlinikeController {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping(value = "/adminovaKlinika/{klinikaID}")
+	public AdminKlinike nadjiAdminaKlinike(@PathVariable Integer klinikaID) {
+		return adminKlinikeService.nadjiAdminaKlinike(klinikaID);
+	}
 
 }

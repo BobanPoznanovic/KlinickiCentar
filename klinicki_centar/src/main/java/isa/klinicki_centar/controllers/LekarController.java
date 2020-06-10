@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import isa.klinicki_centar.services.PregledService;
 
 @RestController
 @RequestMapping(path = "/lekar")
+@CrossOrigin(origins = "*")
 public class LekarController {
 	
 	@Autowired
@@ -270,6 +272,18 @@ public class LekarController {
 		return lekari;
 	}
 	
+	@GetMapping("/search")
+    @ResponseBody
+    public ArrayList<Lekar> pretregaLekara(
+    		@RequestParam(name = "ime") String ime,
+    		@RequestParam(name = "prezime") String prezime,
+    		@RequestParam(name = "prosecnaOcena") float prosecnaOcena,
+    		@RequestParam(name = "tipPregledaID") Integer tipPregledaID,
+    		@RequestParam(name = "datum")String datum) {
+		
+		return lekarService.pretregaLekara(ime, prezime, prosecnaOcena, tipPregledaID, datum);
+	}
+	
 	@GetMapping("/search/lekariZaPregled/{tipPregledaID}/{klinikaID}/{datum}")
 	public ArrayList<Lekar> nadjiLekareZaTipPregledaIDatum(@PathVariable Integer tipPregledaID, @PathVariable Integer klinikaID, @PathVariable String datum) {
 		return lekarService.nadjiLekareZaTipPregledaIDatum(tipPregledaID, klinikaID, datum);
@@ -285,6 +299,21 @@ public class LekarController {
 	public void oceniLekaraOperacija(@PathVariable Integer operacijaID, @PathVariable Integer ocena, @PathVariable Integer lekarID) {
 		lekarService.oceniLekara(lekarID, ocena);
 		operacijaService.lekarOcenjenZaOperaciju(operacijaID);
+	}
+	
+	@GetMapping("/sortPoImenu")
+	public ArrayList<Lekar> sortLekaraPoImenu() {
+		return lekarService.sortLekaraPoImenu();
+	}
+
+	@GetMapping("/sortPoPrezimenu")
+	public ArrayList<Lekar> sortLekaraPoPrezimenu() {
+		return lekarService.sortLekaraPoPrezimenu();
+	}
+
+	@GetMapping("/sortPoOceni")
+	public ArrayList<Lekar> sortLekaraPoOceni() {
+		return lekarService.sortLekaraPoOceni();
 	}
 	
 }

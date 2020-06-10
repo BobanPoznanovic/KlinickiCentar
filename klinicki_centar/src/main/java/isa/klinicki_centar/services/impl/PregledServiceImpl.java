@@ -13,6 +13,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import isa.klinicki_centar.model.AdminKlinike;
+import isa.klinicki_centar.model.KategorijaPregleda;
 import isa.klinicki_centar.model.Klinika;
 import isa.klinicki_centar.model.Lekar;
 import isa.klinicki_centar.model.Operacija;
@@ -21,6 +23,7 @@ import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.Sala;
 import isa.klinicki_centar.model.TipPregleda;
 import isa.klinicki_centar.model.ZahtevZaPregled;
+import isa.klinicki_centar.repositories.AdminKlinikeRepository;
 import isa.klinicki_centar.repositories.KlinikaRepository;
 import isa.klinicki_centar.repositories.LekarRepository;
 import isa.klinicki_centar.repositories.OperacijaRepository;
@@ -61,6 +64,9 @@ public class PregledServiceImpl implements PregledService{
 	
 	@Autowired
 	private OperacijaRepository operacijaRepository;
+	
+	@Autowired
+	private AdminKlinikeRepository adminKlinikeRepository;
 	
 	@Override
 	public Iterable<Pregled> findAll() {
@@ -111,6 +117,7 @@ public class PregledServiceImpl implements PregledService{
 		Klinika klinika = klinikaRepository.getOne(lekar.getKlinikaID());
 		TipPregleda tipPregleda = tipPregledaRepository.getOne(pregled.getTip_pregledaID());
 		Sala sala = salaRepository.getOne(pregled.getSalaID());
+		AdminKlinike adminKlinike = adminKlinikeRepository.nadjiAdminaKlinike(klinika.getKlinikaID());
 		
 		String message = "Predefinisani pregled, ID: " + pregledID + ", je uspesno zakazan." 
 				+ "\n Detalji zakazanog pregleda: "
@@ -124,7 +131,19 @@ public class PregledServiceImpl implements PregledService{
 				+ "\n Originalna cena: " + tipPregleda.getCena()
 				+ "\n Popust: " + pregled.getPopust() + "\n" ;
 		
+		String message2 = "\n Detalji zakazanog pregleda: "
+				+ "\n Datum: " + pregled.getDatum_pregleda()
+				+ "\n Klinika: " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+				+ "\n Lekar: " + lekar.getIme() + " " + lekar.getPrezime()
+				+ "\n Sala: " + sala.getBroj_sale()
+				+ "\n Pocetak pregleda: " + pregled.getSatnica_pocetak()
+				+ "\n Kraj pregleda: " + pregled.getSatnica_kraj()
+				+ "\n Tip pregleda: " + tipPregleda.getNaziv()
+				+ "\n Originalna cena: " + tipPregleda.getCena()
+				+ "\n Popust: " + pregled.getPopust() + "\n" ;
+		
 		emailService.sendMailToUser(pacijent.getEmail(), message, "Automatski generisan mejl: Zakazivanje predefinisanog pregleda");
+		emailService.sendMailToUser(adminKlinike.getEmail(), message2, "Automatski generisan mejl: Pacijent je zakazao predefinisani pregled");
 	}
 
 	@Override
@@ -392,6 +411,159 @@ public class PregledServiceImpl implements PregledService{
 	public ArrayList<Pregled> sviZavrseniDoktoroviPregledi(Integer lekarID) {
 		// TODO Auto-generated method stub
 		return pregledRepository.sviZavrseniDoktoroviPregledi(lekarID);
+	}
+
+	@Override
+	public void sacuvajPregled(Date datum, String satnica_pocetak, String satnica_kraj, float popust,
+			Integer salaID, Integer klinikaID, Integer lekarID, Integer pacijentID, Integer tipPregledaID,
+			Integer zahtevZaPregledID, KategorijaPregleda kategorijaPregleda) {
+		
+		TipPregleda tipPregleda = tipPregledaRepository.getOne(tipPregledaID);
+		Lekar lekar = lekarRepository.getOne(lekarID);
+		Klinika klinika = klinikaRepository.getOne(klinikaID);
+		
+		Pacijent pacijent = null;
+		
+		if (pacijentID != null) {
+			pacijent = pacijentRepository.getOne(pacijentID);
+		}
+		
+		String[] pocetak = satnica_pocetak.split(":");
+		String[] kraj = satnica_kraj.split(":");
+		
+		int poc = Integer.parseInt(pocetak[0]);  
+		int kr = Integer.parseInt(pocetak[1]);  
+		
+		int poc2 = Integer.parseInt(kraj[0]);  
+		int kr2 = Integer.parseInt(kraj[1]);
+		
+		LocalTime vrPocetak = LocalTime.of(poc, kr);
+		LocalTime vrKraj = LocalTime.of(poc2, kr2);
+		
+		Sala sala = salaRepository.getOne(salaID);
+		
+		Pregled pregled = new Pregled(kategorijaPregleda, lekarID, pacijentID, salaID, datum, vrPocetak, vrKraj, tipPregledaID, popust);
+		
+		this.pregledRepository.save(pregled);
+		
+		if (zahtevZaPregledID != null) {
+			this.zahtevZaPregledRepository.deleteById(zahtevZaPregledID);
+			
+			String porukaZaPacijenta = "Pregled je uspesno zakazan." 
+					+ "\n\n Detalji zakazanog pregleda: "
+					+ "\n\n Datum: " + pregled.getDatum_pregleda()
+					+ "\n Klinika: " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+					+ "\n Lekar: " + lekar.getIme() + " " + lekar.getPrezime()
+					+ "\n Sala: " + sala.getBroj_sale()
+					+ "\n Pocetak pregleda: " + pregled.getSatnica_pocetak()
+					+ "\n Kraj pregleda: " + pregled.getSatnica_kraj()
+					+ "\n Tip pregleda: " + tipPregleda.getNaziv()
+					+ "\n Originalna cena: " + tipPregleda.getCena()
+					+ "\n Popust: " + pregled.getPopust()
+					+ "\n\n Potvrditi pregled: " + "http://localhost:4200/potvrditiPregled/" + pregled.getPregledID()
+					+ "\n Odbiti pregled: " + "http://localhost:4200/odbitiPregled/" + pregled.getPregledID();
+			
+			String porukaZaLekara = "Imate zakazan pregled." 
+					+ "\n\n Detalji zakazanog pregleda: "
+					+ "\n\n Datum: " + pregled.getDatum_pregleda()
+					+ "\n Klinika: " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+					+ "\n Pacijent: " + pacijent.getIme() + " " + pacijent.getPrezime()
+					+ "\n Sala: " + sala.getBroj_sale()
+					+ "\n Tip pregleda: " + tipPregleda.getNaziv()
+					+ "\n Pocetak pregleda: " + pregled.getSatnica_pocetak()
+					+ "\n Kraj pregleda: " + pregled.getSatnica_kraj();
+			
+			emailService.sendMailToUser(pacijent.getEmail(), porukaZaPacijenta, "Automatski generisan mejl: Potvrdite ili odbijte zakazani pregled");
+			emailService.sendMailToUser(lekar.getEmail(), porukaZaLekara, "Automatski generisan mejl: Zakazan pregled");
+			
+		}
+		
+		
+	}
+
+	@Override
+	public void sacuvajZahtevaniPregled(Integer zahtevZaPregledID) {
+		
+		ZahtevZaPregled zahtevZaPregled = zahtevZaPregledRepository.getOne(zahtevZaPregledID);
+		
+		System.out.println("Pronadjen zahtev ID  -  " + zahtevZaPregled.getZahtevID());
+		
+		TipPregleda tipPregleda = tipPregledaRepository.getOne(zahtevZaPregled.getTip_pregledaID());
+		Lekar lekar = lekarRepository.getOne(zahtevZaPregled.getLekarID());
+		Klinika klinika = klinikaRepository.getOne(zahtevZaPregled.getKlinikaID());
+		
+		Pacijent pacijent = null;
+		
+		if (zahtevZaPregled.getPacijentID() != null) {
+			pacijent = pacijentRepository.getOne(zahtevZaPregled.getPacijentID());
+		}
+		
+		String	start = zahtevZaPregled.getSatnica_pocetak().toString().substring(0, 5);
+		String	end = zahtevZaPregled.getSatnica_kraj().toString().substring(0, 5);
+		
+		String[] pocetak = start.split(":");
+		String[] kraj = end.split(":");
+		
+		int poc = Integer.parseInt(pocetak[0]);  
+		int kr = Integer.parseInt(pocetak[1]);  
+		
+		int poc2 = Integer.parseInt(kraj[0]);  
+		int kr2 = Integer.parseInt(kraj[1]);
+		
+		LocalTime vrPocetak = LocalTime.of(poc, kr);
+		LocalTime vrKraj = LocalTime.of(poc2, kr2);
+		
+		// Sala sala = salaRepository.getOne(zahtevZaPregled);
+		
+		Pregled pregled = new Pregled(
+										KategorijaPregleda.Normalan,
+										zahtevZaPregled.getLekarID(),
+										zahtevZaPregled.getPacijentID(),
+										null,
+										zahtevZaPregled.getDatum(),
+										vrPocetak,
+										vrKraj,
+										zahtevZaPregled.getTip_pregledaID(),
+										zahtevZaPregled.getPopust()
+									);
+		
+		this.pregledRepository.save(pregled);
+		
+		if (zahtevZaPregledID != null) {
+			zahtevZaPregledRepository.deleteById(zahtevZaPregledID);
+			
+			String porukaZaPacijenta = "Pregled je uspesno zakazan." 
+					+ "\n\n Detalji zakazanog pregleda: "
+					+ "\n\n Datum: " + pregled.getDatum_pregleda()
+					+ "\n Klinika: " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+					+ "\n Lekar: " + lekar.getIme() + " " + lekar.getPrezime()
+					+ "\n Pocetak pregleda: " + pregled.getSatnica_pocetak()
+					+ "\n Kraj pregleda: " + pregled.getSatnica_kraj()
+					+ "\n Tip pregleda: " + tipPregleda.getNaziv()
+					+ "\n Originalna cena: " + tipPregleda.getCena()
+					+ "\n Popust: " + pregled.getPopust()
+					+ "\n\n Potvrditi pregled: " + "http://localhost:4200/potvrditiPregled/" + pregled.getPregledID()
+					+ "\n Odbiti pregled: " + "http://localhost:4200/odbitiPregled/" + pregled.getPregledID();
+			
+			String porukaZaLekara = "Imate zakazan pregled." 
+					+ "\n\n Detalji zakazanog pregleda: "
+					+ "\n\n Datum: " + pregled.getDatum_pregleda()
+					+ "\n Klinika: " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+					+ "\n Pacijent: " + pacijent.getIme() + " " + pacijent.getPrezime()
+					+ "\n Tip pregleda: " + tipPregleda.getNaziv()
+					+ "\n Pocetak pregleda: " + pregled.getSatnica_pocetak()
+					+ "\n Kraj pregleda: " + pregled.getSatnica_kraj();
+			
+			emailService.sendMailToUser(pacijent.getEmail(), porukaZaPacijenta, "Automatski generisan mejl: Potvrdite ili odbijte zakazani pregled");
+			emailService.sendMailToUser(lekar.getEmail(), porukaZaLekara, "Automatski generisan mejl: Zakazan pregled");
+			
+		}
+		
+	}
+
+	@Override
+	public ArrayList<Pregled> sortPregledPoDatumu() {
+		return pregledRepository.sortPregledPoDatumu();
 	}
 
 }

@@ -10,4 +10,5 @@ export class Pacijent {
     drzava : string;
     kontakt_telefon : string;
     zdravstveni_kartonID : number;
+    aktivan: boolean;
 }

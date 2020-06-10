@@ -37,4 +37,9 @@ public class AdminKlinikeServiceImpl implements AdminKlinikeService{
 		adminKlinikeRepository.deleteById(id);
 	}
 
+	@Override
+	public AdminKlinike nadjiAdminaKlinike(Integer klinikaID) {
+		return adminKlinikeRepository.nadjiAdminaKlinike(klinikaID);
+	}
+
 }

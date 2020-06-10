@@ -11,4 +11,8 @@ export class Pregled {
     popust : number;
     zakazan_dodatan_pregled : boolean;
     zakazana_operacija : boolean;
+    potvrdjen : boolean;
+    zavrsen : boolean;
+    lekar_ocenjen : boolean;
+    klinika_ocenjena : boolean;
 }

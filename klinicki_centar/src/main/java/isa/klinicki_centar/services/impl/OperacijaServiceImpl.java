@@ -75,6 +75,11 @@ public class OperacijaServiceImpl implements OperacijaService {
 	public ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(Integer pacijentID, Date datumOperacije) {
 		return operacijaRepository.nadjiSveOperacijeZaOcenjivanje(pacijentID, datumOperacije);
 	}
+
+	@Override
+	public ArrayList<Operacija> sortOperacijePoDatumu() {
+		return operacijaRepository.sortOperacijePoDatumu();
+	}
 	
 	
 	

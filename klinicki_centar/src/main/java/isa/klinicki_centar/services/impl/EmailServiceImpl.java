@@ -7,6 +7,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import isa.klinicki_centar.controllers.PacijentController;
@@ -24,9 +25,10 @@ public class EmailServiceImpl implements EmailService {
     private Logger logger = LoggerFactory.getLogger(PacijentController.class);
 	
 	@Override
+	@Async
 	public void sendNotification(String email, String message, String subject)
 			throws MailException, InterruptedException {
-		
+		System.out.println("Sending email...");
 		SimpleMailMessage mail = new SimpleMailMessage();
         mail.setTo(email);
         mail.setFrom(env.getProperty("spring.mail.username"));

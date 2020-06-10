@@ -1,6 +1,5 @@
 package isa.klinicki_centar.services.impl;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +78,26 @@ public class KlinikaServiceImpl implements KlinikaService {
 		klinika.setProsecnaOcena(novaProsecna);
 		
 		klinikaRepository.updateRatingKlinika(klinikaID, novaProsecna, brojOcena + 1);
+	}
+
+	@Override
+	public ArrayList<Klinika> sortKlinikePoNazivu() {
+		return klinikaRepository.sortKlinikePoNazivu();
+	}
+
+	@Override
+	public ArrayList<Klinika> sortKlinikePoAdresi() {
+		return klinikaRepository.sortKlinikePoAdresi();
+	}
+
+	@Override
+	public ArrayList<Klinika> sortKlinikePoGradu() {
+		return klinikaRepository.sortKlinikePoGradu();
+	}
+
+	@Override
+	public ArrayList<Klinika> sortKlinikePoOceni() {
+		return klinikaRepository.sortKlinikePoOceni();
 	}
 
 

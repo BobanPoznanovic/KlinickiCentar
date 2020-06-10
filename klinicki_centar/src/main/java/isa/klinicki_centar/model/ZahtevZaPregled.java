@@ -45,6 +45,8 @@ public class ZahtevZaPregled {
 		this.datum = datum;
 		this.lekarID = lekarID;
 		this.tip_pregledaID = tip_pregledaID;
+		this.satnica_pocetak = LocalTime.of(datum.getHours(), datum.getMinutes());
+		this.satnica_kraj = satnica_pocetak.plusMinutes(29);
 		this.popust = 0;
 		this.potvrdjen = false;
 	}

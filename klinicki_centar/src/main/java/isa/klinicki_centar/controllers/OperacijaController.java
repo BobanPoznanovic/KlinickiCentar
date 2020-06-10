@@ -63,4 +63,9 @@ public class OperacijaController {
 		return operacijaService.nadjiSveOperacijeZaOcenjivanje(pacijentID, datumOperacije);
 	}
 	
+	@GetMapping("/sortPoDatumu")
+	public ArrayList<Operacija> sortOperacijePoDatumu() {
+		return operacijaService.sortOperacijePoDatumu();
+	}
+	
 }
