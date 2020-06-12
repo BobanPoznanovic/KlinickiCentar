@@ -19,4 +19,8 @@ export class LekService {
   dodajLek(lek: Lek): Observable<Lek> {
     return this.http.post<Lek>(this.url,lek,this.httpOptions);
   }
+
+  getLek(lekID: number) : Observable<Lek> {
+    return this.http.get<Lek>(this.url+'/'+lekID)
+  }
 }

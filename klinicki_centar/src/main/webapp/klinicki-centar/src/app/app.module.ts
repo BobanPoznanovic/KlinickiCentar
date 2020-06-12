@@ -26,6 +26,7 @@ import { RegistracijaComponent } from './components/registracija/registracija.co
 import { LoginComponent } from './components/login/login.component';
 import { PacijentHomePageComponent } from './components/pacijent-home-page/pacijent-home-page.component';
 import { NavComponent } from './components/nav/nav.component';
+import { ReceptiComponent } from './components/recepti/recepti.component';  
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { NavComponent } from './components/nav/nav.component';
     RegistracijaComponent,
     LoginComponent,
     PacijentHomePageComponent,
-    NavComponent
+    NavComponent,
+    ReceptiComponent
   ],
   imports: [
     BrowserModule,
