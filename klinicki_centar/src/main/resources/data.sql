@@ -81,6 +81,9 @@ insert into lekar (klinikaID, ime, prezime, username, password, email, kontakt_t
 insert into lekar (klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, pocetak_radnog_vremena, kraj_radnog_vremena, prosecna_ocena, broj_ocena, izmenjena_sifra_nakon_prvog_logovanja, version) values (4, "Fedor", "Milic", "fele", "zzwert45", "fedor@gmail.com", "0635899665", "Novi Sad", '07:00', '15:00', 0.0, 0, false, 0);
 insert into lekar (klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, pocetak_radnog_vremena, kraj_radnog_vremena, prosecna_ocena, broj_ocena, izmenjena_sifra_nakon_prvog_logovanja, version) values (4, "Julija", "Stankovic", "jules", "12vbbv", "julija@gmail.com", "0625894412", "Novi Sad", '07:00', '15:00', 0.0, 0, false, 0);
 
+--Medicinska sestra
+insert into medicinska_sestra (klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, izmenjena_sifra_nakon_prvog_logovanja) values (1, "Zora", "Zoric", "zoraz", "zorinasifra", "zoraz@gmail.com", "060482548", "Novi Sad", true);
+
 --TipPregleda
 insert into tip_pregleda (naziv, cena) values ("Opsti pregled", 1500.0);
 insert into tip_pregleda (naziv, cena) values ("Pregled ociju", 1200.0);

@@ -22,6 +22,8 @@ public class Recept {
 	
 	private String upotreba;
 	
+	private Integer overila_medicinska_sestraID;
+	
 	public Recept() {
 		
 	}
@@ -64,6 +66,14 @@ public class Recept {
 
 	public void setUpotreba(String upotreba) {
 		this.upotreba = upotreba;
+	}
+
+	public Integer getOverila_medicinska_sestraID() {
+		return overila_medicinska_sestraID;
+	}
+
+	public void setOverila_medicinska_sestraID(Integer overila_medicinska_sestraID) {
+		this.overila_medicinska_sestraID = overila_medicinska_sestraID;
 	}
 
 }

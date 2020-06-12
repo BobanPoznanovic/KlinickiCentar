@@ -14,21 +14,24 @@ public class ReceptDTO {
 	
 	private String upotreba;
 	
+	private Integer overila_medicinska_sestraID;
+	
 	public ReceptDTO() {
 		
 	}
 	
 	public ReceptDTO(Recept recept) {
-		this(recept.getReceptID(), recept.getIzvestaj_pregledaID(), recept.getOveren(), recept.getLekID(), recept.getUpotreba());
+		this(recept.getReceptID(), recept.getIzvestaj_pregledaID(), recept.getOveren(), recept.getLekID(), recept.getUpotreba(), recept.getOverila_medicinska_sestraID());
 	}
 	
-	public ReceptDTO(Integer id, Integer izvestaj_pregledaID, Boolean overen, Integer lekID, String upotreba) {
+	public ReceptDTO(Integer id, Integer izvestaj_pregledaID, Boolean overen, Integer lekID, String upotreba, Integer overila_medicinska_sestraID) {
 		super();
 		this.setReceptID(id);
 		this.setIzvestaj_pregledaID(izvestaj_pregledaID);
 		this.setOveren(overen);
 		this.setLekID(lekID);
 		this.setUpotreba(upotreba);
+		this.setOverila_medicinska_sestraID(overila_medicinska_sestraID);
 	}
 
 	public Integer getReceptID() {
@@ -69,6 +72,14 @@ public class ReceptDTO {
 
 	public void setUpotreba(String upotreba) {
 		this.upotreba = upotreba;
+	}
+
+	public Integer getOverila_medicinska_sestraID() {
+		return overila_medicinska_sestraID;
+	}
+
+	public void setOverila_medicinska_sestraID(Integer overila_medicinska_sestraID) {
+		this.overila_medicinska_sestraID = overila_medicinska_sestraID;
 	}
 
 }
