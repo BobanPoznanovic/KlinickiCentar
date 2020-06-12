@@ -4,3 +4,12 @@
 <a href="">Kreiraj zahtev za odsustvo </a><br>
 <a href="">Profil korisnika </a><br>
 <a href="">Overa recepta </a>
+<button (click)="overaRecepata()">Overa recepata</button>
+
+<div *ngIf="sestra">
+    <p>Logged in as {{sestra.username}}</p>
+</div>
+
+<div *ngIf="overa">
+    Recepti za overiti
+</div>
