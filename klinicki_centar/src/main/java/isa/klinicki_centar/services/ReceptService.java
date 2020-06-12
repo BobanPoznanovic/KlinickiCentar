@@ -17,4 +17,6 @@ public interface ReceptService {
 	Iterable<Recept> findAllNeovereniByPregledID(Integer pregledID);
 	
 	Iterable<Recept> findAllNeovereniByKlinika(Integer id);
+	
+	Iterable<Recept> findByIzvestaj_pregledaID(Integer izvestajID);
 }

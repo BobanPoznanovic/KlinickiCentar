@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MedicinskaSestraService } from 'src/app/services/medicinska-sestra.service';
+import { MedicinskaSestra} from '../../model/medicinskaSestra';
 
 @Component({
   selector: 'app-medicinska-sestra-home',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MedicinskaSestraHomeComponent implements OnInit {
 
-  constructor() { }
+  sestra : MedicinskaSestra;
+  overa : Boolean;
+
+  constructor(
+    private medicinskaSestraService : MedicinskaSestraService
+  ) { }
 
   ngOnInit(): void {
+    this.medicinskaSestraService.getMedicinskaSestra(1).subscribe(sestra => this.sestra = sestra);
+    this.overa = false;
+  }
+
+  overaRecepata() {
+    if(this.sestra) {
+      this.overa = true;
+    }
+    
   }
 
 }

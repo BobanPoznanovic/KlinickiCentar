@@ -305,6 +305,8 @@ CREATE TABLE RECEPT (
 	overen boolean,
 	lekID int,
 	upotreba varchar(255),
+	overila_medicinska_sestraID int,
 	CONSTRAINT fk_recept_izvestaj_pregledaID FOREIGN KEY (izvestaj_pregledaID) REFERENCES IZVESTAJ_PREGLEDA(izvestaj_pregledaID),
-	CONSTRAINT fk_recept_lekID FOREIGN KEY (lekID) REFERENCES LEK(lekID)
+	CONSTRAINT fk_recept_lekID FOREIGN KEY (lekID) REFERENCES LEK(lekID),
+	CONSTRAINT fk_recept_medicinska_sestraID FOREIGN KEY (overila_medicinska_sestraID) REFERENCES MEDICINSKA_SESTRA (medicinska_sestraID)
 );

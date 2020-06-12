@@ -74,7 +74,12 @@ public class ReceptServicesImpl implements ReceptService {
 		
 		IzvestajPregleda izvestaj = izvestajPregledaService.getIzvestajByPregledID(pregledID);
 		
-		ArrayList<Recept> neoverniRecepti = receptRepository.findNeovereniByIzvestajID(izvestaj.getIzvestaj_pregledaID());
+		ArrayList<Recept> neoverniRecepti = new ArrayList<Recept>();
+		
+		ArrayList<Recept> queryResult = receptRepository.findByIzvestajID(izvestaj.getIzvestaj_pregledaID());
+		
+		if(queryResult != null)
+			neoverniRecepti = queryResult;
 		
 		return neoverniRecepti;
 	}
@@ -95,12 +100,19 @@ public class ReceptServicesImpl implements ReceptService {
 		
 		ArrayList<IzvestajPregleda> izvestaji = izvestajPregledaService.getIzvestajiByPregledID(pregledi);
 		
+		
 		ArrayList<Recept> neoverniRecepti = new ArrayList<Recept>();
 		
 		for(IzvestajPregleda izvestaj : izvestaji)
-			neoverniRecepti.addAll(receptRepository.findNeovereniByIzvestajID(izvestaj.getIzvestaj_pregledaID()));
+			neoverniRecepti.addAll(receptRepository.findNeovereniByIzvestajID(izvestaj.getIzvestaj_pregledaID())); //Ovo puca
 		
 		return neoverniRecepti;
+	}
+
+	@Override
+	public Iterable<Recept> findByIzvestaj_pregledaID(Integer izvestajID) {
+		// TODO Auto-generated method stub
+		return receptRepository.findByIzvestajID(izvestajID);
 	}
 
 }

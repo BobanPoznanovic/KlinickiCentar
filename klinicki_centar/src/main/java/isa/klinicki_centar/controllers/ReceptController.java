@@ -56,12 +56,30 @@ public class ReceptController {
 		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/all/neovereni/{id}")
-	public ResponseEntity<List<ReceptDTO>> getNeovereniSaKlinike() {
+	@GetMapping(value = "/all/neovereni/klinika/{id}")
+	public ResponseEntity<List<ReceptDTO>> getNeovereniSaKlinike(@PathVariable Integer id) {
 		
 		List<ReceptDTO> retVal = new ArrayList<ReceptDTO>();
 		
+		Iterable<Recept> queryResult = receptService.findAllNeovereniByKlinika(id);
 		
+		for(Recept r : queryResult) {
+			retVal.add(new ReceptDTO(r));
+		}
+		
+		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/all/neovereni/pregled/{id}")
+	public ResponseEntity<List<ReceptDTO>> getNeovereniSaPregleda(@PathVariable Integer id) {
+		
+		List<ReceptDTO> retVal = new ArrayList<ReceptDTO>();
+		
+		Iterable<Recept> queryResult = receptService.findAllNeovereniByPregledID(id);
+		
+		for(Recept r : queryResult) {
+			retVal.add(new ReceptDTO(r));
+		}
 		
 		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
 	}
@@ -87,6 +105,7 @@ public class ReceptController {
 		noviRecept.setLekID(recept.getLekID());
 		noviRecept.setOveren(recept.getOveren());
 		noviRecept.setUpotreba(recept.getUpotreba());
+		noviRecept.setOverila_medicinska_sestraID(recept.getOverila_medicinska_sestraID());
 		
 		noviRecept = receptService.save(noviRecept);
 		
@@ -107,6 +126,7 @@ public class ReceptController {
 		queryResult.setOveren(recept.getOveren());
 		queryResult.setReceptID(recept.getReceptID());
 		queryResult.setUpotreba(recept.getUpotreba());
+		queryResult.setOverila_medicinska_sestraID(recept.getOverila_medicinska_sestraID());
 		
 		queryResult = receptService.save(queryResult);
 		
@@ -127,8 +147,8 @@ public class ReceptController {
 		}
 	}
 	
-	@GetMapping(value = "/overi/{id}")
-	public ResponseEntity<ReceptDTO> overiRecept(@PathVariable Integer id) {
+	@GetMapping(value = "/overi/{id}/{sestra}")
+	public ResponseEntity<ReceptDTO> overiRecept(@PathVariable Integer id, @PathVariable Integer sestra) {
 		
 		Recept queryResult = receptService.findOne(id);
 	
@@ -137,6 +157,7 @@ public class ReceptController {
 		}
 		
 		queryResult.setOveren(true);
+		queryResult.setOverila_medicinska_sestraID(sestra);
 		
 		queryResult = receptService.save(queryResult);
 		
