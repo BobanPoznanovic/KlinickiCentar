@@ -410,6 +410,7 @@ public class PregledServiceImpl implements PregledService{
 	@Override
 	public ArrayList<Pregled> sviZavrseniDoktoroviPregledi(Integer lekarID) {
 		// TODO Auto-generated method stub
+		
 		return pregledRepository.sviZavrseniDoktoroviPregledi(lekarID);
 	}
 

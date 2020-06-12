@@ -56,12 +56,30 @@ public class ReceptController {
 		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/all/neovereni/{id}")
-	public ResponseEntity<List<ReceptDTO>> getNeovereniSaKlinike() {
+	@GetMapping(value = "/all/neovereni/klinika/{id}")
+	public ResponseEntity<List<ReceptDTO>> getNeovereniSaKlinike(@PathVariable Integer id) {
 		
 		List<ReceptDTO> retVal = new ArrayList<ReceptDTO>();
 		
+		Iterable<Recept> queryResult = receptService.findAllNeovereniByKlinika(id);
 		
+		for(Recept r : queryResult) {
+			retVal.add(new ReceptDTO(r));
+		}
+		
+		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/all/neovereni/pregled/{id}")
+	public ResponseEntity<List<ReceptDTO>> getNeovereniSaPregleda(@PathVariable Integer id) {
+		
+		List<ReceptDTO> retVal = new ArrayList<ReceptDTO>();
+		
+		Iterable<Recept> queryResult = receptService.findAllNeovereniByPregledID(id);
+		
+		for(Recept r : queryResult) {
+			retVal.add(new ReceptDTO(r));
+		}
 		
 		return new ResponseEntity<List<ReceptDTO>>(retVal, HttpStatus.OK);
 	}
