@@ -22,7 +22,10 @@ export class MedicinskaSestraHomeComponent implements OnInit {
   }
 
   overaRecepata() {
-    this.overa = true;
+    if(this.sestra) {
+      this.overa = true;
+    }
+    
   }
 
 }

@@ -26,7 +26,7 @@ import { RegistracijaComponent } from './components/registracija/registracija.co
 import { LoginComponent } from './components/login/login.component';
 import { PacijentHomePageComponent } from './components/pacijent-home-page/pacijent-home-page.component';
 import { NavComponent } from './components/nav/nav.component';
-import { OveraReceptaComponent } from './overa-recepta/overa-recepta.component';
+import { ReceptiComponent } from './components/recepti/recepti.component';  
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { OveraReceptaComponent } from './overa-recepta/overa-recepta.component';
     LoginComponent,
     PacijentHomePageComponent,
     NavComponent,
-    OveraReceptaComponent
+    ReceptiComponent
   ],
   imports: [
     BrowserModule,

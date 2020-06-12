@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OveraReceptaComponent } from './overa-recepta.component';
+import { ReceptiComponent } from './recepti.component';
 
-describe('OveraReceptaComponent', () => {
-  let component: OveraReceptaComponent;
-  let fixture: ComponentFixture<OveraReceptaComponent>;
+describe('ReceptiComponent', () => {
+  let component: ReceptiComponent;
+  let fixture: ComponentFixture<ReceptiComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OveraReceptaComponent ]
+      declarations: [ ReceptiComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OveraReceptaComponent);
+    fixture = TestBed.createComponent(ReceptiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
