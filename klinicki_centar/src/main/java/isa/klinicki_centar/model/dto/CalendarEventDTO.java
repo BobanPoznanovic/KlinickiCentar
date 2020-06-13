@@ -1,8 +1,5 @@
 package isa.klinicki_centar.model.dto;
 
-import java.time.LocalTime;
-import java.util.Date;
-
 import isa.klinicki_centar.model.CalendarEvent;
 
 public class CalendarEventDTO {
@@ -15,7 +12,13 @@ public class CalendarEventDTO {
 	
 	private int tip;
 	
+	private Integer eventID;
+	
 	private Integer pacijentID;
+	
+	private String naziv_sale;
+	
+	private Integer broj_sale;
 	
 	public CalendarEventDTO() {
 		
@@ -27,18 +30,23 @@ public class CalendarEventDTO {
 				calEvent.getSatnica_pocetak().toString(),
 				calEvent.getSatnica_kraj().toString(),
 				calEvent.getTip(),
-				calEvent.getPacijentID()
+				calEvent.getEventID(),
+				calEvent.getPacijentID(),
+				calEvent.getNaziv_sale(),
+				calEvent.getBroj_sale()
 				);
 	}
 	
-	public CalendarEventDTO(String datum, String satnica_pocetak, String satnica_kraj, int tip, Integer pacijentID) {
+	public CalendarEventDTO(String datum, String satnica_pocetak, String satnica_kraj, int tip, Integer eventID, Integer pacijentID, String naziv_sale, Integer broj_sale) {
 		super();
 		this.setDatum(datum);
 		this.setSatnica_pocetak(satnica_pocetak);
 		this.setSatnica_kraj(satnica_kraj);
 		this.setTip(tip);
+		this.setEventID(eventID);
 		this.setPacijentID(pacijentID);
-		
+		this.setNaziv_sale(naziv_sale);
+		this.setBroj_sale(broj_sale);
 	}
 
 	public String getDatum() {
@@ -79,6 +87,30 @@ public class CalendarEventDTO {
 
 	public void setPacijentID(Integer pacijentID) {
 		this.pacijentID = pacijentID;
+	}
+
+	public Integer getEventID() {
+		return eventID;
+	}
+
+	public void setEventID(Integer eventID) {
+		this.eventID = eventID;
+	}
+
+	public String getNaziv_sale() {
+		return naziv_sale;
+	}
+
+	public void setNaziv_sale(String naziv_sale) {
+		this.naziv_sale = naziv_sale;
+	}
+
+	public Integer getBroj_sale() {
+		return broj_sale;
+	}
+
+	public void setBroj_sale(Integer broj_sale) {
+		this.broj_sale = broj_sale;
 	}
 
 }

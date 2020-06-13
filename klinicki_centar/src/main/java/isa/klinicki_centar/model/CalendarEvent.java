@@ -1,11 +1,20 @@
 package isa.klinicki_centar.model;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import isa.klinicki_centar.services.RadniKalendarService;
+import isa.klinicki_centar.services.SalaService;
 
 public class CalendarEvent {
 	
-	private Date datum;
+	private LocalDate datum;
 	
 	private LocalTime satnica_pocetak;
 	
@@ -14,17 +23,55 @@ public class CalendarEvent {
 	//tip kalendarskog dogadjaja: Pregled(0), Operacija(1)
 	private int tip;
 	
+	private Integer eventID;
+	
 	private Integer pacijentID;
+	
+	private String naziv_sale;
+	
+	private Integer broj_sale;
+	
+	@Autowired
+	private SalaService salaService;
+	
+	@Autowired
+	private RadniKalendarService radniKalendarService;
 	
 	public CalendarEvent() {
 		
 	}
+	
+	public CalendarEvent(Pregled pregled) {
+		Date date_datum = pregled.getDatum_pregleda();
+		
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		Instant instant = date_datum.toInstant();
+		
+		LocalDate datum = instant.atZone(defaultZoneId).toLocalDate();
+		
+		this.setDatum(datum);
+		this.setSatnica_pocetak(pregled.getSatnica_pocetak());
+		this.setSatnica_kraj(pregled.getSatnica_kraj());
+		this.setTip(0);
+		this.setEventID(pregled.getPregledID());
+		this.setPacijentID(pregled.getPacijentID());
+		System.out.println(pregled.getPregledID());
+		System.out.println("Sala " + pregled.getSalaID());
+		Integer salaID = pregled.getSalaID();
+		Sala sala = salaService.findOne(salaID);
+		this.setNaziv_sale(sala.getNaziv_sale());
+		this.setBroj_sale(sala.getBroj_sale());
+	}
+	
+	public CalendarEvent(Operacija operacija) {
+		
+	}
 
-	public Date getDatum() {
+	public LocalDate getDatum() {
 		return datum;
 	}
 
-	public void setDatum(Date datum) {
+	public void setDatum(LocalDate datum) {
 		this.datum = datum;
 	}
 
@@ -58,6 +105,30 @@ public class CalendarEvent {
 
 	public void setPacijentID(Integer pacijentID) {
 		this.pacijentID = pacijentID;
+	}
+
+	public Integer getEventID() {
+		return eventID;
+	}
+
+	public void setEventID(Integer eventID) {
+		this.eventID = eventID;
+	}
+
+	public String getNaziv_sale() {
+		return naziv_sale;
+	}
+
+	public void setNaziv_sale(String naziv_sale) {
+		this.naziv_sale = naziv_sale;
+	}
+
+	public Integer getBroj_sale() {
+		return broj_sale;
+	}
+
+	public void setBroj_sale(Integer broj_sale) {
+		this.broj_sale = broj_sale;
 	}
 
 }

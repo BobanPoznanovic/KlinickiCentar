@@ -1,7 +1,6 @@
 package isa.klinicki_centar.controllers;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,10 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import isa.klinicki_centar.model.CalendarEvent;
 import isa.klinicki_centar.model.Operacija;
 import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.SpisakLekaraNaOperaciji;
-import isa.klinicki_centar.model.dto.AdminKlinickogCentraDTO;
 import isa.klinicki_centar.model.dto.CalendarEventDTO;
 import isa.klinicki_centar.services.OperacijaService;
 import isa.klinicki_centar.services.PregledService;
@@ -37,14 +36,19 @@ public class RadniKalendarController {
 	
 	@GetMapping(value = "/day/{lekarID}/{datum}")
 	public ResponseEntity<ArrayList<CalendarEventDTO>> day(@PathVariable Integer lekarID, @PathVariable String datum) {
+		
+		ArrayList<CalendarEventDTO> retVal = new ArrayList<CalendarEventDTO>();
+		
 		//INPUTS:
 		//lekarID
 		//datum
 		
+		//CONVERT STRING datum TO DATE datum
+		
 		//COLLECT:
-		//pregledi
+		//pregledi DODAJ PRETRAGU PO DATUMU
 		ArrayList<Pregled> pregledi = pregledService.sviDoktoroviPregledi(lekarID);
-		//operacije
+		//operacije DODAJ PRETRAGU PO DATUMU
 		ArrayList<SpisakLekaraNaOperaciji> spisak = spisakLekaraNaOperacijiService.findByLekarID(lekarID);
 		ArrayList<Operacija> operacije = new ArrayList<Operacija>();
 		
@@ -55,6 +59,10 @@ public class RadniKalendarController {
 		//SORT:
 		
 		//CONVERT TO CALENDAR EVENT
+		for(Pregled p : pregledi) {
+			CalendarEvent e = new CalendarEvent(p);
+			retVal.add(new CalendarEventDTO(e));
+		}
 		
 		
 		return new ResponseEntity<ArrayList<CalendarEventDTO>>(new ArrayList<CalendarEventDTO>(), HttpStatus.OK);
