@@ -31,6 +31,7 @@ import { OcenjivanjeComponent } from './components/pacijent-home-page/ocenjivanj
 import { ProfilComponent } from './components/pacijent-home-page/profil/profil.component';
 import { IzmeniProfilComponent } from './components/pacijent-home-page/izmeni-profil/izmeni-profil.component';
 import { ZakazivanjePregledaComponent } from './components/pacijent-home-page/zakazivanje-pregleda/zakazivanje-pregleda.component';
+import { AktivacijaNalogaComponent } from './components/aktivacija-naloga/aktivacija-naloga.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ZakazivanjePregledaComponent } from './components/pacijent-home-page/za
     OcenjivanjeComponent,
     ProfilComponent,
     IzmeniProfilComponent,
-    ZakazivanjePregledaComponent
+    ZakazivanjePregledaComponent,
+    AktivacijaNalogaComponent
   ],
     imports: [
         BrowserModule,
