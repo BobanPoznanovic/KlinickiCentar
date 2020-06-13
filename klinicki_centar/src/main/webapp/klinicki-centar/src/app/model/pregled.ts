@@ -15,4 +15,6 @@ export class Pregled {
     zavrsen : boolean;
     lekar_ocenjen : boolean;
     klinika_ocenjena : boolean;
+    lekarRating: number;
+    klinikaRating: number;
 }

@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
     this.ulogovanPacijent = this.pacijentService.getByEmail(pacijent.email);
     this.ulogovanPacijent.subscribe(res => {
         this.pacijent.pacijentID = res.pacijentID;
+        this.pacijent.aktivan = res.aktivan;
         console.log('this.pacijent.pacijentID: ' + this.pacijent.pacijentID);
+        localStorage.setItem('aktivan', String(this.pacijent.aktivan));
         localStorage.setItem('pacijentID', String(this.pacijent.pacijentID));
       }
     );
@@ -57,6 +59,9 @@ export class LoginComponent implements OnInit {
       res => {
         if ( res['token'] == null ) {
           console.log('Login failed');
+        } else if (localStorage.getItem('aktivan') === 'false') {
+          console.log(res['aktivan']);
+          console.log('Morate aktivirati nalog');
         } else {
           this.auth.setToken(res);
          // localStorage.setItem('pacijentID', String(this.pacijent.pacijentID));

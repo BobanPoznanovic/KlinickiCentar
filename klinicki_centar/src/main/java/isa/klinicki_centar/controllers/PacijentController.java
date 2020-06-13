@@ -153,11 +153,17 @@ public class PacijentController {
 			consumes = "application/json")
 	public ResponseEntity<Object> login(@RequestBody PacijentDTO pacijent) {
 		
+		
+		
 		if (pacijent.getEmail() == null || pacijent.getEmail().equals("")) {
 			return new ResponseEntity<>("Enter username", HttpStatus.NOT_ACCEPTABLE);
 		}
 		
 		Pacijent pacijentIzBaze = pacijentService.findByEmail(pacijent.getEmail());
+		
+		if(!pacijentIzBaze.isAktivan()) {
+			return new ResponseEntity<>("Morate aktivirati nalog", HttpStatus.FORBIDDEN);
+		}
 		
 		if(pacijentIzBaze != null) {
 			if( pacijentIzBaze.getPassword().equals(pacijent.getPassword()) ) {

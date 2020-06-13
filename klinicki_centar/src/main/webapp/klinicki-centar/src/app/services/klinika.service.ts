@@ -25,4 +25,8 @@ export class KlinikaService {
   dodajAdminaKlinike(admin: AdminKlinike): Observable<AdminKlinike> {
     return this.http.post<AdminKlinike>(this.adminURL, admin, this.httpOptions);
   }
+
+  getByID(id: number) {
+    return this.http.get<Klinika>(this.backEndURL + '/' + id);
+  }
 }

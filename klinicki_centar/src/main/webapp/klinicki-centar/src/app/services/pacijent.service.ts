@@ -11,6 +11,7 @@ export class PacijentService {
 
   private url = 'http://localhost:8080/pacijent';
   ulogovanPacijent: Pacijent;
+  enabled = null;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -41,7 +42,9 @@ export class PacijentService {
   }
 
   login(pacijent: Pacijent) {
-    return this.http.post(this.url + '/login', pacijent);
+     // this.enabled = pacijent.aktivan;
+     // localStorage.setItem('aktivan', this.enabled);
+     return this.http.post(this.url + '/login', pacijent);
 
   }
 }
