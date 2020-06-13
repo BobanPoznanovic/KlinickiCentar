@@ -536,8 +536,8 @@ public class PregledServiceImpl implements PregledService{
 					+ "\n Tip pregleda: " + tipPregleda.getNaziv()
 					+ "\n Originalna cena: " + tipPregleda.getCena()
 					+ "\n Popust: " + pregled.getPopust()
-					+ "\n\n Potvrditi pregled: " + "http://localhost:4200/potvrditiPregled/" + pregled.getPregledID()
-					+ "\n Odbiti pregled: " + "http://localhost:4200/odbitiPregled/" + pregled.getPregledID();
+					+ "\n\n Potvrditi pregled: " + "http://localhost:4200/potvrditi/" + pregled.getPregledID()
+					+ "\n Odbiti pregled: " + "http://localhost:4200/odbiti/" + pregled.getPregledID();
 			
 			String porukaZaLekara = "Imate zakazan pregled." 
 					+ "\n\n Detalji zakazanog pregleda: "

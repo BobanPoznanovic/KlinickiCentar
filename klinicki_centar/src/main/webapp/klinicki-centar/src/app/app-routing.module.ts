@@ -20,6 +20,8 @@ import {ListaKlinikaComponent} from './components/pacijent-home-page/lista-klini
 import {ProfilComponent} from './components/pacijent-home-page/profil/profil.component';
 import {IzmeniProfilComponent} from './components/pacijent-home-page/izmeni-profil/izmeni-profil.component';
 import {AktivacijaNalogaComponent} from './components/aktivacija-naloga/aktivacija-naloga.component';
+import {PotvrditiPregledComponent} from "./components/zakazani-pregledi/potvrditi-pregled/potvrditi-pregled.component";
+import {OdbitiPregledComponent} from "./components/zakazani-pregledi/odbiti-pregled/odbiti-pregled.component";
 
 
 const routes: Routes = [
@@ -43,7 +45,9 @@ const routes: Routes = [
   { path: 'listaKlinika', component: ListaKlinikaComponent },
   { path: 'profil', component: ProfilComponent },
   { path: 'izmeniProfil', component: IzmeniProfilComponent },
-  { path: 'aktivacija/:id', component: AktivacijaNalogaComponent }
+  { path: 'aktivacija/:id', component: AktivacijaNalogaComponent },
+  { path: 'potvrditi/:id', component: PotvrditiPregledComponent },
+  { path: 'odbiti/:id', component: OdbitiPregledComponent }
 ];
 
 @NgModule({
