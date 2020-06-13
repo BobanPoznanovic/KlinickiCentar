@@ -28,7 +28,11 @@ export class PacijentHomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    // @ts-ignore
+    this.pacijent = this.pacijentService.getByID(Number(localStorage.getItem('pacijentID')))
+      .subscribe(data =>
+        this.pacijent = data
+      );
   }
 
 }
