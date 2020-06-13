@@ -1,0 +1,143 @@
+<button class="navbar-toggler" (click)="showSearch($event)">Search
+</button>
+<br>
+
+<div id="searchDiv" class="border-bottom">
+  <br>
+  <form id="searchClinic" class="form-group" (ngSubmit)="onSearchSubmit(selectedOption, selectedName, selectedRating)">
+
+    <label style="padding-right: 20px;"> Select type : </label>
+    <select name="types" [(ngModel)]="selectedOption" (change)="onSelectChange()" [disabled]="isAnyClinicSelected"
+            class="form-control-m" style="padding-left: 20px;">
+      <option>No type</option>
+      <option *ngFor="let tip of tipoviPregleda" >{{tip.naziv}}</option>
+    </select>
+
+    <label style="padding-left: 20px; padding-right: 20px;"> Select date : </label>
+    <input required class="form-control-sm" type="date" [value]="selectedDate | date:'yyyy-MM-dd'"
+           (input)="selectedDate=parseDate($event.target.valueAsDate)" (change)="dateChanged($event)"
+           [disabled]="isAnyClinicSelected" [min]="todayDate"
+           style="padding-left: 20px; padding-right: 20px;">
+
+    <label style="padding-left: 20px; padding-right: 20px;"> Enter name of clinic : </label>
+    <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
+           style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+    <label style="padding-left: 20px; padding-right: 20px;"> Enter lower limit of average rating : </label>
+    <input type="number" [(ngModel)]="selectedRating" [ngModelOptions]="{standalone: true}" min="0" max="10"
+           style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+    <br>
+    <br>
+    <button type="submit" [hidden]="isAnyClinicSelected" class="btn btn-primary"
+            style="margin-left: 45%; width: 150px;">Search
+    </button>
+    <button style="margin-left: 45%; width: 150px;" type="button" [hidden]="!isAnyClinicSelected"
+            (click)="resetAllForm()" class="btn btn-secondary">Reset
+    </button>
+  </form>
+</div>
+
+<div>
+  <br>
+  <h2 style="text-align: center">All available clinics </h2>
+  <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th mat-sort-header="name" scope="col">Name</th>
+      <th mat-sort-header="city" scope="col">City</th>
+      <th mat-sort-header="address" scope="col">Address</th>
+      <th scope="col">Description</th>
+      <th scope="col">Average rating</th>
+      <th scope="col" [hidden]="!isTypeSelected">Select a clinic</th>
+      <th scope="col">Predefined exams</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let klinika of sortedData">
+      <td>{{ klinika.naziv }}</td>
+      <td>{{ klinika.grad }}</td>
+      <td>{{ klinika.adresa }}</td>
+      <td>{{ klinika.opis }}</td>
+      <td *ngIf="klinika.prosecna_ocena != null">{{ klinika.prosecna_ocena }}</td>
+      <td *ngIf="klinika.prosecna_ocena != null">{{ klinika.prosecna_ocena }}</td>
+      <td [hidden]="!isTypeSelected"><input type="radio" name="selectClinicRadio"
+                                            (change)="getDoctorFromSelectedClinic(selectedOption, klinika.klinikaID)">
+      </td>
+      <td><a class="nav-link" type="button" (click)="showPredefinedExams(klinika.klinikaID)">
+        <span class="sr-only">(current)</span></a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<div [hidden]="!isAnyClinicSelected">
+  <button class="navbar-toggler" (click)="showSearchDoctor($event)">Search
+  </button>
+  <br>
+  <div id="searchDoctorDiv"  class="border-bottom">
+    <br>
+    <form id="searchDoctor" class="form-group"
+          (ngSubmit)="onSearchDoctorSubmit(selectedFirstName, selectedLastName, selectedDoctorRating)">
+
+      <label style="padding-left: 20px; padding-right: 20px;"> Enter doctor's first name : </label>
+      <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-left: 20px; padding-right: 20px;"> Enter doctor's last name : </label>
+      <input type="text" [(ngModel)]="selectedLastName" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-left: 20px; padding-right: 20px;"> Enter lower limit of average doctor's rating : </label>
+      <input type="number" [(ngModel)]="selectedDoctorRating" [ngModelOptions]="{standalone: true}" min="0" max="10"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <br>
+      <br>
+      <button type="submit" class="btn btn-primary"
+              style="margin-left: 45%; width: 150px;">Search
+      </button>
+
+    </form>
+  </div>
+  <h2 style="text-align: center">All available doctors from selected clinic </h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Country</th>
+      <th scope="col">Average rating</th>
+      <th scope="col">Select a doctor</th>
+      <th scope="col" [hidden]="hiddenHeader">Available time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let lekar of pronadjeniLekari">
+      <td>{{ lekar.ime }}</td>
+      <td>{{ lekar.prezime }}</td>
+      <td>{{ lekar.adresa }}</td>
+      <td>{{ lekar.prosecna_ocena}}</td>
+      <td><input type="radio" name="selectDoctorRadio" (change)="showOnlySelectedTd(lekar.lekarID)"> </td>
+      <td [hidden]="hiddenTerms">
+        <select class="form-control-sm" [(ngModel)]="selectedTerm"  [id]="'terms-' + lekar.lekarID" hidden
+                (change)="showSendRequestButton(lekar.lekarID)">
+          <option *ngFor="let term of availableTerms">{{term}}</option>
+        </select>
+      </td>
+      <td [hidden]="hiddenLabel"> No terms available for today </td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <button class="btn btn-primary" [hidden]="!hiddenSend" style="align-content: center; alignment: center"
+          (click)="nadjiTermine(selectedOption, selectedDate)" style="margin-left: 45%; width: 150px;"> Send request
+  </button>
+</div>
+
+

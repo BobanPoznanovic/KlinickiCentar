@@ -71,6 +71,18 @@ public class PacijentController {
 		return new ResponseEntity<PacijentDTO>(new PacijentDTO(queryResult), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/email/{email}")
+	public ResponseEntity<PacijentDTO> findByEmail(@PathVariable String email) {
+		
+		Pacijent queryResult = pacijentService.findByEmail(email);
+		
+		if(queryResult == null) {
+			return new ResponseEntity<PacijentDTO>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<PacijentDTO>(new PacijentDTO(queryResult), HttpStatus.OK);
+	}
+	
 	@PutMapping("/aktivacija/{id}")
 	public void activatePatientAccount(@PathVariable Integer id) {
 		pacijentService.activatePatientAccount(id);

@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AdminKlinickogCentraHomeComponent } from './components/admin-klinickog-centra-home/admin-klinickog-centra-home.component';
 import { AdminCentraNavComponent } from './components/admin-centra-nav/admin-centra-nav.component';
 import { ZahteviZaRegistracijuComponent } from './components/zahtevi-za-registraciju/zahtevi-za-registraciju.component';
 import { DodajKlinikuComponent } from './components/dodaj-kliniku/dodaj-kliniku.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DodajAdminaKlinikeComponent } from './components/dodaj-admina-klinike/dodaj-admina-klinike.component';
 import { DodajDijagnozuComponent } from './components/dodaj-dijagnozu/dodaj-dijagnozu.component';
 import { DodajLekComponent } from './components/dodaj-lek/dodaj-lek.component';
@@ -26,6 +26,11 @@ import { RegistracijaComponent } from './components/registracija/registracija.co
 import { LoginComponent } from './components/login/login.component';
 import { PacijentHomePageComponent } from './components/pacijent-home-page/pacijent-home-page.component';
 import { NavComponent } from './components/nav/nav.component';
+import { ListaKlinikaComponent } from './components/pacijent-home-page/lista-klinika/lista-klinika.component';
+import { OcenjivanjeComponent } from './components/pacijent-home-page/ocenjivanje/ocenjivanje.component';
+import { ProfilComponent } from './components/pacijent-home-page/profil/profil.component';
+import { IzmeniProfilComponent } from './components/pacijent-home-page/izmeni-profil/izmeni-profil.component';
+import { ZakazivanjePregledaComponent } from './components/pacijent-home-page/zakazivanje-pregleda/zakazivanje-pregleda.component';
 
 @NgModule({
   declarations: [
@@ -50,14 +55,20 @@ import { NavComponent } from './components/nav/nav.component';
     RegistracijaComponent,
     LoginComponent,
     PacijentHomePageComponent,
-    NavComponent
+    NavComponent,
+    ListaKlinikaComponent,
+    OcenjivanjeComponent,
+    ProfilComponent,
+    IzmeniProfilComponent,
+    ZakazivanjePregledaComponent
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

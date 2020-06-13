@@ -85,10 +85,10 @@ public class OperacijaServiceImpl implements OperacijaService {
 	
 	// mozda ovako da se uzima danasnji datum ???
 	
-//	/*@Override
-//	public ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(Integer pacijentID) {
-//		Date date = new Date();
-//		return return operacijaRepository.nadjiSveOperacijeZaOcenjivanje(pacijentID);
-//	}*/
+	@Override
+	public ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(Integer pacijentID) {
+		Date date = new Date();
+		return operacijaRepository.nadjiSveOperacijeZaOcenjivanje(pacijentID, date);
+	}
 
 }

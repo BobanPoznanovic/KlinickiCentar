@@ -3,7 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PacijentService} from '../../services/pacijent.service';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
-import {Pacijent} from "../../model/pacijent";
+import {Pacijent} from '../../model/pacijent';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   pacijent: Pacijent;
+  ulogovanPacijent: Observable<Pacijent>;
+  pacijentPom: Pacijent;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +33,8 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+
   }
 
   onSubmit() {
@@ -38,6 +43,13 @@ export class LoginComponent implements OnInit {
     const pacijent = new Pacijent();
     pacijent.email = this.loginForm.controls.email.value;
     pacijent.password = this.loginForm.controls.password.value;
+    this.ulogovanPacijent = this.pacijentService.getByEmail(pacijent.email);
+    this.ulogovanPacijent.subscribe(res => {
+        this.pacijent.pacijentID = res.pacijentID;
+        console.log('this.pacijent.pacijentID: ' + this.pacijent.pacijentID);
+        localStorage.setItem('pacijentID', String(this.pacijent.pacijentID));
+      }
+    );
 
     console.log('pacijent: ' + pacijent.email);
 
@@ -47,7 +59,10 @@ export class LoginComponent implements OnInit {
           console.log('Login failed');
         } else {
           this.auth.setToken(res);
-          this.router.navigate(['/']);
+         // localStorage.setItem('pacijentID', String(this.pacijent.pacijentID));
+          // this.ulogovanPacijent = this.pacijentService.getByEmail(pacijent.email);
+          // console.log('Ulogovan pacijent ID  -  ' + this.ulogovanPacijent);
+          this.router.navigate(['/pacijent/home']);
         }
       }
     );

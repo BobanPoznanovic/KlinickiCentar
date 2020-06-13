@@ -1,5 +1,5 @@
 export class TipPregleda {
-  tipPregledaID: number;
-  opis: string;
+  tipPregledaID: string;
+  naziv: string;
   cena: number;
 }

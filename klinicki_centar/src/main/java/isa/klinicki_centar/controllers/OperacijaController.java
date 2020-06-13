@@ -58,10 +58,15 @@ public class OperacijaController {
 		return operacijaService.nadjiSvePacijentoveOperacije(pacijentID);
 	}
 	
-	@GetMapping("/pacijentoveOperacijeOcenjivanje/{pacijentID}/{datumOperacije}")
-	public ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(@PathVariable Integer pacijentID, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable Date datumOperacije) {
-		return operacijaService.nadjiSveOperacijeZaOcenjivanje(pacijentID, datumOperacije);
+	@GetMapping("/pacijentoveOperacijeOcenjivanje/{pacijentID}")
+	public ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(@PathVariable Integer pacijentID) {
+		return operacijaService.nadjiSveOperacijeZaOcenjivanje(pacijentID);
 	}
+	
+//	@GetMapping("/pacijentoveOperacijeOcenjivanje/{pacijentID}/{datumOperacije}")
+//	public ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(@PathVariable Integer pacijentID, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable Date datumOperacije) {
+//		return operacijaService.nadjiSveOperacijeZaOcenjivanje(pacijentID, datumOperacije);
+//	}
 	
 	@GetMapping("/sortPoDatumu")
 	public ArrayList<Operacija> sortOperacijePoDatumu() {

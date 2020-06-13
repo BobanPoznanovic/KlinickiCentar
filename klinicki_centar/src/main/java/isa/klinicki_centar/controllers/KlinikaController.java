@@ -186,4 +186,17 @@ public class KlinikaController {
 		return klinikaService.sortKlinikePoOceni();
 	}
 	
+	@GetMapping("/pretragaKlinika/{tipPregledaID}/{naziv}/{ocena}")
+	public ArrayList<Klinika> pretragaKlinika(@PathVariable Integer tipPregledaID, @PathVariable String naziv, @PathVariable float ocena) {
+		if(naziv.equals(" ") && ocena == 0.0){
+            return klinikaService.nadjiKlinikePoTipuPregleda(tipPregledaID);
+        } else if(naziv.equals(" ")) {
+            return klinikaService.nadjiKlinikePoTipuPregledaIOceni(tipPregledaID, ocena);
+        } else if(ocena == 0.0){
+            return klinikaService.nadjiKlinikePoTipuPregledaINazivu(tipPregledaID, naziv);
+        } else {
+            return klinikaService.nadjiKlinikePoTipuPregledaNazivuIOceni(tipPregledaID, ocena, naziv);
+        }	
+	}
+	
 }

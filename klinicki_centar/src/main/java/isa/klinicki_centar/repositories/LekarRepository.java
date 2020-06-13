@@ -52,6 +52,9 @@ public interface LekarRepository extends JpaRepository<Lekar, Integer>{
 	@Query(value = "SELECT * FROM lekar l WHERE l.klinikaID = ?2 AND l.lekarID in (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_id = ?1) AND l.lekarID NOT IN (SELECT zzol.lekarID FROM zahtev_za_odsustvo_lekar zzol WHERE ?3 BETWEEN zzol.datum_pocetka AND zzol.datum_kraja)", nativeQuery = true)
 	ArrayList<Lekar> nadjiLekareZaTipPregledaIDatum(Integer tipPregledaID, Integer klinikaID, String datum);
 	
+	@Query(value = "SELECT * FROM lekar l WHERE l.klinikaID = ?2 AND l.lekarID in (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_id = ?1)", nativeQuery = true)
+	ArrayList<Lekar> pretregaLekaraPoTipuPregledaIKlinici(Integer tipPregledaID, Integer klinikaID);
+	
 	@Query(value = "SELECT * FROM lekar ORDER BY ime", nativeQuery = true)
 	ArrayList<Lekar> sortLekaraPoImenu();
 	

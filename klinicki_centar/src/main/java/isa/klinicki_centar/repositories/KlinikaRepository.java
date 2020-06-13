@@ -28,6 +28,12 @@ public interface KlinikaRepository extends JpaRepository<Klinika, Integer>{
 	@Query(value = "SELECT * FROM db_example.klinika k WHERE k.prosecna_ocena >= ?2 AND k.klinikaID IN (SELECT l.klinikaID FROM lekar l WHERE l.lekarID IN (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_id = ?1))", nativeQuery = true)
 	ArrayList<Klinika> nadjiKlinikePoTipuPregledaIOceni(@Param("tipPregledaID") Integer tipPregledaID, @Param("ocena") float ocena);
 	
+	@Query(value = "SELECT * FROM klinika k where k.naziv = ?2 AND klinikaID in (SELECT l.klinikaID FROM lekar l WHERE l.lekarID IN (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_id = ?1))", nativeQuery = true)
+	ArrayList<Klinika> nadjiKlinikePoTipuPregledaINazivu(@Param("tipPregledaID") Integer tipPregledaID, @Param("naziv") String naziv);
+	
+	@Query(value = "SELECT * FROM klinika k WHERE k.naziv = ?3 AND k.prosecna_ocena >= ?2 AND k.klinikaID IN (SELECT l.klinikaID FROM lekar l WHERE l.lekarID IN (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_id = ?1));", nativeQuery = true)
+	ArrayList<Klinika> nadjiKlinikePoTipuPregledaNazivuIOceni(@Param("tipPregledaID") Integer tipPregledaID, @Param("ocena") float ocena, @Param("naziv") String naziv);
+	
 	@Query(value = "SELECT * FROM db_example.klinika k WHERE k.grad = ?2 AND k.klinikaID IN (SELECT l.klinikaID FROM lekar l WHERE l.lekarID IN (SELECT tpl.lekar_id FROM tipovi_pregleda_lekara tpl WHERE tpl.tip_pregleda_id = ?1))", nativeQuery = true)
 	ArrayList<Klinika> nadjiKlinikePoTipuPregledaIGradu(@Param("tipPregledaID") Integer tipPregledaID, @Param("grad") String grad);
 	
