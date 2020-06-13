@@ -42,5 +42,6 @@ export class PacijentService {
 
   login(pacijent: Pacijent) {
     return this.http.post(this.url + '/login', pacijent);
+
   }
 }

@@ -34,6 +34,7 @@ import { ZakazivanjePregledaComponent } from './components/pacijent-home-page/za
 import { AktivacijaNalogaComponent } from './components/aktivacija-naloga/aktivacija-naloga.component';
 import { PotvrditiPregledComponent } from './components/zakazani-pregledi/potvrditi-pregled/potvrditi-pregled.component';
 import { OdbitiPregledComponent } from './components/zakazani-pregledi/odbiti-pregled/odbiti-pregled.component';
+import { ZdravstveniKartonComponent } from './components/zdravstveni-karton/zdravstveni-karton.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { OdbitiPregledComponent } from './components/zakazani-pregledi/odbiti-pr
     ZakazivanjePregledaComponent,
     AktivacijaNalogaComponent,
     PotvrditiPregledComponent,
-    OdbitiPregledComponent
+    OdbitiPregledComponent,
+    ZdravstveniKartonComponent
   ],
     imports: [
         BrowserModule,

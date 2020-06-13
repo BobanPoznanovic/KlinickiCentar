@@ -1,0 +1,50 @@
+
+<app-nav></app-nav>
+
+<h4>Medical record for {{pacijent.ime}} {{pacijent.prezime}}</h4>
+
+<div class="card">
+  <div class="card-body">
+
+    <div class="row">
+      <label class="col-lg-6">Datum rodjenja:</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.datum_rodjenja == null">Nema podataka</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.datum_rodjenja != null">{{zdravstveniKarton.datum_rodjenja}}</label>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <label class="col-lg-6">Tezina:</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.tezine_pacijenta == null">Nema podataka</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.tezine_pacijenta != null">{{zdravstveniKarton.tezine_pacijenta}} kg</label>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <label class="col-lg-6">Visina:</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.visina_pacijenta == null">Nema podataka</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.visina_pacijenta != null">{{zdravstveniKarton.visina_pacijenta}} cm</label>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <label class="col-lg-6">Krvna grupa:</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.krvna_grupa == null">Nema podataka</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.krvna_grupa != null">{{zdravstveniKarton.krvna_grupa}} </label>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <label class="col-lg-6">Dioptrija:</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.dioptrija == null">Nema podataka</label>
+      <label class="col-lg-6 text-right" *ngIf="zdravstveniKarton.dioptrija != null">{{zdravstveniKarton.dioptrija}} </label>
+    </div>
+
+
+  </div>
+</div>
+
