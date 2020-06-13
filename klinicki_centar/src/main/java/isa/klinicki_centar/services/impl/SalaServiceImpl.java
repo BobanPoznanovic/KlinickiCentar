@@ -1,5 +1,7 @@
 package isa.klinicki_centar.services.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,7 @@ import isa.klinicki_centar.repositories.SalaRepository;
 import isa.klinicki_centar.services.SalaService;
 
 @Service
+@Transactional
 public class SalaServiceImpl implements SalaService {
 	
 	@Autowired
@@ -20,6 +23,7 @@ public class SalaServiceImpl implements SalaService {
 	}
 
 	@Override
+	@Transactional
 	public Sala findOne(Integer id) {
 		// TODO Auto-generated method stub
 		return salaRepository.findById(id).orElseGet(null);

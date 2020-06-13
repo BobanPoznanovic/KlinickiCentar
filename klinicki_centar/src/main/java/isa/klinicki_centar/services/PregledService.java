@@ -62,5 +62,7 @@ public interface PregledService {
 	ArrayList<Pregled> sviZavrseniDoktoroviPregledi(Integer lekarID);
 	
 	ArrayList<Pregled> sortPregledPoDatumu();
+	
+	ArrayList<Pregled> sviDoktoroviPreglediPoDatumu(Integer lekarID, String date);
 
 }

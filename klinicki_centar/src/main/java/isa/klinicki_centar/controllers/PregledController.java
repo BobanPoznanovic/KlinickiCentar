@@ -80,7 +80,7 @@ public class PregledController {
 	}
 
 	@GetMapping(value = "/lekarPreglediDatum/{lekarID}/{datum}")
-	public ArrayList<Pregled> sviDoktoroviPreglediTrazenogDatuma(@PathVariable Integer lekarID, @PathVariable Date datum) throws ParseException {
+	public ArrayList<Pregled> sviDoktoroviPreglediTrazenogDatuma(@PathVariable Integer lekarID, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date datum) throws ParseException {
 		return pregledService.sviDoktoroviPreglediTrazenogDatuma(lekarID, datum);
 	}
 

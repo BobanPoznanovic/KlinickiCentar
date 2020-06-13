@@ -55,12 +55,9 @@ public class CalendarEvent {
 		this.setTip(0);
 		this.setEventID(pregled.getPregledID());
 		this.setPacijentID(pregled.getPacijentID());
-		System.out.println(pregled.getPregledID());
-		System.out.println("Sala " + pregled.getSalaID());
-		Integer salaID = pregled.getSalaID();
-		Sala sala = salaService.findOne(salaID);
-		this.setNaziv_sale(sala.getNaziv_sale());
-		this.setBroj_sale(sala.getBroj_sale());
+		
+		//this.setNaziv_sale(sala.getNaziv_sale());
+		//this.setBroj_sale(sala.getBroj_sale());
 	}
 	
 	public CalendarEvent(Operacija operacija) {
