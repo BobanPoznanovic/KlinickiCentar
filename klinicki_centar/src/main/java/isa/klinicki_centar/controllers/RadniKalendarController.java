@@ -1,12 +1,7 @@
 package isa.klinicki_centar.controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,33 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
+import isa.klinicki_centar.model.CalendarDay;
 import isa.klinicki_centar.model.CalendarEvent;
+import isa.klinicki_centar.model.CalendarMonth;
 import isa.klinicki_centar.model.CalendarWeek;
-import isa.klinicki_centar.model.Operacija;
 import isa.klinicki_centar.model.Pregled;
-import isa.klinicki_centar.model.SpisakLekaraNaOperaciji;
 import isa.klinicki_centar.model.dto.CalendarEventDTO;
+import isa.klinicki_centar.model.dto.CalendarMonthDTO;
 import isa.klinicki_centar.model.dto.CalendarWeekDTO;
-import isa.klinicki_centar.services.OperacijaService;
-import isa.klinicki_centar.services.PregledService;
 import isa.klinicki_centar.services.RadniKalendarService;
-import isa.klinicki_centar.services.SpisakLekaraNaOperacijiService;
+
 
 @Controller
 @RequestMapping(path = "/kalendar")
 @CrossOrigin(origins = "*")
 public class RadniKalendarController {
-	
-	@Autowired
-	private PregledService pregledService;
-	
-	@Autowired
-	private SpisakLekaraNaOperacijiService spisakLekaraNaOperacijiService;
-	
-	@Autowired
-	private OperacijaService operacijeService;
 	
 	@Autowired
 	private RadniKalendarService radniKalendarService;
@@ -169,5 +152,11 @@ public class RadniKalendarController {
 	}
 	
 	
-
+	@GetMapping(value = "/month/{lekarID}/{datum}")
+	public ResponseEntity<CalendarMonth> month(@PathVariable Integer lekarID, @PathVariable String datum) {
+		
+		CalendarMonth retVal = radniKalendarService.month(lekarID, datum);
+		
+		return new ResponseEntity<CalendarMonth>(retVal, HttpStatus.OK);
+	}
 }

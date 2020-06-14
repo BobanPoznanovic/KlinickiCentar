@@ -10,9 +10,13 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import isa.klinicki_centar.model.CalendarDay;
 import isa.klinicki_centar.model.CalendarEvent;
+import isa.klinicki_centar.model.CalendarMonth;
 import isa.klinicki_centar.model.Operacija;
 import isa.klinicki_centar.model.Pregled;
+import isa.klinicki_centar.model.dto.CalendarDayDTO;
+import isa.klinicki_centar.model.dto.CalendarEventDTO;
 import isa.klinicki_centar.services.PregledService;
 import isa.klinicki_centar.services.RadniKalendarService;
 
@@ -73,7 +77,7 @@ public class RadniKalendarServiceImpl implements RadniKalendarService {
 	@Override
 	public ArrayList<Date> datesInWeek(Date date) {
 		// TODO Auto-generated method stub
-ArrayList<Date> retVal = new ArrayList<Date>();
+		ArrayList<Date> retVal = new ArrayList<Date>();
 		
 		Calendar cal = Calendar.getInstance(new Locale("uk","UA"));
 		
@@ -96,10 +100,6 @@ ArrayList<Date> retVal = new ArrayList<Date>();
 			cal.add(Calendar.DATE, 1);
 			Date temp_date = cal.getTime();
 			retVal.add(temp_date);
-		}
-		
-		for(Date d : retVal) {
-			System.out.println(d);
 		}
 		
 		return retVal;
@@ -168,6 +168,103 @@ ArrayList<Date> retVal = new ArrayList<Date>();
 		cal.setTime(date);
 		
 		return cal.get(Calendar.YEAR);
+	}
+
+	@Override
+	public ArrayList<CalendarEventDTO> eventsToDTO(ArrayList<CalendarEvent> events) {
+		// TODO Auto-generated method stub
+		ArrayList<CalendarEventDTO> retVal = new ArrayList<CalendarEventDTO>();
+		
+		for(CalendarEvent e : events) {
+			retVal.add(new CalendarEventDTO(e));
+		}
+		return retVal;
+	}
+
+	@Override
+	public ArrayList<CalendarDayDTO> daysToDTO(ArrayList<CalendarDay> days) {
+		// TODO Auto-generated method stub
+		ArrayList<CalendarDayDTO> retVal = new ArrayList<CalendarDayDTO>();
+		
+		for(CalendarDay d : days) {
+			retVal.add(new CalendarDayDTO(d));
+		}
+		return retVal;
+	}
+
+	@Override
+	public ArrayList<Date> datesInMonth(Date date) {
+		// TODO Auto-generated method stub
+		ArrayList<Date> retVal = new ArrayList<Date>();
+		
+		Calendar cal = Calendar.getInstance(new Locale("uk","UA"));
+		
+		cal.setTime(date);
+		
+		int daysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+		
+		
+		int month = cal.get(Calendar.MONTH);
+		int year = cal.get(Calendar.YEAR);
+		
+		cal.set(year, month, 1);
+		
+		for(int i = 0; i < daysInMonth; i++) {
+			retVal.add(cal.getTime());
+			cal.add(Calendar.DATE, 1);
+		}
+		
+		for(Date d : retVal) {
+			System.out.println(d);
+		}
+		
+		
+		return retVal;
+	}
+
+	@Override
+	public int dayInWeek(Date date) {
+		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance(new Locale("uk","UA"));
+		
+		cal.setTime(date);
+		
+		int dayInWeek = cal.get(Calendar.DAY_OF_WEEK);
+		
+		return dayInWeek;
+	}
+
+	@Override
+	public CalendarMonth month(Integer lekarID, String datum) {
+		// TODO Auto-generated method stub
+		
+		CalendarMonth retVal = new CalendarMonth();
+		ArrayList<CalendarDay> days = new ArrayList<CalendarDay>();
+		
+		Date d_datum = null;
+		d_datum = convertStringToDate(datum);
+		
+		ArrayList<Date> datesToCheck = new ArrayList<Date>();
+		datesToCheck = datesInMonth(d_datum);
+		int numberOfDaysInMonth = datesToCheck.size();
+		
+		for(int i = 0; i < numberOfDaysInMonth; i++) {
+			ArrayList<Pregled> pregledi = populateDay(lekarID, datesToCheck.get(i));
+			ArrayList<Pregled> sorted_pregledi = sortPregledi(pregledi);
+			ArrayList<CalendarEvent> events = preglediToEvents(sorted_pregledi);
+			int dayInWeek = dayInWeek(datesToCheck.get(i));
+			CalendarDay day = new CalendarDay();
+			day.setDay(i+1);
+			day.setDayInWeek(dayInWeek);
+			day.setEvents(events);
+			days.add(day);
+		}
+		
+		retVal.setMonth(getMonth(d_datum));
+		retVal.setYear(getYear(d_datum));
+		retVal.setDays(days);
+		
+		return retVal;
 	}
 
 }

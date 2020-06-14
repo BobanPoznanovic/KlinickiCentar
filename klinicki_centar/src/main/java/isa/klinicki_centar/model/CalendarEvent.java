@@ -31,12 +31,6 @@ public class CalendarEvent {
 	
 	private Integer broj_sale;
 	
-	@Autowired
-	private SalaService salaService;
-	
-	@Autowired
-	private RadniKalendarService radniKalendarService;
-	
 	public CalendarEvent() {
 		
 	}
