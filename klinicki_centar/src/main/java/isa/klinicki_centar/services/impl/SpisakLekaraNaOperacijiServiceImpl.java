@@ -1,5 +1,7 @@
 package isa.klinicki_centar.services.impl;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +37,11 @@ public class SpisakLekaraNaOperacijiServiceImpl implements SpisakLekaraNaOperaci
 	public void remove(Integer id) {
 		// TODO Auto-generated method stub
 		spisakLekaraNaOperacijiRepository.deleteById(id);
+	}
+
+	@Override
+	public ArrayList<SpisakLekaraNaOperaciji> findByLekarID(Integer lekarID) {
+		// TODO Auto-generated method stub
+		return spisakLekaraNaOperacijiRepository.findByLekarID(lekarID);
 	}
 }

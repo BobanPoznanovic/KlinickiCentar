@@ -86,4 +86,7 @@ public interface PregledRepository extends JpaRepository<Pregled, Integer>{
 	@Query(value = "SELECT * FROM pregled ORDER BY datum_pregleda", nativeQuery = true)
 	ArrayList<Pregled> sortPregledPoDatumu();
 	
+	@Query(value = "SELECT * FROM pregled p WHERE p.lekarID = ?1 AND p.datum_pregleda like %?2% ORDER BY satnica_pocetak ASC", nativeQuery = true)
+	ArrayList<Pregled> sviDoktoroviPreglediPoDatumu(Integer lekarID, String date);
+	
 }

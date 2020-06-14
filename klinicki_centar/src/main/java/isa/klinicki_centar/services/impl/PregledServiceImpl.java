@@ -567,4 +567,12 @@ public class PregledServiceImpl implements PregledService{
 		return pregledRepository.sortPregledPoDatumu();
 	}
 
+	@Override
+	public ArrayList<Pregled> sviDoktoroviPreglediPoDatumu(Integer lekarID, String date) {
+		// TODO Auto-generated method stub
+		return pregledRepository.sviDoktoroviPreglediPoDatumu(lekarID, date);
+	}
+
+	
+
 }
