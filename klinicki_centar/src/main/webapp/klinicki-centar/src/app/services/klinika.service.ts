@@ -10,7 +10,7 @@ import { AdminKlinike } from '../model/adminKlinike';
 export class KlinikaService {
 
   private backEndURL = 'http://localhost:8080/klinika';
-  private adminURL = 'http://localhost:8080/admin/klinika'
+  private adminURL = 'http://localhost:8080/admin/klinika';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,5 +28,9 @@ export class KlinikaService {
 
   getByID(id: number) {
     return this.http.get<Klinika>(this.backEndURL + '/' + id);
+  }
+
+  getAll(): Observable<Klinika[]> {
+    return this.http.get<Klinika[]>(this.backEndURL + '/all');
   }
 }

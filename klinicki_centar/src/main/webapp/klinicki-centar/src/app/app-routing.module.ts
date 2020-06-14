@@ -24,6 +24,8 @@ import {PotvrditiPregledComponent} from './components/zakazani-pregledi/potvrdit
 import {OdbitiPregledComponent} from './components/zakazani-pregledi/odbiti-pregled/odbiti-pregled.component';
 import {ZdravstveniKartonComponent} from './components/zdravstveni-karton/zdravstveni-karton.component';
 import {OcenjivanjeComponent} from './components/pacijent-home-page/ocenjivanje/ocenjivanje.component';
+import {KlinikeComponent} from "./components/klinike/klinike.component";
+import {PredefinisaniPreglediComponent} from "./components/pacijent-home-page/predefinisani-pregledi/predefinisani-pregledi.component";
 
 
 const routes: Routes = [
@@ -51,7 +53,9 @@ const routes: Routes = [
   { path: 'potvrditi/:id', component: PotvrditiPregledComponent },
   { path: 'odbiti/:id', component: OdbitiPregledComponent },
   { path: 'zdravstveni-karton', component: ZdravstveniKartonComponent },
-  { path: 'pregledi-operacije', component: OcenjivanjeComponent }
+  { path: 'pregledi-operacije', component: OcenjivanjeComponent },
+  { path: 'klinike/:id', component: PredefinisaniPreglediComponent },
+  { path: 'klinike', component: KlinikeComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,29 @@
+<app-nav></app-nav>
+
+<div>
+  <br>
+  <h2 style="text-align: center">Predefinisani pregledi na klinici</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Datum</th>
+      <th scope="col">Sala</th>
+      <th scope="col">Lekar </th>
+      <th scope="col">Cena</th>
+      <th scope="col">Popust </th>
+      <th scope="col" width="145px;">Termin</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let examination of predefinisaniPregledi">
+      <td>{{ examination.datum_pregleda|date:'yyyy-MM-dd'}}</td>
+      <td>SalaID {{ examination.salaID }}</td>
+      <td>LekarID  {{ examination.lekarID }}</td>
+      <td>Cena iz tipaPregledaID{{ examination.tip_pregledaID }}</td>
+      <td>{{examination.popust}}</td>
+      <td>{{examination.satnica_pocetak}}  -  {{examination.satnica_kraj}}</td>
+      <td> <button (click)="zakaziPredefinisaniPregled(examination.pregledID)" class="btn btn-success">Zakazi</button> </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -5,7 +5,7 @@ export class Pregled {
     pacijentID : number;
     salaID : number;
     datum_pregleda : string;
-    satnica_pocetka : string;
+    satnica_pocetak : string;
     satnica_kraj : string;
     tip_pregledaID : number;
     popust : number;

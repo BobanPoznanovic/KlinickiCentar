@@ -138,7 +138,7 @@ insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala
 
 
 --Pregled
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 1, 1, 1, '2020-06-19', '10:00', '10:29', 1, 0, false, false, false, false);
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 1, 1, 1, '2020-06-19', '10:00', '10:29', 1, 0, true, true, false, false);
 insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 2, 1, 3, '2020-06-29', '11:00', '11:29', 1, 0, false, false, false, false);
 insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 3, 2, 5, '2020-06-29', '12:00', '12:29', 1, 0, false, false, false, false);
 insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 4, 2, 7, '2020-06-19', '10:30', '10:59', 1, 0, false, false, false, false);

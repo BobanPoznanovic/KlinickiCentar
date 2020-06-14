@@ -1,0 +1,34 @@
+<app-nav></app-nav>
+
+<div>
+
+
+
+
+        <div class="form-group"
+             *ngFor="let klinika of klinike | async"
+             style="float: left">
+
+         <ul>
+           <li>
+          <div style="min-width: 16vw">
+
+
+          <a routerLinkActive="active"
+             [routerLink]="[klinika.klinikaID]">
+
+            <p class="heading">{{klinika.naziv}} - predefinisani pregledi</p>
+          </a>
+
+        </div>
+           </li>
+         </ul>
+
+        </div>
+
+
+
+</div>
+
+
+

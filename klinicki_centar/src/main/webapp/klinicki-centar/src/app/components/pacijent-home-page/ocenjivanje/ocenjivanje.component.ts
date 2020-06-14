@@ -61,17 +61,14 @@ export class OcenjivanjeComponent implements OnInit {
   }
 
   rateClinic(pregled: Pregled) {
-    if (pregled.klinikaRating === undefined) {
-      pregled.klinikaRating = 5;
-    }
-
-    console.log('Lekar ID iz pregleda  -  ' + pregled.lekarID);
     // @ts-ignore
-    this.lekar = this.lekarService.getByID(pregled.lekarID);
+    this.lekarService.getByID(pregled.lekarID)
+      .subscribe(data => {
+        this.lekar = data;
+        console.log('Klinika ID nakon pronalazenja lekara  -  ' + this.lekar.klinikaID);
+        this.pacijentHomepageService.oceniKlinikuPregled(pregled.pregledID, pregled.klinikaRating, this.lekar.klinikaID);
+      });
 
-    console.log('Lekar ID nakon pronalazenja  -  ' + pregled.lekarID);
-
-    this.pacijentHomepageService.oceniKlinikuPregled(pregled.pregledID, pregled.klinikaRating, this.lekar.klinikaID);
     this.klinika_ocenjena_P = true;
   }
 
@@ -105,7 +102,7 @@ export class OcenjivanjeComponent implements OnInit {
     this.lekarService.getByID(operacija.lekarID)
       .subscribe(data => {
         this.lekar = data;
-        console.log('Lekar ID nakon pronalazenja  -  ' + this.lekar.klinikaID);
+        console.log('Klinika ID nakon pronalazenja lekara -  ' + this.lekar.klinikaID);
         this.pacijentHomepageService.oceniKlinikuOperacija(operacija.operacijaID, operacija.klinikaRating, this.lekar.klinikaID);
       });
     this.klinika_ocenjena_O = true;
