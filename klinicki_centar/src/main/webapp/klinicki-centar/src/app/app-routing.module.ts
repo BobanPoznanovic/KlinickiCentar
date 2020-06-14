@@ -26,6 +26,7 @@ import {ZdravstveniKartonComponent} from './components/zdravstveni-karton/zdravs
 import {OcenjivanjeComponent} from './components/pacijent-home-page/ocenjivanje/ocenjivanje.component';
 import {KlinikeComponent} from "./components/klinike/klinike.component";
 import {PredefinisaniPreglediComponent} from "./components/pacijent-home-page/predefinisani-pregledi/predefinisani-pregledi.component";
+import {RadniKalendarPageComponent} from './components/radni-kalendar-page/radni-kalendar-page.component';
 
 
 const routes: Routes = [
@@ -55,7 +56,8 @@ const routes: Routes = [
   { path: 'zdravstveni-karton', component: ZdravstveniKartonComponent },
   { path: 'pregledi-operacije', component: OcenjivanjeComponent },
   { path: 'klinike/:id', component: PredefinisaniPreglediComponent },
-  { path: 'klinike', component: KlinikeComponent }
+  { path: 'klinike', component: KlinikeComponent },
+  { path: 'kalendar', component: RadniKalendarPageComponent }
 ];
 
 @NgModule({

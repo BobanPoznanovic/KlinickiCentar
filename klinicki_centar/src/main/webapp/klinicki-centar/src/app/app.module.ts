@@ -38,6 +38,14 @@ import { ZdravstveniKartonComponent } from './components/zdravstveni-karton/zdra
 import { PredefinisaniPreglediComponent } from './components/pacijent-home-page/predefinisani-pregledi/predefinisani-pregledi.component';
 import { KlinikeComponent } from './components/klinike/klinike.component';
 import { ReceptiComponent } from './components/recepti/recepti.component';
+import { RadniKalendarPageComponent } from './components/radni-kalendar-page/radni-kalendar-page.component';
+import { KalendarPrikazDanComponent } from './components/radni-kalendar-page/kalendar-prikaz-dan/kalendar-prikaz-dan.component';
+import { KalendarPrikazNedeljaComponent } from './components/radni-kalendar-page/kalendar-prikaz-nedelja/kalendar-prikaz-nedelja.component';
+import { KalendarPrikazMesecComponent } from './components/radni-kalendar-page/kalendar-prikaz-mesec/kalendar-prikaz-mesec.component';
+import { KalendarPrikazGodinaComponent } from './components/radni-kalendar-page/kalendar-prikaz-godina/kalendar-prikaz-godina.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -74,7 +82,12 @@ import { ReceptiComponent } from './components/recepti/recepti.component';
     ZdravstveniKartonComponent,
     PredefinisaniPreglediComponent,
     KlinikeComponent,
-    ReceptiComponent
+    ReceptiComponent,
+    RadniKalendarPageComponent,
+    KalendarPrikazDanComponent,
+    KalendarPrikazNedeljaComponent,
+    KalendarPrikazMesecComponent,
+    KalendarPrikazGodinaComponent
   ],
     imports: [
         BrowserModule,

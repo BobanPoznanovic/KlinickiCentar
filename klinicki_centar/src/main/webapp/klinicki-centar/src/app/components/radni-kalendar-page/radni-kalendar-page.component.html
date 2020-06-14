@@ -1,0 +1,22 @@
+<p>RADNI KALENDAR</p>
+
+<button (click)="vrstaKalendara(0)">Dnevni kalendar</button>
+<button (click)="vrstaKalendara(1)">Nedeljni kalendar</button>
+<button (click)="vrstaKalendara(2)">Mesecni kalendar</button>
+<button (click)="vrstaKalendara(3)">Godisnji kalendar</button>
+
+<div *ngIf="dnevni">
+    <app-kalendar-prikaz-dan [lekar]="lekar"></app-kalendar-prikaz-dan>
+</div>
+
+<div *ngIf="nedeljni">
+    <app-kalendar-prikaz-nedelja></app-kalendar-prikaz-nedelja>
+</div>
+
+<div *ngIf="mesecni">
+    <app-kalendar-prikaz-mesec></app-kalendar-prikaz-mesec>
+</div>
+
+<div *ngIf="godisnji">
+    <app-kalendar-prikaz-godina></app-kalendar-prikaz-godina>
+</div>

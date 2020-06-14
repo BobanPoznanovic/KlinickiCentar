@@ -1,0 +1,22 @@
+<p>kalendar-prikaz-dan works!</p>
+
+<form [formGroup]="danForm" (ngSubmit)="onSubmit()">
+    <label>
+        Datum(yyyy-mm-dd):
+        <input type="text" formControlName="datum">
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="events">
+    {{events[0].datum}}
+    <ul>
+        <li *ngFor="let event of events">
+            <p>Pocetak: {{event.satnica_pocetak}}</p>
+            <p>Kraj: {{event.satnica_kraj}}</p>
+            <a href="">Link do pregleda</a>
+        </li>
+    </ul>
+
+</div>
