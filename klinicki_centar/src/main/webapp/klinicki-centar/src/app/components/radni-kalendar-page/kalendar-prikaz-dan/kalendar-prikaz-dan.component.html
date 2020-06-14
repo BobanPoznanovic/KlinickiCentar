@@ -13,9 +13,7 @@
     {{events[0].datum}}
     <ul>
         <li *ngFor="let event of events">
-            <p>Pocetak: {{event.satnica_pocetak}}</p>
-            <p>Kraj: {{event.satnica_kraj}}</p>
-            <a href="">Link do pregleda</a>
+            <app-event-u-danu [event]="event"></app-event-u-danu>
         </li>
     </ul>
 

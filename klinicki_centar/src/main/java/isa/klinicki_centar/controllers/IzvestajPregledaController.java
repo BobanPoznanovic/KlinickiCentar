@@ -101,4 +101,15 @@ public class IzvestajPregledaController {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping( value = "/pregledID/{id}")
+	public ResponseEntity<IzvestajPregledaDTO> getByPregledId(@PathVariable Integer id) {
+		IzvestajPregleda queryResult = izvestajPregledaService.getIzvestajByPregledID(id);
+		
+		if(queryResult==null) {
+			return new ResponseEntity<IzvestajPregledaDTO>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<IzvestajPregledaDTO>(new IzvestajPregledaDTO(queryResult), HttpStatus.OK);
+	}
 }

@@ -25,4 +25,12 @@ export class PregledService {
   dodajIzvestajPregleda(izvestaj: IzvestajPregleda): Observable<IzvestajPregleda> {
     return this.http.post<IzvestajPregleda>(this.izvestajURL, izvestaj, this.httpOptions);
   }
+
+  getById(pregledID: number): Observable<Pregled> {
+    return this.http.get<Pregled>(this.url+'/'+pregledID)
+  }
+
+  getIzvestajByPregledID(pregledID : number) : Observable<IzvestajPregleda> {
+    return this.http.get<IzvestajPregleda>(this.izvestajURL+'/pregledID/'+pregledID)
+  }
 }
