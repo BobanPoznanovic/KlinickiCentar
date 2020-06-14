@@ -1,5 +1,6 @@
 package isa.klinicki_centar.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -45,5 +46,7 @@ public interface RadniKalendarService {
 	CalendarMonth month(Integer lekarID, String datum);
 	
 	CalendarYear year(Integer lekarID, int year);
+	
+	ArrayList<LocalDate> listOfDatesToLocalDates(ArrayList<Date> dates);
 	
 }

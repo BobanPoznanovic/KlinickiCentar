@@ -1,8 +1,11 @@
 package isa.klinicki_centar.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CalendarWeek {
+	
+	private ArrayList<LocalDate> datumi;
 	
 	private ArrayList<CalendarEvent> sunday;
 	
@@ -42,7 +45,8 @@ public class CalendarWeek {
 			int month,
 			int year,
 			boolean firstWeekInMonth,
-			boolean lastWeekInMonth) {
+			boolean lastWeekInMonth,
+			ArrayList<LocalDate> datumi) {
 		
 	}
 
@@ -132,6 +136,14 @@ public class CalendarWeek {
 
 	public void setYear(int year) {
 		this.year = year;
+	}
+
+	public ArrayList<LocalDate> getDatumi() {
+		return datumi;
+	}
+
+	public void setDatumi(ArrayList<LocalDate> datumi) {
+		this.datumi = datumi;
 	}
 
 }

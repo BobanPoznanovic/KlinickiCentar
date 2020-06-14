@@ -7,7 +7,7 @@ import {Lekar} from "../model/lekar";
 })
 export class LekarService {
 
-  private backEndURL = 'http://localhost:8080/lekar/';
+  private backEndURL = 'http://localhost:8080/lekar';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,6 +16,6 @@ export class LekarService {
   constructor(private http: HttpClient) { }
 
   getByID(id: number) {
-    return this.http.get<Lekar>(this.backEndURL + id);
+    return this.http.get<Lekar>(this.backEndURL + '/' + id);
   }
 }

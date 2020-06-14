@@ -1,0 +1,79 @@
+<p>Izberite datum za koji zelite da prikazete nedeljni raspored</p>
+
+<form [formGroup]="nedeljaForm" (ngSubmit)="onSubmit()">
+    <label>
+        Datum(yyyy-mm-dd):
+        <input type="text" formControlName="datum">
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="week">
+    <div class="Row">
+        <span class="Column" >
+            Sunday - {{week.datumi[0]}}
+            <ul>
+                <li *ngFor="let event of week.sunday">
+                    Datum: {{event.datum}}
+                    Pocetak: {{event.satnica_pocetak}}
+                </li>
+            </ul>
+        </span>
+
+        <span class="Column">
+            Monday - {{week.datumi[1]}}
+            <ul>
+                <li *ngFor="let event of week.monday">
+                    Pocetak: {{event.satnica_pocetak}}
+                </li>
+            </ul>
+        </span>
+
+        <span class="Column">
+            Tuesday - {{week.datumi[2]}}
+            <ul>
+                <li *ngFor="let event of week.tuesday">
+                    Pocetak: {{event.satnica_pocetak}}
+                </li>
+            </ul>
+        </span>
+
+        <span class="Column">
+            Wednesday - {{week.datumi[3]}}
+            <ul>
+                <li *ngFor="let event of week.wednesday">
+                    Pocetak: {{event.satnica_pocetak}}
+                </li>
+            </ul>
+        </span>
+
+        <span class="Column">
+            Thursday - {{week.datumi[4]}}
+            <ul>
+                <li *ngFor="let event of week.thursday">
+                    Pocetak: {{event.satnica_pocetak}}
+                </li>
+            </ul>
+        </span>
+
+        <span class="Column">
+            Friday - {{week.datumi[5]}}
+            <ul>
+                <li *ngFor="let event of week.friday">
+                    Pocetak: {{event.satnica_pocetak}}
+                </li>
+            </ul>
+        </span>
+
+        <span class="Column">
+            Saturday - {{week.datumi[6]}}
+            <ul>
+                <li *ngFor="let event of week.saturday">
+                    Pocetak: {{event.satnica_pocetak}}
+                </li>
+            </ul>
+        </span>
+
+    </div>
+</div>

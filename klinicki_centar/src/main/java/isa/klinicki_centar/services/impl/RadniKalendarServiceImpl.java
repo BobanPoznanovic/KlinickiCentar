@@ -2,6 +2,9 @@ package isa.klinicki_centar.services.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -274,6 +277,24 @@ public class RadniKalendarServiceImpl implements RadniKalendarService {
 			int month = i+1;
 			String s_date = year+"-"+month+"-"+"1";
 			retVal.getMonths().add(month(lekarID, s_date));
+		}
+		
+		return retVal;
+	}
+
+	@Override
+	public ArrayList<LocalDate> listOfDatesToLocalDates(ArrayList<Date> dates) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<LocalDate> retVal = new ArrayList<LocalDate>();
+		
+		for(Date d : dates) {
+			ZoneId defaultZoneId = ZoneId.systemDefault();
+			Instant instant = d.toInstant();
+			
+			LocalDate datum = instant.atZone(defaultZoneId).toLocalDate();
+			
+			retVal.add(datum);
 		}
 		
 		return retVal;

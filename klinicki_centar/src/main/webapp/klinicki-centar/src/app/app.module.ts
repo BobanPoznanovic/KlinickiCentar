@@ -38,6 +38,17 @@ import { ZdravstveniKartonComponent } from './components/zdravstveni-karton/zdra
 import { PredefinisaniPreglediComponent } from './components/pacijent-home-page/predefinisani-pregledi/predefinisani-pregledi.component';
 import { KlinikeComponent } from './components/klinike/klinike.component';
 import { ReceptiComponent } from './components/recepti/recepti.component';
+import { RadniKalendarPageComponent } from './components/radni-kalendar-page/radni-kalendar-page.component';
+import { KalendarPrikazDanComponent } from './components/radni-kalendar-page/kalendar-prikaz-dan/kalendar-prikaz-dan.component';
+import { KalendarPrikazNedeljaComponent } from './components/radni-kalendar-page/kalendar-prikaz-nedelja/kalendar-prikaz-nedelja.component';
+import { KalendarPrikazMesecComponent } from './components/radni-kalendar-page/kalendar-prikaz-mesec/kalendar-prikaz-mesec.component';
+import { KalendarPrikazGodinaComponent } from './components/radni-kalendar-page/kalendar-prikaz-godina/kalendar-prikaz-godina.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRippleModule } from '@angular/material/core';
+import { DanUNedeljiComponent } from './components/radni-kalendar-page/kalendar-prikaz-nedelja/dan-u-nedelji/dan-u-nedelji.component';
+import { DanUMesecuComponent } from './components/radni-kalendar-page/kalendar-prikaz-mesec/dan-u-mesecu/dan-u-mesecu.component';
+import { EventUDanuComponent } from './components/radni-kalendar-page/kalendar-prikaz-mesec/dan-u-mesecu/event-u-danu/event-u-danu.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +85,15 @@ import { ReceptiComponent } from './components/recepti/recepti.component';
     ZdravstveniKartonComponent,
     PredefinisaniPreglediComponent,
     KlinikeComponent,
-    ReceptiComponent
+    ReceptiComponent,
+    RadniKalendarPageComponent,
+    KalendarPrikazDanComponent,
+    KalendarPrikazNedeljaComponent,
+    KalendarPrikazMesecComponent,
+    KalendarPrikazGodinaComponent,
+    DanUNedeljiComponent,
+    DanUMesecuComponent,
+    EventUDanuComponent
   ],
     imports: [
         BrowserModule,
