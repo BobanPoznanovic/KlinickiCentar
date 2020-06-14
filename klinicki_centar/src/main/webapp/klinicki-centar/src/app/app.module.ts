@@ -37,7 +37,7 @@ import { OdbitiPregledComponent } from './components/zakazani-pregledi/odbiti-pr
 import { ZdravstveniKartonComponent } from './components/zdravstveni-karton/zdravstveni-karton.component';
 import { PredefinisaniPreglediComponent } from './components/pacijent-home-page/predefinisani-pregledi/predefinisani-pregledi.component';
 import { KlinikeComponent } from './components/klinike/klinike.component';
-import { ReceptiComponent } from './components/recepti/recepti.component';  
+import { ReceptiComponent } from './components/recepti/recepti.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +73,7 @@ import { ReceptiComponent } from './components/recepti/recepti.component';
     OdbitiPregledComponent,
     ZdravstveniKartonComponent,
     PredefinisaniPreglediComponent,
-    KlinikeComponent
+    KlinikeComponent,
     ReceptiComponent
   ],
     imports: [
