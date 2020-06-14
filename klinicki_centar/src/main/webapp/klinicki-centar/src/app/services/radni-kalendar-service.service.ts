@@ -4,6 +4,7 @@ import { Lekar } from '../model/lekar';
 import { CalendarEvent } from '../model/calendarEvent';
 import { Observable } from 'rxjs';
 import { CalendarWeek } from '../model/calendarWeek';
+import { CalendarMonth } from '../model/calendarMonth';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,12 @@ export class RadniKalendarServiceService {
     let lekarID = lekar.lekarID;
 
     return this.http.get<CalendarWeek>(this.url+'week/'+lekarID+'/'+datum)
+  }
+
+  getMesec(lekar : Lekar, datum : String) : Observable<CalendarMonth> {
+    let lekarID = lekar.lekarID;
+
+    return this.http.get<CalendarMonth>(this.url+'month/'+lekarID+'/'+datum)
   }
 
 }

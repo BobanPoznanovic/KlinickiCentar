@@ -1,1 +1,16 @@
-<p>kalendar-prikaz-mesec works!</p>
+Izberite datum u mesecu koji zelite da prikazete:
+
+<form [formGroup]="mesecForm" (ngSubmit)="onSubmit()">
+    <label>
+        Datum(yyyy-mm-dd):
+        <input type="text" formControlName="datum">
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="month">
+    <div *ngFor="let day of month.days">
+        <app-dan-u-mesecu [day]="day" [month]="month.month"></app-dan-u-mesecu>
+    </div>
+</div>

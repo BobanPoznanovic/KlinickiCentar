@@ -1,0 +1,5 @@
+{{day.day}}. {{monthStr}} - {{dayInWeekStr}}
+<p *ngIf="day.events.length == 0">No events</p>
+
+<app-event-u-danu *ngFor="let event of day.events" [event]="event"></app-event-u-danu>
+
