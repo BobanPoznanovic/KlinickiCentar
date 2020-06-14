@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import isa.klinicki_centar.model.Pacijent;
 import isa.klinicki_centar.model.StatusZahtevZaRegistraciju;
@@ -27,7 +28,7 @@ import isa.klinicki_centar.services.PacijentService;
 import isa.klinicki_centar.services.ZahtevZaRegistracijuService;
 import isa.klinicki_centar.services.ZdravstveniKartonService;
 
-@Controller
+@RestController
 @RequestMapping(path = "/zahtev/registracija")
 @CrossOrigin(origins = "*")
 public class ZahtevZaRegistracijuController {
@@ -85,6 +86,8 @@ public class ZahtevZaRegistracijuController {
 	
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<ZahtevZaRegistracijuDTO> saveZahtevZaRegistraciju(@RequestBody ZahtevZaRegistracijuDTO zahtev) {
+		
+		System.out.println("Stigao zahtev");
 		
 		ZahtevZaRegistraciju noviZahtev = new ZahtevZaRegistraciju();
 		
@@ -191,7 +194,7 @@ public class ZahtevZaRegistracijuController {
 		
 		// Slanje mejla za aktivaciju
 		Pacijent p = pacijentService.findByEmail(queryResult.getEmail());
-		emailService.sendMailToUser(pacijent.getEmail(), "Kliknite na sledeci link kako biste aktivirali vas nalog: http://localhost:8080/pacijent/aktivacija/" + p.getPacijentID(), "Automatski generisan mejl : Aktivacija naloga");
+		emailService.sendMailToUser(pacijent.getEmail(), "Kliknite na sledeci link kako biste aktivirali vas nalog: http://localhost:4200/aktivacija/" + p.getPacijentID(), "Automatski generisan mejl : Aktivacija naloga");
 		
 		return new ResponseEntity<ZahtevZaRegistracijuDTO>(new ZahtevZaRegistracijuDTO(queryResult), HttpStatus.OK);
 	}

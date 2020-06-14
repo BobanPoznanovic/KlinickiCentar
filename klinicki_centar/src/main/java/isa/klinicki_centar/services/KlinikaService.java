@@ -2,6 +2,8 @@ package isa.klinicki_centar.services;
 
 import java.util.ArrayList;
 
+import org.springframework.data.repository.query.Param;
+
 import isa.klinicki_centar.model.Klinika;
 
 public interface KlinikaService {
@@ -24,6 +26,10 @@ public interface KlinikaService {
 	
 	ArrayList<Klinika> nadjiKlinikePoTipuPregledaIGradu(Integer tipPregledaID, String grad);
 	
+	ArrayList<Klinika> nadjiKlinikePoTipuPregledaINazivu(Integer tipPregledaID, String naziv);
+	
+	ArrayList<Klinika> nadjiKlinikePoTipuPregledaNazivuIOceni(Integer tipPregledaID, float ocena, String naziv);
+
 	ArrayList<Klinika> nadjiKlinikePoTipuPregledaGraduIOceni(Integer tipPregledaID, String grad, float ocena);
 	
 	void oceniKliniku(Integer klinikaID, Integer ocena);

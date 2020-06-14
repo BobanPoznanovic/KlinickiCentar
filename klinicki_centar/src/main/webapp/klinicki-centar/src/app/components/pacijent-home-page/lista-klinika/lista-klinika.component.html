@@ -1,0 +1,139 @@
+<app-nav></app-nav>
+
+
+<br>
+
+<div id="searchDiv" class="border-bottom">
+  <br>
+  <form id="searchClinic" class="form-group" (ngSubmit)="onSearchSubmit(selectedOption, selectedName, selectedRating)">
+
+    <label style="padding-right: 20px;"> Izaberite tip pregleda : </label>
+    <select name="types" [(ngModel)]="selectedOption" (change)="onSelectChange()" [disabled]="isAnyClinicSelected"
+            class="form-control-m" style="padding-left: 20px;">
+      <option>No type</option>
+      <option *ngFor="let tip of tipoviPregleda" >{{tip.naziv}}</option>
+    </select>
+
+    <label style="padding-left: 20px; padding-right: 20px;"> Select date : </label>
+    <input required class="form-control-sm" type="date" [value]="selectedDate | date:'yyyy-MM-dd'"
+           (input)="selectedDate=parseDate($event.target.valueAsDate)" (change)="dateChanged($event)"
+           [disabled]="isAnyClinicSelected" [min]="todayDate"
+           style="padding-left: 20px; padding-right: 20px;">
+
+    <label style="padding-left: 20px; padding-right: 20px;"> Unesite naziv klinike : </label>
+    <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
+           style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+    <label style="padding-left: 20px; padding-right: 20px;"> Unesite prosecnu ocenu : </label>
+    <input type="number" [(ngModel)]="selectedRating" [ngModelOptions]="{standalone: true}" min="0" max="5"
+           style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+    <br>
+    <br>
+    <button type="submit" [hidden]="isAnyClinicSelected" class="btn btn-primary"
+            style="margin-left: 45%; width: 150px;">Pretraga
+    </button>
+    <button style="margin-left: 45%; width: 150px;" type="button" [hidden]="!isAnyClinicSelected"
+            (click)="resetAllForm()" class="btn btn-secondary">Resetuj
+    </button>
+  </form>
+</div>
+
+<div>
+  <br>
+  <h2 style="text-align: center">Sve klinike nakon pretrage </h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Naziv</th>
+      <th scope="col">Grad</th>
+      <th scope="col">Adresa</th>
+      <th scope="col">Opis</th>
+      <th scope="col">Prosecna ocena</th>
+      <th scope="col" [hidden]="!isTypeSelected">Izaberite kliniku</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let klinika of sortedData">
+      <td>{{ klinika.naziv }}</td>
+      <td>{{ klinika.grad }}</td>
+      <td>{{ klinika.adresa }}</td>
+      <td>{{ klinika.opis }}</td>
+      <td>{{ klinika.broj_ocena }}</td>
+      <td [hidden]="!isTypeSelected"><input type="radio" name="selectClinicRadio"
+                                            (change)="getDoctorFromSelectedClinic(selectedOption, klinika.klinikaID)">
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<div [hidden]="!isAnyClinicSelected">
+  <br>
+  <div id="searchDoctorDiv"  class="border-bottom">
+    <br>
+    <form id="searchDoctor" class="form-group"
+          (ngSubmit)="onSearchDoctorSubmit(selectedFirstName, selectedLastName, selectedDoctorRating)">
+
+      <label style="padding-left: 20px; padding-right: 20px;"> Unesite ime lekara : </label>
+      <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-left: 20px; padding-right: 20px;"> Unesite prezime lekara : </label>
+      <input type="text" [(ngModel)]="selectedLastName" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-left: 20px; padding-right: 20px;"> Unesite prosecnu ocenu lekara : </label>
+      <input type="number" [(ngModel)]="selectedDoctorRating" [ngModelOptions]="{standalone: true}" min="0" max="5"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <br>
+      <br>
+      <button type="submit" class="btn btn-primary"
+              style="margin-left: 45%; width: 150px;">Pretraga
+      </button>
+
+    </form>
+  </div>
+  <h2 style="text-align: center">Svi doktori sa klinike </h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark" width="245px">
+    <tr>
+      <th scope="col">Ime</th>
+      <th scope="col">Prezime</th>
+      <th scope="col">Adresa</th>
+      <th scope="col">Prosecna ocena</th>
+      <th scope="col">Izaberite lekara</th>
+      <th scope="col" [hidden]="hiddenHeader">Slobodni termini</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let lekar of pronadjeniLekari">
+      <td>{{ lekar.ime }}</td>
+      <td>{{ lekar.prezime }}</td>
+      <td>{{ lekar.adresa }}</td>
+      <td>{{ lekar.prosecna_ocena}}</td>
+      <td><input type="radio" name="selectDoctorRadio" (change)="showOnlySelectedTd(lekar.lekarID)"> </td>
+      <td [hidden]="hiddenTerms">
+        <select class="form-control-sm" [(ngModel)]="selectedTerm"  [id]="'terms-' + lekar.lekarID" hidden
+                (change)="showSendRequestButton(lekar.lekarID)">
+          <option *ngFor="let term of availableTerms">{{term}}</option>
+        </select>
+      </td>
+      <td [hidden]="hiddenLabel"> Nema slobodnih termina za uneti datum </td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <button class="btn btn-primary" [hidden]="!hiddenSend" style="align-content: center; alignment: center"
+          (click)="nadjiTermine(selectedOption, selectedDate)" style="margin-left: 45%; width: 150px;"> Posalji zahtev za pregled
+  </button>
+</div>
+
+

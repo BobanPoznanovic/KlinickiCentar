@@ -26,6 +26,8 @@ public class PacijentDTO {
 	
 	private Integer zdravstveni_kartonID;
 	
+	private boolean aktivan;
+	
 	public PacijentDTO() {
 		
 	}
@@ -34,13 +36,13 @@ public class PacijentDTO {
 		this(
 				pacijent.getPacijentID(), pacijent.getBroj_osiguranika(), pacijent.getEmail(), pacijent.getPassword(), pacijent.getIme(), pacijent.getPrezime(),
 				pacijent.getAdresa(), pacijent.getGrad(), pacijent.getDrzava(),
-				pacijent.getKontakt_telefon(), pacijent.getZdravstveni_kartonID()
+				pacijent.getKontakt_telefon(), pacijent.getZdravstveni_kartonID(), pacijent.isAktivan()
 				);
 	}
 	
 	public PacijentDTO(
 			Integer pacijentID, Integer broj_osiguranika, String email, String password, String ime, String prezime, String adresa, String grad,
-			String drzava, String kontakt_telefon, Integer zdravstveni_kartonID
+			String drzava, String kontakt_telefon, Integer zdravstveni_kartonID, boolean aktivan
 			) {
 		super();
 		this.setAdresa(adresa);
@@ -54,6 +56,7 @@ public class PacijentDTO {
 		this.setPassword(password);
 		this.setPrezime(prezime);
 		this.setZdravstveni_kartonID(zdravstveni_kartonID);
+		this.aktivan = aktivan;
 	}
 
 	public Integer getPacijentID() {
@@ -142,5 +145,13 @@ public class PacijentDTO {
 
 	public void setBroj_osiguranika(Integer broj_osiguranika) {
 		this.broj_osiguranika = broj_osiguranika;
+	}
+
+	public boolean isAktivan() {
+		return aktivan;
+	}
+
+	public void setAktivan(boolean aktivan) {
+		this.aktivan = aktivan;
 	}
 }

@@ -284,6 +284,11 @@ public class LekarController {
 		return lekarService.pretregaLekara(ime, prezime, prosecnaOcena, tipPregledaID, datum);
 	}
 	
+	@GetMapping("/search/tipPregledaKlinika/{tipPregledaID}/{klinikaID}")
+	ArrayList<Lekar> pretregaLekaraPoTipuPregledaIKlinici(@PathVariable Integer tipPregledaID, @PathVariable Integer klinikaID) {
+		return lekarService.pretregaLekaraPoTipuPregledaIKlinici(tipPregledaID, klinikaID);
+	}
+	
 	@GetMapping("/search/lekariZaPregled/{tipPregledaID}/{klinikaID}/{datum}")
 	public ArrayList<Lekar> nadjiLekareZaTipPregledaIDatum(@PathVariable Integer tipPregledaID, @PathVariable Integer klinikaID, @PathVariable String datum) {
 		return lekarService.nadjiLekareZaTipPregledaIDatum(tipPregledaID, klinikaID, datum);

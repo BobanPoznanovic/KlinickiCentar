@@ -1,6 +1,7 @@
 package isa.klinicki_centar.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,18 @@ public class PacijentController {
 	public ResponseEntity<PacijentDTO> getPacijent(@PathVariable Integer id) {
 		
 		Pacijent queryResult = pacijentService.findOne(id);
+		
+		if(queryResult == null) {
+			return new ResponseEntity<PacijentDTO>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<PacijentDTO>(new PacijentDTO(queryResult), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/email/{email}")
+	public ResponseEntity<PacijentDTO> findByEmail(@PathVariable String email) {
+		
+		Pacijent queryResult = pacijentService.findByEmail(email);
 		
 		if(queryResult == null) {
 			return new ResponseEntity<PacijentDTO>(HttpStatus.NOT_FOUND);
@@ -133,5 +146,38 @@ public class PacijentController {
 		else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@PostMapping(
+			value = "/login",
+			consumes = "application/json")
+	public ResponseEntity<Object> login(@RequestBody PacijentDTO pacijent) {
+		
+		
+		
+		if (pacijent.getEmail() == null || pacijent.getEmail().equals("")) {
+			return new ResponseEntity<>("Enter username", HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		Pacijent pacijentIzBaze = pacijentService.findByEmail(pacijent.getEmail());
+		
+		if(!pacijentIzBaze.isAktivan()) {
+			return new ResponseEntity<>("Morate aktivirati nalog", HttpStatus.FORBIDDEN);
+		}
+		
+		if(pacijentIzBaze != null) {
+			if( pacijentIzBaze.getPassword().equals(pacijent.getPassword()) ) {
+				String token = pacijentIzBaze.getEmail();
+				HashMap<String, Object> response = new HashMap<>();
+				response.put("token", token);
+				
+				return new ResponseEntity<>(response, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			}
+		} else {
+			return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+		
 	}
 }

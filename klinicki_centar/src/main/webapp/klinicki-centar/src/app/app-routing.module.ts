@@ -15,9 +15,23 @@ import { DodajIzvestajPregledaComponent } from './components/dodaj-izvestaj-preg
 import { ListaZahtevaZaDodeluSaleComponent } from './components/lista-zahteva-za-dodelu-sale/lista-zahteva-za-dodelu-sale.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegistracijaComponent} from './components/registracija/registracija.component';
+import {PacijentHomePageComponent} from './components/pacijent-home-page/pacijent-home-page.component';
+import {ListaKlinikaComponent} from './components/pacijent-home-page/lista-klinika/lista-klinika.component';
+import {ProfilComponent} from './components/pacijent-home-page/profil/profil.component';
+import {IzmeniProfilComponent} from './components/pacijent-home-page/izmeni-profil/izmeni-profil.component';
+import {AktivacijaNalogaComponent} from './components/aktivacija-naloga/aktivacija-naloga.component';
+import {PotvrditiPregledComponent} from './components/zakazani-pregledi/potvrditi-pregled/potvrditi-pregled.component';
+import {OdbitiPregledComponent} from './components/zakazani-pregledi/odbiti-pregled/odbiti-pregled.component';
+import {ZdravstveniKartonComponent} from './components/zdravstveni-karton/zdravstveni-karton.component';
+import {OcenjivanjeComponent} from './components/pacijent-home-page/ocenjivanje/ocenjivanje.component';
+import {KlinikeComponent} from "./components/klinike/klinike.component";
+import {PredefinisaniPreglediComponent} from "./components/pacijent-home-page/predefinisani-pregledi/predefinisani-pregledi.component";
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegistracijaComponent},
   { path: 'admin.centra', component: AdminKlinickogCentraHomeComponent},
   { path: 'admin.centra/zahtevi/registracija', component: ZahteviZaRegistracijuComponent},
   { path: 'admin.centra/klinika/dodaj', component: DodajKlinikuComponent},
@@ -26,13 +40,22 @@ const routes: Routes = [
   { path: 'admin.centra/lek/dodaj', component: DodajLekComponent},
   { path: 'admin.centra/new.admin', component: DodajAdminaKlinickogCentraComponent},
   { path: 'sestra', component: MedicinskaSestraHomeComponent},
+  { path: 'pacijent/home', component: PacijentHomePageComponent },
   { path: 'pacijent/all', component: ListaPacijenataComponent},
   { path: 'zahtev/odsustvo/dodaj', component: DodajZahtevZaOdsustvoComponent},
-  { path: 'pregled/all', component: ListaPregledaComponent},
   { path: 'pregled/izvestaj/dodaj', component: DodajIzvestajPregledaComponent},
+  { path: 'pregled/all', component: ListaPregledaComponent},
   { path: 'admin.klinika/zahtevi/sala', component: ListaZahtevaZaDodeluSaleComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegistracijaComponent}
+  { path: 'listaKlinika', component: ListaKlinikaComponent },
+  { path: 'profil', component: ProfilComponent },
+  { path: 'izmeniProfil', component: IzmeniProfilComponent },
+  { path: 'aktivacija/:id', component: AktivacijaNalogaComponent },
+  { path: 'potvrditi/:id', component: PotvrditiPregledComponent },
+  { path: 'odbiti/:id', component: OdbitiPregledComponent },
+  { path: 'zdravstveni-karton', component: ZdravstveniKartonComponent },
+  { path: 'pregledi-operacije', component: OcenjivanjeComponent },
+  { path: 'klinike/:id', component: PredefinisaniPreglediComponent },
+  { path: 'klinike', component: KlinikeComponent }
 ];
 
 @NgModule({
