@@ -1,5 +1,6 @@
 package isa.klinicki_centar.controllers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,9 @@ public class RadniKalendarController {
 		ArrayList<Date> datesToCheck = new ArrayList<Date>();
 		
 		datesToCheck = radniKalendarService.datesInWeek(d_datum);
+		
+		ArrayList<LocalDate> datumi = radniKalendarService.listOfDatesToLocalDates(datesToCheck);
+		week.setDatumi(datumi);
 		
 		//popupi preglede za dan, sortiraj, konvertuj
 		ArrayList<Pregled> temp_pregledi = new ArrayList<Pregled>();

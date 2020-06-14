@@ -1,5 +1,6 @@
 package isa.klinicki_centar.model.dto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import isa.klinicki_centar.model.CalendarEvent;
@@ -29,6 +30,8 @@ public class CalendarWeekDTO {
 	
 	private int year;
 	
+	private ArrayList<String> datumi;
+	
 	public CalendarWeekDTO() {
 		
 	}
@@ -45,7 +48,8 @@ public class CalendarWeekDTO {
 				week.isFirstWeekInMonth(),
 				week.isLastWeekInMonth(),
 				week.getMonth(),
-				week.getYear());
+				week.getYear(),
+				week.getDatumi());
 	}
 	
 	public CalendarWeekDTO(
@@ -59,7 +63,8 @@ public class CalendarWeekDTO {
 			boolean firstWeekInMonth,
 			boolean lastWeekInMonth,
 			int month,
-			int year) {
+			int year,
+			ArrayList<LocalDate> datumi) {
 		super();
 		this.setSunday(sunday);
 		this.setMonday(monday);
@@ -71,7 +76,14 @@ public class CalendarWeekDTO {
 		this.setFirstWeekInMonth(firstWeekInMonth);
 		this.setLastWeekInMonth(lastWeekInMonth);
 		this.setMonth(month);
-		this.setYear(year);		
+		this.setYear(year);	
+		
+		ArrayList<String> s_datumi = new ArrayList<String>();
+		for(LocalDate d : datumi) {
+			s_datumi.add(d.toString());
+		}
+		
+		this.setDatumi(s_datumi);
 	}
 
 	public ArrayList<CalendarEventDTO> getMonday() {
@@ -170,5 +182,13 @@ public class CalendarWeekDTO {
 		}
 		
 		return retVal;
+	}
+
+	public ArrayList<String> getDatumi() {
+		return datumi;
+	}
+
+	public void setDatumi(ArrayList<String> datumi) {
+		this.datumi = datumi;
 	}
 }

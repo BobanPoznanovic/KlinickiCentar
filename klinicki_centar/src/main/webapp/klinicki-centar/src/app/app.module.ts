@@ -46,6 +46,7 @@ import { KalendarPrikazGodinaComponent } from './components/radni-kalendar-page/
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRippleModule } from '@angular/material/core';
+import { DanUNedeljiComponent } from './components/radni-kalendar-page/kalendar-prikaz-nedelja/dan-u-nedelji/dan-u-nedelji.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { MatRippleModule } from '@angular/material/core';
     KalendarPrikazDanComponent,
     KalendarPrikazNedeljaComponent,
     KalendarPrikazMesecComponent,
-    KalendarPrikazGodinaComponent
+    KalendarPrikazGodinaComponent,
+    DanUNedeljiComponent
   ],
     imports: [
         BrowserModule,
