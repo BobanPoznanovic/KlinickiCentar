@@ -72,11 +72,11 @@ public class LekarControllerTest {
 
         mockMvc.perform(get(URL_LEKARI))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$.[*].ime").value(hasItem("Milos")))
                 .andExpect(jsonPath("$.[*].prezime").value(hasItem("Ivanovic")))
-                .andExpect(jsonPath("$.[*].adresa").value(hasItem("Srbija")));
+                .andExpect(jsonPath("$.[*].adresa").value(hasItem("Ulica 1, Novi Sad, Srbija")));
 
         verify(lekarService, times(1)).nadjiLekareZaTipPregledaIDatum(1, 1, "2020_06_14");
 
@@ -113,7 +113,7 @@ public class LekarControllerTest {
 
         mockMvc.perform(get(URL_LEKARI2))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(3)));
 
         verify(lekarService, times(1)).nadjiLekareZaTipPregledaIDatum(1, 4, "2020_06_14");

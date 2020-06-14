@@ -43,8 +43,8 @@ import isa.klinicki_centar.services.PregledService;
 public class PregledControllerTest {
 
 	private static final String PREDEFINISANI = "/pregled/predefinisaniPregledi";
-    private static final String PREDEFINISANI_SA_KLINIKE = "pregled/predefinisanNaKlinici/1";
-    private static final String ZAKAZI_PREDEFINISANI = "pregled/zakazivanjePredefinisanogPregleda/7/1";
+    private static final String PREDEFINISANI_SA_KLINIKE = "/pregled/predefinisanNaKlinici/1";
+    private static final String ZAKAZI_PREDEFINISANI = "/pregled/zakazivanjePredefinisanogPregleda/7/1";
 
     private MockMvc mockMvc;
 
@@ -89,7 +89,7 @@ public class PregledControllerTest {
 
         mockMvc.perform(get(PREDEFINISANI))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(1)));
 
         verify(pregledService, times(1)).nadjiSvePredefinisanePreglede();
@@ -104,7 +104,7 @@ public class PregledControllerTest {
 
         mockMvc.perform(get(PREDEFINISANI_SA_KLINIKE))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(1)));
 
         verify(pregledService, times(1)).nadjiPredefinisanePregledeKlinike(1);

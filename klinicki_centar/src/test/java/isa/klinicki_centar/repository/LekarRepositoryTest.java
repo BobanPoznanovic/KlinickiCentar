@@ -28,13 +28,13 @@ public class LekarRepositoryTest {
     @Test
     public void testNadjiLekareZaTipPregledaIDatum(){
         ArrayList<Lekar> lekari = lekarRepository.nadjiLekareZaTipPregledaIDatum(1, 1, "2020-06-19");
-        assertEquals(1, lekari.size());
+        assertEquals(2, lekari.size());
     }
 
     @Test
     public void testDoctorsThatCanDoExam1(){
     	ArrayList<Lekar> lekari = lekarRepository.nadjiLekareZaTipPregledaIDatum(1, 3, "2020-06-19");
-        assertEquals(3, lekari.size());
+        assertEquals(1, lekari.size());
     }
 
     @Test

@@ -28,7 +28,7 @@ import isa.klinicki_centar.repositories.PregledRepository;
 @SpringBootTest
 public class PregledRepositoryTest {
 	
-	public static final int PREDEFINISANIH = 1;
+	public static final int PREDEFINISANIH = 6;
     public static final int LEKAR_ID = 2;
     public static final int PREDEFINISANI_ID = 7;
 

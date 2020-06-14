@@ -29,19 +29,19 @@ public class KlinikaRepositoryTest {
     @Test
     public void testGetSveKlinike() {
         List<Klinika> klinike = klinikaRepository.findAll();
-        assertEquals(4, klinike.size());
+        assertEquals(5, klinike.size());
     }
 
     @Test
     public void testNadjiKlinikePoTipuPregleda() {
     	ArrayList<Klinika> klinike = klinikaRepository.nadjiKlinikePoTipuPregleda(11);
-        assertEquals(4, klinike.size());
+        assertEquals(1, klinike.size());
     }
 
     @Test
     public void testNadjiKlinikePoTipuPregledaIOceni() {
     	ArrayList<Klinika> klinike = klinikaRepository.nadjiKlinikePoTipuPregledaIOceni(1, 0);
-        assertEquals(0, klinike.size());
+        assertEquals(3, klinike.size());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class KlinikaRepositoryTest {
     @Test
     public void testNadjiKlinikePoTipuPregledaNazivuIOceni() {
     	ArrayList<Klinika> klinike = klinikaRepository.nadjiKlinikePoTipuPregledaNazivuIOceni(1,0, "Klinika1");
-        assertEquals(0, klinike.size());
+        assertEquals(1, klinike.size());
     }
 	
 }

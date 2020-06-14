@@ -68,10 +68,10 @@ public class ZahtevZaPregledServiceImpl implements ZahtevZaPregledService {
 
 	@Override
 	public void posaljiZahtev(Integer tipPregledaID, Date datum, Integer klinikaID, Integer lekarID, Integer pacijentID) {
-		TipPregleda tipPregleda = tipPregledaRepository.findById(tipPregledaID).get();
-		Klinika klinika = klinikaRepository.findById(klinikaID).get();
-		Lekar lekar = lekarRepository.findById(lekarID).get();
-		Pacijent pacijent = pacijentRepository.findById(pacijentID).get();
+		TipPregleda tipPregleda = tipPregledaRepository.getOne(tipPregledaID);
+		Klinika klinika = klinikaRepository.getOne(klinikaID);
+		Lekar lekar = lekarRepository.getOne(lekarID);
+		Pacijent pacijent = pacijentRepository.getOne(pacijentID);
 		
 		ZahtevZaPregled zahtevZaPregled = new ZahtevZaPregled(tipPregledaID, datum, klinikaID, lekarID, pacijentID);
 		zahtevZaPregledRepository.save(zahtevZaPregled);
@@ -81,7 +81,7 @@ public class ZahtevZaPregledServiceImpl implements ZahtevZaPregledService {
 		
 		System.out.println("\nZahtev za pregled je sacuvan."
 				+ "\n\n\tDatum: " + datum
-				+ "\n\tKlinika: ID-" + klinikaID + ", " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
+				+ "\n\tKlinika: ID-" + klinika.getKlinikaID() + ", " + klinika.getNaziv() + ", " + klinika.getAdresa() + ", " + klinika.getGrad()
 				+ "\n\tTip regleda: " + tipPregleda.getNaziv()
 				+ "\n\tLekar: " + lekar.getIme() + " " + lekar.getPrezime()
 				+ "\n\tPacijent: " + pacijent.getIme() + " " + pacijent.getPrezime()

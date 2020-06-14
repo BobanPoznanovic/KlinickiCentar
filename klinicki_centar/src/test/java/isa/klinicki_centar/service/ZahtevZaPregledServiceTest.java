@@ -40,7 +40,7 @@ public class ZahtevZaPregledServiceTest {
     public static final String DATUM = "2020-06-22";
     public static final String SATNICA_POCETAK = "13:00";
     public static final String SATNICA_KRAJ = "13:29";
-    public static final Integer KLINIKA_ID = 9;
+    public static final Integer KLINIKA_ID = 1;
     public static final String NOVA_KLINIKA = "Klinka Bulevar";
     public static final String NOVA_KLINIKA_ADRESA = "Bulevar Oslobodjenja 22";
     public static final String NOVA_KLINIKA_GRAD = "Novi Sad";

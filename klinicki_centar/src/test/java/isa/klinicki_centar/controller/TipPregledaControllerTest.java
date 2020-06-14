@@ -1,9 +1,9 @@
 package isa.klinicki_centar.controller;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Mockito.times;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -11,9 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,19 +28,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import isa.klinicki_centar.KlinickiCentarApplication;
-import isa.klinicki_centar.controllers.KlinikaController;
-import isa.klinicki_centar.model.Klinika;
-import isa.klinicki_centar.services.KlinikaService;
-
+import isa.klinicki_centar.controllers.TipPregledaController;
+import isa.klinicki_centar.model.TipPregleda;
+import isa.klinicki_centar.services.TipPregledaService;
 
 @RunWith(SpringRunner.class)
 @TestPropertySource(locations = {"/test.properties"})
 @ContextConfiguration(classes = KlinickiCentarApplication.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class KlinikaControllerTest {
-	
-	private static final String URL_SEARCH_KLINIKE = "/klinika/all";
-    private static final String URL_SEARCH_KLINIKE2 = "/klinika/pretragaKlinika/1/Klinika1/0";
+public class TipPregledaControllerTest {
+
+	private static final String SVI_TIPOVI = "/tipPregleda/all";
+
 
     private MediaType contentType = new MediaType(
             MediaType.APPLICATION_JSON.getType(),
@@ -50,56 +47,34 @@ public class KlinikaControllerTest {
             Charset.forName("utf8"));
 
     private MockMvc mockMvc;
-    
+
     @Mock
-    private KlinikaService klinikaService;
-    
+    private TipPregledaService tipPregledaService;
+
     @InjectMocks
-    private KlinikaController klinikaController;
-    
+    private TipPregledaController tipPregledaController;
+
     @Before
-    public void init(){
+    public void init() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(klinikaController)
-                .build();
-    }
-    
-    @Test
-    public void testGetSveKlinike() throws Exception {
-        List<Klinika> klinike = new ArrayList<>();
-        klinike.add(new Klinika());
-        klinike.add(new Klinika());
-        klinike.add(new Klinika());
-        klinike.add(new Klinika());
-
-        when(klinikaService.findAll()).thenReturn(klinike);
-
-
-        mockMvc.perform(get(URL_SEARCH_KLINIKE))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$", hasSize(4)));
-
-        verify(klinikaService, times(1)).findAll();
-
+        mockMvc = MockMvcBuilders.standaloneSetup(tipPregledaController).build();
     }
 
     @Test
-    public void testPretragaKlinika() throws Exception {
-        ArrayList<Klinika> klinike = new ArrayList<>();
-        klinike.add(new Klinika());
+    public void testGetAll() throws Exception {
+    	ArrayList<TipPregleda> tipovi = new ArrayList<>();
+    	tipovi.add(new TipPregleda());
+    	tipovi.add(new TipPregleda());
+    	tipovi.add(new TipPregleda());
 
-        when(klinikaService.nadjiKlinikePoTipuPregledaNazivuIOceni(1, (float) 0.0, "Klinika1")).thenReturn(klinike);
+        when(tipPregledaService.findAll()).thenReturn(tipovi);
 
-
-        mockMvc.perform(get(URL_SEARCH_KLINIKE2))
+        mockMvc.perform(get(SVI_TIPOVI))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(jsonPath("$", hasSize(3)));
 
-        verify(klinikaService, times(1)).nadjiKlinikePoTipuPregledaNazivuIOceni(1, (float) 0.0, "Klinika1" );
-
+        verify(tipPregledaService, times(1)).findAll();
     }
-    
+	
 }
