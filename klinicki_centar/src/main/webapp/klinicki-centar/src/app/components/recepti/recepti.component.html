@@ -1,0 +1,12 @@
+<p>recepti works!</p>
+<div *ngIf="neovereniReceptiSaKlinike">
+    <ul>
+        <li *ngFor="let recept of neovereniReceptiSaKlinike">
+            <p>ID: {{recept.receptID}}</p>
+            <p>Izvestaj pregledaID: {{recept.izvestaj_pregledaID}}</p>
+            
+            <p>Upotreba: {{recept.upotreba}}</p>
+            <button (click)="overi(recept)">Overi</button>
+        </li>
+    </ul>
+</div>

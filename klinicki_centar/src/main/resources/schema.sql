@@ -1,5 +1,6 @@
 USE db_example;
 
+DROP TABLE IF EXISTS RECEPT;
 DROP TABLE IF EXISTS IZVESTAJ_PREGLEDA;
 DROP TABLE IF EXISTS PREGLED;
 --DROP TABLE IF EXISTS PREDEF_PREGLED;
@@ -296,4 +297,16 @@ CREATE TABLE IZVESTAJ_PREGLEDA (
     opis_pregleda varchar(1000),
     CONSTRAINT fk_izvestaj_pregleda_pregledID FOREIGN KEY (pregledID) REFERENCES PREGLED(pregledID),
     CONSTRAINT fk_izvestaj_pregleda_dijagnozaID FOREIGN KEY (dijagnozaID) REFERENCES SIFARNIK_DIJAGNOZA(dijagnozaID)
+);
+
+CREATE TABLE RECEPT (
+	receptID int AUTO_INCREMENT PRIMARY KEY,
+	izvestaj_pregledaID int,
+	overen boolean,
+	lekID int,
+	upotreba varchar(255),
+	overila_medicinska_sestraID int,
+	CONSTRAINT fk_recept_izvestaj_pregledaID FOREIGN KEY (izvestaj_pregledaID) REFERENCES IZVESTAJ_PREGLEDA(izvestaj_pregledaID),
+	CONSTRAINT fk_recept_lekID FOREIGN KEY (lekID) REFERENCES LEK(lekID),
+	CONSTRAINT fk_recept_medicinska_sestraID FOREIGN KEY (overila_medicinska_sestraID) REFERENCES MEDICINSKA_SESTRA (medicinska_sestraID)
 );
