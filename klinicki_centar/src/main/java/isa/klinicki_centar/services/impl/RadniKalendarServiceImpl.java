@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import isa.klinicki_centar.model.CalendarDay;
 import isa.klinicki_centar.model.CalendarEvent;
 import isa.klinicki_centar.model.CalendarMonth;
+import isa.klinicki_centar.model.CalendarYear;
 import isa.klinicki_centar.model.Operacija;
 import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.dto.CalendarDayDTO;
@@ -213,11 +214,7 @@ public class RadniKalendarServiceImpl implements RadniKalendarService {
 			retVal.add(cal.getTime());
 			cal.add(Calendar.DATE, 1);
 		}
-		
-		for(Date d : retVal) {
-			System.out.println(d);
-		}
-		
+				
 		
 		return retVal;
 	}
@@ -263,6 +260,21 @@ public class RadniKalendarServiceImpl implements RadniKalendarService {
 		retVal.setMonth(getMonth(d_datum));
 		retVal.setYear(getYear(d_datum));
 		retVal.setDays(days);
+		
+		return retVal;
+	}
+
+	@Override
+	public CalendarYear year(Integer lekarID, int year) {
+		// TODO Auto-generated method stub
+		
+		CalendarYear retVal = new CalendarYear();
+		
+		for(int i = 0; i < 12; i++) {
+			int month = i+1;
+			String s_date = year+"-"+month+"-"+"1";
+			retVal.getMonths().add(month(lekarID, s_date));
+		}
 		
 		return retVal;
 	}

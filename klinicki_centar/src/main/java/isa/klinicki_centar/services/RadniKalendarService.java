@@ -6,6 +6,7 @@ import java.util.Date;
 import isa.klinicki_centar.model.CalendarDay;
 import isa.klinicki_centar.model.CalendarEvent;
 import isa.klinicki_centar.model.CalendarMonth;
+import isa.klinicki_centar.model.CalendarYear;
 import isa.klinicki_centar.model.Operacija;
 import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.dto.CalendarDayDTO;
@@ -42,5 +43,7 @@ public interface RadniKalendarService {
 	int dayInWeek(Date date);
 	
 	CalendarMonth month(Integer lekarID, String datum);
+	
+	CalendarYear year(Integer lekarID, int year);
 	
 }

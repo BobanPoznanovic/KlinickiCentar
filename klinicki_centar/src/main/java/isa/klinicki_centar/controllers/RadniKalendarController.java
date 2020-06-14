@@ -15,6 +15,7 @@ import isa.klinicki_centar.model.CalendarDay;
 import isa.klinicki_centar.model.CalendarEvent;
 import isa.klinicki_centar.model.CalendarMonth;
 import isa.klinicki_centar.model.CalendarWeek;
+import isa.klinicki_centar.model.CalendarYear;
 import isa.klinicki_centar.model.Pregled;
 import isa.klinicki_centar.model.dto.CalendarEventDTO;
 import isa.klinicki_centar.model.dto.CalendarMonthDTO;
@@ -158,5 +159,16 @@ public class RadniKalendarController {
 		CalendarMonth retVal = radniKalendarService.month(lekarID, datum);
 		
 		return new ResponseEntity<CalendarMonth>(retVal, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/year/{lekarID}/{year}")
+	public ResponseEntity<CalendarYear> month(@PathVariable Integer lekarID, @PathVariable int year) {
+		
+		CalendarYear retVal = new CalendarYear();
+		
+		retVal = radniKalendarService.year(lekarID, year);
+		
+		
+		return new ResponseEntity<CalendarYear>(retVal, HttpStatus.OK);
 	}
 }
