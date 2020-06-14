@@ -6,7 +6,9 @@ import isa.klinicki_centar.model.CalendarEvent;
 import isa.klinicki_centar.model.CalendarWeek;
 
 public class CalendarWeekDTO {
-
+	
+	private ArrayList<CalendarEventDTO> sunday;
+	
 	private ArrayList<CalendarEventDTO> monday;
 	
 	private ArrayList<CalendarEventDTO> tuesday;
@@ -18,8 +20,6 @@ public class CalendarWeekDTO {
 	private ArrayList<CalendarEventDTO> friday;
 	
 	private ArrayList<CalendarEventDTO> saturday;
-	
-	private ArrayList<CalendarEventDTO> sunday;
 	
 	private boolean firstWeekInMonth;
 	

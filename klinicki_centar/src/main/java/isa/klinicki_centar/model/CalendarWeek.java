@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class CalendarWeek {
 	
+	private ArrayList<CalendarEvent> sunday;
+	
 	private ArrayList<CalendarEvent> monday;
 	
 	private ArrayList<CalendarEvent> tuesday;
@@ -15,8 +17,6 @@ public class CalendarWeek {
 	private ArrayList<CalendarEvent> friday;
 	
 	private ArrayList<CalendarEvent> saturday;
-	
-	private ArrayList<CalendarEvent> sunday;
 	
 	private boolean firstWeekInMonth;
 	
