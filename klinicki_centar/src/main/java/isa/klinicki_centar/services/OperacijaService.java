@@ -30,7 +30,7 @@ public interface OperacijaService {
 	
 	ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(Integer pacijentID, Date datumOperacije);
 	
-//	ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(Integer pacijentID);
+	ArrayList<Operacija> nadjiSveOperacijeZaOcenjivanje(Integer pacijentID);
 	
 	ArrayList<Operacija> sortOperacijePoDatumu();
 }

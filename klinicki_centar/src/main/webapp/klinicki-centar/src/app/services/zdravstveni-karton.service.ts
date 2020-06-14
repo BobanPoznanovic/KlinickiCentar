@@ -28,4 +28,8 @@ export class ZdravstveniKartonService {
     return this.http.put<ZdravstveniKarton>(this.backEndUrl, karton, this.httpOptions);
   }
 
+  getPacijentovKarton(id: number) {
+    return this.http.get<ZdravstveniKarton>(this.backEndUrl + '/pacijent/' + id);
+  }
+
 }

@@ -100,5 +100,15 @@ public class KlinikaServiceImpl implements KlinikaService {
 		return klinikaRepository.sortKlinikePoOceni();
 	}
 
+	@Override
+	public ArrayList<Klinika> nadjiKlinikePoTipuPregledaINazivu(Integer tipPregledaID, String naziv) {
+		return klinikaRepository.nadjiKlinikePoTipuPregledaINazivu(tipPregledaID, naziv);
+	}
+
+	@Override
+	public ArrayList<Klinika> nadjiKlinikePoTipuPregledaNazivuIOceni(Integer tipPregledaID, float ocena, String naziv) {
+		return klinikaRepository.nadjiKlinikePoTipuPregledaNazivuIOceni(tipPregledaID, ocena, naziv);
+	}
+
 
 }

@@ -33,8 +33,9 @@ insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prez
 insert into zahtev_za_registraciju (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, broj_telefona, status_zahteva, razlog_odbijanja) values (3214, 'joka@gmail.com', 'jokajoka', 'Joka', 'Jokic', 'Temerinska 1', 'Novi Sad', 'Srbija', '060445566', 1, '');
 
 --Pacijent
-insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1234, 'obendtner@gmail.com', 'pacijent1sifra', 'Pera', 'Peric', 'Safarikova 1', 'Novi Sad', 'Srbija', '0213001486', 1, 0, 0);
-insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (2345, 'pacijent2@gmail.com' ,'pacijent2sifra', 'Mika', 'Mikic', 'Pasterova 1', 'Novi Sad', 'Srbija', '021445522', 2, 0, 0);
+insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1234, 'obendtner@gmail.com', '1sifra', 'Pera', 'Peric', 'Safarikova 1', 'Novi Sad', 'Srbija', '0213001486', 1, 1, 0);
+--insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (1234, 'pacijent1@gmail.com', '1sifra', 'Pera', 'Peric', 'Safarikova 1', 'Novi Sad', 'Srbija', '0213001486', 1, 1, 0);
+insert into pacijent (broj_osiguranika, email, password, ime, prezime, adresa, grad, drzava, kontakt_telefon, zdravstveni_kartonID, aktivan, version) values (2345, 'pacijent2@gmail.com' ,'sifra', 'Mika', 'Mikic', 'Pasterova 1', 'Novi Sad', 'Srbija', '021445522', 2, 0, 0);
 
 --ZdravstveniKarton
 INSERT INTO zdravstveni_karton (pacijentID, datum_rodjenja , visina_pacijenta , tezina_pacijenta , krvna_grupa , dioptrija) VALUES (1, '1990-02-20', '190', '80.5', 'AB+', '+1');
@@ -139,7 +140,8 @@ insert into sala (klinikaID, naziv_sale, broj_sale) values (4, "Klinika 4 - Sala
 
 
 --Pregled
-insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 1, 1, 1, '2020-06-19', '10:00', '10:29', 1, 0, false, true, false, false);
+
+insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 1, 1, 1, '2020-06-19', '10:00', '10:29', 1, 0, true, true, false, false);
 insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 2, 1, 3, '2020-06-29', '11:00', '11:29', 1, 0, false, false, false, false);
 insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 3, 2, 5, '2020-06-29', '12:00', '12:29', 1, 0, false, false, false, false);
 insert into pregled (kategorija_pregleda, lekarID, pacijentID, salaID, datum_pregleda, satnica_pocetak, satnica_kraj, tip_pregledaID, popust, potvrdjen, zavrsen, lekar_ocenjen, klinika_ocenjena) values ("Normalan", 4, 2, 7, '2020-06-19', '10:30', '10:59', 1, 0, false, false, false, false);
@@ -195,7 +197,7 @@ INSERT INTO zahtev_za_pregled (klinikaID, pacijentID, datum, satnica_pocetak, sa
 								
 --Operacije
 insert into operacija (lekarID, datum_operacije, satnica_pocetka_operacije, satnica_kraja_operacije, salaID, pacijentID, lekar_ocenjen, klinika_ocenjena) 
-			   values (1, '2020-06-27', '15:30', '16:29', 2, 1, false, false);
+			   values (1, '2020-06-12', '15:30', '16:29', 2, 1, false, false);
 insert into operacija (lekarID, datum_operacije, satnica_pocetka_operacije, satnica_kraja_operacije, salaID, pacijentID, lekar_ocenjen, klinika_ocenjena) 
 			   values (2, '2020-06-26', '11:00', '11:59', 4, 1, false, false);
 insert into operacija (lekarID, datum_operacije, satnica_pocetka_operacije, satnica_kraja_operacije, salaID, pacijentID, lekar_ocenjen, klinika_ocenjena) 

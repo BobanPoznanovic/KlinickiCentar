@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {Pacijent} from '../../model/pacijent';
+import {PacijentService} from '../../services/pacijent.service';
+import {ActivatedRoute} from '@angular/router';
+import {PacijentHomepageService} from '../../services/pacijent-homepage.service';
+import {AuthService} from "../../services/auth.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-pacijent-home-page',
@@ -7,9 +13,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PacijentHomePageComponent implements OnInit {
 
-  constructor() { }
+  public pacijent: Pacijent;
+  auth: AuthService;
+  ulogovanPacijent: Pacijent;
+
+  constructor(private pacijentService: PacijentService,
+              private activatedRoute: ActivatedRoute,
+              private pacijentHomepageService: PacijentHomepageService,
+              private authService: AuthService) {
+    this.pacijent = new Pacijent();
+    this.ulogovanPacijent = new Pacijent();
+    this.pacijent.email = authService.getToken();
+    console.log('Pacijent home page:  email  -  ' + this.pacijent.email);
+  }
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.pacijent = this.pacijentService.getByID(Number(localStorage.getItem('pacijentID')))
+      .subscribe(data =>
+        this.pacijent = data
+      );
   }
 
 }

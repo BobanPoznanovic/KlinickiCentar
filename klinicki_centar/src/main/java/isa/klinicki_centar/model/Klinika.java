@@ -28,9 +28,9 @@ public class Klinika {
 	
 	private String opis;
 	
-	private float prosecnaOcena;
+	private float prosecna_ocena;
 	
-	private Integer brojOcena;
+	private Integer broj_ocena;
 
 	public Integer getKlinikaID() {
 		return klinikaID;
@@ -73,19 +73,19 @@ public class Klinika {
 	}
 
 	public float getProsecnaOcena() {
-		return prosecnaOcena;
+		return prosecna_ocena;
 	}
 
 	public void setProsecnaOcena(float prosecnaOcena) {
-		this.prosecnaOcena = prosecnaOcena;
+		this.prosecna_ocena = prosecnaOcena;
 	}
 
 	public Integer getBrojOcena() {
-		return brojOcena;
+		return broj_ocena;
 	}
 
 	public void setBrojOcena(Integer brojOcena) {
-		this.brojOcena = brojOcena;
+		this.broj_ocena = brojOcena;
 	}
 
 }

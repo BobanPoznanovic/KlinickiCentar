@@ -10,7 +10,8 @@ import isa.klinicki_centar.model.Pacijent;
 
 @Repository
 public interface PacijentRepository extends JpaRepository<Pacijent, Integer> {
-
+	
+	@Query(value = "SELECT * FROM pacijent WHERE email = ?1", nativeQuery = true)
 	Pacijent findByEmail(String email);
 	
 	@Modifying

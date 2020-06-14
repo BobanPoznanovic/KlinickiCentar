@@ -1,0 +1,96 @@
+<app-nav></app-nav>
+<h2>Pregledi - ocenjivanje klinika i doktora</h2>
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Datum</th>
+    <th scope="col">Tip pregleda</th>
+    <th scope="col">Klinika</th>
+    <th scope="col">Ocena klinike</th>
+    <th scope="col">Lekar</th>
+    <th scope="col">Ocena lekara</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let exam of pregledi">
+    <td>{{ exam.datum_pregleda|date: 'yyyy-MM-dd'}}</td>
+    <td>{{ exam.tip_pregledaID }}</td>
+    <td>Klinika</td>
+    <td>
+      <select *ngIf="!klinika_ocenjena_P" (change)="onChangeSelect($event.target.value, exam)">
+        <option></option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+      <button *ngIf="!klinika_ocenjena_P" type="button" (click)="rateClinic(exam)"> Oceni !
+      </button>
+      <label *ngIf="klinika_ocenjena_P">Klinika je vec ocenjena !</label>
+    </td>
+    <td>Lekar ID - {{ exam.lekarID}}</td>
+    <td>
+      <select *ngIf="!lekar_ocenjen_P" (change)="onChangeSelect2($event.target.value, exam)">
+        <option></option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+      <button *ngIf="!lekar_ocenjen_P" type="button" (click)="rateDoctor(exam)"> Oceni !
+      </button>
+      <label *ngIf="lekar_ocenjen_P">Lekar je vec ocenjen !</label>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<h2>Operacije - ocenjivanje klinika i doktora</h2>
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Datum</th>
+    <th scope="col">Klinika</th>
+    <th scope="col">Oceni kliniku</th>
+    <th scope="col">Lekar</th>
+    <th scope="col">Oceni lekara</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let operation of operacije">
+    <td>{{ operation.datum_operacije|date: 'yyyy-MM-dd'}}</td>
+    <td>Klinika</td>
+    <td>
+      <select *ngIf="!klinika_ocenjena_O" (change)="onChangeSelect12($event.target.value, operation)">
+        <option></option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+      <button *ngIf="!klinika_ocenjena_O" type="button" (click)="rateClinicO(operation)"> Oceni !
+      </button>
+      <label *ngIf="klinika_ocenjena_O">Klinika je vec ocenjena !</label>
+    </td>
+    <td>Lekar ID - {{ operation.lekarID}}</td>
+    <td>
+      <select *ngIf="!lekar_ocenjen_O" (change)="onChangeSelect22($event.target.value, operation)">
+        <option></option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+      <button *ngIf="!lekar_ocenjen_O" type="button" (click)="rateDoctorO(operation)"> Oceni !
+      </button>
+      <label *ngIf="lekar_ocenjen_O">Lekar je vec ocenjen !</label>
+    </td>
+  </tr>
+  </tbody>
+</table>
+

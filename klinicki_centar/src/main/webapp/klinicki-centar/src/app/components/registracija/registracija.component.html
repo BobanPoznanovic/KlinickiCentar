@@ -14,11 +14,11 @@
           <br>
           <label for="inputBrojOsiguranika">Broj osiguranika: </label>
 
-            <input [(ngModel)]="pacijent.broj_osiguranika"
+            <input [(ngModel)]="zahtev.broj_osiguranika"
                     id="inputBrojOsiguranika"
                     name="brojOsiguranika"
                     formControlName="brojOsiguranika"
-                    placeholder="Enter your username"
+                    placeholder="Unesite broj zdravstvenog osiguranja"
                    class="form-control"
                     required>
             <div *ngIf="submitted && userData.controls.brojOsiguranika.errors">
@@ -27,7 +27,7 @@
 
           <label for="inputEmail">Email</label>
 
-            <input [(ngModel)]="pacijent.email"
+            <input [(ngModel)]="zahtev.email"
                    class="form-control"
                    id="inputEmail"
                    name="email" formControlName="email"
@@ -38,7 +38,8 @@
             </div>
 
           <label for="inputPassword">Password</label>
-            <input [(ngModel)]="pacijent.password"
+            <input [(ngModel)]="zahtev.password"
+                   [ngClass]="{'is-invalid': (userData.controls.password.touched && userData.controls.password.errors) || userData.hasError('notSame'), 'is-valid': userData.controls.password.touched && userData.controls.password.valid && !userData.hasError('notSame')}"
                    type="password"
                    class="form-control"
                    id="inputPassword"
@@ -50,8 +51,9 @@
             </div>
 
 
-          <label for="inputPasswordRepeat">Repeat password</label>
+          <label for="inputPasswordRepeat">Ponovite password</label>
             <input [(ngModel)]="passwordRepeat"
+                   [ngClass]="{'is-invalid': (userData.controls.passwordRepeat.touched && userData.controls.passwordRepeat.errors) || userData.hasError('notSame'), 'is-valid': userData.controls.passwordRepeat.touched && userData.controls.passwordRepeat.valid && !userData.hasError('notSame')}"
                    type="password"
                    class="form-control"
                    id="inputPasswordRepeat"
@@ -63,7 +65,7 @@
             </div>
 
           <label for="InputFirstName">First name</label>
-            <input [(ngModel)]="pacijent.ime"
+            <input [(ngModel)]="zahtev.ime"
                    class="form-control"
                    id="InputFirstName"
                    name="firstName" formControlName="firstName"
@@ -75,7 +77,7 @@
 
 
           <label for="InputLastName">Last name</label>
-            <input [(ngModel)]="pacijent.prezime"
+            <input [(ngModel)]="zahtev.prezime"
                    class="form-control"
                    id="InputLastName"
                    name="lastName" formControlName="lastName"
@@ -86,7 +88,7 @@
             </div>
 
           <label for="inputCountry">Drzava</label>
-            <input [(ngModel)]="pacijent.drzava"
+            <input [(ngModel)]="zahtev.drzava"
                    class="form-control"
                    id="inputCountry"
                    name="country" formControlName="country"
@@ -97,7 +99,7 @@
             </div>
 
           <label for="inputCity">Grad</label>
-          <input [(ngModel)]="pacijent.grad"
+          <input [(ngModel)]="zahtev.grad"
                  class="form-control"
                  id="inputCity"
                  name="city" formControlName="city"
@@ -108,7 +110,7 @@
           </div>
 
           <label for="inputAddress">Adresa</label>
-          <input [(ngModel)]="pacijent.adresa"
+          <input [(ngModel)]="zahtev.adresa"
                  class="form-control"
                  id="inputAddress"
                  name="address" formControlName="address"
@@ -119,7 +121,7 @@
           </div>
 
           <label for="inputPhone">Telefon</label>
-          <input [(ngModel)]="pacijent.kontakt_telefon"
+          <input [(ngModel)]="zahtev.broj_telefona"
                  class="form-control"
                  id="inputPhone"
                  name="phone" formControlName="phone"

@@ -1,1 +1,50 @@
-<p>login works!</p>
+<div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="container">
+      <div id="login-box">
+        <div class="left">
+
+          <h1>Login form</h1>
+          <br>
+          <label for="inputEmail">Email</label>
+
+          <input [(ngModel)]="pacijent.email"
+                 class="form-control"
+                 id="inputEmail"
+                 name="email" formControlName="email"
+                 placeholder="Unesite email"
+                 required>
+          <div *ngIf="submitted && loginForm.controls.email.errors">
+            <div *ngIf="loginForm.controls.email.errors.required">Email je obavezan</div>
+          </div>
+
+          <label for="inputPassword">Password</label>
+          <input [(ngModel)]="pacijent.password"
+                 type="password"
+                 class="form-control"
+                 id="inputPassword"
+                 name="password" formControlName="password"
+                 placeholder="Unesite password"
+                 required>
+          <div *ngIf="submitted && loginForm.controls.password.errors">
+            <div *ngIf="loginForm.controls.password.errors.required">Password je obavezan</div>
+          </div>
+
+          <button [ngClass]="!loginForm.valid ? 'btn btn-danger' : 'btn btn-success'"
+                  type="submit"
+                  [disabled]="!loginForm.valid">Login</button>
+
+          <br>
+          <br>
+          <hr>
+          Don't have account?<a routerLink="/register"> Register</a>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>
