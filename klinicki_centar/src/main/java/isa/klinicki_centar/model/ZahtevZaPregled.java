@@ -39,6 +39,17 @@ public class ZahtevZaPregled {
 		
 	}
 
+	public ZahtevZaPregled(Integer klinikaID, Integer pacijentID, Date datum, LocalTime satnica_pocetak,
+			LocalTime satnica_kraj, Integer lekarID, Integer tip_pregledaID) {
+		this.klinikaID = klinikaID;
+		this.pacijentID = pacijentID;
+		this.datum = datum;
+		this.satnica_pocetak = satnica_pocetak;
+		this.satnica_kraj = satnica_kraj;
+		this.lekarID = lekarID;
+		this.tip_pregledaID = tip_pregledaID;
+	}
+
 	public ZahtevZaPregled(Integer tip_pregledaID, Date datum, Integer klinikaID, Integer lekarID, Integer pacijentID) {
 		this.klinikaID = klinikaID;
 		this.pacijentID = pacijentID;

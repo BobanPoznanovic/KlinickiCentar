@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table (name = "KLINIKA")
@@ -31,6 +32,20 @@ public class Klinika {
 	private float prosecna_ocena;
 	
 	private Integer broj_ocena;
+	
+	@Version
+	private Integer version;
+
+	public Klinika(Integer klinikaID, String naziv, String adresa, String grad, String opis, float prosecna_ocena,
+			Integer broj_ocena) {
+		this.klinikaID = klinikaID;
+		this.naziv = naziv;
+		this.adresa = adresa;
+		this.grad = grad;
+		this.opis = opis;
+		this.prosecna_ocena = prosecna_ocena;
+		this.broj_ocena = broj_ocena;
+	}
 
 	public Integer getKlinikaID() {
 		return klinikaID;
@@ -86,6 +101,14 @@ public class Klinika {
 
 	public void setBrojOcena(Integer brojOcena) {
 		this.broj_ocena = brojOcena;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
 }

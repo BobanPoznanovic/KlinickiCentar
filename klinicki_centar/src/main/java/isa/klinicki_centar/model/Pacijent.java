@@ -44,6 +44,11 @@ public class Pacijent {
 		
 	}
 
+	public Pacijent(String ime, String prezime) {
+		this.ime = ime;
+		this.prezime = prezime;
+	}
+
 	public Pacijent(Integer broj_osiguranika, String email, String password, String ime, String prezime, String adresa,
 			String grad, String drzava, String kontakt_telefon) {
 		this.broj_osiguranika = broj_osiguranika;

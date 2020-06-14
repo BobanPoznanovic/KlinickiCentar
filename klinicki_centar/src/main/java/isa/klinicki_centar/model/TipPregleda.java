@@ -32,6 +32,11 @@ public class TipPregleda {
 		
 	}
 
+	public TipPregleda(String naziv, float cena) {
+		this.naziv = naziv;
+		this.cena = cena;
+	}
+
 	public String getNaziv() {
 		return naziv;
 	}

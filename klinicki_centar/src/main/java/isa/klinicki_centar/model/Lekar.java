@@ -66,6 +66,11 @@ public class Lekar {
 		
 	}
 
+	public Lekar(String ime, String prezime) {
+		this.ime = ime;
+		this.prezime = prezime;
+	}
+
 	public Integer getLekarID() {
 		return lekarID;
 	}

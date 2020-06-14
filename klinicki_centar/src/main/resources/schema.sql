@@ -73,7 +73,8 @@ CREATE TABLE KLINIKA (
     grad varchar(255),
 	opis varchar(1000),
     prosecna_ocena float,
-    broj_ocena int
+    broj_ocena int,
+    version int
 );
 
 CREATE TABLE TIP_PREGLEDA (

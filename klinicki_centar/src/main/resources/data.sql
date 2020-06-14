@@ -9,11 +9,11 @@ insert into admin_klinickog_centra (ime, prezime, username, password, email, kon
 
 
 --Klinika
-insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika1', 'Futoski put 14', 'Novi Sad', 'Opis klinike1', 0.0, 0);
-insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika2', 'Balkanska 188', 'Beograd', 'Opis klinike2', 0.0, 0);
-insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika3', 'Pasterova 16', 'Novi Sad', 'Opis klinike3', 0.0, 0);
-insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika4', 'Jovana Popovica 6', 'Novi Sad', 'Opis klinike4', 0.0, 0);
-insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena) values ('Klinika5', 'Savska 155', 'Beograd', 'Opis klinike5', 0.0, 0);
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena, version) values ('Klinika1', 'Futoski put 14', 'Novi Sad', 'Opis klinike1', 0.0, 0, 0);
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena, version) values ('Klinika2', 'Balkanska 188', 'Beograd', 'Opis klinike2', 0.0, 0, 0);
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena, version) values ('Klinika3', 'Pasterova 16', 'Novi Sad', 'Opis klinike3', 0.0, 0, 0);
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena, version) values ('Klinika4', 'Jovana Popovica 6', 'Novi Sad', 'Opis klinike4', 0.0, 0, 0);
+insert into klinika (naziv, adresa, grad, opis, prosecna_ocena, broj_ocena, version) values ('Klinika5', 'Savska 155', 'Beograd', 'Opis klinike5', 0.0, 0, 0);
 
 --Admin klinike
 INSERT INTO admin_klinike (klinikaID, ime, prezime, username, password, email, kontakt_telefon, adresa, izmenjana_sifra_nakon_prvog_logovanja)
