@@ -15,8 +15,7 @@
             Sunday - {{week.datumi[0]}}
             <ul>
                 <li *ngFor="let event of week.sunday">
-                    Datum: {{event.datum}}
-                    Pocetak: {{event.satnica_pocetak}}
+                    <app-event-u-danu [event]="event"></app-event-u-danu>
                 </li>
             </ul>
         </span>
@@ -25,7 +24,7 @@
             Monday - {{week.datumi[1]}}
             <ul>
                 <li *ngFor="let event of week.monday">
-                    Pocetak: {{event.satnica_pocetak}}
+                    <app-event-u-danu [event]="event"></app-event-u-danu>
                 </li>
             </ul>
         </span>
@@ -34,7 +33,7 @@
             Tuesday - {{week.datumi[2]}}
             <ul>
                 <li *ngFor="let event of week.tuesday">
-                    Pocetak: {{event.satnica_pocetak}}
+                    <app-event-u-danu [event]="event"></app-event-u-danu>
                 </li>
             </ul>
         </span>
@@ -43,7 +42,7 @@
             Wednesday - {{week.datumi[3]}}
             <ul>
                 <li *ngFor="let event of week.wednesday">
-                    Pocetak: {{event.satnica_pocetak}}
+                    <app-event-u-danu [event]="event"></app-event-u-danu>
                 </li>
             </ul>
         </span>
@@ -52,7 +51,7 @@
             Thursday - {{week.datumi[4]}}
             <ul>
                 <li *ngFor="let event of week.thursday">
-                    Pocetak: {{event.satnica_pocetak}}
+                    <app-event-u-danu [event]="event"></app-event-u-danu>
                 </li>
             </ul>
         </span>
@@ -61,7 +60,7 @@
             Friday - {{week.datumi[5]}}
             <ul>
                 <li *ngFor="let event of week.friday">
-                    Pocetak: {{event.satnica_pocetak}}
+                    <app-event-u-danu [event]="event"></app-event-u-danu>
                 </li>
             </ul>
         </span>
@@ -70,7 +69,7 @@
             Saturday - {{week.datumi[6]}}
             <ul>
                 <li *ngFor="let event of week.saturday">
-                    Pocetak: {{event.satnica_pocetak}}
+                    <app-event-u-danu [event]="event"></app-event-u-danu>
                 </li>
             </ul>
         </span>

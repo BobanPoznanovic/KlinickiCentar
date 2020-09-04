@@ -1,4 +1,8 @@
 <p>event-u-danu works!</p>
 <p>Pocetak: {{event.satnica_pocetak}}</p>
-<p *ngIf="pregled">Zavrsen pregled</p>
-Pacijent: {{pregled.pacijentID}}
+<p *ngIf="pregled">Pregled ucitan</p>
+<p *ngIf="izvestajPregleda">Izvestaj pregleda: {{izvestajPregleda.opis_pregleda}}</p>
+<div *ngIf="!izvestajPregleda">
+    <button (click)="kreirajPregled(pregled)">Kreiraj izvestaj</button>
+</div>
+<app-dodaj-izvestaj-pregleda *ngIf="selectedPregledID==event.eventID" [pregledID]="selectedPregledID"></app-dodaj-izvestaj-pregleda>
