@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CalendarEvent } from 'src/app/model/calendarEvent';
+import  {CalendarEvent } from '../../../../../model/calendarEvent';
 import { PregledService } from 'src/app/services/pregled.service';
 import { Pregled } from 'src/app/model/pregled';
 import { IzvestajPregleda } from 'src/app/model/izvestajPregleda';
@@ -18,6 +18,7 @@ export class EventUDanuComponent implements OnInit {
   @Input() event : CalendarEvent;
   pregled : Pregled;
   izvestajPregleda : IzvestajPregleda;
+  selectedPregledID: number;
 
   ngOnInit(): void {
     if(this.event.tip == 0) {
@@ -26,8 +27,12 @@ export class EventUDanuComponent implements OnInit {
       this.pregledService.getById(pregledID).subscribe(
         data => {
           this.pregled = data;
-          this.pregledService.getIzvestajByPregledID(this.event.eventID).subscribe(
+          console.log('pregled: ');
+          console.log(this.pregled);
+          this.pregledService.getIzvestajByPregledID(pregledID).subscribe(
             res => {
+              console.log('Response za izvestajByPregledID');
+              console.log(res);
               if(res!=null) {
                 this.izvestajPregleda = res;
               }
@@ -36,6 +41,10 @@ export class EventUDanuComponent implements OnInit {
         }
         );
     }
+  }
+
+  kreirajPregled(pregled: Pregled) {
+    this.selectedPregledID = pregled.pregledID;
   }
 
 }

@@ -104,7 +104,8 @@ public class ReceptServicesImpl implements ReceptService {
 		ArrayList<Recept> neoverniRecepti = new ArrayList<Recept>();
 		
 		for(IzvestajPregleda izvestaj : izvestaji)
-			neoverniRecepti.addAll(receptRepository.findNeovereniByIzvestajID(izvestaj.getIzvestaj_pregledaID())); //Ovo puca
+			if(izvestaj != null)
+				neoverniRecepti.addAll(receptRepository.findNeovereniByIzvestajID(izvestaj.getIzvestaj_pregledaID()));
 		
 		return neoverniRecepti;
 	}
