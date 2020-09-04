@@ -29,9 +29,9 @@ export class IzmeniZdravstveniKartonComponent implements OnInit {
     });
 
     this.kartonForm = this.formBuilder.group({
-      datum_rodjenja : new FormControl(this.karton.datum_rodjenja),
+      datum_rodjenja : new FormControl(''),
       visina_pacijenta : new FormControl(''),
-      tezine_pacijenta : new FormControl(''),
+      tezina_pacijenta : new FormControl(''),
       krvna_grupa : new FormControl(''),
       dioptrija : new FormControl('')
     });
@@ -43,14 +43,20 @@ export class IzmeniZdravstveniKartonComponent implements OnInit {
 
     this.karton.datum_rodjenja = this.kartonForm.controls.datum_rodjenja.value;
     this.karton.visina_pacijenta = this.kartonForm.controls.visina_pacijenta.value;
-    this.karton.tezine_pacijenta = this.kartonForm.controls.tezine_pacijenta.value;
+    this.karton.tezina_pacijenta = this.kartonForm.controls.tezina_pacijenta.value;
     this.karton.krvna_grupa = this.kartonForm.controls.krvna_grupa.value;
     this.karton.dioptrija = this.kartonForm.controls.dioptrija.value;
     this.karton.pacijentID = this.pacijent.pacijentID;
 
+    console.log(this.kartonForm.controls.datum_rodjenja.value);
+    console.log(this.kartonForm.controls.visina_pacijenta.value);
+    console.log(this.kartonForm.controls.tezina_pacijenta.value);
+    console.log(this.kartonForm.controls.krvna_grupa.value);
+    console.log(this.kartonForm.controls.dioptrija.value);
+
     console.log(this.karton);
 
-    //this.kartonService.updateKarton(this.karton).subscribe(data => this.karton = data);
+    this.kartonService.updateKarton(this.karton).subscribe(data => this.karton = data);
 
   }
 

@@ -3,7 +3,7 @@ export class ZdravstveniKarton {
     pacijentID : number;
     datum_rodjenja : string;
     visina_pacijenta : number;
-    tezine_pacijenta : number;
+    tezina_pacijenta : number;
     krvna_grupa : string;
     dioptrija : string;
 }
