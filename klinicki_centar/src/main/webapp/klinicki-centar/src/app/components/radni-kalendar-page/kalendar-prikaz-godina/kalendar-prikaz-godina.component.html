@@ -1,1 +1,82 @@
 <p>kalendar-prikaz-godina works!</p>
+
+<form [formGroup]="godinaForm" (ngSubmit)="onSubmit()">
+    <label>
+        Datum(yyyy-mm-dd):
+        <input type="text" formControlName="datum">
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="january">
+    <div *ngFor="let day of january.days">
+        <app-dan-u-mesecu [day]="day" [month]="january.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="february">
+    <div *ngFor="let day of february.days">
+        <app-dan-u-mesecu [day]="day" [month]="february.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="march">
+    <div *ngFor="let day of march.days">
+        <app-dan-u-mesecu [day]="day" [month]="march.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="april">
+    <div *ngFor="let day of april.days">
+        <app-dan-u-mesecu [day]="day" [month]="april.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="may">
+    <div *ngFor="let day of may.days">
+        <app-dan-u-mesecu [day]="day" [month]="may.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="june">
+    <div *ngFor="let day of june.days">
+        <app-dan-u-mesecu [day]="day" [month]="june.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="july">
+    <div *ngFor="let day of july.days">
+        <app-dan-u-mesecu [day]="day" [month]="july.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="august">
+    <div *ngFor="let day of august.days">
+        <app-dan-u-mesecu [day]="day" [month]="august.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="september">
+    <div *ngFor="let day of september.days">
+        <app-dan-u-mesecu [day]="day" [month]="september.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="october">
+    <div *ngFor="let day of october.days">
+        <app-dan-u-mesecu [day]="day" [month]="october.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="november">
+    <div *ngFor="let day of november.days">
+        <app-dan-u-mesecu [day]="day" [month]="november.month"></app-dan-u-mesecu>
+    </div>
+</div>
+
+<div *ngIf="december">
+    <div *ngFor="let day of december.days">
+        <app-dan-u-mesecu [day]="day" [month]="december.month"></app-dan-u-mesecu>
+    </div>
+</div>
